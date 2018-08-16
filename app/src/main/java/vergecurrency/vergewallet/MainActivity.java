@@ -22,30 +22,22 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_wallet:
-                    mTextMessage.setText(R.string.title_wallet);
-                    mTextMessage.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    mTextMessage.setTextColor(Color.WHITE);
-                    showFragment(new FragmentWallet());
+                    showFragment(new FragmentWallet(), R.string.title_wallet,Color.WHITE,getResources().getColor(R.color.colorPrimary));
+
                     return true;
                 case R.id.navigation_transactions:
-                    mTextMessage.setText(R.string.title_transactions);
-                    mTextMessage.setBackgroundColor(Color.WHITE);
-                    mTextMessage.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    showFragment(new FragmentTransactions(), R.string.title_transactions,getResources().getColor(R.color.colorPrimaryDark),Color.WHITE);
+
                     return true;
                 case R.id.navigation_send:
-                    mTextMessage.setText(R.string.title_send);
-                    mTextMessage.setBackgroundColor(Color.WHITE);
-                    mTextMessage.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    showFragment(new FragmentSend(), R.string.title_send,getResources().getColor(R.color.colorPrimaryDark),Color.WHITE);
+
                     return true;
                 case R.id.navigation_receive:
-                    mTextMessage.setText(R.string.title_receive);
-                    mTextMessage.setBackgroundColor(Color.WHITE);
-                    mTextMessage.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    showFragment(new FragmentReceive(), R.string.title_receive,getResources().getColor(R.color.colorPrimaryDark),Color.WHITE);
                     return true;
                 case R.id.navigation_settings:
-                    mTextMessage.setText(R.string.title_settings);
-                    mTextMessage.setBackgroundColor(Color.WHITE);
-                    mTextMessage.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    showFragment(new FragmentSettings(), R.string.title_settings,getResources().getColor(R.color.colorPrimaryDark),Color.WHITE);
                     return true;
             }
             return false;
@@ -64,7 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void showFragment(Fragment fragment) {
+    private void showFragment(Fragment fragment, int title, int textColor, int textBgColor) {
+        mTextMessage.setText(title);
+        mTextMessage.setTextColor(textColor);
+        mTextMessage.setBackgroundColor(textBgColor);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.content, fragment)
