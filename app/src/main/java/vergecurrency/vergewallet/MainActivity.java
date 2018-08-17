@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_receive:
                     showFragment(new FragmentReceive(), R.string.title_receive,getResources().getColor(R.color.colorPrimaryDark),Color.WHITE);
+
                     return true;
                 case R.id.navigation_settings:
                     showFragment(new FragmentSettings(), R.string.title_settings,getResources().getColor(R.color.colorPrimaryDark),Color.WHITE);
