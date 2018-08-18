@@ -11,6 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import vergecurrency.vergewallet.fragments.FragmentReceive;
+import vergecurrency.vergewallet.fragments.FragmentSend;
+import vergecurrency.vergewallet.fragments.FragmentSettings;
+import vergecurrency.vergewallet.fragments.FragmentTransactions;
+import vergecurrency.vergewallet.fragments.FragmentWallet;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
@@ -55,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
 
+        showFragment(new FragmentWallet(), R.string.title_wallet,Color.WHITE,getResources().getColor(R.color.colorPrimary));
     }
 
     private void showFragment(Fragment fragment, int title, int textColor, int textBgColor) {

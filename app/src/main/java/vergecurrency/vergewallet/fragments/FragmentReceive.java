@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet;
+package vergecurrency.vergewallet.fragments;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
+import vergecurrency.vergewallet.R;
 
 public class FragmentReceive extends Fragment {
 

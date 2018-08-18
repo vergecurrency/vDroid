@@ -1,4 +1,5 @@
-package vergecurrency.vergewallet;
+package vergecurrency.vergewallet.fragments;
+
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,10 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FragmentTransactions extends Fragment {
+import vergecurrency.vergewallet.R;
 
-    public FragmentTransactions() {
 
+public class FragmentWallet extends Fragment {
+
+
+    public FragmentWallet() {
+        // Required empty public constructor
     }
 
 
@@ -17,6 +22,8 @@ public class FragmentTransactions extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transactions, container, false);
+        return inflater.inflate(R.layout.fragment_wallet, container, false);
     }
+
 }
+
