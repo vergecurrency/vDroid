@@ -19,7 +19,6 @@ public class FragmentSettings extends Fragment {
 
 
     public FragmentSettings() {
-        // Required empty public constructor
     }
 
     public void fillRecyclerView(View rootView, int recyclerViewID, HeaderData headerData, ItemData[] itemsData) {
@@ -57,6 +56,7 @@ public class FragmentSettings extends Fragment {
                 new ItemData("Use fingerprint", R.drawable.ic_fingerprint_black_24dp)
         };
 
+        //populate the recyclerviews with their data
         fillRecyclerView(rootView, R.id.settings_list_wallet, new HeaderData("WALLET"), itemsDataWallet);
         fillRecyclerView(rootView,R.id.settings_list_other, new HeaderData("OTHER"),itemsDataOther );
         fillRecyclerView(rootView,R.id.settings_list_settings, new HeaderData("SETTINGS"),itemsDataSettings);

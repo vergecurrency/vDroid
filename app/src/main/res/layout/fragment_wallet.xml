@@ -15,41 +15,49 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="8dp" >
-
-
-
     </HorizontalScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="@color/colorPrimary">
-
-
-
-
     </LinearLayout>
+
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="-40dp"
+
+
         android:background="@drawable/rounded_corners_wallet"
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-            <include layout="@layout/wallet_card" android:id="@+id/wallet_card_recent_transactions" />
+            <include layout="@layout/wallet_card"
+                android:id="@+id/wallet_card_recent_transactions"
+                />
 
-            <include layout="@layout/wallet_card" android:id="@+id/wallet_card_price_statistics" />
+            <include layout="@layout/wallet_card"
+                android:id="@+id/wallet_card_price_statistics"
+            />
 
-            <include layout="@layout/wallet_card" android:id="@+id/wallet_card_history_chart" />
+            <include layout="@layout/wallet_card"
+                android:id="@+id/wallet_card_history_chart"
+            />
+
         </LinearLayout>
+
     </HorizontalScrollView>
 
 
 </LinearLayout>
+
 
 
