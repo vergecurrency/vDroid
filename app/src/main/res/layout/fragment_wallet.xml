@@ -23,39 +23,16 @@
         android:background="@color/colorPrimary">
     </LinearLayout>
 
-    <HorizontalScrollView
+    <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="-40dp"
-
-
         android:background="@drawable/rounded_corners_wallet"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <include layout="@layout/wallet_card"
-                android:id="@+id/wallet_card_recent_transactions"
-                />
-
-            <include layout="@layout/wallet_card"
-                android:id="@+id/wallet_card_price_statistics"
-            />
-
-            <include layout="@layout/wallet_card"
-                android:id="@+id/wallet_card_history_chart"
-            />
-
-        </LinearLayout>
-
-    </HorizontalScrollView>
-
+        android:id="@+id/wallet_cards_viewpager"
+         />
 
 </LinearLayout>
 
