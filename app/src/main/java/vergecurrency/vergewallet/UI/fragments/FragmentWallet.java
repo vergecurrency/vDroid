@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.fragments;
+package vergecurrency.vergewallet.UI.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,35 +10,35 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.fragments.beans.ItemData;
-import vergecurrency.vergewallet.fragments.walletcards.FragmentWalletCard;
+import vergecurrency.vergewallet.UI.fragments.beans.ItemData;
+import vergecurrency.vergewallet.UI.fragments.walletcards.FragmentWalletCard;
 
 
 public class FragmentWallet extends Fragment {
 
+    public View rootView;
 
     public FragmentWallet() {
         // Required empty public constructor
     }
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView =  inflater.inflate(R.layout.fragment_wallet, container, false);
 
-        ViewPager pager = (ViewPager) rootView.findViewById(R.id.wallet_cards_viewpager);
-        pager.setAdapter(new MyPagerAdapter(getActivity().getSupportFragmentManager()));
+        if(rootView == null) {
+            rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
+
+            ViewPager pager = (ViewPager) rootView.findViewById(R.id.wallet_cards_viewpager);
+            pager.setAdapter(new MyPagerAdapter(getActivity().getSupportFragmentManager()));
 
 
-
-        //Fill the different cards with their contents
+            //Fill the different cards with their contents
       /*fillCard(rootView,R.id.wallet_card_price_statistics, new ItemData("Price Statistics", R.drawable.ic_icons8_increase),R.drawable.ic_icons8_increase);
       fillCard(rootView,R.id.wallet_card_history_chart, new ItemData("History Chart", R.drawable.ic_icons8_line_chart),R.drawable.ic_icons8_line_chart); */
-
+        }
         return rootView;
     }
 
@@ -54,19 +54,15 @@ public class FragmentWallet extends Fragment {
             switch (pos) {
 
                 case 0:
-                    FragmentWalletCard fwc1  = new FragmentWalletCard();
-                    fwc1.fillCard(new ItemData("Recent transactions", R.drawable.ic_transactions_black_24dp), R.drawable.ic_transactions_black_24dp);
-                    return fwc1;
+                   return FragmentWalletCard.newInstance(new ItemData("Recent transactions", R.drawable.ic_transactions_black_24dp), R.drawable.ic_transactions_black_24dp);
                 case 1:
-                    FragmentWalletCard fwc2 = new FragmentWalletCard();
-                    fwc2.fillCard( new ItemData("Price Statistics", R.drawable.ic_icons8_increase),R.drawable.ic_icons8_increase);
-                    return fwc2;
+
+                    return FragmentWalletCard.newInstance( new ItemData("Price Statistics", R.drawable.ic_icons8_increase),R.drawable.ic_icons8_increase);
                 case 2:
-                    FragmentWalletCard fwc3= new FragmentWalletCard();
-                    fwc3.fillCard(new ItemData("History Chart", R.drawable.ic_icons8_line_chart),R.drawable.ic_icons8_line_chart);
-                    return fwc3;
+
+                    return FragmentWalletCard.newInstance(new ItemData("History Chart", R.drawable.ic_icons8_line_chart),R.drawable.ic_icons8_line_chart);
                 default:
-                    return FragmentWalletCard.instantiate(getContext(),"Something");
+                   return null;
             }
         }
 

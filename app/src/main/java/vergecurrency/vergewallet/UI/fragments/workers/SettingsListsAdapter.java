@@ -1,22 +1,19 @@
-package vergecurrency.vergewallet.fragments.workers;
+package vergecurrency.vergewallet.UI.fragments.workers;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.fragments.beans.HeaderData;
-import vergecurrency.vergewallet.fragments.beans.ItemData;
+import vergecurrency.vergewallet.UI.fragments.beans.HeaderData;
+import vergecurrency.vergewallet.UI.fragments.beans.ItemData;
 
 public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final int TYPE_HEADER = 0;
-    private static final int TYPE_ITEM = 1;
 
-    private HeaderData headerData;
-    private ItemData[] itemsData;
 
     public SettingsListsAdapter(HeaderData headerData, ItemData[] itemsData) {
         this.itemsData = itemsData;
@@ -35,6 +32,15 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
         else if(viewType == TYPE_ITEM) {
             View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_item, null);
+
+            itemLayoutView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO : map each button to an action.
+                }
+            });
+
+
             return new VHItem(itemLayoutView);
         }
 
@@ -58,7 +64,6 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
             VHItem VHItem = (VHItem)holder;
             VHItem.txtViewTitle.setText(itemsData[position-1].getTitle());
             VHItem.imgViewIcon.setImageResource(itemsData[position-1].getImageUrl());
-
         }
     }
 
@@ -70,11 +75,14 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         TextView txtViewTitle;
         ImageView imgViewIcon;
+        RelativeLayout rel;
 
-        public VHItem(View itemLayoutView) {
+        public VHItem(final View itemLayoutView) {
             super(itemLayoutView);
             imgViewIcon = (ImageView) itemLayoutView.findViewById(R.id.listview_item_icon);
             txtViewTitle = (TextView) itemLayoutView.findViewById(R.id.listview_item_title);
+            rel = (RelativeLayout) itemLayoutView.findViewById(R.id.listview_layout);
+
         }
     }
 
@@ -107,4 +115,13 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
     public int getItemCount() {
         return itemsData.length+1;
     }
+
+
+
+    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_ITEM = 1;
+
+    private HeaderData headerData;
+    private ItemData[] itemsData;
+
 }

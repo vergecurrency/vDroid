@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.fragments.beans;
+package vergecurrency.vergewallet.UI.fragments.beans;
 
 public class ItemData {
 

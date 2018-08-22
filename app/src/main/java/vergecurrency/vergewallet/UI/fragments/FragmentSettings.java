@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.fragments;
+package vergecurrency.vergewallet.UI.fragments;
 
 import android.os.Bundle;
 
@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.fragments.beans.HeaderData;
-import vergecurrency.vergewallet.fragments.beans.ItemData;
-import vergecurrency.vergewallet.fragments.workers.SettingsListsAdapter;
+import vergecurrency.vergewallet.UI.fragments.beans.HeaderData;
+import vergecurrency.vergewallet.UI.fragments.beans.ItemData;
+import vergecurrency.vergewallet.UI.fragments.workers.SettingsListsAdapter;
 
 public class FragmentSettings extends Fragment {
 

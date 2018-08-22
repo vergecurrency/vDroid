@@ -1,5 +1,6 @@
-package vergecurrency.vergewallet.fragments.walletcards;
+package vergecurrency.vergewallet.UI.fragments.walletcards;
 
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.os.Bundle;
 import android.view.ViewGroup;
@@ -9,25 +10,45 @@ import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import vergecurrency.vergewallet.fragments.beans.ItemData;
+import vergecurrency.vergewallet.UI.fragments.beans.ItemData;
 
 public class FragmentWalletCard extends Fragment{
 
-    public void fillCard( ItemData data, int backgroundId) {
+    public FragmentWalletCard() {
+
+    }
+
+    public static FragmentWalletCard newInstance(ItemData data, int backgroundId) {
+
+        Bundle args = new Bundle();
+
+        FragmentWalletCard fragment = new FragmentWalletCard();
+        fragment.setArguments(args);
+        fragment.data = data;
+        fragment.backgroundId = backgroundId;
+
+        return fragment;
+    }
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         //get the card view from the root view
         //Get the card label and set its data
-        View cardLabel = rootView.findViewById(R.id.wallet_card_label);
+        View cardLabel = getView().findViewById(R.id.wallet_card_label);
         TextView mTitle = cardLabel.findViewById(R.id.listview_item_title);
         ImageView mIcon = cardLabel.findViewById(R.id.listview_item_icon);
         mTitle.setText(data.getTitle());
         mIcon.setBackgroundResource(data.getImageUrl());
 
         //Get the card background and set it
-        ImageView background = rootView.findViewById(R.id.wallet_card_background);
+        ImageView background = getView().findViewById(R.id.wallet_card_background);
         background.setImageResource(backgroundId);
 
     }
+
 
 
     @Override
@@ -41,4 +62,6 @@ public class FragmentWalletCard extends Fragment{
     }
 
     private View rootView;
+    private ItemData data;
+    private int backgroundId;
 }
