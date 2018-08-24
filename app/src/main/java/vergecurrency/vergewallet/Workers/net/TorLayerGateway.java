@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.URI;
 import java.net.UnknownHostException;
 
 import cz.msebera.android.httpclient.HttpEntity;
@@ -32,6 +33,7 @@ import cz.msebera.android.httpclient.ssl.SSLContexts;
 public class TorLayerGateway extends android.os.AsyncTask<String, Integer, String>{
 
     private Context context;
+    private OnionProxyManager onionProxyManager;
 
 
     public TorLayerGateway(Context context) {
@@ -67,8 +69,7 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
         String fileStorageLocation = "torfiles";
 
         //Get the proxy manager
-        OnionProxyManager onionProxyManager =
-                new com.msopentech.thali.android.toronionproxy.AndroidOnionProxyManager(context, fileStorageLocation);
+         onionProxyManager = new com.msopentech.thali.android.toronionproxy.AndroidOnionProxyManager(context, fileStorageLocation);
         int totalSecondsPerTorStartup = 4 * 60;
         int totalTriesPerTorStartup = 5;
         try {
@@ -116,6 +117,41 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
         }
         return "done!";
     }
+
+
+    public void retrieveDataFromURI(String uri) {
+        try {
+            //Creates the http client according to the previous method
+            HttpClient httpClient = getNewHttpClient();
+            int port = onionProxyManager.getIPv4LocalHostSocksPort();
+            //creates the local socket and context
+            InetSocketAddress socksaddr = new InetSocketAddress("127.0.0.1", port);
+            HttpClientContext context = HttpClientContext.create();
+            context.setAttribute("socks.address", socksaddr);
+
+            //URL Current IP : https://api.ipify.org?format=json
+            //
+
+            HttpGet httpGet = new HttpGet(new URI(uri));
+            HttpResponse httpResponse = httpClient.execute(httpGet, context);
+            HttpEntity httpEntity = httpResponse.getEntity();
+            InputStream httpResponseStream = httpEntity.getContent();
+
+            //Reads the whole content because I had nothing better to do and followed a well documented example
+            //TODO : Externalise all this in a function to treat different data models like the Cryptocompare API result
+            BufferedReader httpResponseReader = new BufferedReader(
+                    new InputStreamReader(httpResponseStream, "iso-8859-1"), 8);
+            String line = null;
+            while ((line = httpResponseReader.readLine()) != null) {
+                System.out.println("VERGE WALLET IP : " + line);
+            }
+            httpResponseStream.close();
+        } catch (Exception ex) {
+            //TODO : Catch exception properly
+        }
+    }
+
+
 
     @Override
     protected void onPreExecute() {
