@@ -1,5 +1,6 @@
 package vergecurrency.vergewallet;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,13 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import vergecurrency.vergewallet.UI.fragments.FragmentReceive;
-import vergecurrency.vergewallet.UI.fragments.FragmentSend;
-import vergecurrency.vergewallet.UI.fragments.FragmentSettings;
-import vergecurrency.vergewallet.UI.fragments.FragmentTransactions;
-import vergecurrency.vergewallet.UI.fragments.FragmentWallet;
+import vergecurrency.vergewallet.views.fragments.FragmentReceive;
+import vergecurrency.vergewallet.views.fragments.FragmentSend;
+import vergecurrency.vergewallet.views.fragments.FragmentSettings;
+import vergecurrency.vergewallet.views.fragments.FragmentTransactions;
+import vergecurrency.vergewallet.views.fragments.FragmentWallet;
 
-import vergecurrency.vergewallet.Workers.net.layers.TorLayerGateway;
+import vergecurrency.vergewallet.models.net.layers.TorLayerGateway;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,16 +28,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //THIS SHIT HAS TO BE MOVED BUT WORKS FOR NOW.
-        new TorLayerGateway(getApplicationContext()).execute();
+        TorLayerGateway tlg = new TorLayerGateway(getApplicationContext());
 
+        tlg.execute();
 
+        //Initialize upper text view
         mTextMessage = (TextView) findViewById(R.id.mTextMessage);
+
+        //Initialize Bottom bottom_navigation view
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
 
-        showFragment(new FragmentWallet(), R.string.title_wallet,Color.WHITE,getResources().getColor(R.color.colorPrimary));
+        //Get the Shared preferences from the app
+        prefs = getSharedPreferences("com.vergecurrency.vergewallet", MODE_PRIVATE);
 
+        if(prefs.getBoolean("firstlaunch", true)) {
+            //go to first launch activity that I haven't created yet
+            //startActivity(new Intent(this, ));
+            prefs.edit().putBoolean("firstlaunch", false).commit();
+        } else {
+            //show the Wallet fragment by default
+            showFragment(new FragmentWallet(), R.string.title_wallet, Color.WHITE, getResources().getColor(R.color.colorPrimary));
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -86,4 +100,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private TextView mTextMessage;
+    SharedPreferences prefs = null;
+
 }
