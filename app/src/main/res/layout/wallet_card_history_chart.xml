@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:orientation="vertical"
+    android:id="@+id/wallet_card_history_chart"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <include layout="@layout/listview_item" android:id="@+id/wallet_card_label"
+        android:layout_height="30dp"
+        android:layout_width="match_parent"/>
+
+    <ImageView
+        android:id="@+id/wallet_card_background"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:tint="@color/colorAccent"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:padding="30dp"
+       />
+</LinearLayout>

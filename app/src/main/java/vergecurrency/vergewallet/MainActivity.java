@@ -11,9 +11,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import vergecurrency.vergewallet.UI.fragments.FragmentReceive;
+import vergecurrency.vergewallet.UI.fragments.FragmentSend;
+import vergecurrency.vergewallet.UI.fragments.FragmentSettings;
+import vergecurrency.vergewallet.UI.fragments.FragmentTransactions;
+import vergecurrency.vergewallet.UI.fragments.FragmentWallet;
+
+import vergecurrency.vergewallet.Workers.net.layers.TorLayerGateway;
+
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //THIS SHIT HAS TO BE MOVED BUT WORKS FOR NOW.
+        new TorLayerGateway(getApplicationContext()).execute();
+
+
+        mTextMessage = (TextView) findViewById(R.id.mTextMessage);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+
+        showFragment(new FragmentWallet(), R.string.title_wallet,Color.WHITE,getResources().getColor(R.color.colorPrimary));
+
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -22,52 +46,44 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_wallet:
-                    mTextMessage.setText(R.string.title_wallet);
-                    mTextMessage.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    mTextMessage.setTextColor(Color.WHITE);
-                    showFragment(new FragmentWallet());
+                    showFragment(new FragmentWallet(), R.string.title_wallet,Color.WHITE,getResources().getColor(R.color.colorPrimary));
+
                     return true;
                 case R.id.navigation_transactions:
-                    mTextMessage.setText(R.string.title_transactions);
-                    mTextMessage.setBackgroundColor(Color.WHITE);
-                    mTextMessage.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    showFragment(new FragmentTransactions(), R.string.title_transactions,getResources().getColor(R.color.colorPrimaryDark),Color.WHITE);
+
                     return true;
                 case R.id.navigation_send:
-                    mTextMessage.setText(R.string.title_send);
-                    mTextMessage.setBackgroundColor(Color.WHITE);
-                    mTextMessage.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    showFragment(new FragmentSend(), R.string.title_send,getResources().getColor(R.color.colorPrimaryDark),Color.WHITE);
+
                     return true;
                 case R.id.navigation_receive:
-                    mTextMessage.setText(R.string.title_receive);
-                    mTextMessage.setBackgroundColor(Color.WHITE);
-                    mTextMessage.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    showFragment(new FragmentReceive(), R.string.title_receive,getResources().getColor(R.color.colorPrimaryDark),Color.WHITE);
+
                     return true;
                 case R.id.navigation_settings:
-                    mTextMessage.setText(R.string.title_settings);
-                    mTextMessage.setBackgroundColor(Color.WHITE);
-                    mTextMessage.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    showFragment(new FragmentSettings(), R.string.title_settings,getResources().getColor(R.color.colorPrimaryDark),Color.WHITE);
                     return true;
             }
             return false;
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    private void showFragment(Fragment fragment, int title, int textColor, int textBgColor) {
+        mTextMessage.setText(title);
+        mTextMessage.setTextColor(textColor);
+        mTextMessage.setBackgroundColor(textBgColor);
 
-        mTextMessage = (TextView) findViewById(R.id.mTextMessage);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        navigation.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
-
-    }
-
-    private void showFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.content, fragment)
                 .commit();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    private TextView mTextMessage;
 }

@@ -6,4 +6,10 @@
     <string name="title_receive">Receive</string>
     <string name="title_settings">Settings</string>
     <string name="text_message">Menu position will be indicated here</string>
+    <string name="transaction_message_main">No transactions received yet</string>
+    <string name="transaction_message_sub">Open the bug XVG guide or receive XVG</string>
+    <string name="send_message_main">Not enough balance</string>
+    <string name="send_message_sub">You do not have enough balance to send any XVG. \n Please increase your balance</string>
+    <string name="current_qr_code">cBQFLyaV5o17Rpx424JGHbQjdffyQs7Atm</string>
+    <string name="receive_xvg_main">Send only XVG to this deposit address. \n Sending any other coin or token to this address may result in the loss of your deposit.</string>
 </resources>
