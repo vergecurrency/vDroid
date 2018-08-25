@@ -27,10 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //THIS SHIT HAS TO BE MOVED BUT WORKS FOR NOW.
-        TorLayerGateway tlg = new TorLayerGateway(getApplicationContext());
 
-        tlg.execute();
 
         //Initialize upper text view
         mTextMessage = (TextView) findViewById(R.id.mTextMessage);

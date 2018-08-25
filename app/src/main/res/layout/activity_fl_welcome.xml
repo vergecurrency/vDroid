@@ -1,18 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     >
 
     <ImageView
+        android:id="@+id/fl_welcome_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fl_welcome_bg"
-        android:src="@drawable/bg_darkmountain"
+        android:contentDescription="Verge Background"
         android:scaleType="centerCrop"
-        />
+        android:src="@drawable/bg_darkmountain" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:paddingTop="80dp"
+            android:paddingRight="90dp"
+            android:paddingLeft="90dp"
+            android:paddingBottom="20dp"
+            android:id="@+id/fl_welcome_verge_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_verge_white" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/launch_verge_title"
+            android:textColor="@color/colorBackground"
+            android:textAlignment="center"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/launch_verge_sub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/colorBackground"
+            android:textAlignment="center"
+            android:textSize="14dp"
+            android:paddingTop="10dp"
+            />
 
 
 
-</android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/launch_bottom_firstlaunch"
+        >
+
+        <ImageButton
+            android:id="@+id/button_create_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:tint="@color/colorBackground"
+            android:adjustViewBounds="true"
+            android:padding="17dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentBottom="true"
+            />
+
+        <ImageButton
+            android:id="@+id/button_restore_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/colorBackgroundTwo"
+            android:tint="@color/colorBackground"
+            android:adjustViewBounds="true"
+            android:padding="17dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentBottom="true"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/launch_bottom_text"
+         >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/launch_verge_slogan"
+            android:textColor="@color/colorBackground"
+            android:textAlignment="center"
+            android:textSize="24dp"
+            android:textStyle="italic"
+            android:paddingBottom="60dp"
+            android:layout_alignParentBottom="true"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/launch_verge_tor"
+            android:textColor="@color/colorBackground"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:paddingBottom="10dp"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

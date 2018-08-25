@@ -31,9 +31,6 @@ import vergecurrency.vergewallet.models.net.sockets.SSLConnectionSocket;
 
 public class TorLayerGateway extends android.os.AsyncTask<String, Integer, String>{
 
-    private Context context;
-    private OnionProxyManager onionProxyManager;
-
 
     public TorLayerGateway(Context context) {
         this.context = context;
@@ -76,7 +73,9 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
             boolean ok = onionProxyManager.startWithRepeat(totalSecondsPerTorStartup, totalTriesPerTorStartup);
             if (!ok)
                 System.out.println("Couldn't start tor");
-
+            else {
+                isConnected = true;
+            }
             while (!onionProxyManager.isRunning()) {
                 //Puts the thread to sleep while tor isn't running
                 Thread.sleep(90);
@@ -87,6 +86,7 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
         //TODO : Catch exception in a better way
         catch (Exception e) {
             e.printStackTrace();
+            isConnected = false;
         }
         return "done!";
     }
@@ -130,10 +130,6 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
         }
     }
 
-
-
-
-
     @Override
     protected void onPreExecute() {
 
@@ -143,6 +139,16 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
     protected void onPostExecute(String result) {
 
     }
+
+    public boolean isConnected() {
+        return isConnected;
+    }
+
+    //Variables come here
+
+    private Context context;
+    private OnionProxyManager onionProxyManager;
+    private volatile boolean isConnected;
 
 
 }

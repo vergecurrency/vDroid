@@ -12,4 +12,7 @@
     <string name="send_message_sub">You do not have enough balance to send any XVG. \n Please increase your balance</string>
     <string name="current_qr_code">cBQFLyaV5o17Rpx424JGHbQjdffyQs7Atm</string>
     <string name="receive_xvg_main">Send only XVG to this deposit address. \n Sending any other coin or token to this address may result in the loss of your deposit.</string>
+    <string name="launch_verge_title">Verge Android wallet</string>
+    <string name="launch_verge_slogan">Privacy is our standard.</string>
+    <string name="launch_verge_tor">Starting up Tor</string>
 </resources>
