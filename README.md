@@ -1,5 +1,5 @@
 # AndroidVergeWallet
-Android Verge wallet, concept (front-end) based on iOS repo
+Android Verge wallet, concept based on iOS repo
 
 To get started, thanks to those who encourage me doing this. 
 
