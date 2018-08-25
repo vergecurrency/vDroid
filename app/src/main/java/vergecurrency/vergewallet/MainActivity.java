@@ -11,20 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.msopentech.thali.toronionproxy.OnionProxyManager;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.InetAddress;
-
 import vergecurrency.vergewallet.UI.fragments.FragmentReceive;
 import vergecurrency.vergewallet.UI.fragments.FragmentSend;
 import vergecurrency.vergewallet.UI.fragments.FragmentSettings;
 import vergecurrency.vergewallet.UI.fragments.FragmentTransactions;
 import vergecurrency.vergewallet.UI.fragments.FragmentWallet;
 
-import vergecurrency.vergewallet.Workers.TorLayerGateway;
+import vergecurrency.vergewallet.Workers.net.layers.TorLayerGateway;
 
 public class MainActivity extends AppCompatActivity {
 

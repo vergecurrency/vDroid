@@ -1,7 +1,5 @@
-package vergecurrency.vergewallet.Workers;
+package vergecurrency.vergewallet.Workers.net.layers;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 
 import com.msopentech.thali.toronionproxy.OnionProxyManager;
@@ -26,10 +24,11 @@ import cz.msebera.android.httpclient.conn.socket.ConnectionSocketFactory;
 import cz.msebera.android.httpclient.impl.client.HttpClients;
 import cz.msebera.android.httpclient.impl.conn.PoolingHttpClientConnectionManager;
 import cz.msebera.android.httpclient.ssl.SSLContexts;
+import vergecurrency.vergewallet.Workers.net.sockets.ConnectionSocket;
+import vergecurrency.vergewallet.Workers.net.sockets.SSLConnectionSocket;
 
 
 
-//I have to move this shit but honestly dude it works so don't bother me.
 public class TorLayerGateway extends android.os.AsyncTask<String, Integer, String>{
 
     private Context context;
@@ -48,7 +47,7 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
         }
     }
 
-    //Http client : registers according to protocol a socket and builds itself
+    //Http client : registers a socket according to a given protocol
     public HttpClient getNewHttpClient() {
 
         Registry<ConnectionSocketFactory> reg = RegistryBuilder.<ConnectionSocketFactory>create()
@@ -84,32 +83,6 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
             }
             System.out.println("Tor initialized on port " + onionProxyManager.getIPv4LocalHostSocksPort());
 
-            //Creates the http client according to the previous method
-            HttpClient httpClient = getNewHttpClient();
-            int port = onionProxyManager.getIPv4LocalHostSocksPort();
-            //creates the local socket and context
-            InetSocketAddress socksaddr = new InetSocketAddress("127.0.0.1", port);
-            HttpClientContext context = HttpClientContext.create();
-            context.setAttribute("socks.address", socksaddr);
-
-
-            //Try to access http://wikitjerrta4qgz4.onion/ which is the hidden wiki
-            //TODO : Replace this with an argument and externalise, because tor connection is not going to be instantiated everytime.
-            //HttpGet httpGet = new HttpGet("http://wikitjerrta4qgz4.onion/");
-            HttpGet httpGet = new HttpGet("https://api.ipify.org?format=json");
-            HttpResponse httpResponse = httpClient.execute(httpGet, context);
-            HttpEntity httpEntity = httpResponse.getEntity();
-            InputStream httpResponseStream = httpEntity.getContent();
-
-            //Reads the whole content because I had nothing better to do and followed a well documented example
-            //TODO : Externalise all this in a function to treat different data models like the Cryptocompare API result
-            BufferedReader httpResponseReader = new BufferedReader(
-                    new InputStreamReader(httpResponseStream, "iso-8859-1"), 8);
-            String line = null;
-            while ((line = httpResponseReader.readLine()) != null) {
-                System.out.println("VERGE WALLET IP : " + line);
-            }
-            httpResponseStream.close();
         }
         //TODO : Catch exception in a better way
         catch (Exception e) {
@@ -119,8 +92,11 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
     }
 
 
-    public void retrieveDataFromURI(String uri) {
+    public String retrieveDataFromService(String uri) {
         try {
+
+            String result = "";
+
             //Creates the http client according to the previous method
             HttpClient httpClient = getNewHttpClient();
             int port = onionProxyManager.getIPv4LocalHostSocksPort();
@@ -130,7 +106,6 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
             context.setAttribute("socks.address", socksaddr);
 
             //URL Current IP : https://api.ipify.org?format=json
-            //
 
             HttpGet httpGet = new HttpGet(new URI(uri));
             HttpResponse httpResponse = httpClient.execute(httpGet, context);
@@ -142,14 +117,20 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
             BufferedReader httpResponseReader = new BufferedReader(
                     new InputStreamReader(httpResponseStream, "iso-8859-1"), 8);
             String line = null;
+
             while ((line = httpResponseReader.readLine()) != null) {
-                System.out.println("VERGE WALLET IP : " + line);
+                result += line;
             }
             httpResponseStream.close();
+
+            return result;
         } catch (Exception ex) {
             //TODO : Catch exception properly
+            return null;
         }
     }
+
+
 
 
 

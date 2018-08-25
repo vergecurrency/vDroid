@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.Workers.biometrics;
+package vergecurrency.vergewallet.Workers.bio;
 
 import android.Manifest;
 import android.content.Context;
