@@ -126,6 +126,7 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
             return result;
         } catch (Exception ex) {
             //TODO : Catch exception properly
+            ex.printStackTrace();
             return null;
         }
     }

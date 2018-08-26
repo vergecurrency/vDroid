@@ -15,4 +15,6 @@
     <string name="launch_verge_title">Verge Android wallet</string>
     <string name="launch_verge_slogan">Privacy is our standard.</string>
     <string name="launch_verge_tor">Starting up Tor</string>
+    <string name="launch_verge_new_wallet">&lt;b>&lt;big>Create a new wallet&lt;/big>&lt;/b>&lt;br />Create a new XVG wallet on your iOS device.</string>
+    <string name="launch_verge_restore_wallet"> &lt;b>&lt;big>Restore your wallet&lt;/big>&lt;/b>&lt;br />Lost your iOS wallet? Restore it here.</string>
 </resources>

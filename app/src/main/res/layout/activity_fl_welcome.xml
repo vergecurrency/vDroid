@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:animateLayoutChanges="true"
+    android:id="@+id/fl_welcome_view"
     >
 
     <ImageView
@@ -55,39 +57,46 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:id="@+id/launch_bottom_firstlaunch"
-        >
+        android:visibility="gone"
 
-        <ImageButton
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+        <Button
             android:id="@+id/button_create_wallet"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             android:backgroundTint="@color/colorPrimary"
-            android:tint="@color/colorBackground"
+            android:textColor="@color/colorBackgroundTwo"
             android:adjustViewBounds="true"
-            android:padding="17dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:scaleType="fitCenter"
-            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
             />
 
-        <ImageButton
+        <Button
             android:id="@+id/button_restore_wallet"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             android:backgroundTint="@color/colorBackgroundTwo"
-            android:tint="@color/colorBackground"
-            android:adjustViewBounds="true"
-            android:padding="17dp"
-            android:scaleType="fitCenter"
-            android:layout_alignParentBottom="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
             />
 
-
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:id="@+id/launch_bottom_text"
+        android:visibility="visible"
          >
 
         <TextView
@@ -102,6 +111,7 @@
             android:layout_alignParentBottom="true"
             />
         <TextView
+            android:id="@+id/textview_launch_tor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/launch_verge_tor"

@@ -18,16 +18,12 @@ import vergecurrency.vergewallet.views.fragments.FragmentSettings;
 import vergecurrency.vergewallet.views.fragments.FragmentTransactions;
 import vergecurrency.vergewallet.views.fragments.FragmentWallet;
 
-import vergecurrency.vergewallet.models.net.layers.TorLayerGateway;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         //Initialize upper text view
         mTextMessage = (TextView) findViewById(R.id.mTextMessage);
@@ -37,17 +33,13 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
 
-        //Get the Shared preferences from the app
-        prefs = getSharedPreferences("com.vergecurrency.vergewallet", MODE_PRIVATE);
+        //Shows the wallet fragment by default
+        showFragment(new FragmentWallet(), R.string.title_wallet, Color.WHITE, getResources().getColor(R.color.colorPrimary));
+    }
 
-        if(prefs.getBoolean("firstlaunch", true)) {
-            //go to first launch activity that I haven't created yet
-            //startActivity(new Intent(this, ));
-            prefs.edit().putBoolean("firstlaunch", false).commit();
-        } else {
-            //show the Wallet fragment by default
-            showFragment(new FragmentWallet(), R.string.title_wallet, Color.WHITE, getResources().getColor(R.color.colorPrimary));
-        }
+    //Do nothing on back button, as the only back action possible atm is going to the launcher...
+    @Override
+    public void onBackPressed() {
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -97,6 +89,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private TextView mTextMessage;
-    SharedPreferences prefs = null;
-
 }
