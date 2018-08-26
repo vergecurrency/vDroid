@@ -11,8 +11,8 @@ android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_height="248dp"
         android:scaleType="fitCenter"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
         >
 
     </ImageView>
@@ -23,7 +23,7 @@ android:layout_height="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/form_rounded_rect"
-        android:text="@string/current_qr_code"
+        android:text="@string/receive_current_code"
         android:textAlignment="center"
         android:padding="15dp"
         android:textSize="14dp" />
@@ -72,6 +72,8 @@ android:layout_height="match_parent"
             android:padding="17dp"
             android:scaleType="fitCenter"
             />
+
     </LinearLayout>
+
 
 </LinearLayout>

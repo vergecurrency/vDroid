@@ -2,9 +2,9 @@ package vergecurrency.vergewallet.models.dataproc;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class WrapperCryptocompare {
+public class ParserCryptocompare {
 
-   public WrapperCryptocompare(String currency) {
+   public ParserCryptocompare(String currency) {
     }
 
     public String getVergeToFiat(String currency) {

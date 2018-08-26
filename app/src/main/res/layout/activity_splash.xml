@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    android:id="@+id/fl_welcome_view"
+    >
+
+    <ImageView
+        android:id="@+id/fl_welcome_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Verge Background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_darkmountain" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:paddingTop="80dp"
+            android:paddingRight="90dp"
+            android:paddingLeft="90dp"
+            android:paddingBottom="20dp"
+            android:id="@+id/fl_welcome_verge_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_verge_white" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/splash_title"
+            android:textColor="@color/colorBackground"
+            android:textAlignment="center"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/launch_verge_sub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/colorBackground"
+            android:textAlignment="center"
+            android:textSize="14dp"
+            android:paddingTop="10dp"
+            />
+
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/launch_bottom_firstlaunch"
+        android:visibility="gone"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/button_create_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/colorBackgroundTwo"
+            android:adjustViewBounds="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="10dp"
+            />
+
+        <Button
+            android:id="@+id/button_restore_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:backgroundTint="@color/colorBackgroundTwo"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/launch_bottom_text"
+        android:visibility="visible"
+         >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/splash_slogan"
+            android:textColor="@color/colorBackground"
+            android:textAlignment="center"
+            android:textSize="24dp"
+            android:textStyle="italic"
+            android:paddingBottom="60dp"
+            android:layout_alignParentBottom="true"
+            />
+        <TextView
+            android:id="@+id/textview_launch_tor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/splash_tor"
+            android:textColor="@color/colorBackground"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:paddingBottom="10dp"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

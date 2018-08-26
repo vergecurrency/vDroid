@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.models.bio;
+package vergecurrency.vergewallet.models.sec;
 
 import android.Manifest;
 import android.content.Context;

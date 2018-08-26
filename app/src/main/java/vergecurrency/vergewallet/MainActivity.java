@@ -1,5 +1,6 @@
 package vergecurrency.vergewallet;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,13 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import vergecurrency.vergewallet.models.sec.PinCodeCheck;
+import vergecurrency.vergewallet.views.activities.SetPinActivity;
 import vergecurrency.vergewallet.views.fragments.FragmentReceive;
 import vergecurrency.vergewallet.views.fragments.FragmentSend;
 import vergecurrency.vergewallet.views.fragments.FragmentSettings;
 import vergecurrency.vergewallet.views.fragments.FragmentTransactions;
 import vergecurrency.vergewallet.views.fragments.FragmentWallet;
-
-import vergecurrency.vergewallet.models.net.layers.TorLayerGateway;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,11 +27,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //THIS SHIT HAS TO BE MOVED BUT WORKS FOR NOW.
-        TorLayerGateway tlg = new TorLayerGateway(getApplicationContext());
-
-        tlg.execute();
+        //Create the check for pin code
+        check   = PinCodeCheck.getInstance(getApplicationContext());
 
         //Initialize upper text view
         mTextMessage = (TextView) findViewById(R.id.mTextMessage);
@@ -40,19 +38,16 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
 
-        //Get the Shared preferences from the app
-        prefs = getSharedPreferences("com.vergecurrency.vergewallet", MODE_PRIVATE);
-
-        if(prefs.getBoolean("firstlaunch", true)) {
-            //go to first launch activity that I haven't created yet
-            //startActivity(new Intent(this, ));
-            prefs.edit().putBoolean("firstlaunch", false).commit();
-        } else {
-            //show the Wallet fragment by default
-            showFragment(new FragmentWallet(), R.string.title_wallet, Color.WHITE, getResources().getColor(R.color.colorPrimary));
-        }
+        //Shows the wallet fragment by default
+        showFragment(new FragmentWallet(), R.string.title_wallet, Color.WHITE, getResources().getColor(R.color.colorPrimary));
     }
 
+    //Do nothing on back button, as the only back action possible atm is going to the launcher...
+    @Override
+    public void onBackPressed() {
+    }
+
+    //Listens to what has been pressed and opens up the right Fragment
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -83,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    //Shows the previously selected fragment.
     private void showFragment(Fragment fragment, int title, int textColor, int textBgColor) {
         mTextMessage.setText(title);
         mTextMessage.setTextColor(textColor);
@@ -97,9 +93,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (check.isLocked()) {
+            startActivity(new Intent(getApplicationContext(), SetPinActivity.class));
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        check.init();
     }
 
     private TextView mTextMessage;
-    SharedPreferences prefs = null;
-
+    private static PinCodeCheck check ;
 }
