@@ -4,4 +4,15 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="design_bottom_navigation_text_size" tools:override="true">9dp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">9dp</dimen>
+
+    <!-- Dimens for passcodeview lib -->
+    <dimen name="profile_image_dimen">140dp</dimen>
+    <dimen name="finger_print_text_size">16sp</dimen>
+    <dimen name="key_text_size">24sp</dimen>
+    <dimen name="key_stroke_width">4dp</dimen>
+    <dimen name="indicator_stroke_width">4dp</dimen>
+    <dimen name="indicator_radius">15dp</dimen>
+    <dimen name="key_padding">8dp</dimen>
+
+    <dimen name="pattern_cell_radius">5dp</dimen>
 </resources>

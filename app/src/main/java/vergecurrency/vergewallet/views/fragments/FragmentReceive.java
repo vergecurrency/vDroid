@@ -46,7 +46,7 @@ public class FragmentReceive extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_receive, container, false);
 
         ImageView vQRCode = (ImageView) rootView.findViewById(R.id.qrcodeimage);
-        generateQRCode(getResources().getString(R.string.current_qr_code), vQRCode);
+        generateQRCode(getResources().getString(R.string.receive_current_code), vQRCode);
 
         // Inflate the layout for this fragment
         return rootView;

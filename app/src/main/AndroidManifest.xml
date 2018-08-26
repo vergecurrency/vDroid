@@ -11,14 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:screenOrientation="portrait" >
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
+        <activity android:name=".MainActivity" android:label="@string/app_name" android:screenOrientation="portrait" />
+        <activity android:name=".views.activities.SetPinActivity" android:screenOrientation="portrait" />
 
-        </activity>
-        <activity android:name=".views.activities.PinActivity" android:screenOrientation="portrait" />
-        <activity android:name=".views.activities.firstlaunch.FLWelcomeActivity" android:screenOrientation="portrait">
+        <activity android:name=".views.activities.FLWelcomeActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

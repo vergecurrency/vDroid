@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/launch_verge_title"
+            android:text="@string/splash_title"
             android:textColor="@color/colorBackground"
             android:textAlignment="center"
             android:textSize="28dp"
@@ -102,7 +102,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/launch_verge_slogan"
+            android:text="@string/splash_slogan"
             android:textColor="@color/colorBackground"
             android:textAlignment="center"
             android:textSize="24dp"
@@ -114,7 +114,7 @@
             android:id="@+id/textview_launch_tor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/launch_verge_tor"
+            android:text="@string/splash_tor"
             android:textColor="@color/colorBackground"
             android:textAlignment="center"
             android:textSize="18dp"

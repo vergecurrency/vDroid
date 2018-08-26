@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.views.activities.firstlaunch;
+package vergecurrency.vergewallet.views.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,9 +16,9 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import vergecurrency.vergewallet.MainActivity;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.models.net.layers.TorLayerGateway;
+import vergecurrency.vergewallet.models.sec.PinCodeCheck;
 
 
 public class FLWelcomeActivity extends Activity {
@@ -26,13 +26,19 @@ public class FLWelcomeActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //gets the holy preferences
+        prefs = getSharedPreferences("com.vergecurrency.vergewallet", MODE_PRIVATE);
+        //Setup the pincode check
+        check = PinCodeCheck.getInstance(this.getApplicationContext());
 
+        //Get a handler to execute stuff only after setting the content view
         final Handler handler = new Handler();
-        setContentView(R.layout.activity_fl_welcome);
+        setContentView(R.layout.activity_splash);
 
-        //This has to be refactored. I have to write controller classes yet to interface views with models.
+        //TODO : Once controller has been implemented delete this, it's just to not block http client called from main threads.
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
         //Handler that waits to view to be displayed before starting tor.
         handler.postDelayed(new Runnable() {
             @Override
@@ -42,45 +48,31 @@ public class FLWelcomeActivity extends Activity {
         }, 500);
     }
 
+
+    //For now I let it like this, I want no action on back pressed in the welcome activity.
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() { }
 
-    }
-
-
-
+    //TODO : Refactor into atomic functions
     private void setupWallet() {
 
-        //THIS SHIT HAS TO BE MOVED BUT WORKS FOR NOW.
+
         TorLayerGateway tlg = new TorLayerGateway(getApplicationContext());
-
         tlg.execute();
+        while (!tlg.isConnected()) { }
 
-        while (!tlg.isConnected()) {
-
-        }
-
+        //Get the current public IP, just for fun honestly.
         String IP = readIP(tlg.retrieveDataFromService("https://api.ipify.org?format=json"));
 
         torChargingView = (TextView) findViewById(R.id.textview_launch_tor);
         torChargingView.setText("Tor connected. IP : " + IP);
 
-        //For tests, to check the ip
-        try {
-            Thread.sleep(4000);
-        } catch (Exception e) {
-            //couldn't sleep huh?
-            e.printStackTrace();
-        }
-
-
         //Get the Shared preferences from the app
-        prefs = getSharedPreferences("com.vergecurrency.vergewallet", MODE_PRIVATE);
+
         boolean isFirstLaunch = prefs.getBoolean("firstlaunch", true);
 
+        //Should be if (isFirstLaunch) but I need to get into this everytime because I'm working on it.
         if (!isFirstLaunch) {
-            //Charge elements for wallet initialization
 
             //Subtext to describe wallet
             subTextView = (TextView) findViewById(R.id.launch_verge_sub);
@@ -93,33 +85,43 @@ public class FLWelcomeActivity extends Activity {
             bottomChargingView = (RelativeLayout) findViewById(R.id.launch_bottom_firstlaunch);
             bottomChargingView.setVisibility(View.VISIBLE);
 
-            //show "Create new wallet" text
+            //create "Create new wallet" button and its and listener
             bottomButton = (Button)findViewById(R.id.button_create_wallet);
-            bottomButton.setText(Html.fromHtml(getResources().getString(R.string.launch_verge_new_wallet)), Button.BufferType.SPANNABLE);
+            bottomButton.setText(Html.fromHtml(getResources().getString(R.string.firstlaunch_new_wallet)), Button.BufferType.SPANNABLE);
             bottomButton.setOnClickListener( new Button.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(v.getContext(), MainActivity.class));
+
+                    /*Get to the pin view and pin will detect it's first launch to do pin setup and
+                    redirect to the rest of the creation process. Or come back here, have to see how I'm doing this.
+                     */
+                    startActivity(new Intent(v.getContext(), SetPinActivity.class));
                 }
             });
 
-            //show "Restore wallet" text
+            //create "Restore wallet"  button and its and listener. Yeah I reuse the bottomButton. I'm an eco-nazi bro.
             bottomButton = (Button)findViewById(R.id.button_restore_wallet);
-            bottomButton.setText(Html.fromHtml(getResources().getString(R.string.launch_verge_restore_wallet)), Button.BufferType.SPANNABLE);
+            bottomButton.setText(Html.fromHtml(getResources().getString(R.string.firstlaunch_restore_wallet)), Button.BufferType.SPANNABLE);
+            bottomButton.setOnClickListener( new Button.OnClickListener() {
 
+                @Override
+                public void onClick(View v) {
 
-            //there will be a click listener on the buttons that showed up to set a new wallet or restore the key.
+                    //Not definitive. Wallet restore view will come at some point
+                    startActivity(new Intent(v.getContext(), SetPinActivity.class));
 
-            prefs.edit().putBoolean("firstlaunch", false).apply();
+                }
+            });
+
+            //TODO : Following line should be used only when wallet has been created.
+            // prefs.edit().putBoolean("firstlaunch", false).apply();
 
 
         } else {
             //ask for pin
-
+            startActivity(new Intent(getApplicationContext(), SetPinActivity.class));
         }
-
-
     }
 
 
@@ -140,12 +142,25 @@ public class FLWelcomeActivity extends Activity {
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+       /* boolean isFirstLaunch = prefs.getBoolean("firstlaunch", true);
+        //If it's first launch, don't trigger the pin request...
+        if(!isFirstLaunch) {
+            //...Otherwise do.
+            if (check.isLocked()) {
+                startActivity(new Intent(getApplicationContext(), SetPinActivity.class));
+            }
+        }*/
+    }
+
     //Variables go here
     SharedPreferences prefs;
     TextView subTextView;
     TextView torChargingView;
     RelativeLayout bottomChargingView;
-    RelativeLayout bottomChoiceView;
     Button bottomButton;
+    private static PinCodeCheck check ;
 
 }

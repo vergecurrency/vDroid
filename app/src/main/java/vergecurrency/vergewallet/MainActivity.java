@@ -1,5 +1,6 @@
 package vergecurrency.vergewallet;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import vergecurrency.vergewallet.models.sec.PinCodeCheck;
+import vergecurrency.vergewallet.views.activities.SetPinActivity;
 import vergecurrency.vergewallet.views.fragments.FragmentReceive;
 import vergecurrency.vergewallet.views.fragments.FragmentSend;
 import vergecurrency.vergewallet.views.fragments.FragmentSettings;
@@ -24,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Create the check for pin code
+        check   = PinCodeCheck.getInstance(getApplicationContext());
 
         //Initialize upper text view
         mTextMessage = (TextView) findViewById(R.id.mTextMessage);
@@ -42,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
     }
 
+    //Listens to what has been pressed and opens up the right Fragment
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -72,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    //Shows the previously selected fragment.
     private void showFragment(Fragment fragment, int title, int textColor, int textBgColor) {
         mTextMessage.setText(title);
         mTextMessage.setTextColor(textColor);
@@ -86,7 +93,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (check.isLocked()) {
+            startActivity(new Intent(getApplicationContext(), SetPinActivity.class));
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        check.init();
     }
 
     private TextView mTextMessage;
+    private static PinCodeCheck check ;
 }
