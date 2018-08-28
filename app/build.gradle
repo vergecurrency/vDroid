@@ -31,7 +31,7 @@ dependencies {
     implementation "cz.msebera.android:httpclient:4.4.1.2"
     implementation 'org.slf4j:slf4j-api:1.7.7'
     implementation 'org.slf4j:slf4j-android:1.7.7'
-    implementation 'com.kevalpatel2106:passcodeview:2.0.0'
+    implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

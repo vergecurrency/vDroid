@@ -96,7 +96,7 @@ public class FLWelcomeActivity extends Activity {
                     /*Get to the pin view and pin will detect it's first launch to do pin setup and
                     redirect to the rest of the creation process. Or come back here, have to see how I'm doing this.
                      */
-                    startActivity(new Intent(v.getContext(), SetPinActivity.class));
+                    //startActivity(new Intent(v.getContext(), SetPinActivity.class));
                 }
             });
 
@@ -109,7 +109,7 @@ public class FLWelcomeActivity extends Activity {
                 public void onClick(View v) {
 
                     //Not definitive. Wallet restore view will come at some point
-                    startActivity(new Intent(v.getContext(), SetPinActivity.class));
+                    //startActivity(new Intent(v.getContext(), SetPinActivity.class));
 
                 }
             });
@@ -120,7 +120,7 @@ public class FLWelcomeActivity extends Activity {
 
         } else {
             //ask for pin
-            startActivity(new Intent(getApplicationContext(), SetPinActivity.class));
+            //startActivity(new Intent(getApplicationContext(), SetPinActivity.class));
         }
     }
 

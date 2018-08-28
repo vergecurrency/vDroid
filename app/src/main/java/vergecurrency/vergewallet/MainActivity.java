@@ -1,7 +1,6 @@
 package vergecurrency.vergewallet;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,7 +13,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import vergecurrency.vergewallet.models.sec.PinCodeCheck;
-import vergecurrency.vergewallet.views.activities.SetPinActivity;
 import vergecurrency.vergewallet.views.fragments.FragmentReceive;
 import vergecurrency.vergewallet.views.fragments.FragmentSend;
 import vergecurrency.vergewallet.views.fragments.FragmentSettings;
@@ -94,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (check.isLocked()) {
-            startActivity(new Intent(getApplicationContext(), SetPinActivity.class));
+            //startActivity(new Intent(getApplicationContext(), SetPinActivity.class));
         }
     }
 

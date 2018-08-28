@@ -32,13 +32,12 @@ public class FragmentWallet extends Fragment {
         if(rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
 
+            //Instantiate the ViewPager to have the fragments into the viewpager layout
             ViewPager pager = (ViewPager) rootView.findViewById(R.id.wallet_cards_viewpager);
-            pager.setAdapter(new MyPagerAdapter(getActivity().getSupportFragmentManager()));
+            pager.setAdapter(new MyPagerAdapter(getChildFragmentManager()));
 
 
             //Fill the different cards with their contents
-      /*fillCard(rootView,R.id.wallet_card_price_statistics, new ItemData("Price Statistics", R.drawable.icon_stat_increase),R.drawable.icon_stat_increase);
-      fillCard(rootView,R.id.wallet_card_history_chart, new ItemData("History Chart", R.drawable.icon_chart),R.drawable.icon_chart); */
         }
         return rootView;
     }
