@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_welcome_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/fl_welcome_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Verge Background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_darkmountain" />
+
+
+    <TextView
+        android:id="@+id/paperkey_title"
+        android:layout_width="fill_parent"
+        android:layout_height="37dp"
+        android:paddingVertical="10dp"
+        android:text="@string/paperkey_activity_title"
+        android:textAlignment="center"
+        android:textColor="@color/colorBackground"
+        android:textSize="14sp"
+        android:textStyle="bold"
+
+        />
+
+    <TextView
+        android:id="@+id/paperkey_instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="@string/paperkey_activity_main"
+        android:textAlignment="center"
+        android:textColor="@color/colorBackground"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/paperkey_logo"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:gravity="center_vertical"
+        android:layout_below="@id/paperkey_instructions"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/form_rounded_white_rect"
+        android:elevation="1dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/paperkey_logo"
+        android:layout_marginTop="-86dp"
+        android:background="@color/bg_color"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/paperkey_previous_word"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/form_rounded_rect"
+                android:backgroundTint="@color/colorBackground"
+                android:text="@string/paperkey_wallet_previous"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/paperkey_next_word"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/form_rounded_rect"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/paperkey_wallet_next"
+                android:textColor="@color/colorBackgroundTwo"
+                android:textSize="18dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

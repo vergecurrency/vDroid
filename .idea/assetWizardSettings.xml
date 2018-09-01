@@ -33,9 +33,12 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="icon_face" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="height" value="800" />
+                            <entry key="outputName" value="icon_rename" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\Mining\Downloads\verge_logo_white.svg" />
+                            <entry key="sourceFile" value="C:\Users\Mining\Pictures\icons8-rename.svg" />
+                            <entry key="width" value="800" />
                           </map>
                         </option>
                       </PersistentState>

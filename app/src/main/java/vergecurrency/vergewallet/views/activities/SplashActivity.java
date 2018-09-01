@@ -1,28 +1,26 @@
 package vergecurrency.vergewallet.views.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-
-
-import net.freehaven.tor.control.examples.Main;
+import com.balram.locker.view.AppLocker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import vergecurrency.vergewallet.MainActivity;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.models.net.layers.TorLayerGateway;
-import vergecurrency.vergewallet.models.sec.PinCodeCheck;
 
+public class SplashActivity extends AppCompatActivity {
 
-public class SplashActivity extends Activity {
+    SharedPreferences prefs;
+    TextView torChargingView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,16 +43,14 @@ public class SplashActivity extends Activity {
         }, 500);
     }
 
-
     //For now I let it like this, I want no action on back pressed in the welcome activity.
     @Override
-    public void onBackPressed() { }
+    public void onBackPressed() {
+    }
 
     //TODO : Refactor into atomic functions
     private void run() {
-
-
-
+        AppLocker.getInstance().enableAppLock(getApplication());
 
         boolean isFirstLaunch = prefs.getBoolean("firstlaunch", true);
 
@@ -67,18 +63,18 @@ public class SplashActivity extends Activity {
 
 
         } else {
-            //Note : moved here because network should not be required to create a wallet.
+
             //TODO : if false, don't continue. -> launchTor will return a boolean
 
 
-            if(!launchTor()) {
+            if (!launchTor()) {
                 //message
                 System.exit(0); //It's there just to put something.
             } else {
 
-                //ask for pin
+                //Enable AppLocker
 
-
+                //Start MainActivity
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
 
@@ -115,7 +111,7 @@ public class SplashActivity extends Activity {
     //to be moved into a apify parser
     private String readIP(String rawData) {
 
-        if(rawData != null && !rawData.equals("")) {
+        if (rawData != null && !rawData.equals("")) {
             JSONObject reader;
             try {
                 reader = new JSONObject(rawData);
@@ -127,15 +123,10 @@ public class SplashActivity extends Activity {
         } else return "error";
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
 
     }
-
-    //Variables go here
-    SharedPreferences prefs;
-    TextView torChargingView;
 
 }

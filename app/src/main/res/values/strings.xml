@@ -28,15 +28,16 @@
     <string name="pinlock_setup_instructions">Your wallet PIN will be used to open this \n app and to send XVG with. If you forget it, \n you won't be able to access your wallet.</string>
     <string name="pinlock_title">Set wallet PIN</string>
 
-    //pin keys. Yes, you have to specify them manually. I'm not fucking kidding.
-    <string name="key_1">1</string>
-    <string name="key_2">2</string>
-    <string name="key_3">3</string>
-    <string name="key_4">4</string>
-    <string name="key_5">5</string>
-    <string name="key_6">6</string>
-    <string name="key_7">7</string>
-    <string name="key_8">8</string>
-    <string name="key_9">9</string>
-    <string name="key_0">0</string>
+    //Paperkey introduction activity
+    <string name="paperkey_activity_title">Paperkey</string>
+    <string name="paperkey_activity_main">On the next screen, you\'ll be shown a list of words to write down on a piece of paper, which you should keep very safe!</string>
+    <string name="paperkey_activity_sub">Your paperkey is the only way to restore your Verge Wallet if your phone is lost, stolen, broken or replaced. </string>
+    //Paperkey seed activity
+    <string name="paperkey_activity_button">Write down Paperkey</string>
+    <string name="paperkey_instructions">Write down each word in the correct order on your paper. Keep this paper in a secure location.</string>
+    <string name="paperkey_wallet_previous">Previous</string>
+    <string name="paperkey_wallet_next">Next</string>
+    //Paperkey confirm seed activity
+    <string name="paperkey_confirm_instructions">To make sure everything was written down correctly please enter the following words from your paper.</string>
+    <string name="paperkey_confirm_submit">Submit</string>
 </resources>
