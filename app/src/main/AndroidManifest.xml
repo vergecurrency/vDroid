@@ -11,15 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:screenOrientation="portrait" >
-        <activity android:name=".MainActivity" android:label="@string/app_name" android:screenOrientation="portrait" />
-
-        <activity android:name=".views.activities.FLWelcomeActivity" android:screenOrientation="portrait">
+        <activity android:name=".views.activities.MainActivity" android:label="@string/app_name" android:screenOrientation="portrait" />
+        <activity android:name=".views.activities.SetupWalletActivity" android:screenOrientation="portrait" />
+        <activity android:name=".views.activities.PaperkeyInstructionsActivity" />
+        <activity android:name=".views.activities.PaperkeySeedActivity" />
+        <activity android:name=".views.activities.SplashActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>
+
     </application>
 
     <!-- Features -->
@@ -28,4 +31,5 @@
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

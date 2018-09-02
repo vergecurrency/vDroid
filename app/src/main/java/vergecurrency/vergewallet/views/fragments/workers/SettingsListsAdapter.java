@@ -23,8 +23,8 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
     // Create new views (invoked by the layout manager)
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
 
+        // create a new view
         if(viewType == TYPE_HEADER){
 
             View headerLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_header, null);

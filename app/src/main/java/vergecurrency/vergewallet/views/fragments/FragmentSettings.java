@@ -38,7 +38,8 @@ public class FragmentSettings extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
 
         //Generate the data for the RecyclerView
-        ItemData itemsDataWallet[] = {new ItemData("Disconnect this device", R.drawable.icon_disconnected),
+        ItemData itemsDataWallet[] = {
+                new ItemData("Disconnect this device", R.drawable.icon_disconnected),
                 new ItemData("Paperkey", R.drawable.icon_paperkey)
         };
 

@@ -15,22 +15,20 @@ import vergecurrency.vergewallet.R;
 public class FragmentReceive extends Fragment {
 
 
-
     public FragmentReceive() {
         // Required empty public constructor
     }
 
 
-    public void generateQRCode(String walletAddress, ImageView vQRCode){
+    public void generateQRCode(String walletAddress, ImageView vQRCode) {
 
 
+        QRGEncoder qrgEncoder = new QRGEncoder(walletAddress, null, QRGContents.Type.TEXT, 480);
+        try {
+            Bitmap qrcodeBmp = qrgEncoder.encodeAsBitmap();
+            vQRCode.setImageBitmap(qrcodeBmp);
 
-        QRGEncoder qrgEncoder = new QRGEncoder(walletAddress,null, QRGContents.Type.TEXT, 480);
-        try{
-          Bitmap qrcodeBmp = qrgEncoder.encodeAsBitmap();
-          vQRCode.setImageBitmap(qrcodeBmp);
-
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             //TODO : catch exception properly.
             System.out.println(ex.getMessage());
 

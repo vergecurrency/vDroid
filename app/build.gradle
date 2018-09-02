@@ -24,16 +24,20 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0-rc01'
     implementation 'com.android.support:design:28.0.0-rc01'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
-    implementation project (":ThaliOnionProxyAndroid-release")
-    implementation 'me.relex:circleindicator:1.2.2@aar'
-    implementation 'com.an.biometric:biometric-auth:0.1.0@aar'
-    implementation "cz.msebera.android:httpclient:4.4.1.2"
     implementation 'org.slf4j:slf4j-api:1.7.7'
     implementation 'org.slf4j:slf4j-android:1.7.7'
-    implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //QRCode library
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
+    //TOR library
+    implementation project (":ThaliOnionProxyAndroid-release")
+    //HTTP Client library : Sorry but httpOk is complete bullshit.
+    implementation "cz.msebera.android:httpclient:4.4.1.2"
+    //PinView Library
+    implementation 'com.github.EdwardQuixote:Support_AppLocker:2.0.3'
+
 }
 
