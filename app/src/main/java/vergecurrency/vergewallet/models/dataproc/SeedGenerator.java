@@ -1,27 +1,40 @@
 package vergecurrency.vergewallet.models.dataproc;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SeedGenerator {
+import vergecurrency.vergewallet.Constants;
 
-    private String[] seed;
-    private int seedSize = 12;
+public final class SeedGenerator {
 
-    public SeedGenerator() {
 
+
+    private static ArrayList<String> wordlist;
+
+    private SeedGenerator() {
+        wordlist = buildWordList();
     }
 
-    int getRandomNumber(int maxNumber) {
-        return 0;
+    public static ArrayList<String> generateSeed() {
+
+        ArrayList<String> list = new ArrayList<String>();
+
+        for (int i = 0; i < Constants.SEED_SIZE; i++) {
+            list.add(wordlist.get(getRandomNumber(Constants.WORDLIST_SIZE)));
+        }
+
+        return list;
     }
 
-    public ArrayList<String> buildWordList() {
+    public static int getRandomNumber(int max) {
+        return (int) (Math.random() * max + 1);
+    }
+
+    private ArrayList<String> buildWordList() {
         ArrayList<String> wordlist = new ArrayList<String>();
         Scanner s = new Scanner(getClass().getResourceAsStream("wordlist.txt"));
 
-        while(s.hasNextLine()){
+        while (s.hasNextLine()) {
             wordlist.add(s.nextLine());
         }
         return wordlist;

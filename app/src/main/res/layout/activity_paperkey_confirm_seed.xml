@@ -68,23 +68,25 @@
         android:paddingRight="20dp">
 
         <TextView
+            android:id="@+id/seed_confirm_first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:id="@+id/seed_confirm_first"
             android:text="Word #" />
 
         <EditText
+            android:id="@+id/seed_first_word"
             android:layout_width="match_parent"
             android:layout_height="40dp" />
 
         <TextView
+            android:id="@+id/seed_confirm_second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/seed_confirm_second"
             android:text="Word #" />
 
         <EditText
+            android:id="@+id/seed_second_word"
             android:layout_width="match_parent"
             android:layout_height="40dp" />
 
@@ -96,12 +98,11 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/paperkey_next_word"
+                android:id="@+id/paperkey_confirm_next"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="10dp"
-
                 android:adjustViewBounds="true"
                 android:background="@drawable/form_rounded_rect"
                 android:backgroundTint="@color/colorPrimary"
