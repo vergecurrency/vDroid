@@ -40,4 +40,5 @@
     //Paperkey confirm seed activity
     <string name="paperkey_confirm_instructions">To make sure everything was written down correctly please enter the following words from your paper.</string>
     <string name="paperkey_confirm_submit">Submit</string>
+    <string name="wallet_ready">Your wallet is ready! \n Congratulations</string>
 </resources>

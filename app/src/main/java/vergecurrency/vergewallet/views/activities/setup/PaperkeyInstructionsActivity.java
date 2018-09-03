@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.views.activities;
+package vergecurrency.vergewallet.views.activities.setup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import vergecurrency.vergewallet.R;
 
 public class PaperkeyInstructionsActivity extends AppCompatActivity {
 
+
+    //The dumbest class you'll find here... jump to the next one
     Button nextButton;
 
     @Override
@@ -29,7 +31,6 @@ public class PaperkeyInstructionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //since I don't have other activities...
                 startActivity(new Intent(getApplicationContext(), PaperkeySeedActivity.class));
 
             }

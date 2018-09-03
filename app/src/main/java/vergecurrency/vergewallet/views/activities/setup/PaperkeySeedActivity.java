@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.views.activities;
+package vergecurrency.vergewallet.views.activities.setup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,9 +32,10 @@ public class PaperkeySeedActivity extends AppCompatActivity {
         previousButton = findViewById(R.id.paperkey_previous_word);
         previousButton.setOnClickListener(onPreviousListener());
 
+        SeedGenerator sg = new SeedGenerator(getApplicationContext());
 
         //Generate a valid seed from the SeedGenerator util
-        Constants.seed = SeedGenerator.generateSeed();
+        Constants.seed = sg.generateSeed();
 
         //get the first word
         nextWord();
@@ -47,9 +48,9 @@ public class PaperkeySeedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //get to the next word. For now get to the main Activity
-                if(currentWord ==11) {
+                if (currentWord == 11) {
 
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(), PaperkeyVerifySeed.class));
                 }
                 nextWord();
             }
@@ -73,7 +74,7 @@ public class PaperkeySeedActivity extends AppCompatActivity {
             currentWord += 1;
         }
         //change button text if last
-        if (currentWord == Constants.seed.size()) {
+        if (currentWord == 11) {
             nextButton.setText("Done");
         }
         wordView.setText(Constants.seed.get(currentWord));

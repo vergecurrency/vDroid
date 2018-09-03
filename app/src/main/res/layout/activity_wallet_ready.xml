@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_welcome_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/fl_welcome_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Verge Background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_darkmountain" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginTop="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_done"
+            android:tint="@color/bg_color"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/wallet_ready"
+            android:textColor="@color/bg_color"
+            android:textSize="18dp"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            />
+
+
+    </LinearLayout>
+
+            <Button
+                android:layout_alignParentBottom="true"
+                android:id="@+id/button_open_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/form_rounded_white_rect"
+                android:backgroundTint="@color/colorPrimary"
+                android:scaleType="fitCenter"
+                android:text="Open your wallet"
+                android:textColor="@color/colorBackgroundTwo"
+                android:textSize="18sp" />
+
+</RelativeLayout>

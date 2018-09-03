@@ -8,29 +8,39 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:screenOrientation="portrait" >
-        <activity android:name=".views.activities.MainActivity" android:label="@string/app_name" android:screenOrientation="portrait" />
-        <activity android:name=".views.activities.SetupWalletActivity" android:screenOrientation="portrait" />
-        <activity android:name=".views.activities.PaperkeyInstructionsActivity" />
-        <activity android:name=".views.activities.PaperkeySeedActivity" />
-        <activity android:name=".views.activities.SplashActivity" android:screenOrientation="portrait">
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".views.activities.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.setup.SetupWalletActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.activities.setup.PaperkeyInstructionsActivity" />
+        <activity android:name=".views.activities.setup.PaperkeySeedActivity" />
+        <activity
+            android:name=".views.activities.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>
-        <activity android:name=".views.activities.PaperkeyVerifySeed" />
+        <activity android:name=".views.activities.setup.PaperkeyVerifySeed" />
+        <activity android:name=".views.activities.setup.SetupDoneActivity" />
 
     </application>
 
     <!-- Features -->
-    <uses-feature android:name="android.hardware.fingerprint" android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.fingerprint"
+        android:required="false" />
     <!-- Permissions -->
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
