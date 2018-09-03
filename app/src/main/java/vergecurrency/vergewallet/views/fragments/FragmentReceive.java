@@ -13,40 +13,40 @@ import androidmads.library.qrgenearator.QRGEncoder;
 import vergecurrency.vergewallet.R;
 
 public class FragmentReceive extends Fragment {
-
-
-    public FragmentReceive() {
-        // Required empty public constructor
-    }
-
-
-    public void generateQRCode(String walletAddress, ImageView vQRCode) {
-
-
-        QRGEncoder qrgEncoder = new QRGEncoder(walletAddress, null, QRGContents.Type.TEXT, 480);
-        try {
-            Bitmap qrcodeBmp = qrgEncoder.encodeAsBitmap();
-            vQRCode.setImageBitmap(qrcodeBmp);
-
-        } catch (Exception ex) {
-            //TODO : catch exception properly.
-            System.out.println(ex.getMessage());
+	
+	
+	public FragmentReceive() {
+		// Required empty public constructor
+	}
+	
+	
+	public void generateQRCode(String walletAddress, ImageView vQRCode) {
+		
+		
+		QRGEncoder qrgEncoder = new QRGEncoder(walletAddress, null, QRGContents.Type.TEXT, 480);
+		try {
+			Bitmap qrcodeBmp = qrgEncoder.encodeAsBitmap();
+			vQRCode.setImageBitmap(qrcodeBmp);
+			
+		} catch (Exception ex) {
+			//TODO : catch exception properly.
+			System.out.println(ex.getMessage());
 
             /*Snackbar snackbar = Snackbar.make(vQRCodeView, "Error generating qr code", Snackbar.LENGTH_LONG);
 
             snackbar.show();*/
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_receive, container, false);
-
-        ImageView vQRCode = (ImageView) rootView.findViewById(R.id.qrcodeimage);
-        generateQRCode(getResources().getString(R.string.receive_current_code), vQRCode);
-
-        // Inflate the layout for this fragment
-        return rootView;
-    }
+		}
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+							 Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.fragment_receive, container, false);
+		
+		ImageView vQRCode = (ImageView) rootView.findViewById(R.id.qrcodeimage);
+		generateQRCode(getResources().getString(R.string.receive_current_code), vQRCode);
+		
+		// Inflate the layout for this fragment
+		return rootView;
+	}
 }
