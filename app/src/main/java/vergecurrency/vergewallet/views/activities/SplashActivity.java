@@ -8,6 +8,7 @@ import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.balram.locker.view.AppLocker;
 
@@ -16,6 +17,7 @@ import org.json.JSONObject;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.models.net.layers.TorLayerGateway;
+import vergecurrency.vergewallet.views.activities.setup.SetupWalletActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -48,8 +50,9 @@ public class SplashActivity extends AppCompatActivity {
     public void onBackPressed() {
     }
 
-    //TODO : Refactor into atomic functions
     private void run() {
+
+        //Launch AppLocker
         AppLocker.getInstance().enableAppLock(getApplication());
 
         boolean isFirstLaunch = prefs.getBoolean("firstlaunch", true);
@@ -64,16 +67,16 @@ public class SplashActivity extends AppCompatActivity {
 
         } else {
 
-            //TODO : if false, don't continue. -> launchTor will return a boolean
-
-
             if (!launchTor()) {
                 //message
-                System.exit(0); //It's there just to put something.
+                Toast.makeText(this,"TOR : Unable to connect. Please ensure the phone is connected to the internet", Toast.LENGTH_LONG);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.exit(1);
             } else {
-
-                //Enable AppLocker
-
                 //Start MainActivity
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
@@ -102,8 +105,7 @@ public class SplashActivity extends AppCompatActivity {
         //Get the current public IP, just for fun honestly.
         String IP = readIP(tlg.retrieveDataFromService("https://api.ipify.org?format=json"));
 
-        torChargingView = (TextView) findViewById(R.id.textview_launch_tor);
-        torChargingView.setText(String.format("Tor connected. IP : %s", IP));
+            Toast.makeText(this,String.format("Tor connected. IP : %s", IP), Toast.LENGTH_LONG);
 
         return tlg.isConnected();
     }
