@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import vergecurrency.vergewallet.database.datamodels.ContactModel;
 
-public class DatabaseHandler extends SQLiteOpenHelper {
+public class ContactDBHandler extends SQLiteOpenHelper {
 	
 	//Database Information
 	private static final int DATABASE_VERSION = 1;
@@ -18,7 +18,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String COLUMN_CONTACT_NAME = "ContactName";
 	private static final String COLUMN_CONTACT_ADDRESS = "ContactAddress";
 	
-	public DatabaseHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+	public ContactDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
 			super(context,DATABASE_NAME, factory, DATABASE_VERSION);
 	}
 	

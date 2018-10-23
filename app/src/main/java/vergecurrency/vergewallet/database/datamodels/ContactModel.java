@@ -1,11 +1,14 @@
-package vergecurrency.vergewallet.contracts.datamodels;
+package vergecurrency.vergewallet.database.datamodels;
 
-import android.provider.BaseColumns;
 
 public final class ContactModel {
 	
-	private ContactModel() {}
+	//data
+	private int contactId;
+	private String contactAddress;
+	private String contactName;
 	
+	public ContactModel() {}
 	
 	public String getContactAddress() {
 		return contactAddress;
@@ -27,8 +30,5 @@ public final class ContactModel {
 		this.contactId = contactId;
 	}
 	
-	private int contactId;
-	private String contactAddress;
-	private String contactName;
-	
+
 }

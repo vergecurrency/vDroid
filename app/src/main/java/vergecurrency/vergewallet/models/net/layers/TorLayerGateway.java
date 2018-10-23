@@ -12,6 +12,7 @@ import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.UnknownHostException;
 
+import client.InsightClient;
 import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
@@ -106,7 +107,8 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
             context.setAttribute("socks.address", socksaddr);
 
             //URL Current IP : https://api.ipify.org?format=json
-
+    
+            
             HttpGet httpGet = new HttpGet(new URI(uri));
             HttpResponse httpResponse = httpClient.execute(httpGet, context);
             HttpEntity httpEntity = httpResponse.getEntity();

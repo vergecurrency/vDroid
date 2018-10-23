@@ -29,15 +29,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
     //QRCode library
     implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
     //TOR library
-    implementation project (":ThaliOnionProxyAndroid-release")
+    implementation project(':ThaliOnionProxyAndroid-release')
     //HTTP Client library : Sorry but OkHttp is complete bullshit.
-    implementation "cz.msebera.android:httpclient:4.4.1.2"
+    implementation 'cz.msebera.android:httpclient:4.4.1.2'
     //PinView Library
     implementation 'com.github.EdwardQuixote:Support_AppLocker:2.0.3'
-
+    implementation files('src/main/libs/JavaInsightClient.jar')
 }
 

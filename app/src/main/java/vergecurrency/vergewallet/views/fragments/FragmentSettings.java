@@ -52,13 +52,14 @@ public class FragmentSettings extends Fragment {
         ItemData itemsDataSettings[] = {
                 new ItemData("Fiat currency", R.drawable.icon_currency_exchange),
                 new ItemData("Change wallet PIN", R.drawable.icon_pin),
-                new ItemData("Use fingerprint", R.drawable.icon_fingerprint)
+                new ItemData("Use fingerprint", R.drawable.icon_fingerprint),
+                new ItemData("TOR Settings", R.drawable.icon_fingerprint)
         };
 
         //populate the recyclerviews with their data
         fillRecyclerView(rootView, R.id.settings_list_wallet, new HeaderData("WALLET"), itemsDataWallet);
-        fillRecyclerView(rootView,R.id.settings_list_other, new HeaderData("OTHER"),itemsDataOther );
         fillRecyclerView(rootView,R.id.settings_list_settings, new HeaderData("SETTINGS"),itemsDataSettings);
+        fillRecyclerView(rootView,R.id.settings_list_other, new HeaderData("OTHER"),itemsDataOther );
 
         return rootView;
     }
