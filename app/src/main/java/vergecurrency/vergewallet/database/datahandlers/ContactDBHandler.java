@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import vergecurrency.vergewallet.database.datamodels.ContactModel;
+import vergecurrency.vergewallet.structs.ContactModel;
 
 public class ContactDBHandler extends SQLiteOpenHelper {
 	

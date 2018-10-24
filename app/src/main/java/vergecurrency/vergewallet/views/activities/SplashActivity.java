@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.balram.locker.view.AppLocker;
+import com.testfairy.TestFairy;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        TestFairy.begin(this, "a67a4df6e2a8a0c981638eb0f168297fd45aed73");
         //gets the holy preferences
         prefs = getSharedPreferences("com.vergecurrency.vergewallet", MODE_PRIVATE);
 

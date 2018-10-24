@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.database.datamodels;
+package vergecurrency.vergewallet.structs;
 
 
 public final class ContactModel {
@@ -24,7 +24,7 @@ public final class ContactModel {
 		this.contactName = contactName;
 	}
 	
-	public int getContactId() {	return contactId;	}
+	public int getContactId() {	return contactId;}
 	
 	public void setContactId(int contactId) {
 		this.contactId = contactId;

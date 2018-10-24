@@ -14,7 +14,7 @@
     <string name="send_message_main">Not enough balance</string>
     <string name="send_message_sub">You do not have enough balance to send any XVG. \n Please increase your balance</string>
     //Receive fragment
-    <string name="receive_current_code">cBQFLyaV5o17Rpx424JGHbQjdffyQs7Atm</string>
+    <string name="receive_current_code">DSiXiwK9uZ1uAy6PuqQWYBVQUaoGENZZaZ</string>
     <string name="receive_xvg_main">Send only XVG to this deposit address. \n Sending any other coin or token to this address may result in the loss of your deposit.</string>
     //Splash screen texts
     <string name="splash_title">Verge Android wallet</string>
@@ -22,7 +22,7 @@
     <string name="splash_tor">Starting up Tor</string>
     //Splash screen on first launch
     <string name="firstlaunch_new_wallet">&lt;b>&lt;big>Create a new wallet&lt;/big>&lt;/b>&lt;br />Create a new XVG wallet on your iOS device.</string>
-    <string name="firstlaunch_restore_wallet"> &lt;b>&lt;big>Restore your wallet&lt;/big>&lt;/b>&lt;br />Lost your iOS wallet? Restore it here.</string>
+    <string name="firstlaunch_restore_wallet"> &lt;b>&lt;big>Restore your wallet&lt;/big>&lt;/b>&lt;br />Lost your Android wallet? Restore it here.</string>
 
     //Pin activity
     <string name="pinlock_setup_instructions">Your wallet PIN will be used to open this \n app and to send XVG with. If you forget it, \n you won\'t be able to access your wallet.</string>
