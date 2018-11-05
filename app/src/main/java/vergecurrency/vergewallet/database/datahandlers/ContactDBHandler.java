@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import vergecurrency.vergewallet.structs.ContactModel;
+import vergecurrency.vergewallet.structs.Contact;
 
 public class ContactDBHandler extends SQLiteOpenHelper {
 	
@@ -49,7 +49,7 @@ public class ContactDBHandler extends SQLiteOpenHelper {
 		return result;
 	}
 	
-	public void addHandler(ContactModel contact) {
+	public void addHandler(Contact contact) {
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_CONTACT_ID, contact.getContactId());
 		values.put(COLUMN_CONTACT_NAME, contact.getContactName());
@@ -60,12 +60,12 @@ public class ContactDBHandler extends SQLiteOpenHelper {
 	}
 	
 	
-	public ContactModel findHandler(String contactName) {
+	public Contact findHandler(String contactName) {
 		String query = "Select * from" + TABLE_NAME + "WHERE"+ COLUMN_CONTACT_NAME + "=" + contactName ;
 		
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery(query, null);
-		ContactModel contact = new ContactModel();
+		Contact contact = new Contact();
 		if(cursor.moveToFirst()){
 			cursor.moveToFirst();
 			contact.setContactId(Integer.parseInt(cursor.getString(0)));

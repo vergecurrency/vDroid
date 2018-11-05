@@ -27,11 +27,11 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
         // create a new view
         if(viewType == TYPE_HEADER){
 
-            View headerLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_header, null);
+            View headerLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_settings_header, null);
             return new VHHeader(headerLayoutView);
         }
         else if(viewType == TYPE_ITEM) {
-            View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_item, null);
+            View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_settings_item, null);
 
             itemLayoutView.setOnClickListener(new View.OnClickListener() {
                 @Override

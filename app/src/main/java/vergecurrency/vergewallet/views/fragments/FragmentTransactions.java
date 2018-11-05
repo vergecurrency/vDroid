@@ -2,19 +2,23 @@ package vergecurrency.vergewallet.views.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.JsonReader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.google.gson.GsonBuilder;
+import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.structs.Transaction;
+import vergecurrency.vergewallet.views.fragments.workers.TransactionsAdapter;
 
 public class FragmentTransactions extends Fragment {
     
@@ -45,14 +49,24 @@ public class FragmentTransactions extends Fragment {
     private void fillTransactionList (ListView transactionList) {
 		JSONParser parser = new JSONParser();
 		try {
-			JSONObject jsonObject= (JSONObject) parser.parse(new FileReader("vergecurrency/vergewallet/previewdata/transactions.json"));
-			
+			//Get the Json
+			InputStream is = this.getContext().getAssets().open("transactions.json");
+			InputStreamReader isr = new InputStreamReader(is);
+			JSONObject jsonObject= (JSONObject) parser.parse(isr);
 			JSONArray transactionsListJSON = (JSONArray) jsonObject.get("transactions");
 			
-			//TODO : what I didn't do today because I was too busy listening to Billy Joel
+			Transaction[] txs;
+			txs = new GsonBuilder().create().fromJson(transactionsListJSON.toJSONString(), Transaction[].class) ;
+			
+			//ArrayAdapter<Transaction> adapter = new ArrayAdapter<Transaction>(this.getContext(), android.R.layout.simple_list_item_1, txs);
+			
+			transactionList.setAdapter(new TransactionsAdapter(this.getContext(), txs));
+			
 			
 		} catch (Exception ex) {
-		
+			ex.getStackTrace();
 		}
 	}
+	
+	
 }

@@ -1,14 +1,14 @@
 package vergecurrency.vergewallet.structs;
 
 
-public final class ContactModel {
+public final class Contact {
 	
 	//data
 	private int contactId;
 	private String contactAddress;
 	private String contactName;
 	
-	public ContactModel() {}
+	public Contact() {}
 	
 	public String getContactAddress() {
 		return contactAddress;
