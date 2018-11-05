@@ -86,13 +86,17 @@ public class TransactionsAdapter extends ArrayAdapter<Transaction> implements Vi
 		} else {
 			vh = (TransactionItemViewHolder) convertView.getTag();
 			result = convertView;
-		}abu
+		}
 		
 		vh.txAddress.setText(tx.getAddress());
 		vh.txAmount.setText(Double.toString(tx.getAmount()));
 		vh.txDateTime.setText(Date.valueOf(Long.toString(tx.getTime())).toString());
-		vh.txIcon.setImageIcon(null);
+		vh.txIcon.setImageResource(R.drawable.icon_receive);
 		
-		return result;
+		
+		vh.txAddress.setOnClickListener(this);
+		vh.txAddress.setTag(position);
+		// Return the completed view to render on screen
+		return convertView;
 	}
 }
