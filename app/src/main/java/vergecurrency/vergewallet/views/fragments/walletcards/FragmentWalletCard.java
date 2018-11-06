@@ -1,5 +1,6 @@
 package vergecurrency.vergewallet.views.fragments.walletcards;
 
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import vergecurrency.vergewallet.views.fragments.FragmentTransactions;
 import vergecurrency.vergewallet.views.fragments.beans.ItemData;
 
 public class FragmentWalletCard extends Fragment{
@@ -56,7 +58,8 @@ public class FragmentWalletCard extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        rootView =  inflater.inflate(R.layout.fragment_wallet_card, container, false);
-
+    
+        
 
         return rootView;
     }

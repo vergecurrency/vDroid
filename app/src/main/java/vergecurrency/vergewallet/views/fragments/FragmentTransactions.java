@@ -14,6 +14,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import vergecurrency.vergewallet.R;
@@ -55,11 +56,10 @@ public class FragmentTransactions extends Fragment {
 			JSONObject jsonObject= (JSONObject) parser.parse(isr);
 			JSONArray transactionsListJSON = (JSONArray) jsonObject.get("transactions");
 			
-			Transaction[] txs;
-			txs = new GsonBuilder().create().fromJson(transactionsListJSON.toJSONString(), Transaction[].class) ;
-			
-			//ArrayAdapter<Transaction> adapter = new ArrayAdapter<Transaction>(this.getContext(), android.R.layout.simple_list_item_1, txs);
-			
+			Transaction[] txsArray;
+			ArrayList<Transaction> txs;
+			txsArray = new GsonBuilder().create().fromJson(transactionsListJSON.toJSONString(), Transaction[].class) ;
+			txs = new ArrayList<>(Arrays.asList(txsArray));
 			transactionList.setAdapter(new TransactionsAdapter(this.getContext(), txs));
 			
 			

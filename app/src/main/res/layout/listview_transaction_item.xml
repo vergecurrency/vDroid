@@ -11,15 +11,9 @@
         android:id="@+id/listview_transaction_item_icon"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="10dip"
-        android:tint="@color/colorPrimary"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:padding="5dp"
-        android:paddingLeft="15dp"
-
         />
 
     <LinearLayout
@@ -32,9 +26,6 @@
             android:id="@+id/listview_transaction_item_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_toRightOf="@id/listview_item_icon"
             android:textSize="18dp"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center_vertical"
@@ -44,27 +35,23 @@
             android:id="@+id/listview_transaction_item_datetime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_toRightOf="@id/listview_item_icon"
-            android:textSize="18dp"
+            android:textSize="12dp"
             android:textColor="@color/colorPrimaryDark"
-            android:gravity="center_vertical"
+            android:gravity="bottom"
             />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/listview_transaction_item_amount"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="0.4"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/listview_item_icon"
         android:textSize="18dp"
+        android:textAlignment="viewEnd"
+        android:paddingRight="10dp"
         android:textColor="@color/colorPrimaryDark"
-        android:gravity="center_vertical"
+        android:gravity="end"
         />
 
 

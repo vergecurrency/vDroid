@@ -54,7 +54,8 @@ public class FragmentWallet extends Fragment {
             switch (pos) {
 
                 case 0:
-                   return FragmentWalletCard.newInstance(new ItemData("Recent transactions", R.drawable.icon_transactions), R.drawable.icon_transactions);
+                   //return FragmentWalletCard.newInstance(new ItemData("Recent transactions", R.drawable.icon_transactions), R.drawable.icon_transactions);
+                   return FragmentTransactions.instantiate(getContext(),FragmentTransactions.class.getName());
                 case 1:
 
                     return FragmentWalletCard.newInstance( new ItemData("Price Statistics", R.drawable.icon_stat_increase),R.drawable.icon_stat_increase);
