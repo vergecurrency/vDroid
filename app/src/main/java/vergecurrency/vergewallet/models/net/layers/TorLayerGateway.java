@@ -60,7 +60,7 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
 
 
 
-    //Async task, so works while not bothering everybody. It's the android version of a thread.
+    //Async task, so works while not bothering everybody.
     @Override
     protected String doInBackground(String... strings) {
         String fileStorageLocation = "torfiles";
