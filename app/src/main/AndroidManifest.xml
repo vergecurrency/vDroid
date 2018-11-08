@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="vergecurrency.vergewallet">
 
+    <!-- Features -->
+    <uses-feature
+        android:name="android.hardware.fingerprint"
+        android:required="false" />
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -25,22 +35,12 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".views.activities.setup.PaperkeyVerifySeed" />
         <activity android:name=".views.activities.setup.SetupDoneActivity" />
-
     </application>
 
-    <!-- Features -->
-    <uses-feature
-        android:name="android.hardware.fingerprint"
-        android:required="false" />
-    <!-- Permissions -->
-    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
