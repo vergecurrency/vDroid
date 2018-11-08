@@ -41,5 +41,6 @@ dependencies {
     implementation files('src/main/libs/JavaInsightClient.jar')
     implementation files('src/main/libs/json-simple-1.1.1.jar')
     implementation files('src/main/libs/gson-2.8.5.jar')
+    implementation files('src/main/libs/i2p-router.jar')
 }
 

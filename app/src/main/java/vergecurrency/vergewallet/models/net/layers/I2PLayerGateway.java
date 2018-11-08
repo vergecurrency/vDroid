@@ -15,6 +15,8 @@ import cz.msebera.android.httpclient.impl.conn.PoolingHttpClientConnectionManage
 import cz.msebera.android.httpclient.ssl.SSLContexts;
 import vergecurrency.vergewallet.models.net.sockets.ConnectionSocket;
 import vergecurrency.vergewallet.models.net.sockets.SSLConnectionSocket;
+import net.i2p.router.Router;
+import java.util.Properties;
 
 public class I2PLayerGateway extends AsyncTask<String, Integer, String> {
 
