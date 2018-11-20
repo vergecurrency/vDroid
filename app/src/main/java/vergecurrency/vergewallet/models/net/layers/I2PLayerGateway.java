@@ -1,6 +1,10 @@
 package vergecurrency.vergewallet.models.net.layers;
 
+import android.app.Service;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -18,9 +22,10 @@ import vergecurrency.vergewallet.models.net.sockets.SSLConnectionSocket;
 import net.i2p.router.Router;
 import java.util.Properties;
 
-public class I2PLayerGateway extends AsyncTask<String, Integer, String> {
-
-
+public class I2PLayerGateway extends NetworkGateway {
+    private Router r;
+    
+    
     //Talks for itself
     static class FakeDnsResolver implements DnsResolver {
         @Override
@@ -44,6 +49,29 @@ public class I2PLayerGateway extends AsyncTask<String, Integer, String> {
 
     @Override
     protected String doInBackground(String... strings) {
-        return null;
+        
+        Properties props = new Properties();
+        props.setProperty("i2p.dir.base", "baseDir");
+        props.setProperty("i2p.dir.config", "configDir");
+        props.setProperty("i2np.inboundKBytesPerSecond", "50");
+        props.setProperty("i2np.outboundKBytesPerSecond", "50");
+        props.setProperty("router.sharePercentage", "80");
+        r = new Router(props);
+        
+        try {
+            r.setKillVMOnEnd(false);
+            r.runRouter();
+            return "done";
+        } catch( Exception e) {
+            e.printStackTrace();;
+            return "oh lol shit";
+        }
     }
+    
+    //Because I'm not savage LOL
+    private void killGently() {
+        if(r != null)
+        r.shutdownGracefully();
+    }
+    
 }

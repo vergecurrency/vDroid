@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tor_settings_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="@string/tor_settings_title"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/tor_settings_header"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_below="@+id/tor_settings_title"
+        android:src="@drawable/header_tor" />
+
+    <TextView
+        android:id="@+id/tor_settings_desc1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tor_settings_header"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="@string/tor_settings_desc1"
+        android:textAlignment="center"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tor_settings_desc2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tor_settings_desc1"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="@string/tor_settings_desc2"
+        android:textAlignment="center"
+        android:textSize="16sp" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/tor_settings_obfuscate"
+        android:checked="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tor_settings_desc2"
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:text="@string/tor_settings_obfuscate_on_off"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <FrameLayout
+        android:id="@+id/tor_settings_ip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tor_settings_obfuscate"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="@string/tor_settings_ip_desc"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/tor_settings_ip_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="127.0.0.1" />
+    </FrameLayout>
+
+    <org.osmdroid.views.MapView
+        android:layout_below="@id/tor_settings_ip"
+        android:id="@+id/tor_settings_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</RelativeLayout>

@@ -25,7 +25,6 @@ public class SetupWalletActivity extends AppCompatActivity {
     RelativeLayout bottomChargingView;
     Button bottomButton;
     SharedPreferences prefs;
-    ImageView vergeLogo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,10 +38,7 @@ public class SetupWalletActivity extends AppCompatActivity {
     }
 
     private void instantiateView() {
-        
-        vergeLogo = (ImageView) findViewById(R.id.splash_verge_logo_notext);
-        vergeLogo.setVisibility(View.GONE);
-        
+
         //Subtext to describe wallet
         subTextView = (TextView) findViewById(R.id.launch_verge_sub);
         subTextView.setText("Secure, anonymous and private \n Android wallet for Verge. \n Send and receive XVG");
