@@ -1,6 +1,8 @@
 package vergecurrency.vergewallet.models.net.layers;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.content.Context;
+import android.os.AsyncTask;
 
 import com.msopentech.thali.toronionproxy.OnionProxyManager;
 
@@ -12,7 +14,6 @@ import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.UnknownHostException;
 
-import client.InsightClient;
 import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
@@ -29,21 +30,24 @@ import vergecurrency.vergewallet.models.net.sockets.ConnectionSocket;
 import vergecurrency.vergewallet.models.net.sockets.SSLConnectionSocket;
 
 
+public class TorLayerGateway extends AsyncTask<String, Integer, String> {
 
-public class TorLayerGateway extends android.os.AsyncTask<String, Integer, String>{
 
+    //Let's make this piece of sh... class a singleton.
+    private static final TorLayerGateway instance = new TorLayerGateway();
 
-    public TorLayerGateway(Context context) {
+    public static TorLayerGateway getInstance() {
+        return instance;
+    }
+
+    public void setContext(Context context) {
         this.context = context;
     }
 
-    //Talks for itself
-    static class FakeDnsResolver implements DnsResolver {
-        @Override
-        public InetAddress[] resolve(String host) throws UnknownHostException {
-            return new InetAddress[] { InetAddress.getByAddress(new byte[] { 1, 1, 1, 1 }) };
-        }
+    private TorLayerGateway() {
+
     }
+
 
     //Http client : registers a socket according to a given protocol
     public HttpClient getNewHttpClient() {
@@ -52,12 +56,11 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
                 .register("http", new ConnectionSocket())
                 .register("https", new SSLConnectionSocket(SSLContexts.createSystemDefault()))
                 .build();
-        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(reg,new FakeDnsResolver());
+        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(reg, new FakeDnsResolver());
         return HttpClients.custom()
                 .setConnectionManager(cm)
                 .build();
     }
-
 
 
     //Async task, so works while not bothering everybody.
@@ -66,9 +69,9 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
         String fileStorageLocation = "torfiles";
 
         //Get the proxy manager
-         onionProxyManager = new com.msopentech.thali.android.toronionproxy.AndroidOnionProxyManager(context, fileStorageLocation);
-        int totalSecondsPerTorStartup = 4 * 60;
-        int totalTriesPerTorStartup = 5;
+        onionProxyManager = new com.msopentech.thali.android.toronionproxy.AndroidOnionProxyManager(context, fileStorageLocation);
+        int totalSecondsPerTorStartup = 4 * 10;
+        int totalTriesPerTorStartup = 2;
         try {
             //starts tor by trying 240s x 5 times.
             boolean ok = onionProxyManager.startWithRepeat(totalSecondsPerTorStartup, totalTriesPerTorStartup);
@@ -106,9 +109,7 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
             HttpClientContext context = HttpClientContext.create();
             context.setAttribute("socks.address", socksaddr);
 
-            //URL Current IP : https://api.ipify.org?format=json
-    
-            
+
             HttpGet httpGet = new HttpGet(new URI(uri));
             HttpResponse httpResponse = httpClient.execute(httpGet, context);
             HttpEntity httpEntity = httpResponse.getEntity();
@@ -146,6 +147,15 @@ public class TorLayerGateway extends android.os.AsyncTask<String, Integer, Strin
     public boolean isConnected() {
         return isConnected;
     }
+
+    //Talks for itself
+    static class FakeDnsResolver implements DnsResolver {
+        @Override
+        public InetAddress[] resolve(String host) throws UnknownHostException {
+            return new InetAddress[]{InetAddress.getByAddress(new byte[]{1, 1, 1, 1})};
+        }
+    }
+
 
     //Variables come here
 

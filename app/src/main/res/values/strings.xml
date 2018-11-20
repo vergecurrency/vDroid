@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Verge</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiMmxhenkyZGVidWciLCJhIjoiY2pvbzdqdHJjMDFkOTNrc3U3cnlyZ3A0aCJ9.u6hnc-wFQhgefZW0eQRwFw</string>
 
     //Fragment titles in main activity
     <string name="title_wallet">Wallet</string>
@@ -23,6 +24,31 @@
     //Splash screen on first launch
     <string name="firstlaunch_new_wallet">&lt;b>&lt;big>Create a new wallet&lt;/big>&lt;/b>&lt;br />Create a new XVG wallet on your iOS device.</string>
     <string name="firstlaunch_restore_wallet"> &lt;b>&lt;big>Restore your wallet&lt;/big>&lt;/b>&lt;br />Lost your Android wallet? Restore it here.</string>
+
+    //Tor settings activity
+    <string name="tor_settings_title">Tor is here for your privacy and hides your location</string>
+    <string name="tor_settings_desc1">Your IP address is fully obfuscated and transactions are completely untraceable when you\'re using a Tor connection</string>
+    <string name="tor_settings_desc2">But you can always turn Tor off.</string>
+    <string name="tor_settings_obfuscate_on_off">Obfuscate IP</string>
+    <string name="tor_settings_ip_desc">Your IP Address</string>
+
+    //Disconnect activity
+    <string name="disconnect_title">Disconnect this device from your current wallet</string>
+    <string name="disconnect_desc">You\'re about to disconnect this device from your current wallet. \n Please make absolutely sure you have written down your paperkey. Remember that your paperkey is the only way to restore your current wallet.</string>
+    <string name="disconnect_button">Disconnect</string>
+
+    //Paperkey activity
+    <string name="paperkey_title">Write down your wallet paperkey again</string>
+    <string name="paperkey_desc">You want to see your paperkey again? On the next screen, you\'ll be shown a list of words to write down on a piece of paper, which you should keep very safe!</string>
+    <string name="paperkey_button">Show Paperkey</string>
+
+    //Donate activity
+    <string name="donate_title">Donate to support development</string>
+    <string name="donate_desc1">At Verge we are always striving to achieve new heights and deliver products or software implementations that are requested by the community.</string>
+    <string name="donate_desc2">Listening to our community members and taking in feedback is not only one of the core founding principles of Verge, but it is inherent in our open-source nature.</string>
+    <string name="donate_donation_label">Donation XVG Address</string>
+    <string name="donate_donation_address">DHe3mTNQztY1wWokdtMprdeCKNoMxyThoV</string>
+    <string name="donate_button">Donate XVG</string>
 
     //Pin activity
     <string name="pinlock_setup_instructions">Your wallet PIN will be used to open this \n app and to send XVG with. If you forget it, \n you won\'t be able to access your wallet.</string>

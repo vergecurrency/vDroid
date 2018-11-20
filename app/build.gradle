@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "vergecurrency.vergewallet"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -16,13 +16,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
-    implementation 'com.android.support:recyclerview-v7:28.0.0-rc01'
-    implementation 'com.android.support:design:28.0.0-rc01'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'org.slf4j:slf4j-api:1.7.7'
     implementation 'org.slf4j:slf4j-android:1.7.7'
@@ -35,6 +41,8 @@ dependencies {
     implementation project(':ThaliOnionProxyAndroid-release')
     //HTTP Client library : Sorry but OkHttp is complete bullshit.
     implementation 'cz.msebera.android:httpclient:4.4.1.2'
+    //MapBox
+    implementation 'org.osmdroid:osmdroid-android:6.0.2'
     //Different shit
     implementation 'com.github.EdwardQuixote:Support_AppLocker:2.0.3'
     implementation 'testfairy:testfairy-android-sdk:1.+@aar'
@@ -43,4 +51,7 @@ dependencies {
     implementation files('src/main/libs/gson-2.8.5.jar')
     implementation files('src/main/libs/i2p-router.jar')
 }
-
+/*
+configurations {
+    all*.exclude group: 'com.google.code.gson'
+}*/

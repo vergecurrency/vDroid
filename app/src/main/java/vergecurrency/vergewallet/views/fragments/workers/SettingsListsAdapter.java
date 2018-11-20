@@ -64,6 +64,10 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
             VHItem VHItem = (VHItem)holder;
             VHItem.txtViewTitle.setText(itemsData[position-1].getTitle());
             VHItem.imgViewIcon.setImageResource(itemsData[position-1].getImageUrl());
+            View.OnClickListener ocl = itemsData[position-1].getOnClickListener();
+            if(ocl != null) {
+                VHItem.rel.setOnClickListener(ocl);
+            }
         }
     }
 
@@ -82,7 +86,6 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
             imgViewIcon = (ImageView) itemLayoutView.findViewById(R.id.listview_item_icon);
             txtViewTitle = (TextView) itemLayoutView.findViewById(R.id.listview_item_title);
             rel = (RelativeLayout) itemLayoutView.findViewById(R.id.listview_layout);
-
         }
     }
 

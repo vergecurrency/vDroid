@@ -58,10 +58,10 @@ public class FragmentWallet extends Fragment {
                    return FragmentTransactions.instantiate(getContext(),FragmentTransactions.class.getName());
                 case 1:
 
-                    return FragmentWalletCard.newInstance( new ItemData("Price Statistics", R.drawable.icon_stat_increase),R.drawable.icon_stat_increase);
+                    return FragmentWalletCard.newInstance( new ItemData("Price Statistics", R.drawable.icon_stat_increase, null),R.drawable.icon_stat_increase);
                 case 2:
 
-                    return FragmentWalletCard.newInstance(new ItemData("History Chart", R.drawable.icon_chart),R.drawable.icon_chart);
+                    return FragmentWalletCard.newInstance(new ItemData("History Chart", R.drawable.icon_chart, null),R.drawable.icon_chart);
                 default:
                    return null;
             }

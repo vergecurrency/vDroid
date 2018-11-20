@@ -22,7 +22,7 @@ import vergecurrency.vergewallet.models.net.sockets.SSLConnectionSocket;
 import net.i2p.router.Router;
 import java.util.Properties;
 
-public class I2PLayerGateway extends AsyncTask<String, Integer, String>{
+public class I2PLayerGateway extends NetworkGateway {
     private Router r;
     
     
@@ -46,7 +46,8 @@ public class I2PLayerGateway extends AsyncTask<String, Integer, String>{
                 .setConnectionManager(cm)
                 .build();
     }
-    
+
+    @Override
     protected String doInBackground(String... strings) {
         
         Properties props = new Properties();
