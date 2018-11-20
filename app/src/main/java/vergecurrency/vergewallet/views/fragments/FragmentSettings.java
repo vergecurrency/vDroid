@@ -43,7 +43,9 @@ public class FragmentSettings extends Fragment {
         //Generate the data for the RecyclerView
         ItemData itemsDataWallet[] = {
                 new ItemData("Disconnect this device", R.drawable.icon_disconnected, v -> startActivity(new Intent(v.getContext(), DisconnectActivity.class))),
-                new ItemData("Paperkey", R.drawable.icon_paperkey, v -> startActivity(new Intent(v.getContext(), PaperkeyActivity.class))),
+                new ItemData("Paperkey", R.drawable.icon_paperkey, v -> {
+                    startActivity(new Intent(v.getContext(), PaperkeyActivity.class));
+                }),
         };
 
         ItemData itemsDataOther[] = {

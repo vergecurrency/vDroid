@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity  {//extends LockActivity
         showFragment(new FragmentWallet(), R.string.title_wallet, Color.WHITE, getResources().getColor(R.color.colorPrimary));
     }
 
+
+
     //Shows the previously selected fragment.
     private void showFragment(Fragment fragment, int title, int textColor, int textBgColor) {
         mTextMessage.setText(title);

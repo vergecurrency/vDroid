@@ -23,12 +23,13 @@ import org.json.JSONObject;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.models.dataproc.ApifyDataReader;
+import vergecurrency.vergewallet.models.dataproc.PreferencesManager;
 import vergecurrency.vergewallet.models.net.layers.TorLayerGateway;
 import vergecurrency.vergewallet.views.activities.setup.SetupWalletActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    SharedPreferences prefs;
+    PreferencesManager pm;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
         TestFairy.begin(this, "a67a4df6e2a8a0c981638eb0f168297fd45aed73");
 
         //gets the holy preferences
-        prefs = getSharedPreferences("com.vergecurrency.vergewallet", MODE_PRIVATE);
+        pm = new PreferencesManager(this.getApplicationContext());
 
         setContentView(R.layout.activity_splash);
         //Get a handler to execute stuff only after setting the content view
@@ -70,7 +71,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void chooseLaunchAction() {
 
-        if (prefs.getBoolean("firstlaunch", true)) {
+        if (pm.getFirstLaunch()) {
 
             startActivity(new Intent(getApplicationContext(), SetupWalletActivity.class));
             finish();

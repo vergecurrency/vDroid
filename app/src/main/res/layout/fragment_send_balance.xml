@@ -54,6 +54,7 @@
             android:src="@drawable/icon_qrcode" />
 
         <EditText
+            android:id="@+id/send_balance_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Recipient address" />

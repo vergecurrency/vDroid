@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.models.dataproc.PreferencesManager;
 import vergecurrency.vergewallet.models.dataproc.SeedGenerator;
 import vergecurrency.vergewallet.views.activities.MainActivity;
 
@@ -26,7 +27,7 @@ public class PaperkeyVerifySeed extends AppCompatActivity {
     EditText secondWordInput;
     Button confirmButton;
     Pair<String[], int[]> verificationWords;
-    SharedPreferences prefs;
+    PreferencesManager pm;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class PaperkeyVerifySeed extends AppCompatActivity {
         verificationWords = getTwoRandomWordsFromSeed();
 
         //Get the shared preferences
-        prefs = getSharedPreferences("com.vergecurrency.vergewallet", MODE_PRIVATE);
+        pm = new PreferencesManager(this.getApplicationContext());
 
         initComponents();
 
@@ -66,7 +67,7 @@ public class PaperkeyVerifySeed extends AppCompatActivity {
             if(firstWordInput.getText().toString().equals(verificationWords.first[0])) {
                 if(secondWordInput.getText().toString().equals(verificationWords.first[1])) {
                     //Announce that it's not the first launch anymore
-                    prefs.edit().putBoolean("firstlaunch", false).apply();
+                    pm.setFirstLaunch(false);
                     //Get to the main activity
                     startActivity(new Intent(getApplicationContext(), SetupDoneActivity.class));
 

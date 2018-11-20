@@ -106,7 +106,6 @@ public class SetupWalletActivity extends AppCompatActivity {
     private void updateUI() {
         if (AppLocker.getInstance().getAppLock().isPasscodeSet()) {
             // go to wallet generation. but for now let's go to main activity.
-            //
             startActivity(new Intent(this, PaperkeyInstructionsActivity.class));
         }
     }
