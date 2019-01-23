@@ -8,17 +8,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/verge_colorPrimary"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
+            android:paddingTop="1dp"
             android:text="200.00 XVG"
             android:textColor="@color/bg_color"
-            android:textSize="32sp"
+            android:textSize="42sp"
             android:textStyle="bold" />
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="XVG BALANCE"
             android:textColor="@color/bg_color"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -39,21 +39,20 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingTop="20dp"
-                android:paddingHorizontal="40dp">
+                android:paddingHorizontal="36dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:text="US$ 0.00"
                     android:textColor="@color/bg_color"
-                    android:textSize="26sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:text="USD BALANCE"
+                    android:textSize="12sp"
                     android:textColor="@color/bg_color" />
             </LinearLayout>
 
@@ -68,15 +67,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:text="US$ 0.017"
                     android:textColor="@color/bg_color"
-                    android:textSize="26sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:textSize="12sp"
                     android:text="USD/XVG"
                     android:textColor="@color/bg_color" />
 
@@ -92,6 +90,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="-40dp"
         android:layout_marginRight="20dp"
+        android:padding="2dp"
         android:background="@drawable/form_rounded_white_rect"
         android:fillViewport="true" />
 

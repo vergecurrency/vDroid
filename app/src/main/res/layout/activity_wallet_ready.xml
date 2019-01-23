@@ -51,10 +51,10 @@
                 android:layout_marginRight="30dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/form_rounded_white_rect"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="@color/verge_colorPrimary"
                 android:scaleType="fitCenter"
                 android:text="Open your wallet"
-                android:textColor="@color/colorBackgroundTwo"
+                android:textColor="@color/verge_colorBackgroundTwo"
                 android:textSize="18sp" />
 
 </RelativeLayout>

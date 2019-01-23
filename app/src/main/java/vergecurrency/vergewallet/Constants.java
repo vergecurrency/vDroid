@@ -4,13 +4,26 @@ import java.util.ArrayList;
 
 public final class Constants {
 
+    //Wallet constants
+    public final static Double FETCH_WALLET_TIMEOUT = 30d;
+    public final static Double FETCH_PRICE_TIMEOUT = 150d;
+    public final static Double SATOSHIS_DIVIDER = 1000000d;
+    public final static Double MINIMUM_FEE = 0.1d;
+    public final static int NEEDED_CONFIRMATIONS = 1;
 
-    public final static String VERGE_MAIN_SERVER = "qz6pnufyqjexudq6.onion";
-    public final static String VERGE_SUB_SERVER = "jx5tldmayybm2pui.onion";
-    public final static String VERGE_COIN_EXPLORER = "http://dvzs4zoxkg6z43dd.onion/tx/%s";
-    public final static String WORDLIST_DIGEST = "stUkGuAnoOQPBqM9kJgJoZDyEP4=";
-    public final static String BIP39_ENGLISH_SHA256 = "ad90bf3beb7b0eb7e5acd74727dc0da96e0a280a258354e7293fb7e211ac03db";
-    public final static int VERGE_PORT = 50001;
+    //Service Urls
+    public final static String VERGE_WEBSITE = "https://vergecurrency.com";
+    public final static String VDROID_REPO = "https://github.com/vergecurrency/vDroid";
+    public final static String BLOCKCHAIN_EXPLORER = "https://verge-blockchain.info";
+    public final static String VWS_ENDPOINT = "https://vws2.swenvanzanten.com/vws/api/";
+
+    //Secondary Service Urls
+    public final static String PRICE_DATA_ENDPOINT = "https://usxvglw.vergecoreteam.com/price/api/v1/price/";
+    public final static String CHART_DATA_ENDPOINT  = "https://graphs2.coinmarketcap.com/currencies/";
+    public final static String IP_DATA_ENDPOINT = "http://api.ipstack.com/%s?access_key=7ad464757507e0b58ce0beee4810c1ab";
+    public final static String IP_RETRIEVAL_ENDPOINT = "https://api.ipify.org?format=json";
+
+
     public final static int SEED_SIZE = 12;
     public final static int WORDLIST_SIZE = 2048;
     public static ArrayList<String> seed;

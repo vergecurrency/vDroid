@@ -105,7 +105,7 @@ public class SplashActivity extends AppCompatActivity {
         TorLayerGateway tlg =   TorLayerGateway.getInstance();
         tlg.setContext(getApplicationContext());
         //TODO : Check whether there's internet connection first.
-        tlg.execute();
+        //tlg.execute();
 
         //Start timeout counter
         int timeoutCounter = -1;
@@ -113,12 +113,14 @@ public class SplashActivity extends AppCompatActivity {
         while (timeoutCounter < 10) {
             //increase timeout after one cycle
             //timeoutCounter++;
-            if (tlg.isConnected()) {
+            if (true) {
+           /* if (tlg.isConnected()) {*/
                 //Get the current public IP, just for fun honestly.
                 String IP = adr.readIP(tlg.retrieveDataFromService("https://api.ipify.org?format=json"));
 
                 Toast.makeText(getApplicationContext(), String.format("Tor connected. IP : %s", IP), Toast.LENGTH_LONG).show();
-                return tlg.isConnected();
+                //return tlg.isConnected();
+                return true;
             } else {
                 //Implement timeout
                 try {

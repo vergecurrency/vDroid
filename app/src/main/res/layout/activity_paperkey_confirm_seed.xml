@@ -24,7 +24,7 @@
         android:paddingVertical="10dp"
         android:text="@string/paperkey_activity_title"
         android:textAlignment="center"
-        android:textColor="@color/colorBackground"
+        android:textColor="@color/verge_colorBackground"
         android:textSize="14sp"
         android:textStyle="bold"
 
@@ -38,7 +38,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:background="@drawable/icon_rename"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/verge_colorPrimary"
         android:elevation="1dp"
         android:gravity="center_vertical"
         android:textAlignment="center"
@@ -55,7 +55,7 @@
         android:paddingRight="40dp"
         android:text="@string/paperkey_confirm_instructions"
         android:textAlignment="center"
-        android:textColor="@color/colorBackground"
+        android:textColor="@color/verge_colorBackground"
         android:textSize="18sp" />
 
 
@@ -107,9 +107,9 @@
                 android:layout_marginBottom="10dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/form_rounded_rect"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="@color/verge_colorPrimary"
                 android:text="@string/paperkey_wallet_next"
-                android:textColor="@color/colorBackgroundTwo"
+                android:textColor="@color/verge_colorBackgroundTwo"
                 android:textSize="18dp" />
         </LinearLayout>
 

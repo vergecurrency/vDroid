@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/listview_layout"
+    android:clickable="true"
+    android:background="@drawable/selector_item"
     >
 
     <ImageView
@@ -12,7 +14,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="10dip"
-        android:tint="@color/colorPrimary"
+        android:tint="@color/verge_colorPrimary"
+        android:backgroundTint="@color/verge_colorBackgroundTwo"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:padding="5dp"
@@ -27,7 +30,8 @@
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/listview_item_icon"
         android:textSize="18dp"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/verge_colorPrimaryDark"
+        android:backgroundTint="@color/verge_colorBackgroundTwo"
         android:gravity="center_vertical"
         />
 

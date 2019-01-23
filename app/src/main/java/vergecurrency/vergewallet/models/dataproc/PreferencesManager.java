@@ -21,4 +21,5 @@ public final class PreferencesManager {
         prefs.edit().putBoolean("firstlaunch", firstLaunchValue).apply();
     }
 
+
 }

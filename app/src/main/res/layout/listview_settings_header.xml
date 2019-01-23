@@ -3,14 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/listview_header">
+    android:id="@+id/listview_header"
+    android:background="@color/verge_colorBackgroundTwo">
     <TextView
         android:id="@+id/listview_header_title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorBackgroundTwo"
+        android:backgroundTint="@color/verge_colorBackgroundTwo"
         android:textSize="14dp"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/verge_colorAccent"
         android:paddingLeft="15dp"
         android:paddingBottom="5dp"
         android:gravity="bottom"/>

@@ -1,32 +1,33 @@
-package vergecurrency.vergewallet.views.fragments;
+package vergecurrency.vergewallet.views.fragments.walletcards;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import com.google.gson.GsonBuilder;
-import org.json.simple.*;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.structs.Transaction;
 import vergecurrency.vergewallet.views.fragments.workers.TransactionsAdapter;
 
-public class FragmentTransactions extends Fragment {
-    
+public class FragmentTransactionsCard extends Fragment {
+
     double balance = 10d;
     ListView transactionList;
-    
-    public FragmentTransactions() {
+
+    public FragmentTransactionsCard() {
 
     }
 
@@ -41,7 +42,6 @@ public class FragmentTransactions extends Fragment {
 		else {
 			rootView = inflater.inflate(R.layout.fragment_transactions, container, false);
 			transactionList = rootView.findViewById(R.id.transactions_listview);
-			transactionList.setTextFilterEnabled(true);
 			fillTransactionList(transactionList);
 		}
 		

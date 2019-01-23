@@ -22,7 +22,7 @@
         android:paddingVertical="10dp"
         android:text="@string/paperkey_activity_title"
         android:textAlignment="center"
-        android:textColor="@color/colorBackground"
+        android:textColor="@color/verge_colorBackground"
         android:textSize="14sp"
         android:textStyle="bold"
 
@@ -37,7 +37,7 @@
         android:paddingRight="40dp"
         android:text="@string/paperkey_activity_main"
         android:textAlignment="center"
-        android:textColor="@color/colorBackground"
+        android:textColor="@color/verge_colorBackground"
         android:textSize="18sp" />
 
     <TextView
@@ -82,9 +82,9 @@
                 android:layout_marginRight="20dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/form_rounded_rect"
-                android:backgroundTint="@color/colorBackground"
+                android:backgroundTint="@color/verge_colorBackground"
                 android:text="@string/paperkey_wallet_previous"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/verge_colorPrimaryDark"
                 android:textSize="18dp" />
 
             <Button
@@ -97,9 +97,9 @@
                 android:layout_marginRight="20dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/form_rounded_rect"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="@color/verge_colorPrimary"
                 android:text="@string/paperkey_wallet_next"
-                android:textColor="@color/colorBackgroundTwo"
+                android:textColor="@color/verge_colorBackgroundTwo"
                 android:textSize="18dp" />
         </LinearLayout>
 

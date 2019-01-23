@@ -41,7 +41,7 @@ public class I2PLayerGateway extends NetworkGateway {
                 .register("http", new ConnectionSocket())
                 .register("https", new SSLConnectionSocket(SSLContexts.createSystemDefault()))
                 .build();
-        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(reg,new TorLayerGateway.FakeDnsResolver());
+        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(reg,new I2PLayerGateway.FakeDnsResolver());
         return HttpClients.custom()
                 .setConnectionManager(cm)
                 .build();
@@ -63,7 +63,8 @@ public class I2PLayerGateway extends NetworkGateway {
             r.runRouter();
             return "done";
         } catch( Exception e) {
-            e.printStackTrace();;
+            e.printStackTrace();
+
             return "oh lol shit";
         }
     }

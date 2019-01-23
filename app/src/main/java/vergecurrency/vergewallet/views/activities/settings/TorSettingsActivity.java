@@ -12,6 +12,7 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 import org.w3c.dom.Text;
 
+import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.models.dataproc.ApifyDataReader;
 import vergecurrency.vergewallet.models.dataproc.IPStackDataReader;
@@ -84,16 +85,14 @@ public class TorSettingsActivity extends AppCompatActivity {
 
     public String getLatLong() {
 
-        String queryIp = "https://api.ipify.org?format=json";
-
         ApifyDataReader adr = new ApifyDataReader();
         IPStackDataReader idr = new IPStackDataReader();
 
         TorLayerGateway tlg = TorLayerGateway.getInstance();
-        String IP = adr.readIP(tlg.retrieveDataFromService(queryIp));
+        String IP = adr.readIP(tlg.retrieveDataFromService(Constants.IP_RETRIEVAL_ENDPOINT));
         ip.setText(IP);
 
-        String queryLoc = String.format("http://api.ipstack.com/%s?access_key=7ad464757507e0b58ce0beee4810c1ab", IP);
+        String queryLoc = String.format(Constants.IP_DATA_ENDPOINT, IP);
         return idr.readCoordinates(tlg.retrieveDataFromService(queryLoc));
 
     }

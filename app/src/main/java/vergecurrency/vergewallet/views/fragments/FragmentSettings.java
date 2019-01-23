@@ -1,8 +1,10 @@
 package vergecurrency.vergewallet.views.fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,6 +33,8 @@ public class FragmentSettings extends Fragment {
         recView.setLayoutManager(new LinearLayoutManager(getContext()));
         //Sets the adapter to the RecyclerView
         recView.setAdapter(new SettingsListsAdapter(headerData, itemsData));
+        recView.addItemDecoration(new DividerItemDecoration(recView.getContext(), DividerItemDecoration.VERTICAL));
+
 
     }
 
@@ -52,8 +56,16 @@ public class FragmentSettings extends Fragment {
                 new ItemData("Credits", R.drawable.icon_credits, null),
                 new ItemData("Donate", R.drawable.icon_donate, v -> startActivity(new Intent(v.getContext(), DonateActivity.class))),
                 new ItemData("Rate app", R.drawable.icon_star, null),
-                new ItemData("Website", R.drawable.icon_web, null),
-                new ItemData("Contribute", R.drawable.icon_github, null)
+                new ItemData("Website", R.drawable.icon_web, v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://www.vergecurrency.com"));
+                    startActivity(intent);
+                }),
+                new ItemData("Contribute", R.drawable.icon_github, v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://www.github.com/vergecurrency/vDroid"));
+                    startActivity(intent);
+                })
         };
 
         ItemData itemsDataSettings[] = {

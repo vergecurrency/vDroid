@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -84,10 +86,12 @@ public class TransactionsAdapter extends ArrayAdapter<Transaction> implements Vi
 			vh.txIcon = (ImageView) convertView.findViewById(R.id.listview_transaction_item_icon);
 			
 			if(tx.getCategory().equals("send")) {
+				vh.txAmount.setText("- " + (Double.toString(round(tx.getAmount(),2))) + " XVG");
 				vh.txAmount.setTextColor(getContext().getResources().getColor(R.color.material_red_500));
 				vh.txIcon.setImageResource(R.drawable.icon_arrow_up);
 				DrawableCompat.setTint(vh.txIcon.getDrawable(), ContextCompat.getColor(context, R.color.material_red_500));
 			} else if (tx.getCategory().equals("receive")) {
+				vh.txAmount.setText("+ " + (Double.toString(round(tx.getAmount(),2))) + " XVG");
 				vh.txAmount.setTextColor(getContext().getResources().getColor(R.color.material_green_500));
 				vh.txIcon.setImageResource(R.drawable.icon_arrow_down);
 				DrawableCompat.setTint(vh.txIcon.getDrawable(), ContextCompat.getColor(context, R.color.material_green_500));
@@ -101,7 +105,7 @@ public class TransactionsAdapter extends ArrayAdapter<Transaction> implements Vi
 		}
 		
 		vh.txAddress.setText(String.format("%s******", tx.getAddress().substring(0, 6)));
-		vh.txAmount.setText(Double.toString(tx.getAmount()));
+		//vh.txAmount.setText(Double.toString(tx.getAmount()));
 		vh.txDateTime.setText(new Date(tx.getTime()*1000).toString());
 		
 		
@@ -111,5 +115,13 @@ public class TransactionsAdapter extends ArrayAdapter<Transaction> implements Vi
 		vh.txAddress.setTag(position);
 		// Return the completed view to render on screen
 		return convertView;
+	}
+
+	public static double round(double value, int places) {
+		if (places < 0) throw new IllegalArgumentException();
+
+		BigDecimal bd = new BigDecimal(value);
+		bd = bd.setScale(places, RoundingMode.HALF_UP);
+		return bd.doubleValue();
 	}
 }

@@ -22,7 +22,7 @@
         android:layout_marginTop="-120dp"
         android:text="-XVG80.10"
         android:textAlignment="textEnd"
-        android:textColor="@color/colorBackgroundTwo"
+        android:textColor="@color/verge_colorBackgroundTwo"
         android:textSize="30dp"
         tools:ignore="SpUsage" />
 
@@ -34,7 +34,7 @@
         android:layout_marginEnd="40dp"
         android:text="**** 1234"
         android:textAlignment="textEnd"
-        android:textColor="@color/colorBackgroundTwo"
+        android:textColor="@color/verge_colorBackgroundTwo"
         android:textSize="18dp"
         tools:ignore="SpUsage" />
 
@@ -57,7 +57,7 @@
             android:id="@+id/send_balance_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recipient address" />
+            android:hint="Recipient address" />
 
     </LinearLayout>
 
@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:text="Amount" />
+            android:hint="Amount" />
 
     </LinearLayout>
 
@@ -103,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:text="Gift to Justin" />
+            android:hint="Gift to Justin" />
 
     </LinearLayout>
 
@@ -117,10 +117,10 @@
         android:layout_marginRight="30dp"
         android:adjustViewBounds="true"
         android:background="@drawable/form_rounded_white_rect"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/verge_colorPrimary"
         android:scaleType="fitCenter"
         android:text="Send XVG"
-        android:textColor="@color/colorBackgroundTwo"
+        android:textColor="@color/verge_colorBackgroundTwo"
         android:textSize="18sp" />
 
 </RelativeLayout>

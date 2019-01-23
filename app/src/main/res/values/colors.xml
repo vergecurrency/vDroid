@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#37BDE2</color>
-    <color name="colorPrimaryDark">#112134</color>
-    <color name="colorSecondary">#647886</color>
-    <color name="colorSecondaryTwo">#193D55</color>
-    <color name="colorBackground">#DCF0FD</color>
-    <color name="colorBackgroundTwo">#f8f7f7</color>
-    <color name="colorAccent">#9b9b9b</color>
+    <color name="verge_colorPrimary">#37BDE2</color>
+    <color name="verge_colorPrimaryDark">#112134</color>
+    <color name="verge_colorSecondary">#647886</color>
+    <color name="verge_colorSecondaryDark">#193D55</color>
+    <color name="verge_colorBackground">#DCF0FD</color>
+    <color name="verge_colorBackgroundTwo">#f8f7f7</color>
+    <color name="verge_colorAccent">#9b9b9b</color>
+    <color name="default_gray">#bbbbbb</color>
 </resources>

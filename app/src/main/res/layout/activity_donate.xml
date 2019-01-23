@@ -17,7 +17,7 @@
         android:paddingRight="40dp"
         android:text="@string/donate_title"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/verge_colorPrimaryDark"
         android:textSize="24sp" />
 
     <ImageView
@@ -61,10 +61,10 @@
         android:layout_marginBottom="10dp"
         android:adjustViewBounds="true"
         android:background="@drawable/form_rounded_white_rect"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/verge_colorPrimary"
         android:scaleType="fitCenter"
         android:text="@string/donate_button"
-        android:textColor="@color/colorBackgroundTwo"
+        android:textColor="@color/verge_colorBackgroundTwo"
         android:textSize="18sp" />
 
     <FrameLayout

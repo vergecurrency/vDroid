@@ -17,6 +17,9 @@
     //Receive fragment
     <string name="receive_current_code">DSiXiwK9uZ1uAy6PuqQWYBVQUaoGENZZaZ</string>
     <string name="receive_xvg_main">Send only XVG to this deposit address. \n Sending any other coin or token to this address may result in the loss of your deposit.</string>
+    //Settings fragment
+    <string name="settings_desc1">Disconnect your wallet from this device or write down your paperkey</string>
+
     //Splash screen texts
     <string name="splash_title">Verge Android wallet</string>
     <string name="splash_slogan">Privacy is our standard.</string>
@@ -36,6 +39,7 @@
     <string name="disconnect_title">Disconnect this device from your current wallet</string>
     <string name="disconnect_desc">You\'re about to disconnect this device from your current wallet. \n Please make absolutely sure you have written down your paperkey. Remember that your paperkey is the only way to restore your current wallet.</string>
     <string name="disconnect_button">Disconnect</string>
+    <string name="disconnect_show_paperkey">Or check your paperkey once again...</string>
 
     //Paperkey activity
     <string name="paperkey_title">Write down your wallet paperkey again</string>

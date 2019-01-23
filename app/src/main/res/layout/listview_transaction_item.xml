@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:id="@+id/listview_transaction_id"
     android:orientation="horizontal"
+    android:padding="3dp"
 
     >
 
@@ -26,8 +27,8 @@
             android:id="@+id/listview_transaction_item_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textColor="@color/verge_colorPrimaryDark"
             android:gravity="center_vertical"
             />
 
@@ -35,8 +36,8 @@
             android:id="@+id/listview_transaction_item_datetime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textSize="12sp"
+            android:textColor="@color/verge_colorPrimaryDark"
             android:gravity="bottom"
             />
 
@@ -47,10 +48,10 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="0.4"
-        android:textSize="18dp"
+        android:textSize="14sp"
         android:textAlignment="viewEnd"
         android:paddingRight="10dp"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/verge_colorPrimaryDark"
         android:gravity="end"
         />
 

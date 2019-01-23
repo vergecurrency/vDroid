@@ -63,7 +63,7 @@ public class BiometricUtils {
      *
      * */
     public static boolean isPermissionGranted(Context context) {
-        return ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT) ==
+        return ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_BIOMETRIC) ==
                 PackageManager.PERMISSION_GRANTED;
     }
 }

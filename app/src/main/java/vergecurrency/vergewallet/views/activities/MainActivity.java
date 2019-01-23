@@ -11,8 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.balram.locker.view.LockActivity;
-
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.views.fragments.FragmentReceive;
 import vergecurrency.vergewallet.views.fragments.FragmentSend;
@@ -31,23 +29,23 @@ public class MainActivity extends AppCompatActivity  {//extends LockActivity
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_wallet:
-                    showFragment(new FragmentWallet(), R.string.title_wallet, Color.WHITE, getResources().getColor(R.color.colorPrimary));
+                    showFragment(new FragmentWallet(), R.string.title_wallet, Color.WHITE, getResources().getColor(R.color.verge_colorPrimary));
 
                     return true;
                 case R.id.navigation_transactions:
-                    showFragment(new FragmentTransactions(), R.string.title_transactions, getResources().getColor(R.color.colorPrimaryDark), Color.WHITE);
+                    showFragment(new FragmentTransactions(), R.string.title_transactions, getResources().getColor(R.color.verge_colorPrimaryDark), getResources().getColor(R.color.verge_colorBackgroundTwo));
 
                     return true;
                 case R.id.navigation_send:
-                    showFragment(new FragmentSend(), R.string.title_send, getResources().getColor(R.color.colorPrimaryDark), Color.WHITE);
+                    showFragment(new FragmentSend(), R.string.title_send, getResources().getColor(R.color.verge_colorPrimaryDark), getResources().getColor(R.color.verge_colorBackgroundTwo));
 
                     return true;
                 case R.id.navigation_receive:
-                    showFragment(new FragmentReceive(), R.string.title_receive, getResources().getColor(R.color.colorPrimaryDark), Color.WHITE);
+                    showFragment(new FragmentReceive(), R.string.title_receive, getResources().getColor(R.color.verge_colorPrimaryDark), getResources().getColor(R.color.verge_colorBackgroundTwo));
 
                     return true;
                 case R.id.navigation_settings:
-                    showFragment(new FragmentSettings(), R.string.title_settings, getResources().getColor(R.color.colorPrimaryDark), Color.WHITE);
+                    showFragment(new FragmentSettings(), R.string.title_settings, getResources().getColor(R.color.verge_colorPrimaryDark), getResources().getColor(R.color.verge_colorBackgroundTwo));
                     return true;
             }
             return false;
@@ -68,7 +66,7 @@ public class MainActivity extends AppCompatActivity  {//extends LockActivity
         navigation.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
 
         //Shows the wallet fragment by default
-        showFragment(new FragmentWallet(), R.string.title_wallet, Color.WHITE, getResources().getColor(R.color.colorPrimary));
+        showFragment(new FragmentWallet(), R.string.title_wallet, Color.WHITE, getResources().getColor(R.color.verge_colorPrimary));
     }
 
 

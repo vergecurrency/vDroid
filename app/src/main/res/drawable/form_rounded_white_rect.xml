@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="@color/colorBackgroundTwo" />
+    <solid android:color="@color/verge_colorBackgroundTwo" />
 
     // The desired corner radius. reduce it to keep it less rounded
     <corners android:radius="5dp" />
@@ -10,7 +10,7 @@
     // The width and color of the border
     <stroke
         android:width="2px"
-        android:color="@color/colorBackgroundTwo" />
+        android:color="@color/verge_colorBackgroundTwo" />
 
 
     // Add your desired padding

@@ -13,7 +13,7 @@
         android:id="@+id/wallet_card_background"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:tint="@color/colorAccent"
+        android:tint="@color/verge_colorAccent"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:padding="30dp"

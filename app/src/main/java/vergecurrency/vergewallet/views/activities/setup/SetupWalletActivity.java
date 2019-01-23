@@ -24,15 +24,11 @@ public class SetupWalletActivity extends AppCompatActivity {
     TextView subTextView;
     RelativeLayout bottomChargingView;
     Button bottomButton;
-    SharedPreferences prefs;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        //gets the holy preferences
-        prefs = getSharedPreferences("com.vergecurrency.vergewallet", MODE_PRIVATE);
 
         instantiateView();
     }

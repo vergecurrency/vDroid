@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.views.fragments.beans.ItemData;
+import vergecurrency.vergewallet.views.fragments.walletcards.FragmentTransactionsCard;
 import vergecurrency.vergewallet.views.fragments.walletcards.FragmentWalletCard;
 
 
@@ -55,7 +56,7 @@ public class FragmentWallet extends Fragment {
 
                 case 0:
                    //return FragmentWalletCard.newInstance(new ItemData("Recent transactions", R.drawable.icon_transactions), R.drawable.icon_transactions);
-                   return FragmentTransactions.instantiate(getContext(),FragmentTransactions.class.getName());
+                   return FragmentTransactions.instantiate(getContext(),FragmentTransactionsCard.class.getName());
                 case 1:
 
                     return FragmentWalletCard.newInstance( new ItemData("Price Statistics", R.drawable.icon_stat_increase, null),R.drawable.icon_stat_increase);

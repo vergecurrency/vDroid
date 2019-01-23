@@ -22,7 +22,7 @@
         android:paddingVertical="10dp"
         android:text="@string/paperkey_activity_title"
         android:textAlignment="center"
-        android:textColor="@color/colorBackground"
+        android:textColor="@color/verge_colorBackground"
         android:textSize="14sp"
         android:textStyle="bold"
 
@@ -38,7 +38,7 @@
         android:elevation="1dp"
         android:scaleType="fitXY"
         android:src="@drawable/icon_paperkey"
-        android:tint="@color/colorPrimary" />
+        android:tint="@color/verge_colorPrimary" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -91,8 +91,8 @@
                 android:background="@drawable/form_rounded_rect"
                 android:layout_gravity="center_horizontal|center"
                 android:adjustViewBounds="true"
-                android:backgroundTint="@color/colorPrimary"
-                android:textColor="@color/colorBackgroundTwo" />
+                android:backgroundTint="@color/verge_colorPrimary"
+                android:textColor="@color/verge_colorBackgroundTwo" />
         </LinearLayout>
 
     </LinearLayout>
