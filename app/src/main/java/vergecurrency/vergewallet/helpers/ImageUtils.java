@@ -9,11 +9,15 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Environment;
 import android.text.Layout;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 
 public final class ImageUtils {
 

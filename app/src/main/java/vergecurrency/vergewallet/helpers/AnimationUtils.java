@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import com.omega_r.libs.OmegaCenterIconButton;
 
-public class AnimationUtils {
+public final class AnimationUtils {
 
 
 	public AnimationUtils() {
@@ -59,5 +59,5 @@ public class AnimationUtils {
 		v.startAnimation(anim_out);
 	}
 
-	private final static long standardDuration = 300;
+	private final static long standardDuration = 150;
 }
