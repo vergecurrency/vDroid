@@ -37,7 +37,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //QRCode library
-    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
+    implementation  'com.github.kenglxn.QRGen:android:2.5.0'
     //TOR library
     implementation project(':ThaliOnionProxyAndroid-release')
     //HTTP Client library : Sorry but OkHttp is complete bullshit.

@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.views.fragments.workers;
+package vergecurrency.vergewallet.views.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

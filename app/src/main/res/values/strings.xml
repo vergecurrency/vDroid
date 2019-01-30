@@ -8,6 +8,13 @@
     <string name="title_send">Send</string>
     <string name="title_receive">Receive</string>
     <string name="title_settings">Settings</string>
+
+    //Cards in main activity
+    <string name="card_transactions_title">Recent transactions</string>
+    <string name="card_stats_title">Price statistics</string>
+    <string name="cand_history_title">History Chart</string>
+
+
     //Transaction fragment
     <string name="transaction_message_main">No transactions received yet</string>
     <string name="transaction_message_sub">Open the bug XVG guide or receive XVG</string>
@@ -73,5 +80,6 @@
     <string name="wallet_ready">Your wallet is ready! \n Congratulations</string>
 
     <string name="file_provider_authority" translatable="false">com.vergecurrency.vergewallet.fileprovider</string>
+    <string name="title_fiat_currency">Fiat currency</string>
 
 </resources>

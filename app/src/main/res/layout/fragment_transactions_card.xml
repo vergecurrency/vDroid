@@ -4,10 +4,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <LinearLayout
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:id="@+id/transactions_card_header"
+        android:clickable="true"
+        android:background="@drawable/selector_item"
+        android:padding="3dp"
+        >
+
+        <ImageView
+            android:id="@+id/transactions_card_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:tint="@color/verge_colorPrimaryDark"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_transactions"
+            android:padding="7dp"
+            />
+
+        <TextView
+            android:id="@+id/transactions_card_title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingStart="5dp"
+            android:text="@string/card_transactions_title"
+            android:textColor="@color/verge_colorPrimaryDark"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+
     <ListView
         android:id="@+id/transactions_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content" />
     
 </LinearLayout>
 

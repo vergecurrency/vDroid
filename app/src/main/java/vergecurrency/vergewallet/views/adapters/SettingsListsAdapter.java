@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.views.fragments.workers;
+package vergecurrency.vergewallet.views.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

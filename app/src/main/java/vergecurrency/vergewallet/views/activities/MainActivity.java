@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.helpers.CurrenciesLoader;
 import vergecurrency.vergewallet.views.fragments.FragmentReceive;
 import vergecurrency.vergewallet.views.fragments.FragmentSend;
 import vergecurrency.vergewallet.views.fragments.FragmentSettings;
@@ -19,6 +20,8 @@ import vergecurrency.vergewallet.views.fragments.FragmentTransactions;
 import vergecurrency.vergewallet.views.fragments.FragmentWallet;
 
 public class MainActivity extends AppCompatActivity {//extends LockActivity
+
+	private int currentItem;
 
 	private TextView mTextMessage;
 	//Listens to what has been pressed and opens up the right Fragment
@@ -28,7 +31,8 @@ public class MainActivity extends AppCompatActivity {//extends LockActivity
 		@Override
 		public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 			//TODO : validate that you're not on the current fragment already
-			if (item.getItemId() != 0) {
+			if (item.getItemId() != currentItem) {
+				currentItem = item.getItemId();
 				switch (item.getItemId()) {
 					case R.id.navigation_wallet:
 						showFragment(new FragmentWallet(), R.string.title_wallet, Color.WHITE, getResources().getColor(R.color.verge_colorPrimary));

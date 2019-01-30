@@ -16,14 +16,11 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.google.zxing.EncodeHintType;
 import com.omega_r.libs.OmegaCenterIconButton;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import net.glxn.qrgen.android.QRCode;
 
-import androidmads.library.qrgenearator.QRGContents;
-import androidmads.library.qrgenearator.QRGEncoder;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.AnimationUtils;
 import vergecurrency.vergewallet.helpers.FileUtils;
@@ -32,7 +29,6 @@ import vergecurrency.vergewallet.helpers.ImageUtils;
 public class FragmentReceive extends Fragment {
 
 
-	private int MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE;
 
 	public FragmentReceive() {
 		// Required empty public constructor
@@ -42,10 +38,15 @@ public class FragmentReceive extends Fragment {
 	public void generateQRCode(String walletAddress, ImageView vQRCode) {
 
 
-		QRGEncoder qrgEncoder = new QRGEncoder(walletAddress, null, QRGContents.Type.TEXT, 200);
+
 		try {
-			Bitmap qrcodeBmp = ImageUtils.invertColors(ImageUtils.makeTransparent(qrgEncoder.encodeAsBitmap(), Color.WHITE));
-			vQRCode.setImageBitmap(qrcodeBmp);
+			//I should burn in hell for this but I like readability.
+			Bitmap qrCode = QRCode.from(walletAddress).withHint(EncodeHintType.MARGIN, "1").bitmap();
+			Bitmap transparentQrCode = ImageUtils.makeTransparent(qrCode, Color.WHITE);
+			Bitmap finalQrCode = ImageUtils.invertColors(transparentQrCode);
+			Bitmap corneredQrCode = ImageUtils.getRoundedCornerBitmap(finalQrCode, 20);
+
+			vQRCode.setImageBitmap(corneredQrCode);
 
 		} catch (Exception ex) {
 			//TODO : catch exception properly.

@@ -20,7 +20,7 @@ import java.util.Arrays;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.structs.Transaction;
-import vergecurrency.vergewallet.views.fragments.workers.TransactionsAdapter;
+import vergecurrency.vergewallet.views.adapters.TransactionsAdapter;
 
 public class FragmentTransactionsCard extends Fragment {
 
@@ -40,7 +40,7 @@ public class FragmentTransactionsCard extends Fragment {
 		if (balance <= 0)
         rootView = inflater.inflate(R.layout.fragment_notransactions, container, false);
 		else {
-			rootView = inflater.inflate(R.layout.fragment_transactions, container, false);
+			rootView = inflater.inflate(R.layout.fragment_transactions_card, container, false);
 			transactionList = rootView.findViewById(R.id.transactions_listview);
 			fillTransactionList(transactionList);
 		}
