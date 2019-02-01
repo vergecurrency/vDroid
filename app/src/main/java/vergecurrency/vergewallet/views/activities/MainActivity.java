@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.helpers.CurrenciesLoader;
 import vergecurrency.vergewallet.views.fragments.FragmentReceive;
 import vergecurrency.vergewallet.views.fragments.FragmentSend;
 import vergecurrency.vergewallet.views.fragments.FragmentSettings;

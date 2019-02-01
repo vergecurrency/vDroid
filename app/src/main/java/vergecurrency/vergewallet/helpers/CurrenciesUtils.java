@@ -2,6 +2,7 @@ package vergecurrency.vergewallet.helpers;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.json.simple.JSONArray;
@@ -15,28 +16,29 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.structs.Currency;
 
-public final class CurrenciesLoader {
+public final class CurrenciesUtils {
 
-	public CurrenciesLoader() {
+	public CurrenciesUtils() {
 
 	}
 
 
-	public static ArrayList<Currency> loadCurrenciesFromFile(Context c, String fileName) {
+	public static ArrayList<Currency> loadCurrenciesFromFile(Context c) {
 		JSONParser parser = new JSONParser();
 		ArrayList<Currency> currencies;
 		try {
-			InputStream is = c.getAssets().open(fileName);
+			InputStream is = c.getAssets().open(Constants.CURRENCIES_FILE_PATH);
 			InputStreamReader isr = new InputStreamReader(is);
 			JSONObject jsonObject = (JSONObject) parser.parse(isr);
 			JSONArray currenciesJSON = (JSONArray) jsonObject.get("currencies");
 
 
-			Currency[] txsArray;
-			txsArray = new GsonBuilder().create().fromJson(currenciesJSON.toJSONString(), Currency[].class);
-			currencies = new ArrayList<>(Arrays.asList(txsArray));
+			Currency[] currenciesArray;
+			currenciesArray = new GsonBuilder().create().fromJson(currenciesJSON.toJSONString(), Currency[].class);
+			currencies = new ArrayList<>(Arrays.asList(currenciesArray));
 
 
 		} catch (IOException e) {
@@ -49,5 +51,7 @@ public final class CurrenciesLoader {
 
 		return currencies;
 	}
+
+
 
 }

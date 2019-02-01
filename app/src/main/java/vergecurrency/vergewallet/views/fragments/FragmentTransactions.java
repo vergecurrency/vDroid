@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.structs.Transaction;
 import vergecurrency.vergewallet.views.adapters.TransactionsAdapter;
@@ -39,7 +40,7 @@ public class FragmentTransactions extends Fragment {
 		else {
 			rootView = inflater.inflate(R.layout.fragment_transactions, container, false);
 			transactionList = rootView.findViewById(R.id.transactions_listview);
-			transactionList.setTextFilterEnabled(true);
+			//transactionList.setTextFilterEnabled(true);
 			fillTransactionList(transactionList);
 		}
 		
@@ -50,7 +51,7 @@ public class FragmentTransactions extends Fragment {
 		JSONParser parser = new JSONParser();
 		try {
 			//Get the Json
-			InputStream is = this.getContext().getAssets().open("transactions.json");
+			InputStream is = this.getContext().getAssets().open(Constants.MOCK_TRANSACTIONS_FILE_PATH);
 			InputStreamReader isr = new InputStreamReader(is);
 			JSONObject jsonObject= (JSONObject) parser.parse(isr);
 			JSONArray transactionsListJSON = (JSONArray) jsonObject.get("transactions");

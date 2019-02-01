@@ -15,6 +15,7 @@ import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.views.activities.settings.DisconnectActivity;
 import vergecurrency.vergewallet.views.activities.settings.DonateActivity;
 import vergecurrency.vergewallet.views.activities.settings.PaperkeyActivity;
+import vergecurrency.vergewallet.views.activities.settings.SelectCurrencyActivity;
 import vergecurrency.vergewallet.views.activities.settings.TorSettingsActivity;
 import vergecurrency.vergewallet.views.fragments.beans.HeaderData;
 import vergecurrency.vergewallet.views.fragments.beans.ItemData;
@@ -52,7 +53,7 @@ public class FragmentSettings extends Fragment {
 				}),
 		};
 		ItemData itemsDataSettings[] = {
-				new ItemData("Fiat currency", R.drawable.icon_currency_exchange, null),
+				new ItemData("Fiat currency", R.drawable.icon_currency_exchange, v -> startActivity(new Intent(v.getContext(), SelectCurrencyActivity.class))),
 				new ItemData("Change wallet PIN", R.drawable.icon_pin, null),
 				new ItemData("Use fingerprint", R.drawable.icon_fingerprint, null),
 				new ItemData("TOR Settings", R.drawable.icon_fingerprint, v -> startActivity(new Intent(v.getContext(), TorSettingsActivity.class)))

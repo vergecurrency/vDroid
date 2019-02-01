@@ -28,5 +28,9 @@ public final class Constants {
     public final static int WORDLIST_SIZE = 2048;
     public static ArrayList<String> seed;
 
+    //Resource directories
+	public final static String CURRENCIES_FILE_PATH = "currencies.json";
+	public final static String MOCK_TRANSACTIONS_FILE_PATH = "transactions.json";
+
 
 }

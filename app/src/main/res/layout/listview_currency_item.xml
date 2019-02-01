@@ -5,18 +5,26 @@
     android:orientation="vertical"
     android:paddingStart="5dp">
 
-
-    <TextView
-        android:id="@+id/listview_currency_currency"
+    <LinearLayout
+        android:id="@+id/listview_currency_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:clickable="true">
 
-    <TextView
-        android:id="@+id/listview_currency_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="12sp" />
+        <TextView
+            android:id="@+id/listview_currency_currency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/listview_currency_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp" />
+
+    </LinearLayout>
 
 
 </LinearLayout>
