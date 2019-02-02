@@ -44,14 +44,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="US$ 0.00"
+                    android:id="@+id/wallet_card_balance"
                     android:textColor="@color/bg_color"
                     android:textSize="20sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="USD BALANCE"
+                    android:id="@+id/wallet_card_balance_label"
                     android:textSize="12sp"
                     android:textColor="@color/bg_color" />
             </LinearLayout>
@@ -67,15 +67,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="US$ 0.017"
+                    android:id="@+id/wallet_card_change"
                     android:textColor="@color/bg_color"
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/wallet_card_change_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:text="USD/XVG"
                     android:textColor="@color/bg_color" />
 
             </LinearLayout>

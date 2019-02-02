@@ -13,10 +13,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.models.dataproc.PreferencesManager;
 import vergecurrency.vergewallet.structs.Currency;
 
 public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.OnClickListener {
 
+	private PreferencesManager pm;
 	private static class CurrencyItemViewHolder {
 		TextView currencyCurrency;
 		TextView currencyName;
@@ -32,6 +34,7 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 	 */
 	public CurrenciesAdapter(@NonNull Context context, ArrayList<Currency> curs) {
 		super(context, R.layout.listview_currency_item, curs);
+		pm = new PreferencesManager(context);
 	}
 
 
@@ -45,7 +48,8 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 		switch (v.getId()) {
 			case R.id.listview_currency_item:
 				Toast.makeText(v.getContext(), "Currency chosen : " + cur.getName(), Toast.LENGTH_SHORT).show();
-				//TODO : affect currency on shared preferences
+				pm.setSelectedCurrency(cur.getCurrencyAsJSON());
+
 				break;
 		}
 	}

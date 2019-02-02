@@ -56,7 +56,7 @@ public class FragmentSettings extends Fragment {
 				new ItemData("Fiat currency", R.drawable.icon_currency_exchange, v -> startActivity(new Intent(v.getContext(), SelectCurrencyActivity.class))),
 				new ItemData("Change wallet PIN", R.drawable.icon_pin, null),
 				new ItemData("Use fingerprint", R.drawable.icon_fingerprint, null),
-				new ItemData("TOR Settings", R.drawable.icon_fingerprint, v -> startActivity(new Intent(v.getContext(), TorSettingsActivity.class)))
+				new ItemData("Tor connection", R.drawable.icon_onion, v -> startActivity(new Intent(v.getContext(), TorSettingsActivity.class)))
 		};
 
 		ItemData itemsDataOther[] = {

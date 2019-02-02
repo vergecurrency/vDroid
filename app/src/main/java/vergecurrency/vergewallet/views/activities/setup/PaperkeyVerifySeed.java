@@ -54,6 +54,7 @@ public class PaperkeyVerifySeed extends AppCompatActivity {
         firstWordInput = findViewById(R.id.seed_first_word);
         secondWordInput = findViewById(R.id.seed_second_word);
 
+
         //assign a click listener to the
         confirmButton = findViewById(R.id.paperkey_confirm_next);
         confirmButton.setOnClickListener(onNextClick());
@@ -64,8 +65,8 @@ public class PaperkeyVerifySeed extends AppCompatActivity {
         return new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-            if(firstWordInput.getText().toString().equals(verificationWords.first[0])) {
-                if(secondWordInput.getText().toString().equals(verificationWords.first[1])) {
+            if(firstWordInput.getText().toString().equals(verificationWords.first[0].toLowerCase())) {
+                if(secondWordInput.getText().toString().equals(verificationWords.first[1].toLowerCase())) {
                     //Announce that it's not the first launch anymore
                     pm.setFirstLaunch(false);
                     //Get to the main activity

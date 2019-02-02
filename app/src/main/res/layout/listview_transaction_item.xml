@@ -1,60 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/listview_transaction_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="3dp"
 
     >
 
-    <ImageView
-        android:id="@+id/listview_transaction_item_icon"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:padding="5dp"
-        />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.4"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listview_transaction_item"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/listview_transaction_item_address"
+        <ImageView
+            android:id="@+id/listview_transaction_item_icon"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:padding="5dp"
+            android:scaleType="fitCenter" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="@color/verge_colorPrimaryDark"
-            android:gravity="center_vertical"
-            />
+            android:layout_weight="0.3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/listview_transaction_item_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textColor="@color/verge_colorPrimaryDark"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/listview_transaction_item_datetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:textColor="@color/verge_colorPrimaryDark"
+                android:textSize="12sp" />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/listview_transaction_item_datetime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:id="@+id/listview_transaction_item_amount"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:gravity="end"
+            android:paddingRight="8dp"
+            android:textAlignment="viewEnd"
             android:textColor="@color/verge_colorPrimaryDark"
-            android:gravity="bottom"
-            />
+            android:textSize="14sp" />
+
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/listview_transaction_item_amount"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_weight="0.4"
-        android:textSize="14sp"
-        android:textAlignment="viewEnd"
-        android:paddingRight="10dp"
-        android:textColor="@color/verge_colorPrimaryDark"
-        android:gravity="end"
-        />
-
-
-
 </LinearLayout>

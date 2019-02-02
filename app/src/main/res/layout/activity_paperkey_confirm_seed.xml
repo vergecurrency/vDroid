@@ -74,10 +74,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Word #" />
+            />
 
         <EditText
             android:id="@+id/seed_first_word"
+            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="40dp" />
 
@@ -85,11 +86,12 @@
             android:id="@+id/label_second_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Word #" />
+            />
 
         <EditText
             android:id="@+id/seed_second_word"
             android:layout_width="match_parent"
+            android:singleLine="true"
             android:layout_height="40dp" />
 
         <LinearLayout
@@ -110,7 +112,7 @@
                 android:backgroundTint="@color/verge_colorPrimary"
                 android:text="@string/paperkey_wallet_next"
                 android:textColor="@color/verge_colorBackgroundTwo"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
     </LinearLayout>

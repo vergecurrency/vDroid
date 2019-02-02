@@ -23,7 +23,7 @@ public class Currency {
 
 
 
-	//Those classes are needed to store and retrieve the Currency object in shared preferences.
+	//Those functions are needed to store and retrieve the Currency object in shared preferences.
 
 	public String getCurrencyAsJSON() {
 		return new Gson().toJson(this);

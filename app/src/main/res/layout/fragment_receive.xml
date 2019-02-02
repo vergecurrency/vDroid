@@ -36,8 +36,9 @@
             android:layout_height="205dp"
             android:adjustViewBounds="true"
             android:layout_alignParentEnd="true"
+            android:background="@drawable/form_rounded_rect_white_bord"
             android:layout_marginTop="48dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="35dp"
             android:scaleType="fitCenter" />
 
     </RelativeLayout>

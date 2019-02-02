@@ -1,13 +1,15 @@
 package vergecurrency.vergewallet.views.fragments;
 
-import android.content.Intent;
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.zxing.EncodeHintType;
 import com.omega_r.libs.OmegaCenterIconButton;
@@ -28,7 +31,7 @@ import vergecurrency.vergewallet.helpers.ImageUtils;
 
 public class FragmentReceive extends Fragment {
 
-
+	private static int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE;
 
 	public FragmentReceive() {
 		// Required empty public constructor
@@ -38,13 +41,12 @@ public class FragmentReceive extends Fragment {
 	public void generateQRCode(String walletAddress, ImageView vQRCode) {
 
 
-
 		try {
 			//I should burn in hell for this but I like readability.
-			Bitmap qrCode = QRCode.from(walletAddress).withHint(EncodeHintType.MARGIN, "1").bitmap();
+			Bitmap qrCode = QRCode.from(walletAddress).withHint(EncodeHintType.MARGIN, "0").withSize(205,205).bitmap();
 			Bitmap transparentQrCode = ImageUtils.makeTransparent(qrCode, Color.WHITE);
 			Bitmap finalQrCode = ImageUtils.invertColors(transparentQrCode);
-			Bitmap corneredQrCode = ImageUtils.getRoundedCornerBitmap(finalQrCode, 20);
+			Bitmap corneredQrCode = ImageUtils.getRoundedCornerBitmap(finalQrCode, 10);
 
 			vQRCode.setImageBitmap(corneredQrCode);
 
@@ -70,7 +72,26 @@ public class FragmentReceive extends Fragment {
 	//LOL doesn't work -> WIP
 	private View.OnClickListener shareOnClickListener() {
 		return v -> {
-			shareImage();
+			// Here, thisActivity is the current activity
+			Activity a = this.getActivity();
+			if (ContextCompat.checkSelfPermission(a, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+				// Permission is not granted
+				// Should we show an explanation?
+				boolean needExplanation = ActivityCompat.shouldShowRequestPermissionRationale(a, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+				if (needExplanation) {
+					//Answer : not atm
+
+				}
+				// No explanation needed; request the permission
+				ActivityCompat.requestPermissions(this.getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+
+			} else {
+				shareImage();
+			}
+
+
 		};
 	}
 

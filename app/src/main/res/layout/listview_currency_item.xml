@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:paddingStart="5dp">
 
     <LinearLayout
@@ -10,21 +10,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_weight="0.8"
         android:clickable="true">
 
         <TextView
             android:id="@+id/listview_currency_currency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/verge_colorPrimaryDark"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/listview_currency_name"
             android:layout_width="match_parent"
+            android:textColor="@color/verge_colorPrimaryDark"
             android:layout_height="wrap_content"
             android:textSize="12sp" />
 
     </LinearLayout>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"/>
 
 
 </LinearLayout>
