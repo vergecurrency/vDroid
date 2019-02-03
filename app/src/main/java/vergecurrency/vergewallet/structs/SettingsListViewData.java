@@ -1,15 +1,15 @@
-package vergecurrency.vergewallet.views.fragments.beans;
+package vergecurrency.vergewallet.structs;
 
 import android.view.View;
 
-public class ItemData {
+public class SettingsListViewData {
 
     private String title;
     private int imageUrl;
     private View.OnClickListener onClickListener;
 
 
-    public ItemData(String title, int imageUrl, View.OnClickListener onClickListener) {
+    public SettingsListViewData(String title, int imageUrl, View.OnClickListener onClickListener) {
         this.title = title;
         this.imageUrl = imageUrl;
         this.onClickListener = onClickListener;

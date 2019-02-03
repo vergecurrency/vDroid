@@ -79,7 +79,16 @@
     <string name="paperkey_confirm_submit">Submit</string>
     <string name="wallet_ready">Your wallet is ready! \n Congratulations</string>
 
-    <string name="file_provider_authority" translatable="false">com.vergecurrency.vergewallet.fileprovider</string>
+    //Fiat Currency activity
     <string name="title_fiat_currency">Fiat currency</string>
+
+
+    //Others
+    <string name="statistics_pageview_header">Price Statistics</string>
+
+
+
+    <string name="file_provider_authority" translatable="false">com.vergecurrency.vergewallet.fileprovider</string>
+
 
 </resources>

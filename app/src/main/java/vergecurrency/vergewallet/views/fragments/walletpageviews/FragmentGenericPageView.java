@@ -1,6 +1,5 @@
-package vergecurrency.vergewallet.views.fragments.walletcards;
+package vergecurrency.vergewallet.views.fragments.walletpageviews;
 
-import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.os.Bundle;
@@ -11,20 +10,19 @@ import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import vergecurrency.vergewallet.views.fragments.FragmentTransactions;
-import vergecurrency.vergewallet.views.fragments.beans.ItemData;
+import vergecurrency.vergewallet.structs.SettingsListViewData;
 
-public class FragmentWalletCard extends Fragment{
+public class FragmentGenericPageView extends Fragment{
 
-    public FragmentWalletCard() {
+    public FragmentGenericPageView() {
 
     }
 
-    public static FragmentWalletCard newInstance(ItemData data, int backgroundId) {
+    public static FragmentGenericPageView newInstance(SettingsListViewData data, int backgroundId) {
 
         Bundle args = new Bundle();
 
-        FragmentWalletCard fragment = new FragmentWalletCard();
+        FragmentGenericPageView fragment = new FragmentGenericPageView();
         fragment.setArguments(args);
         fragment.data = data;
         fragment.backgroundId = backgroundId;
@@ -65,6 +63,6 @@ public class FragmentWalletCard extends Fragment{
     }
 
     private View rootView;
-    private ItemData data;
+    private SettingsListViewData data;
     private int backgroundId;
 }

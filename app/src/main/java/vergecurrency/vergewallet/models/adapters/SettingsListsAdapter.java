@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.views.adapters;
+package vergecurrency.vergewallet.models.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,15 +9,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.views.fragments.beans.HeaderData;
-import vergecurrency.vergewallet.views.fragments.beans.ItemData;
+import vergecurrency.vergewallet.structs.SettingsListViewData;
+import vergecurrency.vergewallet.structs.SettingsListViewHeader;
 
 public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
-    public SettingsListsAdapter(HeaderData headerData, ItemData[] itemsData) {
+    public SettingsListsAdapter(SettingsListViewHeader settingsListViewHeader, SettingsListViewData[] itemsData) {
         this.itemsData = itemsData;
-        this.headerData = headerData;
+        this.settingsListViewHeader = settingsListViewHeader;
     }
 
     // Create new views (invoked by the layout manager)
@@ -27,11 +27,11 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
         // create a new view
         if(viewType == TYPE_HEADER){
 
-            View headerLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_settings_header, null);
+            View headerLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_item_settings_header, null);
             return new VHHeader(headerLayoutView);
         }
         else if(viewType == TYPE_ITEM) {
-            View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_settings_item, null);
+            View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_item_settings, null);
 
             itemLayoutView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -47,7 +47,7 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
         throw new RuntimeException("there is no type that matches the type " + viewType + " + make sure you're using types correctly");
     }
 
-    private ItemData getItem(int position)
+    private SettingsListViewData getItem(int position)
     {
         return itemsData[position];
     }
@@ -58,7 +58,7 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         if(holder instanceof VHHeader) {
             VHHeader VHHeader = (VHHeader)holder;
-            VHHeader.txtViewTitle.setText(headerData.getTitle());
+            VHHeader.txtViewTitle.setText(settingsListViewHeader.getTitle());
         } else if(holder instanceof VHItem) {
 
             VHItem VHItem = (VHItem)holder;
@@ -124,7 +124,7 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
 
-    private HeaderData headerData;
-    private ItemData[] itemsData;
+    private SettingsListViewHeader settingsListViewHeader;
+    private SettingsListViewData[] itemsData;
 
 }

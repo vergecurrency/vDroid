@@ -10,15 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.helpers.CurrenciesUtils;
 import vergecurrency.vergewallet.models.dataproc.PreferencesManager;
 import vergecurrency.vergewallet.structs.Currency;
-import vergecurrency.vergewallet.views.fragments.beans.ItemData;
-import vergecurrency.vergewallet.views.fragments.walletcards.FragmentTransactionsCard;
-import vergecurrency.vergewallet.views.fragments.walletcards.FragmentWalletCard;
+import vergecurrency.vergewallet.structs.SettingsListViewData;
+import vergecurrency.vergewallet.views.fragments.walletpageviews.FragmentStatisticsPageView;
+import vergecurrency.vergewallet.views.fragments.walletpageviews.FragmentTransactionsPageView;
+import vergecurrency.vergewallet.views.fragments.walletpageviews.FragmentGenericPageView;
 
 
 public class FragmentWallet extends Fragment {
@@ -75,14 +73,14 @@ public class FragmentWallet extends Fragment {
             switch (pos) {
 
                 case 0:
-                   //return FragmentWalletCard.newInstance(new ItemData("Recent transactions", R.drawable.icon_transactions), R.drawable.icon_transactions);
-                   return FragmentTransactions.instantiate(getContext(),FragmentTransactionsCard.class.getName());
+                   //return FragmentGenericPageView.newInstance(new SettingsListViewData("Recent transactions", R.drawable.icon_transactions), R.drawable.icon_transactions);
+                   return FragmentTransactionsPageView.instantiate(getContext(), FragmentTransactionsPageView.class.getName());
                 case 1:
 
-                    return FragmentWalletCard.newInstance( new ItemData("Price Statistics", R.drawable.icon_stat_increase, null),R.drawable.icon_stat_increase);
+                    return FragmentStatisticsPageView.instantiate(getContext(),FragmentStatisticsPageView.class.getName());
                 case 2:
 
-                    return FragmentWalletCard.newInstance(new ItemData("History Chart", R.drawable.icon_chart, null),R.drawable.icon_chart);
+                    return FragmentGenericPageView.newInstance(new SettingsListViewData("History Chart", R.drawable.icon_chart, null),R.drawable.icon_chart);
                 default:
                    return null;
             }

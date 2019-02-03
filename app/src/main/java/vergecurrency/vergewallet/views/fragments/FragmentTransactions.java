@@ -18,7 +18,7 @@ import java.util.Arrays;
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.structs.Transaction;
-import vergecurrency.vergewallet.views.adapters.TransactionsAdapter;
+import vergecurrency.vergewallet.models.adapters.TransactionsAdapter;
 
 public class FragmentTransactions extends Fragment {
     

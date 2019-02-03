@@ -1,6 +1,5 @@
 package vergecurrency.vergewallet.models.net.layers;
 
-import android.arch.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -33,135 +32,131 @@ import vergecurrency.vergewallet.models.net.sockets.SSLConnectionSocket;
 public class TorLayerGateway extends AsyncTask<String, Integer, String> {
 
 
-    //Let's make this piece of sh... class a singleton.
-    private static final TorLayerGateway instance = new TorLayerGateway();
-
-    public static TorLayerGateway getInstance() {
-        return instance;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
-
-    private TorLayerGateway() {
-
-    }
+	//Let's make this piece of sh... class a singleton.
+	private static final TorLayerGateway instance = new TorLayerGateway();
+	private Context context;
+	private OnionProxyManager onionProxyManager;
+	private volatile boolean isConnected;
 
 
-    //Http client : registers a socket according to a given protocol
-    public HttpClient getNewHttpClient() {
+	private TorLayerGateway() {
 
-        Registry<ConnectionSocketFactory> reg = RegistryBuilder.<ConnectionSocketFactory>create()
-                .register("http", new ConnectionSocket())
-                .register("https", new SSLConnectionSocket(SSLContexts.createSystemDefault()))
-                .build();
-        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(reg, new FakeDnsResolver());
-        return HttpClients.custom()
-                .setConnectionManager(cm)
-                .build();
-    }
+	}
 
+	public static TorLayerGateway getInstance() {
+		return instance;
+	}
 
-    //Async task, so works while not bothering everybody.
-    @Override
-    protected String doInBackground(String... strings) {
-        String fileStorageLocation = "torfiles";
+	public void setContext(Context context) {
+		this.context = context;
+	}
 
-        //Get the proxy manager
-        onionProxyManager = new com.msopentech.thali.android.toronionproxy.AndroidOnionProxyManager(context, fileStorageLocation);
-        int totalSecondsPerTorStartup = 4 * 10;
-        int totalTriesPerTorStartup = 2;
-        try {
-            //starts tor by trying 240s x 5 times.
-            boolean ok = onionProxyManager.startWithRepeat(totalSecondsPerTorStartup, totalTriesPerTorStartup);
-            if (!ok)
-                System.out.println("Couldn't start tor");
-            else {
-                isConnected = true;
-            }
-            while (!onionProxyManager.isRunning()) {
-                //Puts the thread to sleep while tor isn't running
-                Thread.sleep(90);
-            }
-            System.out.println("Tor initialized on port " + onionProxyManager.getIPv4LocalHostSocksPort());
+	//Http client : registers a socket according to a given protocol
+	public HttpClient getNewHttpClient() {
 
-        }
-        //TODO : Catch exception in a better way
-        catch (Exception e) {
-            e.printStackTrace();
-            isConnected = false;
-        }
-        return "done!";
-    }
+		Registry<ConnectionSocketFactory> reg = RegistryBuilder.<ConnectionSocketFactory>create()
+				.register("http", new ConnectionSocket())
+				.register("https", new SSLConnectionSocket(SSLContexts.createSystemDefault()))
+				.build();
+		PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(reg, new FakeDnsResolver());
+		return HttpClients.custom()
+				.setConnectionManager(cm)
+				.build();
+	}
 
+	//Async task, so works while not bothering everybody.
+	@Override
+	protected String doInBackground(String... strings) {
+		String fileStorageLocation = "torfiles";
 
-    public String retrieveDataFromService(String uri) {
-        try {
+		//Get the proxy manager
+		onionProxyManager = new com.msopentech.thali.android.toronionproxy.AndroidOnionProxyManager(context, fileStorageLocation);
+		int totalSecondsPerTorStartup = 4 * 10;
+		int totalTriesPerTorStartup = 2;
+		try {
+			//starts tor by trying 240s x 5 times.
+			boolean ok = onionProxyManager.startWithRepeat(totalSecondsPerTorStartup, totalTriesPerTorStartup);
+			if (!ok)
+				System.out.println("Couldn't start tor");
+			else {
+				isConnected = true;
+			}
+			while (!onionProxyManager.isRunning()) {
+				//Puts the thread to sleep while tor isn't running
+				Thread.sleep(90);
+			}
+			System.out.println("Tor initialized on port " + onionProxyManager.getIPv4LocalHostSocksPort());
 
-            String result = "";
+		}
+		//TODO : Catch exception in a better way
+		catch (Exception e) {
+			e.printStackTrace();
+			isConnected = false;
+		}
+		return "done!";
+	}
 
-            //Creates the http client according to the previous method
-            HttpClient httpClient = getNewHttpClient();
-            int port = onionProxyManager.getIPv4LocalHostSocksPort();
-            //creates the local socket and context
-            InetSocketAddress socksaddr = new InetSocketAddress("127.0.0.1", port);
-            HttpClientContext context = HttpClientContext.create();
-            context.setAttribute("socks.address", socksaddr);
+	public String retrieveDataFromService(String uri) {
+		try {
 
+			String result = "";
 
-            HttpGet httpGet = new HttpGet(new URI(uri));
-            HttpResponse httpResponse = httpClient.execute(httpGet, context);
-            HttpEntity httpEntity = httpResponse.getEntity();
-            InputStream httpResponseStream = httpEntity.getContent();
+			//Creates the http client according to the previous method
+			int port = onionProxyManager.getIPv4LocalHostSocksPort();
+			//creates the local socket and context
+			InetSocketAddress socksaddr = new InetSocketAddress("127.0.0.1", port);
+			HttpClientContext context = HttpClientContext.create();
+			context.setAttribute("socks.address", socksaddr);
 
-            //Reads the whole content because I had nothing better to do and followed a well documented example
-            //TODO : Externalise all this in a function to treat different data models like the Cryptocompare API result
-            BufferedReader httpResponseReader = new BufferedReader(
-                    new InputStreamReader(httpResponseStream, "iso-8859-1"), 8);
-            String line = null;
+			HttpClient httpClient = getNewHttpClient();
 
-            while ((line = httpResponseReader.readLine()) != null) {
-                result += line;
-            }
-            httpResponseStream.close();
+			HttpGet httpGet = new HttpGet(new URI(uri));
+			HttpResponse httpResponse = httpClient.execute(httpGet, context);
+			HttpEntity httpEntity = httpResponse.getEntity();
+			InputStream httpResponseStream = httpEntity.getContent();
 
-            return result;
-        } catch (Exception ex) {
-            //TODO : Catch exception properly
-            ex.printStackTrace();
-            return null;
-        }
-    }
+			//Reads the whole content because I had nothing better to do and followed a well documented example
+			BufferedReader httpResponseReader = new BufferedReader(
+					new InputStreamReader(httpResponseStream, "iso-8859-1"), 8);
+			String line = null;
 
-    @Override
-    protected void onPreExecute() {
+			while ((line = httpResponseReader.readLine()) != null) {
+				result += line;
+			}
+			httpResponseStream.close();
 
-    }
+			return result;
+		} catch (Exception ex) {
+			//TODO : Catch exception properly
+			ex.printStackTrace();
+			return null;
+		}
+	}
 
-    @Override
-    protected void onPostExecute(String result) {
+	@Override
+	protected void onPreExecute() {
 
-    }
-
-    public boolean isConnected() {
-        return isConnected;
-    }
-
-    //Talks for itself
-    static class FakeDnsResolver implements DnsResolver {
-        @Override
-        public InetAddress[] resolve(String host) throws UnknownHostException {
-            return new InetAddress[]{InetAddress.getByAddress(new byte[]{1, 1, 1, 1})};
-        }
-    }
+	}
 
 
-    //Variables come here
+	//Variables come here
 
-    private Context context;
-    private OnionProxyManager onionProxyManager;
-    private volatile boolean isConnected;
+	@Override
+	protected void onPostExecute(String result) {
+
+	}
+
+	public boolean isConnected() {
+		return isConnected;
+	}
+
+	//Talks for itself
+	static class FakeDnsResolver implements DnsResolver {
+		@Override
+		public InetAddress[] resolve(String host) throws UnknownHostException {
+			return new InetAddress[]{InetAddress.getByAddress(new byte[]{1, 1, 1, 1})};
+		}
+	}
 
 
 }

@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.views.adapters;
+package vergecurrency.vergewallet.models.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -33,7 +33,7 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 	 * @param curs    the currencies list we need to display
 	 */
 	public CurrenciesAdapter(@NonNull Context context, ArrayList<Currency> curs) {
-		super(context, R.layout.listview_currency_item, curs);
+		super(context, R.layout.listview_item_currency, curs);
 		pm = new PreferencesManager(context);
 	}
 
@@ -64,7 +64,7 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 		if (convertView == null) {
 			vh = new CurrencyItemViewHolder();
 			LayoutInflater inflater = LayoutInflater.from(getContext());
-			convertView = inflater.inflate(R.layout.listview_currency_item, parent, false);
+			convertView = inflater.inflate(R.layout.listview_item_currency, parent, false);
 			vh.currencyId = (LinearLayout) convertView.findViewById(R.id.listview_currency_item);
 			vh.currencyCurrency = (TextView) convertView.findViewById(R.id.listview_currency_currency);
 			vh.currencyName = (TextView) convertView.findViewById(R.id.listview_currency_name);

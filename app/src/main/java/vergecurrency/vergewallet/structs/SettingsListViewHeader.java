@@ -1,9 +1,9 @@
-package vergecurrency.vergewallet.views.fragments.beans;
+package vergecurrency.vergewallet.structs;
 
-public class HeaderData {
+public class SettingsListViewHeader {
     private String title;
 
-    public HeaderData(String title) {
+    public SettingsListViewHeader(String title) {
             this.title = title;
     }
 

@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.views.fragments.walletcards;
+package vergecurrency.vergewallet.views.fragments.walletpageviews;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,14 +20,14 @@ import java.util.Arrays;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.structs.Transaction;
-import vergecurrency.vergewallet.views.adapters.TransactionsAdapter;
+import vergecurrency.vergewallet.models.adapters.TransactionsAdapter;
 
-public class FragmentTransactionsCard extends Fragment {
+public class FragmentTransactionsPageView extends Fragment {
 
     double balance = 10d;
     ListView transactionList;
 
-    public FragmentTransactionsCard() {
+    public FragmentTransactionsPageView() {
 
     }
 
@@ -40,7 +40,7 @@ public class FragmentTransactionsCard extends Fragment {
 		if (balance <= 0)
         rootView = inflater.inflate(R.layout.fragment_notransactions, container, false);
 		else {
-			rootView = inflater.inflate(R.layout.fragment_transactions_card, container, false);
+			rootView = inflater.inflate(R.layout.fragment_pageview_transactions, container, false);
 			transactionList = rootView.findViewById(R.id.transactions_listview);
 			fillTransactionList(transactionList);
 		}

@@ -131,6 +131,16 @@ public class PriceStatistic {
 		this.totalvolume24Hto = totalvolume24Hto;
 	}
 
+	public int get__v() {
+		return __v;
+	}
+
+	public void set__v(int __v) {
+		this.__v = __v;
+	}
+
+
+	private int __v;
 	private int rank;
 	private double price;
 	private double openday;

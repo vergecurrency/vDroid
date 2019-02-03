@@ -8,7 +8,7 @@ import android.widget.ListView;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.CurrenciesUtils;
-import vergecurrency.vergewallet.views.adapters.CurrenciesAdapter;
+import vergecurrency.vergewallet.models.adapters.CurrenciesAdapter;
 
 public class SelectCurrencyActivity extends AppCompatActivity {
 

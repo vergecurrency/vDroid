@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.views.adapters;
+package vergecurrency.vergewallet.models.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -41,7 +41,7 @@ public class TransactionsAdapter extends ArrayAdapter<Transaction> implements Vi
 	 * @param txs     the transactions list we need to display
 	 */
 	public TransactionsAdapter(@NonNull Context context, ArrayList<Transaction> txs) {
-		super(context, R.layout.listview_transaction_item, txs);
+		super(context, R.layout.listview_item_transaction, txs);
 		this.context = context;
 		this.transactions = txs;
 	}
@@ -78,7 +78,7 @@ public class TransactionsAdapter extends ArrayAdapter<Transaction> implements Vi
 		if (convertView == null) {
 			vh = new TransactionItemViewHolder();
 			LayoutInflater inflater = LayoutInflater.from(getContext());
-			convertView = inflater.inflate(R.layout.listview_transaction_item, parent, false);
+			convertView = inflater.inflate(R.layout.listview_item_transaction, parent, false);
 
 			vh.txAddress = (TextView) convertView.findViewById(R.id.listview_transaction_item_address);
 			vh.txAmount = (TextView) convertView.findViewById(R.id.listview_transaction_item_amount);
