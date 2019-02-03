@@ -4,6 +4,15 @@ import com.google.gson.Gson;
 
 public class Currency {
 
+public Currency() {
+
+}
+
+public Currency(String name, String currency) {
+	this.name = name;
+	this.currency = currency;
+}
+
 
 	public String getCurrency() {
 		return currency;

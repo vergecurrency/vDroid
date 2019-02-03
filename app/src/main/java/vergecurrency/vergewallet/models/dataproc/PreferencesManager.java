@@ -3,6 +3,8 @@ package vergecurrency.vergewallet.models.dataproc;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import vergecurrency.vergewallet.structs.Currency;
+
 public final class PreferencesManager {
 
 	SharedPreferences prefs;
@@ -23,7 +25,7 @@ public final class PreferencesManager {
 
 
 	public String getSelectedCurrency() {
-		return prefs.getString("selectedCurrency", "{ \"currency\" : \"USD\" , \"name\" : \"US Dollar\" ");
+		return prefs.getString("selectedCurrency",  new Currency("United States Dollar", "USD").getCurrencyAsJSON());
 	}
 
 	public void setSelectedCurrency(String selectedCurrency) {

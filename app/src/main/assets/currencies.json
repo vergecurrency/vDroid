@@ -1,42 +1,44 @@
-{"currencies" : [
-  {
-    "currency" : "AUD",
-    "name": "Australian Dollar"
-  },
-  {
-    "currency": "BRL",
-    "name": "Brazilian Real"
-  },
-  {
-    "currency": "CAD",
-    "name": "Canadian Dollar"
-  },
-  {
-    "currency": "CHF",
-    "name": "Swiss Franc"
-  },
-  {
-    "currency": "CNY",
-    "name": "Chinese Yuan"
-  },
-  {
-    "currency": "EUR",
-    "name": "Euro"
-  },
-  {
-    "currency": "GBP",
-    "name": "British Pound"
-  },
-  {
-    "currency": "HKD",
-    "name": "Hong Kong Dollar"
-  },
-  {
-    "currency": "IDR",
-    "name": "Indonesian Rupiah"
-  },
-  {
-    "currency": "USD",
-    "name": "United States Dollar"
-  }
-]}
+{
+  "currencies": [
+    {
+      "currency": "AUD",
+      "name": "Australian Dollar"
+    },
+    {
+      "currency": "BRL",
+      "name": "Brazilian Real"
+    },
+    {
+      "currency": "CAD",
+      "name": "Canadian Dollar"
+    },
+    {
+      "currency": "CHF",
+      "name": "Swiss Franc"
+    },
+    {
+      "currency": "CNY",
+      "name": "Chinese Yuan"
+    },
+    {
+      "currency": "EUR",
+      "name": "Euro"
+    },
+    {
+      "currency": "GBP",
+      "name": "British Pound"
+    },
+    {
+      "currency": "HKD",
+      "name": "Hong Kong Dollar"
+    },
+    {
+      "currency": "IDR",
+      "name": "Indonesian Rupiah"
+    },
+    {
+      "currency": "USD",
+      "name": "United States Dollar"
+    }
+  ]
+}
