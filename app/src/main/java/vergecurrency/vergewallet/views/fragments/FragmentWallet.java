@@ -16,7 +16,7 @@ import vergecurrency.vergewallet.structs.Currency;
 import vergecurrency.vergewallet.structs.SettingsListViewData;
 import vergecurrency.vergewallet.views.fragments.walletpageviews.FragmentStatisticsPageView;
 import vergecurrency.vergewallet.views.fragments.walletpageviews.FragmentTransactionsPageView;
-import vergecurrency.vergewallet.views.fragments.walletpageviews.FragmentGenericPageView;
+import vergecurrency.vergewallet.views.fragments.walletpageviews.FragmentChartsPageView;
 
 
 public class FragmentWallet extends Fragment {
@@ -73,14 +73,12 @@ public class FragmentWallet extends Fragment {
             switch (pos) {
 
                 case 0:
-                   //return FragmentGenericPageView.newInstance(new SettingsListViewData("Recent transactions", R.drawable.icon_transactions), R.drawable.icon_transactions);
                    return FragmentTransactionsPageView.instantiate(getContext(), FragmentTransactionsPageView.class.getName());
                 case 1:
 
                     return FragmentStatisticsPageView.instantiate(getContext(),FragmentStatisticsPageView.class.getName());
                 case 2:
-
-                    return FragmentGenericPageView.newInstance(new SettingsListViewData("History Chart", R.drawable.icon_chart, null),R.drawable.icon_chart);
+                    return FragmentChartsPageView.instantiate(getContext(), FragmentChartsPageView.class.getName());
                 default:
                    return null;
             }

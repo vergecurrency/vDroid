@@ -32,7 +32,7 @@
     <string name="splash_slogan">Privacy is our standard.</string>
     <string name="splash_tor">Starting up Tor</string>
     //Splash screen on first launch
-    <string name="firstlaunch_new_wallet">&lt;b>&lt;big>Create a new wallet&lt;/big>&lt;/b>&lt;br />Create a new XVG wallet on your iOS device.</string>
+    <string name="firstlaunch_new_wallet">&lt;b>&lt;big>Create a new wallet&lt;/big>&lt;/b>&lt;br />Create a new XVG wallet on your Android device.</string>
     <string name="firstlaunch_restore_wallet"> &lt;b>&lt;big>Restore your wallet&lt;/big>&lt;/b>&lt;br />Lost your Android wallet? Restore it here.</string>
 
     //Tor settings activity
@@ -85,6 +85,7 @@
 
     //Others
     <string name="statistics_pageview_header">Price Statistics</string>
+    <string name="charts_pageview_header">History Chart</string>
 
 
 

@@ -18,6 +18,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.helpers.MathUtils;
 import vergecurrency.vergewallet.structs.Transaction;
 
 public class TransactionsAdapter extends ArrayAdapter<Transaction> implements View.OnClickListener {
@@ -92,12 +93,12 @@ public class TransactionsAdapter extends ArrayAdapter<Transaction> implements Vi
 		}
 
 		if (tx.getCategory().equals("send")) {
-			vh.txAmount.setText("- " + (Double.toString(round(tx.getAmount(), 2))) + " XVG");
+			vh.txAmount.setText("- " + (Double.toString(MathUtils.round(tx.getAmount(), 2))) + " XVG");
 			vh.txAmount.setTextColor(getContext().getResources().getColor(R.color.material_red_500));
 			vh.txIcon.setImageResource(R.drawable.icon_arrow_up);
 			DrawableCompat.setTint(vh.txIcon.getDrawable(), ContextCompat.getColor(context, R.color.material_red_500));
 		} else if (tx.getCategory().equals("receive")) {
-			vh.txAmount.setText("+ " + (Double.toString(round(tx.getAmount(), 2))) + " XVG");
+			vh.txAmount.setText("+ " + (Double.toString(MathUtils.round(tx.getAmount(), 2))) + " XVG");
 			vh.txAmount.setTextColor(getContext().getResources().getColor(R.color.material_green_500));
 			vh.txIcon.setImageResource(R.drawable.icon_arrow_down);
 			DrawableCompat.setTint(vh.txIcon.getDrawable(), ContextCompat.getColor(context, R.color.material_green_500));
@@ -113,11 +114,5 @@ public class TransactionsAdapter extends ArrayAdapter<Transaction> implements Vi
 		return convertView;
 	}
 
-	public static double round(double value, int places) {
-		if (places < 0) throw new IllegalArgumentException();
 
-		BigDecimal bd = new BigDecimal(value);
-		bd = bd.setScale(places, RoundingMode.HALF_UP);
-		return bd.doubleValue();
-	}
 }

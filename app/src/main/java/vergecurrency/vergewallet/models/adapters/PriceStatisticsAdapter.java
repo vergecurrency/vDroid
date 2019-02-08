@@ -19,6 +19,9 @@ public class PriceStatisticsAdapter extends ArrayAdapter<Map.Entry<String, Strin
 		super(context, R.layout.listview_item_stat, entryList);
 	}
 
+	//public List<Map.Entry<String,String>>
+
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -42,11 +45,33 @@ public class PriceStatisticsAdapter extends ArrayAdapter<Map.Entry<String, Strin
 
 		Map.Entry<String, String> currentEntry = this.getItem(position);
 
-		vh.statLabel.setText(currentEntry.getKey());
-		vh.statValue.setText(currentEntry.getValue());
+		formatView(vh,currentEntry);
 
 		return convertView;
 	}
+
+	private void formatView(StatisticsItemViewHolder vh, Map.Entry<String, String> currentEntry) {
+
+
+		String key = currentEntry.getKey();
+		String value = currentEntry.getValue();
+
+		if (key == "24h Change %") {
+			if (value.contains("-"))
+				vh.statValue.setTextColor(getContext().getResources().getColor(R.color.material_red_500));
+			else
+				vh.statValue.setTextColor(getContext().getResources().getColor(R.color.material_green_500));
+
+		} else if (key == "24h High") {
+			vh.statValue.setTextColor(getContext().getResources().getColor(R.color.material_green_500));
+		} else if (key == "24h Low") {
+			vh.statValue.setTextColor(getContext().getResources().getColor(R.color.material_red_500));
+		}
+
+		vh.statLabel.setText(key);
+		vh.statValue.setText(value);
+	}
+
 
 	private static class StatisticsItemViewHolder {
 		TextView statLabel;
