@@ -45,7 +45,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/paperkey_logo"
         android:layout_marginTop="-56dp"
-        android:background="@color/bg_color"
+        android:background="@color/verge_white"
         android:gravity="center"
         android:orientation="vertical">
 

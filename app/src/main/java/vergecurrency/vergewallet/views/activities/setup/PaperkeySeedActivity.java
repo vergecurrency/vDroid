@@ -43,28 +43,20 @@ public class PaperkeySeedActivity extends AppCompatActivity {
     }
 
     Button.OnClickListener onNextListener() {
-        return new Button.OnClickListener() {
+        return v -> {
+            //get to the next word. For now get to the main Activity
+            if (currentWord == 11) {
 
-            @Override
-            public void onClick(View v) {
-                //get to the next word. For now get to the main Activity
-                if (currentWord == 11) {
-
-                    startActivity(new Intent(getApplicationContext(), PaperkeyVerifySeed.class));
-                }
-                nextWord();
+                startActivity(new Intent(getApplicationContext(), PaperkeyVerifySeed.class));
             }
+            nextWord();
         };
     }
 
     Button.OnClickListener onPreviousListener() {
-        return new Button.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //get to the previous word.
-                previousWord();
-            }
+        return v -> {
+            //get to the previous word.
+            previousWord();
         };
     }
 
@@ -72,6 +64,7 @@ public class PaperkeySeedActivity extends AppCompatActivity {
         //Increase if not the last
         if (currentWord < 11) {
             currentWord += 1;
+            nextButton.setText("Next");
         }
         //change button text if last
         if (currentWord == 11) {
