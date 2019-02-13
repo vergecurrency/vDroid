@@ -10,7 +10,7 @@
     // The width and color of the border
     <stroke
         android:width="2px"
-        android:color="@color/verge_colorBackgroundTwo" />
+        android:color="@color/verge_realWhite" />
 
 
     // Add your desired padding

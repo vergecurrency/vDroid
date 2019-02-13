@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="verge_colorPrimary">#37BDE2</color>
+    <color name="verge_colorPrimaryFaded">#97EBFF</color>
     <color name="verge_colorPrimaryDark">#112134</color>
     <color name="verge_colorSecondary">#647886</color>
     <color name="verge_colorSecondaryDark">#193D55</color>
     <color name="verge_colorBackground">#DCF0FD</color>
     <color name="verge_colorBackgroundTwo">#f8f7f7</color>
     <color name="verge_colorAccent">#9b9b9b</color>
+    <color name="verge_white">#F9F5F2</color>
+    <color name="verge_realWhite">#FFFFFF</color>
     <color name="default_gray">#bbbbbb</color>
+
+    <color name="verge_fadeBlueStart">#AABCF1FF</color>
+    <color name="verge_fadeBlueStop">#AAf8f7f7</color>
+
 </resources>

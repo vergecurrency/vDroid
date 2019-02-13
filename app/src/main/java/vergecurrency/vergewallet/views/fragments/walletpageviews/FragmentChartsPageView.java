@@ -31,7 +31,7 @@ public class FragmentChartsPageView extends Fragment {
 		combinedChart = (CombinedChart) rootView.findViewById(R.id.charts_card_chartview);
 
 		//TODO : Move all this shit to GraphUtils. RIGHT AFTER YOU'RE DONE TESTING MANUEL
-		GraphUtils.createChart(combinedChart);
+		GraphUtils.createChart(combinedChart, getContext());
 
 		return rootView;
 	}

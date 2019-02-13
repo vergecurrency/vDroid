@@ -18,7 +18,7 @@ public final class Constants {
     public final static String VWS_ENDPOINT = "https://vws2.swenvanzanten.com/vws/api/";
 
     //Secondary Service Urls
-    public final static String PRICE_DATA_ENDPOINT = "https://usxvglw.vergecoreteam.com/price/api/v1/price/";
+    public final static String PRICE_DATA_ENDPOINT = "https://vws2.swenvanzanten.com/price/api/v1/price/";
     public final static String CHART_DATA_ENDPOINT  = "https://graphs2.coinmarketcap.com/currencies/verge/";
     public final static String IP_DATA_ENDPOINT = "http://api.ipstack.com/%s?access_key=7ad464757507e0b58ce0beee4810c1ab";
     public final static String IP_RETRIEVAL_ENDPOINT = "https://api.ipify.org?format=json";
