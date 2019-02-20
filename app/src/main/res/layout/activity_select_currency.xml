@@ -6,7 +6,7 @@
     <TextView
         android:id="@+id/mTextMessage"
         android:layout_width="fill_parent"
-        android:layout_height="37dp"
+        android:layout_height="60dp"
         android:textAlignment="center"
         android:paddingTop="7dp"
         android:textColor="@color/verge_colorPrimaryDark"

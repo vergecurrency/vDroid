@@ -1,6 +1,8 @@
 package vergecurrency.vergewallet.models.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +21,6 @@ import vergecurrency.vergewallet.structs.Currency;
 public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.OnClickListener {
 
 	private PreferencesManager pm;
-	private static class CurrencyItemViewHolder {
-		TextView currencyCurrency;
-		TextView currencyName;
-		LinearLayout currencyId;
-	}
-
 
 	/**
 	 * Transaction adapter constructor
@@ -37,23 +33,20 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 		pm = new PreferencesManager(context);
 	}
 
-
 	@Override
 	public void onClick(View v) {
 		int position = (Integer) v.getTag();
 		Object object = getItem(position);
 		Currency cur = (Currency) object;
 
-
 		switch (v.getId()) {
 			case R.id.listview_currency_item:
 				Toast.makeText(v.getContext(), "Currency chosen : " + cur.getName(), Toast.LENGTH_SHORT).show();
 				pm.setSelectedCurrency(cur.getCurrencyAsJSON());
-
 				break;
 		}
-	}
 
+	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -82,5 +75,11 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 		vh.currencyId.setTag(position);
 		// Return the completed view to render on screen
 		return convertView;
+	}
+
+	private static class CurrencyItemViewHolder {
+		TextView currencyCurrency;
+		TextView currencyName;
+		LinearLayout currencyId;
 	}
 }

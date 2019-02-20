@@ -28,22 +28,20 @@ import vergecurrency.vergewallet.structs.GraphInfo;
 public final class GraphUtils {
 
 
+	public static void createChart(CombinedChart cc, Context context,int filter) {
 
-	public static void createChart(CombinedChart cc, Context context) {
-
-		GraphInfo gi = GraphsDataReader.readPriceStatistics();
+		GraphInfo gi = GraphsDataReader.readPriceStatistics(filter);
 
 		List<Entry> volumeData = createEntryList(gi.getVolume_usd().entrySet());
 		List<Entry> priceData = createEntryList(gi.getPrice_usd().entrySet());
 
+
+		cc.setClickable(false);
+		cc.setBorderWidth(0f);
 		cc.getDescription().setEnabled(false);
 		cc.setBackgroundColor(Color.WHITE);
 		cc.setDrawGridBackground(false);
-		cc.setDrawBorders(false);
 		cc.setHighlightFullBarEnabled(false);
-
-
-		//to play with, seems nice
 		cc.setDrawBarShadow(false);
 
 		//bars behind, line on foreground
@@ -77,10 +75,11 @@ public final class GraphUtils {
 		data.setData(generateLineData(priceData, context));
 
 		rightAxis.setAxisMaximum(data.getLineData().getYMax() * 1.1f);
-		leftAxis.setAxisMaximum(data.getBarData().getYMax() *1.1f);
+		leftAxis.setAxisMaximum(data.getBarData().getYMax() * 1.1f);
 		xAxis.setAxisMaximum(data.getXMax());
 
 		cc.setData(data);
+		cc.animateX(500);
 
 		//cc.invalidate();
 
@@ -109,9 +108,8 @@ public final class GraphUtils {
 		BarDataSet set = new BarDataSet(barEntry, "Bars");
 		set.setAxisDependency(YAxis.AxisDependency.LEFT);
 		set.setHighLightColor(R.color.verge_colorPrimary);
-
 		barData.addDataSet(set);
-		barData.setBarWidth(0.45f);
+		barData.setBarWidth(0.2f);
 		return barData;
 	}
 

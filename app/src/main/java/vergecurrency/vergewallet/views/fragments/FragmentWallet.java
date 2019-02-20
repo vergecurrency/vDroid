@@ -75,7 +75,6 @@ public class FragmentWallet extends Fragment {
                 case 0:
                    return FragmentTransactionsPageView.instantiate(getContext(), FragmentTransactionsPageView.class.getName());
                 case 1:
-
                     return FragmentStatisticsPageView.instantiate(getContext(),FragmentStatisticsPageView.class.getName());
                 case 2:
                     return FragmentChartsPageView.instantiate(getContext(), FragmentChartsPageView.class.getName());

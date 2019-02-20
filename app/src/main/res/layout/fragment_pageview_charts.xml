@@ -2,27 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:background="@color/verge_realWhite"
+    android:orientation="vertical">
+
 
     <LinearLayout
-        android:layout_height="40dp"
-        android:layout_width="match_parent"
         android:id="@+id/charts_card_header"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:clickable="true"
-        android:background="@drawable/selector_item"
-        android:padding="3dp"
-        >
+        android:padding="3dp">
 
         <ImageView
             android:id="@+id/charts_card_icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:tint="@color/verge_colorPrimaryDark"
             android:adjustViewBounds="true"
+            android:contentDescription="Icon"
+            android:padding="7dp"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_chart"
-            android:padding="7dp"
-            />
+            android:tint="@color/verge_colorPrimaryDark" />
 
         <TextView
             android:id="@+id/charts_card_title"
@@ -37,10 +37,188 @@
 
     </LinearLayout>
 
-    <com.github.mikephil.charting.charts.CombinedChart
-        android:id="@+id/charts_card_chartview"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="20dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="60dp"
+                    android:text="@string/charts_high_label"
+                    android:textColor="@color/verge_colorPrimaryDark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:paddingEnd="10dp"
+                    android:text="$"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/verge_colorPrimaryDark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="60dp"
+                    android:text="0.0062"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/verge_colorPrimaryDark"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/verge_realWhite"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="60dp"
+                    android:text="@string/charts_average_label"
+                    android:textColor="@color/verge_colorPrimary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:paddingEnd="10dp"
+                    android:text="$"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/verge_colorPrimary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="60dp"
+                    android:text="0.0062"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/verge_colorPrimary"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="60dp"
+                    android:text="@string/charts_average_low"
+                    android:textColor="@color/verge_colorAccent"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:paddingEnd="10dp"
+                    android:text="$"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/verge_colorAccent"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="60dp"
+                    android:text="0.0062"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/verge_colorAccent"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="chart data only available in USD"
+                android:textAlignment="center"
+                android:textColor="@color/verge_colorAccent"
+                android:textSize="12dp" />
+
+            <com.github.mikephil.charting.charts.CombinedChart
+                android:id="@+id/charts_card_chartview"
+                android:layout_width="match_parent"
+                android:layout_height="350dp" />
+
+            <GridLayout
+                android:id="@+id/charts_filter_grid_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:columnCount="6"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:rowCount="1">
+
+                <TextView
+                    android:id="@+id/graph_filter_1d"
+                    style="@style/graphtextview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/graph_1d" />
+
+                <TextView
+                    android:id="@+id/graph_filter_1w"
+                    style="@style/graphtextview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/graph_1w" />
+
+                <TextView
+                    android:id="@+id/graph_filter_1m"
+                    style="@style/graphtextview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/graph_1m" />
+
+                <TextView
+                    android:id="@+id/graph_filter_3m"
+                    style="@style/graphtextview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/graph_3m" />
+
+                <TextView
+                    android:id="@+id/graph_filter_1y"
+                    style="@style/graphtextview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/graph_1y" />
+
+                <TextView
+                    android:id="@+id/graph_filter_all"
+                    style="@style/graphtextview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/graph_all" />
+
+
+            </GridLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
 

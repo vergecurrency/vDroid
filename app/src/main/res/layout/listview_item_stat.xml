@@ -3,9 +3,8 @@
     android:id="@+id/listview_item_stat_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="3dp"
-    android:background="@drawable/selector_item"
-    android:clickable="true">
+    android:clickable="true"
+    android:padding="3dp">
 
     <TextView
         android:id="@+id/listview_item_stat_label"
@@ -22,11 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_weight="0.5"
-        android:backgroundTint="@color/verge_colorBackgroundTwo"
         android:gravity="end"
         android:paddingRight="8dp"
         android:textColor="@color/verge_colorPrimaryDark"
         android:textSize="14sp" />
-
 
 </LinearLayout>

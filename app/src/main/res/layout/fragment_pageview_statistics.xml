@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/verge_realWhite"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -9,7 +10,6 @@
         android:layout_width="match_parent"
         android:id="@+id/transactions_card_header"
         android:clickable="true"
-        android:background="@drawable/selector_item"
         android:padding="3dp"
         >
 
