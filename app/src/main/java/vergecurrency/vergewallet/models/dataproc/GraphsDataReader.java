@@ -36,7 +36,7 @@ public class GraphsDataReader {
 
 	public static String getUnixTimeframe(int filter) {
 		Calendar c = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-		String now = "/" +  System.currentTimeMillis() + "000/";
+		String now = "/" +  System.currentTimeMillis();
 		switch (filter) {
 			//One day
 			case 1:
