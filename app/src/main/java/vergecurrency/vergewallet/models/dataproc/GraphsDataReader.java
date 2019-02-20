@@ -36,28 +36,28 @@ public class GraphsDataReader {
 
 	public static String getUnixTimeframe(int filter) {
 		Calendar c = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-		String now = "/" +  (System.currentTimeMillis() / 1000) + "000/";
+		String now = "/" +  System.currentTimeMillis() + "000/";
 		switch (filter) {
 			//One day
 			case 1:
 				c.add(Calendar.DAY_OF_YEAR, -1);
-				return c.getTimeInMillis()/1000 + "000" + now;
+				return c.getTimeInMillis() + now;
 			//One week
 			case 2:
 				c.add(Calendar.WEEK_OF_YEAR, -1);
-				return c.getTimeInMillis()/1000+ "000" + now;
+				return c.getTimeInMillis() + now;
 			//One month
 			case 3:
 				c.add(Calendar.MONTH, -1);
-				return c.getTimeInMillis()/1000+ "000" + now;
+				return c.getTimeInMillis() + now;
 			//Three months
 			case 4:
 				c.add(Calendar.MONTH, -3);
-				return c.getTimeInMillis()/1000+ "000" + now;
+				return c.getTimeInMillis()+ now;
 			//One year
 			case 5:
 				c.add(Calendar.YEAR, -1);
-				return c.getTimeInMillis()/1000+ "000" + now;
+				return c.getTimeInMillis() + now;
 			//all time
 			case 6:
 			default:
