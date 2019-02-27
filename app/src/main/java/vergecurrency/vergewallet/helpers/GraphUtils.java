@@ -28,7 +28,7 @@ import vergecurrency.vergewallet.structs.GraphInfo;
 public final class GraphUtils {
 
 
-	public static void createChart(CombinedChart cc, Context context,int filter) {
+	public static void createChart(CombinedChart cc, Context context, int filter) {
 
 		GraphInfo gi = GraphsDataReader.readPriceStatistics(filter);
 
@@ -38,16 +38,17 @@ public final class GraphUtils {
 
 		cc.setClickable(false);
 		cc.setBorderWidth(0f);
-		cc.getDescription().setEnabled(false);
+		cc.setBorderColor(Color.WHITE);
 		cc.setBackgroundColor(Color.WHITE);
+		cc.getDescription().setEnabled(false);
 		cc.setDrawGridBackground(false);
 		cc.setHighlightFullBarEnabled(false);
 		cc.setDrawBarShadow(false);
+		cc.getLegend().setEnabled(false);
 
 		//bars behind, line on foreground
 		cc.setDrawOrder(new CombinedChart.DrawOrder[]{CombinedChart.DrawOrder.LINE, CombinedChart.DrawOrder.BAR});
 
-		cc.getLegend().setEnabled(false);
 
 		YAxis rightAxis = cc.getAxisRight();
 		rightAxis.setDrawGridLines(false);
@@ -69,7 +70,6 @@ public final class GraphUtils {
 			return new DecimalFormat("########0.0").format(value);
 		});
 
-
 		CombinedData data = new CombinedData();
 		data.setData(generateBarData(volumeData));
 		data.setData(generateLineData(priceData, context));
@@ -81,9 +81,7 @@ public final class GraphUtils {
 		cc.setData(data);
 		cc.animateX(500);
 
-		//cc.invalidate();
-
-
+		cc.invalidate();
 	}
 
 	private static List<Entry> createEntryList(Set<Map.Entry<String, String>> set) {

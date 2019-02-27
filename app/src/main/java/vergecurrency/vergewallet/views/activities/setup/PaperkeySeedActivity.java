@@ -4,80 +4,89 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.models.dataproc.SeedGenerator;
+import vergecurrency.vergewallet.models.dataproc.PreferencesManager;
+import vergecurrency.vergewallet.wallet.WalletManager;
 
 public class PaperkeySeedActivity extends AppCompatActivity {
 
-    Button nextButton;
-    Button previousButton;
-    TextView wordView;
-    int currentWord = -1;
+	Button nextButton;
+	Button previousButton;
+	TextView wordView;
+	int currentWord = -1;
+	PreferencesManager pm;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_paperkey_seed);
+	String[] seed;
 
-        wordView = findViewById(R.id.paperkey_logo);
+	@Override
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_paperkey_seed);
 
-        nextButton = findViewById(R.id.paperkey_next_word);
-        nextButton.setOnClickListener(onNextListener());
+		pm = new PreferencesManager(getApplicationContext());
 
-        previousButton = findViewById(R.id.paperkey_previous_word);
-        previousButton.setOnClickListener(onPreviousListener());
+		wordView = findViewById(R.id.paperkey_logo);
 
-        SeedGenerator sg = new SeedGenerator(getApplicationContext());
+		nextButton = findViewById(R.id.paperkey_next_word);
+		nextButton.setOnClickListener(onNextListener());
 
-        //Generate a valid seed from the SeedGenerator util
-        Constants.seed = sg.generateSeed();
+		previousButton = findViewById(R.id.paperkey_previous_word);
+		previousButton.setOnClickListener(onPreviousListener());
 
-        //get the first word
-        nextWord();
+		WalletManager wm = new WalletManager();
+		seed = wm.generateSeed();
+		pm.setMnemonic(seed);
 
-    }
+		//get the first word
+		nextWord();
 
-    Button.OnClickListener onNextListener() {
-        return v -> {
-            //get to the next word. For now get to the main Activity
-            if (currentWord == 11) {
+	}
 
-                startActivity(new Intent(getApplicationContext(), PaperkeyVerifySeed.class));
-            }
-            nextWord();
-        };
-    }
+	Button.OnClickListener onNextListener() {
+		return v -> {
+			//get to the next word. For now get to the main Activity
+			if (currentWord == 11) {
 
-    Button.OnClickListener onPreviousListener() {
-        return v -> {
-            //get to the previous word.
-            previousWord();
-        };
-    }
+				startActivity(new Intent(getApplicationContext(), PaperkeyVerifySeed.class));
+			}
+			nextWord();
+		};
+	}
 
-    private void nextWord() {
-        //Increase if not the last
-        if (currentWord < 11) {
-            currentWord += 1;
-            nextButton.setText("Next");
-        }
-        //change button text if last
-        if (currentWord == 11) {
-            nextButton.setText("Done");
-        }
-        wordView.setText(Constants.seed.get(currentWord));
-    }
+	Button.OnClickListener onPreviousListener() {
+		return v -> {
+			//get to the previous word.
+			previousWord();
+		};
+	}
 
-    private void previousWord() {
-        //Decrease if not the first
-        if (currentWord > 0) {
-            currentWord -= 1;
-        }
-        wordView.setText(Constants.seed.get(currentWord));
-    }
+	private void nextWord() {
+		//Increase if not the last
+		if (currentWord < 11) {
+			currentWord += 1;
+			nextButton.setText("Next");
+		}
+		//change button text if last
+		if (currentWord == 11) {
+			nextButton.setText("Done");
+		}
+		wordView.setText(getWord());
+	}
+
+	private void previousWord() {
+		//Decrease if not the first
+		if (currentWord > 0) {
+			currentWord -= 1;
+			nextButton.setText("Next");
+		}
+		wordView.setText(getWord());
+	}
+
+	private String getWord() {
+		return seed[currentWord];
+	}
 }

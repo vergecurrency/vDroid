@@ -8,7 +8,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="45dp"
+        android:paddingTop="8dp"
         android:id="@+id/listview_transaction_item"
         android:orientation="horizontal">
 
@@ -47,7 +48,7 @@
         <TextView
             android:id="@+id/listview_transaction_item_amount"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:gravity="end"
             android:paddingRight="8dp"

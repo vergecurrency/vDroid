@@ -1,82 +1,81 @@
-/*package vergecurrency.vergewallet.wallet;
+package vergecurrency.vergewallet.wallet;
 
 
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
+import android.arch.lifecycle.MutableLiveData;
 
-import org.bitcoinj.core.Coin;
-import org.bitcoinj.core.ECKey;
-import org.bitcoinj.core.NetworkParameters;
-import org.bitcoinj.core.TransactionConfidence;
-import org.bitcoinj.kits.WalletAppKit;
-import org.bitcoinj.params.MainNetParams;
-import org.bitcoinj.wallet.Wallet;
+import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
-import vergecurrency.vergewallet.Constants;
+import io.horizontalsystems.bitcoinkit.BitcoinKit;
+import io.horizontalsystems.bitcoinkit.models.BlockInfo;
+import io.horizontalsystems.bitcoinkit.models.TransactionInfo;
+import io.horizontalsystems.hdwalletkit.Mnemonic;
 
-public class WalletManager {
-
-    public WalletManager() {
-
-    }
-
-    public void initWallet() {
-        NetworkParameters params;
-        String filePrefix;
-        params = MainNetParams.get();
-        filePrefix = "forwarding-service";
-
-        WalletAppKit kit = new WalletAppKit(params, new File("."), filePrefix) {
-          @Override
-          protected void onSetupCompleted() {
-              if(wallet().getKeyChainGroupSize() < 1) {
-                  wallet().importKey(new ECKey());
-              }
-          }
-        };
-
-        kit.startAsync();
-        kit.awaitRunning();
-
-        createWalletListeners(kit.wallet());
-
-    }
-
-    private void createWalletListeners(Wallet wallet) {
-
-        wallet.addCoinsReceivedEventListener((w, tx, prevBalance, newBalance) -> {
-            Coin value = tx.getValueSentToMe(w);
-
-            Futures.addCallback(tx.getConfidence().getDepthFuture(Constants.NEEDED_CONFIRMATIONS), new FutureCallback<TransactionConfidence>() {
-                @Override
-                public void onSuccess(TransactionConfidence result) {
-                    // "result" here is the same as "tx" above, but we use it anyway for clarity.
-                    // forwardCoins(result);
-                }
-
-                @Override
-                public void onFailure(Throwable t) {}
-            });
-
-        });
+import static io.horizontalsystems.bitcoinkit.BitcoinKit.*;
 
 
-    }
+public class WalletManager implements Listener {
 
-    private void createKeyChain() {
+	private String networkName;
+	private MutableLiveData<Long> balance;
 
-    }
+	public WalletManager() {
+
+	}
 
 
-    private void createKeyPair() {
+	public void startWallet(String seed) {
+		NetworkType netType = NetworkType.MainNet;
 
-    }
+		BitcoinKit wallet = new BitcoinKit((List<String>) Arrays.asList(seed), netType,null,10,true,1);
+		wallet.setListener(this);
+		networkName = netType.name();
+		balance.setValue(wallet.getBalance());
+
+
+		wallet.start();
+
+	}
+
+
+	public String[] generateSeed() {
+
+		String[] seed = new Mnemonic().generate(Mnemonic.Strength.Default).toArray(new String[0]);
+
+		return seed;
+	}
 
 
 
+	@Override
+	public void onBalanceUpdate(@NotNull BitcoinKit bitcoinKit, long l) {
 
-    private String baseUrl = "";
+	}
+
+	@Override
+	public void onKitStateUpdate(@NotNull BitcoinKit bitcoinKit, @NotNull KitState kitState) {
+
+	}
+
+	@Override
+	public void onLastBlockInfoUpdate(@NotNull BitcoinKit bitcoinKit, @NotNull BlockInfo blockInfo) {
+
+	}
+
+	@Override
+	public void onTransactionsDelete(@NotNull List<String> list) {
+
+	}
+
+	@Override
+	public void onTransactionsUpdate(@NotNull BitcoinKit bitcoinKit, @NotNull List<TransactionInfo> list, @NotNull List<TransactionInfo> list1) {
+
+	}
+
+	//store wallet
+
+
+	//fuck wallet
 }
-*/

@@ -55,11 +55,10 @@ dependencies {
     //Centered buttons
     implementation 'com.github.Omega-R:OmegaCenterIconButton:0.0.3@aar'
 
-    //bitcoinj
-    //implementation 'com.github.2lazy2debug:bitcoinj:master-SNAPSHOT'
-
     //TOR library
     implementation project(':ThaliOnionProxyAndroid-release')
+    //BitcoinKit
+    implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.1.2b'
 
     //Json, not sure if used
     implementation files('src/main/libs/json-simple-1.1.1.jar')
@@ -67,8 +66,5 @@ dependencies {
     implementation files('src/main/libs/gson-2.8.5.jar')
     //I2P router library
     implementation files('src/main/libs/i2p-router.jar')
+    testImplementation 'org.testng:testng:6.9.6'
 }
-/*
-configurations {
-    all*.exclude group: 'com.google.code.gson'
-}*/

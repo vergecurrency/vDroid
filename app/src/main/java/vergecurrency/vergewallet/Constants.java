@@ -1,6 +1,7 @@
 package vergecurrency.vergewallet;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public final class Constants {
 
@@ -25,7 +26,7 @@ public final class Constants {
 
     public final static int SEED_SIZE = 12;
     public final static int WORDLIST_SIZE = 2048;
-    public static ArrayList<String> seed;
+    public static List<String> seed;
 
     //Resource directories
 	public final static String CURRENCIES_FILE_PATH = "currencies.json";

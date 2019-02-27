@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="20dp">
+                android:paddingTop="15dp">
 
                 <TextView
                     android:layout_width="150dp"
@@ -162,7 +162,7 @@
             <com.github.mikephil.charting.charts.CombinedChart
                 android:id="@+id/charts_card_chartview"
                 android:layout_width="match_parent"
-                android:layout_height="350dp" />
+                android:layout_height="300dp" />
 
             <GridLayout
                 android:id="@+id/charts_filter_grid_buttons"

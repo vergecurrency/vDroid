@@ -13,4 +13,8 @@ public final class MathUtils {
 		bd = bd.setScale(places, RoundingMode.HALF_UP);
 		return bd.doubleValue();
 	}
+
+	public  static int getRandomNumber(int max) {
+		return (int) (Math.random() * max);
+	}
 }
