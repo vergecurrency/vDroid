@@ -50,14 +50,15 @@
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/tor_settings_obfuscate"
-        android:checked="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tor_settings_desc2"
         android:layout_marginTop="20dp"
+        android:checked="true"
         android:padding="15dp"
         android:text="@string/tor_settings_obfuscate_on_off"
-        android:textColor="@color/verge_colorPrimaryDark" />
+        android:textColor="@color/verge_colorPrimaryDark"
+        android:theme="@style/tor_settings_obfuscate" />
 
     <FrameLayout
         android:id="@+id/tor_settings_ip"
