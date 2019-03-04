@@ -20,7 +20,7 @@ import vergecurrency.vergewallet.structs.Currency;
 public class FragmentStatisticsPageView extends Fragment {
 
 	PreferencesManager pm;
-	String currencyCode;
+	String currencyCode ;
 	View rootView;
 	ListView statisticsListView;
 	SwipeRefreshLayout pullRefreshView;

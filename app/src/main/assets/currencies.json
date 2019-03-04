@@ -2,43 +2,53 @@
   "currencies": [
     {
       "currency": "AUD",
-      "name": "Australian Dollar"
+      "name": "Australian Dollar",
+      "symbol": "$"
     },
     {
       "currency": "BRL",
-      "name": "Brazilian Real"
+      "name": "Brazilian Real",
+      "symbol": "R$"
     },
     {
       "currency": "CAD",
-      "name": "Canadian Dollar"
+      "name": "Canadian Dollar",
+      "symbol": "$"
     },
     {
       "currency": "CHF",
-      "name": "Swiss Franc"
+      "name": "Swiss Franc",
+      "symbol": "CHF"
     },
     {
       "currency": "CNY",
-      "name": "Chinese Yuan"
+      "name": "Chinese Yuan",
+      "symbol": "¥"
     },
     {
       "currency": "EUR",
-      "name": "Euro"
+      "name": "Euro",
+      "symbol": "€"
     },
     {
       "currency": "GBP",
-      "name": "British Pound"
+      "name": "British Pound",
+      "symbol": "£"
     },
     {
       "currency": "HKD",
-      "name": "Hong Kong Dollar"
+      "name": "Hong Kong Dollar",
+      "symbol": "$"
     },
     {
       "currency": "IDR",
-      "name": "Indonesian Rupiah"
+      "name": "Indonesian Rupiah",
+      "symbol": "Rp"
     },
     {
       "currency": "USD",
-      "name": "United States Dollar"
+      "name": "United States Dollar",
+      "symbol": "$"
     }
   ]
 }

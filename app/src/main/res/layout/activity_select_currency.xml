@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/mTextMessage"
-        android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        android:textAlignment="center"
-        android:paddingTop="7dp"
-        android:textColor="@color/verge_colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
         android:text="@string/title_fiat_currency"
-        android:textSize="20sp"
-        />
+        android:textAlignment="center"
+        android:textColor="@color/verge_colorPrimaryDark"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/selected_Fiat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:text="@string/title_fiat_currency"
+        android:textAlignment="center"
+        android:textColor="@color/verge_colorPrimaryDark"
+        android:textSize="20sp" />
 
     <ListView
         android:id="@+id/activity_select_currency_listview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white" />
 
 </LinearLayout>
