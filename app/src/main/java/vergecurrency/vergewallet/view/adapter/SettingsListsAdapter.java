@@ -83,9 +83,9 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         public VHItem(final View itemLayoutView) {
             super(itemLayoutView);
-            imgViewIcon = (ImageView) itemLayoutView.findViewById(R.id.listview_item_icon);
-            txtViewTitle = (TextView) itemLayoutView.findViewById(R.id.listview_item_title);
-            rel = (RelativeLayout) itemLayoutView.findViewById(R.id.listview_layout);
+            imgViewIcon = itemLayoutView.findViewById(R.id.listview_item_icon);
+            txtViewTitle = itemLayoutView.findViewById(R.id.listview_item_title);
+            rel = itemLayoutView.findViewById(R.id.listview_layout);
         }
     }
 
@@ -96,7 +96,7 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         public VHHeader(View itemLayoutView) {
             super(itemLayoutView);
-            txtViewTitle = (TextView) itemLayoutView.findViewById(R.id.listview_header_title);
+            txtViewTitle = itemLayoutView.findViewById(R.id.listview_header_title);
         }
     }
 

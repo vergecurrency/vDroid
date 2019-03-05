@@ -27,13 +27,6 @@ public class PaperkeyInstructionsActivity extends AppCompatActivity {
     }
 
     private Button.OnClickListener nextButtonListener() {
-        return new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(getApplicationContext(), PaperkeyDistributionActivity.class));
-
-            }
-        };
+        return v -> startActivity(new Intent(getApplicationContext(), PaperkeyDistributionActivity.class));
     }
 }

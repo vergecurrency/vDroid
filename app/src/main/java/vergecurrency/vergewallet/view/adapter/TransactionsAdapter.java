@@ -79,10 +79,10 @@ public class TransactionsAdapter extends ArrayAdapter<Transaction> implements Vi
 			LayoutInflater inflater = LayoutInflater.from(getContext());
 			convertView = inflater.inflate(R.layout.listview_item_transaction, parent, false);
 
-			vh.txAddress = (TextView) convertView.findViewById(R.id.listview_transaction_item_address);
-			vh.txAmount = (TextView) convertView.findViewById(R.id.listview_transaction_item_amount);
-			vh.txDateTime = (TextView) convertView.findViewById(R.id.listview_transaction_item_datetime);
-			vh.txIcon = (ImageView) convertView.findViewById(R.id.listview_transaction_item_icon);
+			vh.txAddress = convertView.findViewById(R.id.listview_transaction_item_address);
+			vh.txAmount = convertView.findViewById(R.id.listview_transaction_item_amount);
+			vh.txDateTime = convertView.findViewById(R.id.listview_transaction_item_datetime);
+			vh.txIcon = convertView.findViewById(R.id.listview_transaction_item_icon);
 
 			convertView.setTag(vh);
 

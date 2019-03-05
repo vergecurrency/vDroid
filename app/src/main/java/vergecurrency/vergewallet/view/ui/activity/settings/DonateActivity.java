@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.view.ui.fragments.FragmentSend;
+import vergecurrency.vergewallet.view.ui.fragment.FragmentSend;
 
 public class DonateActivity extends AppCompatActivity {
 

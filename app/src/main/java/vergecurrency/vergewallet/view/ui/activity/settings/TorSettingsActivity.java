@@ -46,7 +46,7 @@ public class TorSettingsActivity extends AppCompatActivity {
         ip = findViewById(R.id.tor_settings_ip_address);
 
         //Create the map
-        map = (MapView) findViewById(R.id.tor_settings_map);
+        map = findViewById(R.id.tor_settings_map);
         map.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
 
         //Don't want ugly zoom buttons

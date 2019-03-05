@@ -12,11 +12,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.view.ui.fragments.FragmentReceive;
-import vergecurrency.vergewallet.view.ui.fragments.FragmentSend;
-import vergecurrency.vergewallet.view.ui.fragments.FragmentSettings;
-import vergecurrency.vergewallet.view.ui.fragments.FragmentTransactions;
-import vergecurrency.vergewallet.view.ui.fragments.FragmentWallet;
+import vergecurrency.vergewallet.view.ui.fragment.FragmentReceive;
+import vergecurrency.vergewallet.view.ui.fragment.FragmentSend;
+import vergecurrency.vergewallet.view.ui.fragment.FragmentSettings;
+import vergecurrency.vergewallet.view.ui.fragment.FragmentTransactions;
+import vergecurrency.vergewallet.view.ui.fragment.FragmentWallet;
 
 public class WalletActivity extends AppCompatActivity {//extends LockActivity
 

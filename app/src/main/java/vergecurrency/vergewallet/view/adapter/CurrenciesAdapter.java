@@ -56,9 +56,9 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 			vh = new CurrencyItemViewHolder();
 			LayoutInflater inflater = LayoutInflater.from(getContext());
 			convertView = inflater.inflate(R.layout.listview_item_currency, parent, false);
-			vh.currencyId = (LinearLayout) convertView.findViewById(R.id.listview_currency_item);
-			vh.currencyCurrency = (TextView) convertView.findViewById(R.id.listview_currency_currency);
-			vh.currencyName = (TextView) convertView.findViewById(R.id.listview_currency_name);
+			vh.currencyId = convertView.findViewById(R.id.listview_currency_item);
+			vh.currencyCurrency = convertView.findViewById(R.id.listview_currency_currency);
+			vh.currencyName = convertView.findViewById(R.id.listview_currency_name);
 
 			convertView.setTag(vh);
 
