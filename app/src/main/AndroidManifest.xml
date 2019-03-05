@@ -29,25 +29,25 @@
         android:windowSoftInputMode="adjustResize"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".views.activities.MainActivity"
+            android:name=".view.ui.activity.WalletActivity"
             android:label="@string/app_name" />
-        <activity android:name=".views.activities.setup.SetupWalletActivity" />
-        <activity android:name=".views.activities.setup.PaperkeyInstructionsActivity" />
-        <activity android:name=".views.activities.setup.PaperkeySeedActivity" />
-        <activity android:name=".views.activities.SplashActivity">
+        <activity android:name=".view.ui.activity.firstlaunch.GetStartedActivity" />
+        <activity android:name=".view.ui.activity.firstlaunch.PaperkeyInstructionsActivity" />
+        <activity android:name=".view.ui.activity.firstlaunch.PaperkeyDistributionActivity" />
+        <activity android:name=".view.ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.activities.setup.PaperkeyVerifySeed" />
-        <activity android:name=".views.activities.setup.SetupDoneActivity" />
-        <activity android:name=".views.activities.settings.TorSettingsActivity" />
-        <activity android:name=".views.activities.settings.PaperkeyActivity" />
-        <activity android:name=".views.activities.settings.DisconnectActivity" />
-        <activity android:name=".views.activities.settings.DonateActivity" />
-        <activity android:name=".views.activities.settings.SelectCurrencyActivity" />
+        <activity android:name=".view.ui.activity.firstlaunch.PaperkeyUserVerifyActivity" />
+        <activity android:name=".view.ui.activity.firstlaunch.EndSetupActivity" />
+        <activity android:name=".view.ui.activity.settings.TorSettingsActivity" />
+        <activity android:name=".view.ui.activity.settings.PaperkeyActivity" />
+        <activity android:name=".view.ui.activity.settings.DisconnectActivity" />
+        <activity android:name=".view.ui.activity.settings.DonateActivity" />
+        <activity android:name=".view.ui.activity.settings.SelectCurrencyActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
