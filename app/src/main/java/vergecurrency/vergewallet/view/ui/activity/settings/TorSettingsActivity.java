@@ -2,7 +2,7 @@ package vergecurrency.vergewallet.view.ui.activity.settings;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 
 import org.osmdroid.api.IMapController;

@@ -2,12 +2,12 @@ package vergecurrency.vergewallet.view.ui.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.bottomnavigation.LabelVisibilityMode;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.LabelVisibilityMode;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -29,7 +29,6 @@ public class WalletActivity extends AppCompatActivity {//extends LockActivity
 
 		@Override
 		public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-			//TODO : validate that you're not on the current fragment already
 			if (item.getItemId() != currentItem) {
 				currentItem = item.getItemId();
 				switch (item.getItemId()) {

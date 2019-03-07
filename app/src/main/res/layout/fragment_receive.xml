@@ -107,7 +107,7 @@
             android:layout_height="40dp"
             android:src="@drawable/icon_stealth" />
 
-        <android.support.v7.widget.SwitchCompat
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/wallet_receive_switch_stealth"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

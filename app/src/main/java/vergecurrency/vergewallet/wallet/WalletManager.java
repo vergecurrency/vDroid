@@ -1,7 +1,7 @@
 package vergecurrency.vergewallet.wallet;
 
 
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import org.jetbrains.annotations.NotNull;
 
