@@ -7,11 +7,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.service.model.Preferences;
+import vergecurrency.vergewallet.viewmodel.PaperkeyDistributionViewModel;
 import vergecurrency.vergewallet.wallet.WalletManager;
 
 public class PaperkeyDistributionActivity extends AppCompatActivity {
+
+	//that's a nasty way to get a viewmodel
+	PaperkeyDistributionViewModel mViewModel = ViewModelProviders.of(this).get(PaperkeyDistributionViewModel.class);
 
 	Button nextButton;
 	Button previousButton;
@@ -28,6 +33,17 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 
 		pm = new Preferences(getApplicationContext());
 
+
+		initComponents();
+		//TODO : move to the viewmodel 
+		generateMnemonics();
+
+		//get the first word
+		nextWord();
+
+	}
+
+	private void initComponents() {
 		wordView = findViewById(R.id.paperkey_logo);
 
 		nextButton = findViewById(R.id.paperkey_next_word);
@@ -35,15 +51,14 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 
 		previousButton = findViewById(R.id.paperkey_previous_word);
 		previousButton.setOnClickListener(onPreviousListener());
+	}
 
+	private void generateMnemonics() {
 		WalletManager wm = new WalletManager();
 		seed = wm.generateSeed();
 		pm.setMnemonic(seed);
-
-		//get the first word
-		nextWord();
-
 	}
+
 
 	Button.OnClickListener onNextListener() {
 		return v -> {
@@ -63,6 +78,7 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 		};
 	}
 
+	//TODO : move to the viewmodel
 	private void nextWord() {
 		//Increase if not the last
 		if (currentWord < 11) {
@@ -76,6 +92,7 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 		wordView.setText(getWord());
 	}
 
+	//TODO : move to the viewmodel
 	private void previousWord() {
 		//Decrease if not the first
 		if (currentWord > 0) {
@@ -85,6 +102,7 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 		wordView.setText(getWord());
 	}
 
+	//TODO : move to the viewmodel
 	private String getWord() {
 		return seed[currentWord];
 	}

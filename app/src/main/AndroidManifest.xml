@@ -31,7 +31,7 @@
         <activity
             android:name=".view.ui.activity.WalletActivity"
             android:label="@string/app_name" />
-        <activity android:name=".view.ui.activity.firstlaunch.GetStartedActivity" />
+        <activity android:name=".view.ui.activity.firstlaunch.FirstLaunchActivity" />
         <activity android:name=".view.ui.activity.firstlaunch.PaperkeyInstructionsActivity" />
         <activity android:name=".view.ui.activity.firstlaunch.PaperkeyDistributionActivity" />
         <activity android:name=".view.ui.activity.SplashActivity">

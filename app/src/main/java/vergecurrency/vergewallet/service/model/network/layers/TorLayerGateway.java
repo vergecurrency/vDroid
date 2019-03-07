@@ -158,6 +158,49 @@ public class TorLayerGateway extends AsyncTask<String, Integer, String> {
 		}
 	}
 
+	/*	private boolean launchTor() {
+
+		//TODO : Once controller has been implemented delete this, it's just to not block http client called from main threads.
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy);
+
+		ApifyService adr = new ApifyService();
+
+
+		TorLayerGateway tlg = TorLayerGateway.getInstance();
+		tlg.setContext(getApplicationContext());
+		//TODO : Check whether there's internet connection first.
+		//tlg.execute();
+
+		//Start timeout counter
+		int timeoutCounter = -1;
+
+		while (timeoutCounter < 10) {
+			//increase timeout after one cycle
+			//timeoutCounter++;
+			if (true) {
+				// if (tlg.isConnected()) {
+	//Get the current public IP, just for fun honestly.
+	String IP = adr.readIP(tlg.retrieveDataFromService("https://api.ipify.org?format=json"));
+
+				Toast.makeText(getApplicationContext(), String.format("Tor connected. IP : %s",IP), Toast.LENGTH_LONG).show();
+	//return tlg.isConnected();
+				return true;
+			} else {
+		//Implement timeout
+		try {
+		Thread.sleep(3000);
+		} catch (InterruptedException e) {
+		e.printStackTrace();
+		}
+		}
+
+		}
+		return false;
+		}
+
+		*/
+
 
 }
 

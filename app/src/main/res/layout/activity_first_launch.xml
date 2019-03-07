@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fl_welcome_view"
+    android:id="@+id/layout_first_launch"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
@@ -10,7 +10,6 @@
         android:id="@+id/fl_welcome_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="Verge Background"
         android:scaleType="centerCrop"
         android:src="@drawable/bg_darkmountain" />
 
@@ -44,41 +43,52 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
-            android:text="@string/splash_slogan"
+            android:text="@string/first_launch_description"
             android:textAlignment="center"
             android:textColor="@color/verge_colorBackground"
             android:textSize="14dp" />
 
+
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/launch_bottom_text"
+        android:id="@+id/first_launch_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible">
 
-        <TextView
+        >
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:paddingBottom="60dp"
-            android:text="@string/splash_slogan"
-            android:textAlignment="center"
-            android:textColor="@color/verge_colorBackground"
-            android:textSize="24dp"
-            android:textStyle="italic" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textview_launch_tor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:paddingBottom="10dp"
-            android:text="@string/splash_tor"
-            android:textAlignment="center"
-            android:textColor="@color/verge_colorBackground"
-            android:textSize="18dp" />
+            <Button
+                android:id="@+id/button_create_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:adjustViewBounds="true"
+                android:backgroundTint="@color/verge_colorPrimary"
+                android:scaleType="fitCenter"
+                android:text="programmatically"
+                android:textColor="@color/verge_colorBackgroundTwo" />
 
+            <Button
+                android:id="@+id/button_restore_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/verge_colorBackgroundTwo"
+                android:text="programmatically"
+                android:textColor="@color/verge_colorPrimaryDark" />
+
+        </LinearLayout>
     </RelativeLayout>
 
 

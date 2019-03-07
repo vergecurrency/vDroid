@@ -2,6 +2,13 @@
     <string name="app_name">Verge</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiMmxhenkyZGVidWciLCJhIjoiY2pvbzdqdHJjMDFkOTNrc3U3cnlyZ3A0aCJ9.u6hnc-wFQhgefZW0eQRwFw</string>
 
+    //First Launch Activity
+    <string name="first_launch_description">Secure, anonymous and private \n Android wallet for Verge. \n Send and receive XVG</string>
+    //Splash screen on first launch
+    <string name="first_launch_new_wallet_button">&lt;b>&lt;big>Create a new wallet&lt;/big>&lt;/b>&lt;br />Create a new XVG wallet on your Android device.</string>
+    <string name="first_launch_restore_wallet_button"> &lt;b>&lt;big>Restore your wallet&lt;/big>&lt;/b>&lt;br />Lost your Android wallet? Restore it here.</string>
+
+
     //Fragment titles in main activity
     <string name="title_wallet">Wallet</string>
     <string name="title_transactions">Transactions</string>
@@ -31,9 +38,6 @@
     <string name="splash_title">Verge Android wallet</string>
     <string name="splash_slogan">Privacy is our standard.</string>
     <string name="splash_tor">Starting up Tor</string>
-    //Splash screen on first launch
-    <string name="firstlaunch_new_wallet">&lt;b>&lt;big>Create a new wallet&lt;/big>&lt;/b>&lt;br />Create a new XVG wallet on your Android device.</string>
-    <string name="firstlaunch_restore_wallet"> &lt;b>&lt;big>Restore your wallet&lt;/big>&lt;/b>&lt;br />Lost your Android wallet? Restore it here.</string>
 
     //Tor settings activity
     <string name="tor_settings_title">Tor is here for your privacy and hides your location</string>
