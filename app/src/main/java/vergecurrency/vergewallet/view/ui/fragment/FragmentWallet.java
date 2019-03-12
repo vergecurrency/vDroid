@@ -25,14 +25,8 @@ public class FragmentWallet extends Fragment {
 
     private View rootView;
     private String currencyCode;
-    private ViewPager pager;
-    private TextView balanceLabel;
-    private TextView balanceAmount;
-    private TextView changeLabel;
-    private TextView changeAmount;
-    private WalletFragmentViewModel mViewModel;
 
-    public FragmentWallet() {
+	public FragmentWallet() {
         // Required empty public constructor
     }
 
@@ -41,7 +35,7 @@ public class FragmentWallet extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-		mViewModel = ViewModelProviders.of(this).get(WalletFragmentViewModel.class);
+		WalletFragmentViewModel mViewModel = ViewModelProviders.of(this).get(WalletFragmentViewModel.class);
 
         currencyCode  = mViewModel.getCurrencyCode();
 
@@ -57,19 +51,19 @@ public class FragmentWallet extends Fragment {
 
     private void initComponents() {
 
-		pager = rootView.findViewById(R.id.wallet_cards_viewpager);
+		ViewPager pager = rootView.findViewById(R.id.wallet_cards_viewpager);
 		pager.setAdapter(new WalletAdapter(getChildFragmentManager(),getContext()));
 
-		balanceLabel = rootView.findViewById(R.id.wallet_card_balance_label);
+		TextView balanceLabel = rootView.findViewById(R.id.wallet_card_balance_label);
 		balanceLabel.setText(String.format("%s BALANCE", currencyCode));
 
-		balanceAmount= rootView.findViewById(R.id.wallet_card_balance);
+		TextView balanceAmount = rootView.findViewById(R.id.wallet_card_balance);
 		balanceAmount.setText(String.format("%s 132.15", currencyCode));
 
-		changeLabel = rootView.findViewById(R.id.wallet_card_change_label);
+		TextView changeLabel = rootView.findViewById(R.id.wallet_card_change_label);
 		changeLabel.setText(String.format("%s/XVG", currencyCode));
 
-		changeAmount = rootView.findViewById(R.id.wallet_card_change);
+		TextView changeAmount = rootView.findViewById(R.id.wallet_card_change);
         changeAmount.setText(String.format("%s 0.017", currencyCode));
     }
 

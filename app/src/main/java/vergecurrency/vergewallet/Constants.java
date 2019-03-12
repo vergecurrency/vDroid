@@ -33,6 +33,5 @@ public final class Constants {
 	public final static String MOCK_TRANSACTIONS_FILE_PATH = "transactions.json";
 
 
-	//public final static String CMC_API_KEY = "530a3244-7c12-4b13-88f2-3eed4127e2d7";
 
 }

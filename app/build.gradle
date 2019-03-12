@@ -34,7 +34,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
     //QR Reader implementation included in play services
     implementation 'com.google.android.gms:play-services-vision:17.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'org.slf4j:slf4j-android:1.7.7'
     //QRCode library
@@ -53,6 +53,9 @@ dependencies {
     implementation 'com.github.Omega-R:OmegaCenterIconButton:0.0.3@aar'
     //BitcoinKit
     implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.1.2b'
+    //Twitter
+    implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
+    implementation 'com.twitter.sdk.android:tweet-ui:3.1.1'
     //Json, not sure if used
     implementation files('src/main/libs/json-simple-1.1.1.jar')
     //GSON
@@ -61,6 +64,7 @@ dependencies {
     implementation files('src/main/libs/i2p-router.jar')
     //TOR library
     implementation project(':ThaliOnionProxyAndroid-release')
+
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.testng:testng:6.9.6'

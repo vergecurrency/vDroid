@@ -2,6 +2,7 @@ package vergecurrency.vergewallet.view.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.testfairy.TestFairy;
 
@@ -27,6 +28,13 @@ public class SplashActivity extends AppCompatActivity {
 
 		setContentView(R.layout.activity_splash);
 
+		//Just to have the splash screen going briefly
+		new Handler().postDelayed(() -> startApplication(), 1500);
+
+	}
+
+
+	public void startApplication() {
 		if (pm.getFirstLaunch()) {
 			finish();
 			startActivity(new Intent(getApplicationContext(), FirstLaunchActivity.class));
@@ -34,7 +42,6 @@ public class SplashActivity extends AppCompatActivity {
 			finish();
 			startActivity(new Intent(getApplicationContext(), WalletActivity.class));
 		}
-
 	}
 
 	@Override

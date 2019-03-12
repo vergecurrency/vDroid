@@ -36,7 +36,6 @@ public class FragmentStatisticsPageView extends Fragment {
 			rootView = inflater.inflate(R.layout.fragment_pageview_statistics, container, false);
 
 			initComponents();
-
 		}
 
 		return rootView;
