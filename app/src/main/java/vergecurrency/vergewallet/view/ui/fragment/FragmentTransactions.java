@@ -1,74 +1,40 @@
 package vergecurrency.vergewallet.view.ui.fragment;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import com.google.gson.GsonBuilder;
-import org.json.simple.*;
-import org.json.simple.parser.JSONParser;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import vergecurrency.vergewallet.Constants;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.service.model.Transaction;
 import vergecurrency.vergewallet.view.adapter.TransactionsAdapter;
+import vergecurrency.vergewallet.viewmodel.TransactionsViewModel;
 
 public class FragmentTransactions extends Fragment {
-    
-    double balance = 10d;
-    ListView transactionList;
-    
-    public FragmentTransactions() {
 
-    }
+	public FragmentTransactions() {
 
+	}
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		TransactionsViewModel mViewModel = ViewModelProviders.of(this).get(TransactionsViewModel.class);
+
 		View rootView;
-        // Inflate the layout for this fragment
-		if (balance <= 0)
-        rootView = inflater.inflate(R.layout.fragment_notransactions, container, false);
+
+		// Inflate the layout for this fragment
+		if (mViewModel.getBalance() == 0)
+			rootView = inflater.inflate(R.layout.fragment_notransactions, container, false);
 		else {
 			rootView = inflater.inflate(R.layout.fragment_transactions, container, false);
-			transactionList = rootView.findViewById(R.id.transactions_listview);
-			//transactionList.setTextFilterEnabled(true);
-			fillTransactionList(transactionList);
+			ListView transactionList = rootView.findViewById(R.id.transactions_listview);
+			transactionList.setAdapter(new TransactionsAdapter(this.getContext(), mViewModel.getTransactionsList()));
 		}
-		
+
 		return rootView;
-    }
-
-
-    //TODO : How many times will I say it? ViewModel!
-    private void fillTransactionList (ListView transactionList) {
-		JSONParser parser = new JSONParser();
-		try {
-			//Get the Json
-			InputStream is = this.getContext().getAssets().open(Constants.MOCK_TRANSACTIONS_FILE_PATH);
-			InputStreamReader isr = new InputStreamReader(is);
-			JSONObject jsonObject= (JSONObject) parser.parse(isr);
-			JSONArray transactionsListJSON = (JSONArray) jsonObject.get("transactions");
-			
-			Transaction[] txsArray;
-			ArrayList<Transaction> txs;
-			txsArray = new GsonBuilder().create().fromJson(transactionsListJSON.toJSONString(), Transaction[].class) ;
-			txs = new ArrayList<>(Arrays.asList(txsArray));
-			transactionList.setAdapter(new TransactionsAdapter(this.getContext(), txs));
-			
-			
-		} catch (Exception ex) {
-			ex.getStackTrace();
-		}
 	}
-	
-	
 }
