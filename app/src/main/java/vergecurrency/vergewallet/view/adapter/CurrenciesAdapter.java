@@ -28,7 +28,7 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 	 */
 	public CurrenciesAdapter(@NonNull Context context, ArrayList<Currency> curs) {
 		super(context, R.layout.listview_item_currency, curs);
-		pm = new PreferencesManager(context);
+		pm = PreferencesManager.getInstance();
 	}
 
 	@Override

@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.utilities.GraphUtils;
-import vergecurrency.vergewallet.viewmodel.ChartsPageViewModel;
+import vergecurrency.vergewallet.viewmodel.ChartsViewModel;
 
 public class FragmentChartsPageView extends Fragment {
 
@@ -35,7 +35,7 @@ public class FragmentChartsPageView extends Fragment {
 		super.onCreate(savedInstanceState);
 		rootView = inflater.inflate(R.layout.fragment_pageview_charts, container, false);
 
-		mViewModel = ViewModelProviders.of(this).get(ChartsPageViewModel.class);
+		mViewModel = ViewModelProviders.of(this).get(ChartsViewModel.class);
 
 		combinedChart = rootView.findViewById(R.id.charts_card_chartview);
 

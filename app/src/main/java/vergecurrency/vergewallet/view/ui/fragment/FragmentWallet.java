@@ -39,7 +39,7 @@ public class FragmentWallet extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        pm = new PreferencesManager(getContext());
+        pm = PreferencesManager.getInstance();
         currencyCode  = Currency.getCurrencyFromJson(pm.getPreferredCurrency()).getCurrency();
 
         // Inflate the layout for this fragment
