@@ -46,7 +46,9 @@ public class FragmentTransactions extends Fragment {
 		
 		return rootView;
     }
-    
+
+
+    //TODO : How many times will I say it? ViewModel!
     private void fillTransactionList (ListView transactionList) {
 		JSONParser parser = new JSONParser();
 		try {

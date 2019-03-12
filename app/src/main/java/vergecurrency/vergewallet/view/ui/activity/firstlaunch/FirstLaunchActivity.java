@@ -37,6 +37,7 @@ public class FirstLaunchActivity extends AppCompatActivity {
 
 	private Button.OnClickListener newWalletOnClickListener() {
 		return v -> {
+			finish();
 			startActivity(new Intent(this, PaperkeyInstructionsActivity.class));
 		};
 	}

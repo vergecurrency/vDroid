@@ -9,20 +9,19 @@ import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.service.model.Preferences;
+import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.viewmodel.PaperkeyDistributionViewModel;
 import vergecurrency.vergewallet.wallet.WalletManager;
 
 public class PaperkeyDistributionActivity extends AppCompatActivity {
 
-	//that's a nasty way to get a viewmodel
-	PaperkeyDistributionViewModel mViewModel = ViewModelProviders.of(this).get(PaperkeyDistributionViewModel.class);
+	PaperkeyDistributionViewModel mViewModel;
 
 	Button nextButton;
 	Button previousButton;
 	TextView wordView;
 	int currentWord = -1;
-	Preferences pm;
+	PreferencesManager pm;
 
 	String[] seed;
 
@@ -31,11 +30,11 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_paperkey_seed);
 
-		pm = new Preferences(getApplicationContext());
-
+		pm = PreferencesManager.getInstance();
+		mViewModel = ViewModelProviders.of(this).get(PaperkeyDistributionViewModel.class);
 
 		initComponents();
-		//TODO : move to the viewmodel 
+		//TODO : move to the viewmodel
 		generateMnemonics();
 
 		//get the first word
@@ -54,8 +53,11 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 	}
 
 	private void generateMnemonics() {
+		//Should be created at the launch
 		WalletManager wm = new WalletManager();
+		//NO.
 		seed = wm.generateSeed();
+		// should be on generate seed
 		pm.setMnemonic(seed);
 	}
 
@@ -65,7 +67,7 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 			//get to the next word. For now get to the main Activity
 			if (currentWord == 11) {
 
-				startActivity(new Intent(getApplicationContext(), PaperkeyUserVerifyActivity.class));
+				startActivity(new Intent(getApplicationContext(), PaperkeyVerificationActivity.class));
 			}
 			nextWord();
 		};

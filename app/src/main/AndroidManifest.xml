@@ -41,7 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ui.activity.firstlaunch.PaperkeyUserVerifyActivity" />
+        <activity android:name=".view.ui.activity.firstlaunch.PaperkeyVerificationActivity" />
         <activity android:name=".view.ui.activity.firstlaunch.EndSetupActivity" />
         <activity android:name=".view.ui.activity.settings.TorSettingsActivity" />
         <activity android:name=".view.ui.activity.settings.PaperkeyActivity" />

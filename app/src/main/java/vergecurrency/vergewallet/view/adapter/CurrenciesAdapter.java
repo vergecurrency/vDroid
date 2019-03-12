@@ -13,12 +13,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.service.model.Preferences;
+import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.service.model.Currency;
 
 public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.OnClickListener {
 
-	private Preferences pm;
+	private PreferencesManager pm;
 
 	/**
 	 * Transaction adapter constructor
@@ -28,7 +28,7 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 	 */
 	public CurrenciesAdapter(@NonNull Context context, ArrayList<Currency> curs) {
 		super(context, R.layout.listview_item_currency, curs);
-		pm = new Preferences(context);
+		pm = new PreferencesManager(context);
 	}
 
 	@Override

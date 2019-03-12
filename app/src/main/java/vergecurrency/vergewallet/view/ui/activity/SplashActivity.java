@@ -8,12 +8,12 @@ import com.testfairy.TestFairy;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.service.model.Preferences;
+import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.view.ui.activity.firstlaunch.FirstLaunchActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-	Preferences pm;
+	PreferencesManager pm;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
 		TestFairy.begin(this, "a67a4df6e2a8a0c981638eb0f168297fd45aed73");
 
 		//gets the holy preferences
-		pm = new Preferences(this.getApplicationContext());
+		pm = PreferencesManager.init(getApplicationContext());
 
 		setContentView(R.layout.activity_splash);
 
@@ -37,17 +37,8 @@ public class SplashActivity extends AppCompatActivity {
 
 	}
 
-	//For now I let it like this, I want no action on back pressed in the welcome activity.
 	@Override
 	public void onBackPressed() {
 	}
-
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-
-	}
-
 
 }

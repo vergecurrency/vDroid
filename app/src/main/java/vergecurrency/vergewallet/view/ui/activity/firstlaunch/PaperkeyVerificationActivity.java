@@ -12,12 +12,14 @@ import android.widget.TextView;
 
 import java.util.Arrays;
 
+import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.utilities.MathUtils;
-import vergecurrency.vergewallet.service.model.Preferences;
+import vergecurrency.vergewallet.service.model.PreferencesManager;
+import vergecurrency.vergewallet.viewmodel.PaperkeyVerificationViewModel;
 
-public class PaperkeyUserVerifyActivity extends AppCompatActivity {
+public class PaperkeyVerificationActivity extends AppCompatActivity {
 
 	TextView firstWordCaption;
 	TextView secondWordCaption;
@@ -25,24 +27,31 @@ public class PaperkeyUserVerifyActivity extends AppCompatActivity {
 	EditText secondWordInput;
 	Button confirmButton;
 	Pair<String[], int[]> verificationWords;
-	Preferences pm;
+	PreferencesManager pm;
 	String[] mnemonics;
+
+	PaperkeyVerificationViewModel mViewModel;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_paperkey_confirm_seed);
-		//get two random words from the seed
+
+		mViewModel = ViewModelProviders.of(this).get(PaperkeyVerificationViewModel.class);
 
 		//Get the shared preferences
-		pm = new Preferences(this.getApplicationContext());
+		pm = PreferencesManager.getInstance();
 		mnemonics = pm.getMnemonic();
 		verificationWords = getTwoRandomWordsFromSeed();
+
+
 		initComponents();
 
 	}
 
 	private void initComponents() {
+
+		//TODO : Move this shit to viewmodel
 		//set the caption for the first word according to its position
 		firstWordCaption = findViewById(R.id.label_first_word);
 		firstWordCaption.setText(String.format("Word #%d", verificationWords.second[0] + 1));
@@ -83,7 +92,7 @@ public class PaperkeyUserVerifyActivity extends AppCompatActivity {
 		};
 	}
 
-
+	//TODO : Def move this shit to viewmodel
 	private Pair<String[], int[]> getTwoRandomWordsFromSeed() {
 
 		//prepare the return objects

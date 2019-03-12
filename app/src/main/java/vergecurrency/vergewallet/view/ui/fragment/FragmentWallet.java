@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.service.model.Preferences;
+import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.service.model.Currency;
 import vergecurrency.vergewallet.view.ui.fragment.walletpageviews.FragmentStatisticsPageView;
 import vergecurrency.vergewallet.view.ui.fragment.walletpageviews.FragmentTransactionsPageView;
@@ -22,7 +22,7 @@ public class FragmentWallet extends Fragment {
 
     public View rootView;
     private String currencyCode;
-    private Preferences pm;
+    private PreferencesManager pm;
     private ViewPager pager;
     private TextView balanceLabel;
     private TextView balanceAmount;
@@ -39,8 +39,8 @@ public class FragmentWallet extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        pm = new Preferences(getContext());
-        currencyCode  = Currency.getCurrencyFromJson(pm.getSelectedCurrency()).getCurrency();
+        pm = new PreferencesManager(getContext());
+        currencyCode  = Currency.getCurrencyFromJson(pm.getPreferredCurrency()).getCurrency();
 
         // Inflate the layout for this fragment
 

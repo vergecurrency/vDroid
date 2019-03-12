@@ -13,13 +13,13 @@ import java.util.Map;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.adapter.PriceStatisticsAdapter;
-import vergecurrency.vergewallet.service.model.Preferences;
+import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.service.repository.PriceStatsDataReader;
 import vergecurrency.vergewallet.service.model.Currency;
 
 public class FragmentStatisticsPageView extends Fragment {
 
-	Preferences pm;
+	PreferencesManager pm;
 	String currencyCode;
 	View rootView;
 	ListView statisticsListView;
@@ -33,8 +33,8 @@ public class FragmentStatisticsPageView extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-		pm = new Preferences(this.getContext());
-		currencyCode = Currency.getCurrencyFromJson(pm.getSelectedCurrency()).getCurrency();
+		pm = new PreferencesManager(this.getContext());
+		currencyCode = Currency.getCurrencyFromJson(pm.getPreferredCurrency()).getCurrency();
 
 
 		if (rootView == null) {
