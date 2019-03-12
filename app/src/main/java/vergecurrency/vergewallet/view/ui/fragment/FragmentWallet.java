@@ -4,6 +4,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,87 +14,62 @@ import android.widget.TextView;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.service.model.Currency;
+import vergecurrency.vergewallet.view.adapter.WalletAdapter;
 import vergecurrency.vergewallet.view.ui.fragment.walletpageviews.FragmentStatisticsPageView;
 import vergecurrency.vergewallet.view.ui.fragment.walletpageviews.FragmentTransactionsPageView;
 import vergecurrency.vergewallet.view.ui.fragment.walletpageviews.FragmentChartsPageView;
+import vergecurrency.vergewallet.viewmodel.WalletFragmentViewModel;
 
 
 public class FragmentWallet extends Fragment {
 
-    public View rootView;
+    private View rootView;
     private String currencyCode;
-    private PreferencesManager pm;
     private ViewPager pager;
     private TextView balanceLabel;
     private TextView balanceAmount;
     private TextView changeLabel;
     private TextView changeAmount;
-
+    private WalletFragmentViewModel mViewModel;
 
     public FragmentWallet() {
         // Required empty public constructor
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        pm = PreferencesManager.getInstance();
-        currencyCode  = Currency.getCurrencyFromJson(pm.getPreferredCurrency()).getCurrency();
+        super.onCreate(savedInstanceState);
+
+		mViewModel = ViewModelProviders.of(this).get(WalletFragmentViewModel.class);
+
+        currencyCode  = mViewModel.getCurrencyCode();
 
         // Inflate the layout for this fragment
 
         if(rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
 
-            //Instantiate the ViewPager to have the fragments into the viewpager layout
-            pager = rootView.findViewById(R.id.wallet_cards_viewpager);
-			balanceLabel = rootView.findViewById(R.id.wallet_card_balance_label);
-			balanceAmount= rootView.findViewById(R.id.wallet_card_balance);
-			changeLabel = rootView.findViewById(R.id.wallet_card_change_label);
-			changeAmount = rootView.findViewById(R.id.wallet_card_change);
-
-
             initComponents();
         }
         return rootView;
     }
 
-    public class MyPagerAdapter extends FragmentPagerAdapter {
-
-        public MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int pos) {
-
-            switch (pos) {
-
-                case 0:
-                   return FragmentTransactionsPageView.instantiate(getContext(), FragmentTransactionsPageView.class.getName());
-                case 1:
-                    return FragmentStatisticsPageView.instantiate(getContext(),FragmentStatisticsPageView.class.getName());
-                case 2:
-                    return FragmentChartsPageView.instantiate(getContext(), FragmentChartsPageView.class.getName());
-                default:
-                   return null;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
-        }
-    }
-
-
     private void initComponents() {
-        pager.setAdapter(new MyPagerAdapter(getChildFragmentManager()));
-        balanceLabel.setText(String.format("%s BALANCE", currencyCode));
-        changeLabel.setText(String.format("%s/XVG", currencyCode));
-        balanceAmount.setText(String.format("%s 132.15", currencyCode));
+
+		pager = rootView.findViewById(R.id.wallet_cards_viewpager);
+		pager.setAdapter(new WalletAdapter(getChildFragmentManager(),getContext()));
+
+		balanceLabel = rootView.findViewById(R.id.wallet_card_balance_label);
+		balanceLabel.setText(String.format("%s BALANCE", currencyCode));
+
+		balanceAmount= rootView.findViewById(R.id.wallet_card_balance);
+		balanceAmount.setText(String.format("%s 132.15", currencyCode));
+
+		changeLabel = rootView.findViewById(R.id.wallet_card_change_label);
+		changeLabel.setText(String.format("%s/XVG", currencyCode));
+
+		changeAmount = rootView.findViewById(R.id.wallet_card_change);
         changeAmount.setText(String.format("%s 0.017", currencyCode));
     }
 
