@@ -12,11 +12,7 @@ import org.osmdroid.views.overlay.Marker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
-import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.service.model.network.layers.TorLayerGateway;
-import vergecurrency.vergewallet.service.repository.ApifyService;
-import vergecurrency.vergewallet.service.repository.GeocodingService;
 import vergecurrency.vergewallet.viewmodel.TorSettingsViewModel;
 
 public class TorSettingsActivity extends AppCompatActivity {
@@ -38,19 +34,18 @@ public class TorSettingsActivity extends AppCompatActivity {
 		//Get a handler to execute stuff only after setting the content view
 		final Handler handler = new Handler();
 
-
 		//Handler that waits to view to be displayed before starting tor.
-		handler.postDelayed(() -> TorSettingsActivity.this.run(), 500);
+		handler.postDelayed(this::initComponents, 500);
 	}
 
 
-	private void run() {
+	private void initComponents() {
 		ip = findViewById(R.id.tor_settings_ip_address);
-
+		ip.setText(mViewModel.getIPAddress());
 		initMap();
 	}
 
-	public void initMap() {
+	private void initMap() {
 		//Create the map
 		map = findViewById(R.id.tor_settings_map);
 		map.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
@@ -60,46 +55,37 @@ public class TorSettingsActivity extends AppCompatActivity {
 		//I feel ok with multitouch tho
 		map.setMultiTouchControls(true);
 
-		//Set a decent zoom level
-		IMapController mapController = map.getController();
-		mapController.setZoom(9d);
+		GeoPoint startPoint = createGeoPoint();
 
-		Marker startMarker = new Marker(map);
-		//Try to get lat and long according to IP TODO : You know the song buddy, don't fuck with me.
-		String latlong = getLatLong();
-		GeoPoint startPoint;
+		initStartPoint(startPoint);
+	}
+
+	private GeoPoint createGeoPoint() {
+		String latlong = mViewModel.getCoordinates();
 		//If everything is okay
 		if (!latlong.equals("error")) {
 			String[] latlongArray = latlong.split(";");
-			startPoint = new GeoPoint(Double.parseDouble(latlongArray[0]), Double.parseDouble(latlongArray[0]));
+			return new GeoPoint(Double.parseDouble(latlongArray[0]), Double.parseDouble(latlongArray[0]));
 
 		}
 		//Otherwise just point to Null Island. See here : https://en.wikipedia.org/wiki/Null_Island
-		else startPoint = new GeoPoint(0d, 0d);
+		else return new GeoPoint(0d, 0d);
 
+
+	}
+
+	private void initStartPoint(GeoPoint startPoint) {
+		IMapController mapController = map.getController();
+		mapController.setZoom(9d);
+		Marker startMarker = new Marker(map);
 		//Marker
 		startMarker.setPosition(startPoint);
 		startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
 		map.getOverlays().add(startMarker);
 		//Show me where I am baby :)
 		mapController.setCenter(startPoint);
-
 	}
 
 
-	//TODO : VIEWMODEL
-	public String getLatLong() {
-
-		ApifyService adr = new ApifyService();
-		GeocodingService idr = new GeocodingService();
-
-		TorLayerGateway tlg = TorLayerGateway.getInstance();
-		String IP = adr.readIP(tlg.retrieveDataFromService(Constants.IP_RETRIEVAL_ENDPOINT));
-		ip.setText(IP);
-
-		String queryLoc = String.format(Constants.IP_DATA_ENDPOINT, IP);
-		return idr.readCoordinates(tlg.retrieveDataFromService(queryLoc));
-
-	}
 }
 

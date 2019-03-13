@@ -5,25 +5,28 @@ import org.json.JSONObject;
 
 public class GeocodingService {
 
-    public GeocodingService() {}
+	//TODO : Query should be done here
+	//TODO : Make it a static class
+	public GeocodingService() {
+	}
 
-    public String readCoordinates(String rawData) {
+	public String readCoordinates(String rawData) {
 
-        String lat ="";
-        String lon = "";
+		String lat = "";
+		String lon = "";
 
 
-        if (rawData != null && !rawData.equals("")) {
-            JSONObject reader;
-            try {
-                reader = new JSONObject(rawData);
-                lat =  reader.getString("latitude");
-                lon =  reader.getString("longitude");
-                return String.format("%s;%s", lat, lon);
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return "error";
-            }
-        } else return "error";
-    }
+		if (rawData != null && !rawData.equals("")) {
+			JSONObject reader;
+			try {
+				reader = new JSONObject(rawData);
+				lat = reader.getString("latitude");
+				lon = reader.getString("longitude");
+				return String.format("%s;%s", lat, lon);
+			} catch (JSONException e) {
+				e.printStackTrace();
+				return "error";
+			}
+		} else return "error";
+	}
 }

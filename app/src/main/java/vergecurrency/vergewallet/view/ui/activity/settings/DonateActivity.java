@@ -27,15 +27,19 @@ public class DonateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donate);
 
-        donateHeader = findViewById(R.id.donate_header);
-        donateDesc1 = findViewById(R.id.donate_desc1);
-        donateDesc2 = findViewById(R.id.donate_desc2);
+        initComponents();
+    }
 
-        fl = findViewById(R.id.donate_content);
-        fl.setVisibility(View.INVISIBLE);
+    private void initComponents() {
+		donateHeader = findViewById(R.id.donate_header);
+		donateDesc1 = findViewById(R.id.donate_desc1);
+		donateDesc2 = findViewById(R.id.donate_desc2);
 
-        donateButton = findViewById(R.id.button_donate);
-        donateButton.setOnClickListener(setOcl());
+		fl = findViewById(R.id.donate_content);
+		fl.setVisibility(View.INVISIBLE);
+
+		donateButton = findViewById(R.id.button_donate);
+		donateButton.setOnClickListener(setOcl());
     }
 
 
