@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/verge_realWhite"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:id="@+id/transactions_card_header"
+        android:clickable="true"
+        android:padding="3dp"
+        >
+
+        <ImageView
+            android:id="@+id/transactions_card_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:tint="@color/verge_colorPrimaryDark"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_twitter"
+            android:padding="7dp"
+            />
+
+        <TextView
+            android:id="@+id/pageview_statistics_label"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingStart="5dp"
+            android:text="@string/twitter_pageview_header"
+            android:textColor="@color/verge_colorPrimaryDark"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/tweets_refresh_pull"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ListView
+        android:id="@+id/twitter_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    
+</LinearLayout>
+

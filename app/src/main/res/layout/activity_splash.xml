@@ -38,16 +38,6 @@
             android:textSize="28sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/launch_verge_sub"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:text="@string/splash_slogan"
-            android:textAlignment="center"
-            android:textColor="@color/verge_colorBackground"
-            android:textSize="16sp" />
-
     </LinearLayout>
 
     <RelativeLayout
@@ -73,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:paddingBottom="10dp"
-            android:text="@string/splash_tor"
+            android:text="@string/splash_sub"
             android:textAlignment="center"
             android:textColor="@color/verge_colorBackground"
             android:textSize="18dp" />

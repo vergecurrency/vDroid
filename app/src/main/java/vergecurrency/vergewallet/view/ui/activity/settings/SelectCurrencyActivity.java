@@ -2,13 +2,15 @@ package vergecurrency.vergewallet.view.ui.activity.settings;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ListView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.utilities.CurrenciesUtils;
 import vergecurrency.vergewallet.view.adapter.CurrenciesAdapter;
+import vergecurrency.vergewallet.viewmodel.SelectCurrencyViewModel;
 
 public class SelectCurrencyActivity extends AppCompatActivity {
 
@@ -18,14 +20,10 @@ public class SelectCurrencyActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_currency);
 
-		context = getApplicationContext();
+		SelectCurrencyViewModel mViewModel = ViewModelProviders.of(this).get(SelectCurrencyViewModel.class);
 
-		currenciesList = findViewById(R.id.activity_select_currency_listview);
-		currenciesList.setAdapter(new CurrenciesAdapter(context,CurrenciesUtils.loadCurrenciesFromFile(context)));
+		ListView currenciesList = findViewById(R.id.activity_select_currency_listview);
+		currenciesList.setAdapter(new CurrenciesAdapter(getApplicationContext(), mViewModel.getCurrencies()));
 
 	}
-
-
-	private ListView currenciesList;
-	private Context context;
 }
