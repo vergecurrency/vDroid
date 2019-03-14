@@ -83,16 +83,13 @@ public class FragmentChartsPageView extends Fragment {
 			}
 
 			tv.setTextColor(getResources().getColor(R.color.verge_colorPrimary));
-
 			createChart(id);
-
 		};
 	}
 
 	private void createChart(int filter) {
 
 		CombinedData data = createCombinedData(filter);
-
 		setChartProperties();
 		setAxisPropertiesAndData(data);
 		finalizeChart(data);
@@ -101,7 +98,7 @@ public class FragmentChartsPageView extends Fragment {
 	private CombinedData createCombinedData(int filter) {
 		CombinedData data = new CombinedData();
 		data.setData(generateBarData(mViewModel.getVolumeData(filter)));
-		data.setData(generateLineData(mViewModel.getPriceData(filter), getContext()));
+		data.setData(generateLineData(mViewModel.getPriceData(filter)));
 		return data;
 	}
 
@@ -168,7 +165,7 @@ public class FragmentChartsPageView extends Fragment {
 	}
 
 
-	private LineData generateLineData(List<Entry> data, Context c) {
+	private LineData generateLineData(List<Entry> data) {
 		LineData lineData = new LineData();
 
 		LineDataSet set = new LineDataSet(data, "Line");
@@ -180,7 +177,7 @@ public class FragmentChartsPageView extends Fragment {
 		set.setLineWidth(1.5f);
 		set.setHighlightLineWidth(1f);
 		set.setHighLightColor(R.color.verge_colorPrimary);
-		set.setFillDrawable(ContextCompat.getDrawable(c, R.drawable.fade_blue));
+		set.setFillDrawable(ContextCompat.getDrawable(getContext(), R.drawable.fade_blue));
 		set.setAxisDependency(YAxis.AxisDependency.RIGHT);
 		lineData.addDataSet(set);
 
