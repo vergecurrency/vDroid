@@ -1,7 +1,6 @@
 package vergecurrency.vergewallet.view.ui.fragment.walletpageviews;
 
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;

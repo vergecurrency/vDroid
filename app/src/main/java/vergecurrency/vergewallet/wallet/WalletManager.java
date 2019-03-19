@@ -1,52 +1,62 @@
 package vergecurrency.vergewallet.wallet;
 
 
-import androidx.lifecycle.MutableLiveData;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.lifecycle.MutableLiveData;
 import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import io.horizontalsystems.bitcoinkit.models.BlockInfo;
 import io.horizontalsystems.bitcoinkit.models.TransactionInfo;
 import io.horizontalsystems.hdwalletkit.Mnemonic;
+import vergecurrency.vergewallet.service.model.MnemonicSeed;
+import vergecurrency.vergewallet.service.model.PreferencesManager;
 
-import static io.horizontalsystems.bitcoinkit.BitcoinKit.*;
+import static io.horizontalsystems.bitcoinkit.BitcoinKit.KitState;
+import static io.horizontalsystems.bitcoinkit.BitcoinKit.Listener;
+import static io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType;
 
 
 public class WalletManager implements Listener {
 
 	private String networkName;
 	private MutableLiveData<Long> balance;
+	private MnemonicSeed seed;
+	private PreferencesManager pm;
 
 	public WalletManager() {
+		pm = PreferencesManager.getInstance();
 
 	}
 
 
-	public void startWallet(String seed) {
+	public void startWallet() {
 		NetworkType netType = NetworkType.MainNet;
+		String [] seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());
+		if(seed != null) {
+			BitcoinKit wallet = new BitcoinKit((List<String>) Arrays.asList(seed), netType, null, 10, true, 1);
+			wallet.setListener(this);
+			networkName = netType.name();
+			balance.setValue(wallet.getBalance());
 
-		BitcoinKit wallet = new BitcoinKit((List<String>) Arrays.asList(seed), netType,null,10,true,1);
-		wallet.setListener(this);
-		networkName = netType.name();
-		balance.setValue(wallet.getBalance());
 
-
-		wallet.start();
-
+			wallet.start();
+		} else {
+			//I don't know, I'll see how to handle this.
+		}
 	}
 
 
-	public String[] generateSeed() {
+	public void generateSeed() {
 
-		String[] seed = new Mnemonic().generate(Mnemonic.Strength.Default).toArray(new String[0]);
+		seed = new MnemonicSeed();
 
-		return seed;
+		seed.setSeed(new Mnemonic().generate(Mnemonic.Strength.Default).toArray(new String[0]));
+
+		pm.setMnemonic(seed.getSeedAsJson());
 	}
-
 
 
 	@Override

@@ -25,11 +25,7 @@ public class EndSetupActivity extends AppCompatActivity {
     }
 
     Button.OnClickListener openWalletButtonListener() {
-        return new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), WalletActivity.class));
-            }
-        };
+        finish();
+        return v -> startActivity(new Intent(getApplicationContext(), WalletActivity.class));
     }
 }

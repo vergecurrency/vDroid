@@ -34,13 +34,22 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 		mViewModel = ViewModelProviders.of(this).get(PaperkeyDistributionViewModel.class);
 
 		initComponents();
-		//TODO : move to the viewmodel
-		generateMnemonics();
 
+		generateSeed();
 		//get the first word
 		nextWord();
 
 	}
+
+	private void generateSeed() {
+		mViewModel.generateMnemonics();
+		try {
+			seed = mViewModel.getSeed();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	private void initComponents() {
 		wordView = findViewById(R.id.paperkey_logo);
@@ -51,16 +60,6 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 		previousButton = findViewById(R.id.paperkey_previous_word);
 		previousButton.setOnClickListener(onPreviousListener());
 	}
-
-	private void generateMnemonics() {
-		//Should be created at the launch
-		WalletManager wm = new WalletManager();
-		//NO.
-		seed = wm.generateSeed();
-		// should be on generate seed
-		pm.setMnemonic(seed);
-	}
-
 
 	Button.OnClickListener onNextListener() {
 		return v -> {

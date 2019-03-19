@@ -21,13 +21,11 @@ public class ChartsViewModel extends ViewModel {
 
 	public List<Entry> getVolumeData(int filter) {
 		GraphInfo gi = StatsService.readPriceStatistics(filter);
-
 		return createEntryList(gi.getVolume_usd().entrySet());
 	}
 
 	public List<Entry> getPriceData(int filter) {
 		GraphInfo gi = StatsService.readPriceStatistics(filter);
-
 		return createEntryList(gi.getPrice_usd().entrySet());
 	}
 

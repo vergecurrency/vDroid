@@ -20,6 +20,7 @@ public class PreferencesManager {
 		prefs = context.getSharedPreferences("com.vergecurrency.vergewallet", Context.MODE_PRIVATE);
 	}
 
+	//--------Singleton methods
 	public static PreferencesManager init(Context context) {
 		if (INSTANCE != null) {
 			throw new AssertionError("You already initialized an object of this type");
@@ -33,6 +34,7 @@ public class PreferencesManager {
 		}
 		return INSTANCE;
 	}
+
 	//---------First launch
 	public boolean getFirstLaunch() {
 		return prefs.getBoolean("firstlaunch", true);
@@ -61,19 +63,15 @@ public class PreferencesManager {
 	}
 
 
-	public String[] getMnemonic() {
+	public String getMnemonic() {
 
-		String[] mnemonicsList = prefs.getStringSet("mnemonic", null).toArray(new String[0]);
-		return mnemonicsList;
+		return prefs.getString("mnemonic", null);
 	}
 
-	public void setMnemonic(String[] mnemonic) {
-		Set<String> mnemonicsSet = new TreeSet<>(Arrays.asList(mnemonic));
-
-		prefs.edit().putStringSet("mnemonic", mnemonicsSet).apply();
+	public void setMnemonic(String mnemonic) {
+		prefs.edit().putString("mnemonic", mnemonic).apply();
 	}
 
-	private static class PMHelper {
-	}
+
 
 }
