@@ -1,34 +1,43 @@
-# AndroidVergeWallet
-Android Verge wallet, concept based on iOS repo
+<p align="center"><img src="https://raw.githubusercontent.com/vergecurrency/vIOS/master/readme-header.png" alt="Verge iOS Wallet"></p>
+<p align="center">
+  <img src="https://img.shields.io/badge/status-pre--alpha-lightgrey.svg">
+  <img src="https://img.shields.io/badge/license-MIT-blue.svg">
+</p>
 
-Changelog :
+#  VERGE Android Wallet
 
-- Removed pin interface to build from scratch
-- Made TorLayer a singleton
-- Added proper IP retrieval implementation
-- Added proper coordinates retrieval implementation
-- Settings :
--- Added "Disconnect this device" view (you can click on it, didn't animate yet), no functionality yet
--- Added *Paperkey" view (you can click on it, didn't animate yet), no functionality yet
--- Added "Donate" view (you can click on it, didn't animate yet), no functionality yet
--- Added "Tor Settings" view (you can click on it, didn't animate yet),  missing toggle tor feature, map is working
+This Android wallet provides an easy and secure wallet on your Android device. With **Tor** integrated you can be sure your http communication is private. Sending and receiving XVG in a secure and easy to use wallet will actually change the way you use Verge Currency. 💪
 
+## Features:
 
-Overall status:
+* Sending and receiving XVG
+* Store addresses in an address book
+* Tor integrated
+* Price statistics in different fiat currencies
+* Share your receive card
+* Private keys are yours
+* Possibility to choose your own wallet service
 
-FrontEnd
-----------------------------------------------------------
-Setup views : done
-Restore views : 0%
-Wallet view : 45%
-Transactions view : 70% -> missing search bar, order by
-Receive view : 80% 
-Send view : 80%
-Setting view : 40% --> started working on different sub activities
-Pin view : Will start from scratch agaig
+## Local Development
 
-Backend
-----------------------------------------------------------
-Tor integration : 95% done , works but no customization
-Pin integration : Will start from scratch again
+If you want to help us out on the development use this guide:
 
+1. Fork the project, and clone it to your local machine.
+
+2. Fire up Android Studio and you're done. 
+
+## Built With
+
+* Credits list coming in a second time
+
+### Community
+
+* [Telegram](https://t.me/VERGExvg)
+* [Discord](https://discord.gg/vergecurrency)
+* [Twitter](https://www.twitter.com/vergecurrency)
+* [Facebook](https://www.facebook.com/VERGEcurrency/)
+* [Reddit](https://www.reddit.com/r/vergecurrency/)
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
