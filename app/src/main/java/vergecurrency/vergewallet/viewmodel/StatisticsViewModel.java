@@ -13,18 +13,22 @@ public class StatisticsViewModel extends ViewModel {
 
 
 	private PreferencesManager pm;
+	private String currencyCode;
+	private ArrayList<Map.Entry<String, String>> statistics ;
 
 	public StatisticsViewModel() {
 		pm = PreferencesManager.getInstance();
+		currencyCode = Currency.getCurrencyFromJson(pm.getPreferredCurrency()).getCurrency();
+		statistics = new ArrayList<>(PriceStatsDataReader.readPriceStatistics(getCurrencyCode()).entrySet());
 	}
 
 	private String getCurrencyCode() {
-		return Currency.getCurrencyFromJson(pm.getPreferredCurrency()).getCurrency();
+		return currencyCode;
 	}
 
 	public ArrayList<Map.Entry<String, String>> getStatistics() {
 
-		return new ArrayList<>(PriceStatsDataReader.readPriceStatistics(getCurrencyCode()).entrySet());
+		return statistics;
 	}
 
 

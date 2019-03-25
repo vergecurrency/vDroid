@@ -14,13 +14,16 @@ public class PaperkeyDistributionViewModel extends ViewModel {
 	public PaperkeyDistributionViewModel() {
 		wm = new WalletManager();
 		pm = PreferencesManager.getInstance();
+		seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());
 	}
 
 	public String[] getSeed() throws Exception {
-		seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());
-		if (seed != null) {
-			return null;
-		} else throw new Exception();
+
+		return seed;
+	}
+
+	public void setSeed(String[] seed) {
+		this.seed = seed;
 	}
 
 	public void generateMnemonics() {
