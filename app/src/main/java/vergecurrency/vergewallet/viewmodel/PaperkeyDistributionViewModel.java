@@ -14,7 +14,10 @@ public class PaperkeyDistributionViewModel extends ViewModel {
 	public PaperkeyDistributionViewModel() {
 		wm = new WalletManager();
 		pm = PreferencesManager.getInstance();
-		seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());
+		if(!pm.getFirstLaunch()) {
+			seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());
+		}
+
 	}
 
 	public String[] getSeed() throws Exception {
@@ -29,6 +32,6 @@ public class PaperkeyDistributionViewModel extends ViewModel {
 	public void generateMnemonics() {
 		//Should be created at the launch
 		wm.generateSeed();
-
+		seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());
 	}
 }

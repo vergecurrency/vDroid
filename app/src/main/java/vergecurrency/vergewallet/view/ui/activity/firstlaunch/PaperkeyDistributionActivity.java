@@ -2,26 +2,25 @@ package vergecurrency.vergewallet.view.ui.activity.firstlaunch;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.viewmodel.PaperkeyDistributionViewModel;
-import vergecurrency.vergewallet.wallet.WalletManager;
 
 public class PaperkeyDistributionActivity extends AppCompatActivity {
 
+
+	//variable decl.
 	PaperkeyDistributionViewModel mViewModel;
 
 	Button nextButton;
 	Button previousButton;
 	TextView wordView;
-	int currentWord = -1;
-	PreferencesManager pm;
+	int currentWordIndex = -1;
 
 	String[] seed;
 
@@ -30,7 +29,7 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_paperkey_seed);
 
-		pm = PreferencesManager.getInstance();
+		//learn it and shut up
 		mViewModel = ViewModelProviders.of(this).get(PaperkeyDistributionViewModel.class);
 
 		initComponents();
@@ -45,7 +44,9 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 		mViewModel.generateMnemonics();
 		try {
 			seed = mViewModel.getSeed();
+
 		} catch (Exception e) {
+			//TODO : do it better
 			e.printStackTrace();
 		}
 	}
@@ -63,9 +64,7 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 
 	Button.OnClickListener onNextListener() {
 		return v -> {
-			//get to the next word. For now get to the main Activity
-			if (currentWord == 11) {
-
+			if (currentWordIndex == 11) {
 				startActivity(new Intent(getApplicationContext(), PaperkeyVerificationActivity.class));
 			}
 			nextWord();
@@ -82,12 +81,12 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 	//TODO : move to the viewmodel
 	private void nextWord() {
 		//Increase if not the last
-		if (currentWord < 11) {
-			currentWord += 1;
+		if (currentWordIndex < 11) {
+			currentWordIndex += 1;
 			nextButton.setText("Next");
 		}
 		//change button text if last
-		if (currentWord == 11) {
+		if (currentWordIndex == 11) {
 			nextButton.setText("Done");
 		}
 		wordView.setText(getWord());
@@ -96,8 +95,8 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 	//TODO : move to the viewmodel
 	private void previousWord() {
 		//Decrease if not the first
-		if (currentWord > 0) {
-			currentWord -= 1;
+		if (currentWordIndex > 0) {
+			currentWordIndex -= 1;
 			nextButton.setText("Next");
 		}
 		wordView.setText(getWord());
@@ -105,6 +104,6 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 
 	//TODO : move to the viewmodel
 	private String getWord() {
-		return seed[currentWord];
+		return seed[currentWordIndex];
 	}
 }

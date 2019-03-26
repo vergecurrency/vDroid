@@ -12,7 +12,7 @@ public class MnemonicSeed {
 	}
 
 	public String getSeedAsJson() {
-		return new Gson().toJson(this);
+		return new Gson().toJson(this.seed);
 	}
 
 	public String[] getSeed() {

@@ -72,6 +72,4 @@ public class PreferencesManager {
 		prefs.edit().putString("mnemonic", mnemonic).apply();
 	}
 
-
-
 }

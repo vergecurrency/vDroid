@@ -28,7 +28,7 @@ public class PaperkeyVerificationActivity extends AppCompatActivity {
 	Button confirmButton;
 	Pair<String[], int[]> verificationWords;
 	PreferencesManager pm;
-	String[] mnemonics;
+	String[] seed;
 
 	PaperkeyVerificationViewModel mViewModel;
 
@@ -40,8 +40,9 @@ public class PaperkeyVerificationActivity extends AppCompatActivity {
 		mViewModel = ViewModelProviders.of(this).get(PaperkeyVerificationViewModel.class);
 
 		//Get the shared preferences
-		pm = PreferencesManager.getInstance();
-		mnemonics = pm.getMnemonic();
+
+		seed = mViewModel.getSeed();
+
 		verificationWords = getTwoRandomWordsFromSeed();
 
 
@@ -68,7 +69,6 @@ public class PaperkeyVerificationActivity extends AppCompatActivity {
 		confirmButton.setOnClickListener(onNextClick());
 	}
 
-
 	private Button.OnClickListener onNextClick() {
 		return new Button.OnClickListener() {
 			@Override
@@ -76,7 +76,7 @@ public class PaperkeyVerificationActivity extends AppCompatActivity {
 				if (firstWordInput.getText().toString().equals(verificationWords.first[0].toLowerCase())) {
 					if (secondWordInput.getText().toString().equals(verificationWords.first[1].toLowerCase())) {
 						//Announce that it's not the first launch anymore
-						pm.setFirstLaunch(false);
+						mViewModel.setFirstLaunch(false);
 						//Get to the main activity
 						startActivity(new Intent(getApplicationContext(), EndSetupActivity.class));
 
@@ -112,8 +112,8 @@ public class PaperkeyVerificationActivity extends AppCompatActivity {
 		//sort the array
 		Arrays.sort(positions);
 		//assign the words to the positions
-		words[0] = mnemonics[positions[0]];
-		words[1] = mnemonics[positions[1]];
+		words[0] = seed[positions[0]];
+		words[1] = seed[positions[1]];
 		//you don't need me to comment this.
 		return new Pair<>(words, positions);
 	}
