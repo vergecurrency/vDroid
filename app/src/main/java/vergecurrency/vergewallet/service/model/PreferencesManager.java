@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
 
+import androidx.lifecycle.MutableLiveData;
+
 /**
  * Warning fella : this class is a singleton object if you are wondering why I did that shitshow ;)
  */
@@ -72,4 +74,11 @@ public class PreferencesManager {
 		prefs.edit().putString("mnemonic", mnemonic).apply();
 	}
 
+    public void setCurrentBalance(Long balance) {
+		prefs.edit().putLong("balance", balance).apply();
+    }
+
+    public Long getCurrentBalance() {
+		return prefs.getLong("balance", 0l);
+	}
 }

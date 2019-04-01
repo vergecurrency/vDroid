@@ -31,10 +31,13 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.utilities.AnimationUtils;
 import vergecurrency.vergewallet.utilities.FileUtils;
 import vergecurrency.vergewallet.utilities.ImageUtils;
+import vergecurrency.vergewallet.viewmodel.ReceiveFragmentViewModel;
 
 public class FragmentReceive extends Fragment {
 
@@ -44,6 +47,7 @@ public class FragmentReceive extends Fragment {
 	private OmegaCenterIconButton shareButton;
 	private RelativeLayout cardLayout;
 	private EditText addressTextView;
+	private ReceiveFragmentViewModel mViewModel;
 
 
 	public FragmentReceive() {
@@ -55,11 +59,13 @@ public class FragmentReceive extends Fragment {
 							 Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_receive, container, false);
 
+		mViewModel = ViewModelProviders.of(this).get(ReceiveFragmentViewModel.class);
+
 		initElements(rootView);
 		setListeners();
 
 		ImageView vQRCode = rootView.findViewById(R.id.qr_code_receive);
-		generateQRCode(getResources().getString(R.string.receive_current_code), vQRCode);
+		generateQRCode(mViewModel.getReceiveAddress(), vQRCode);
 
 		// Inflate the layout for this fragment
 		return rootView;
@@ -71,6 +77,7 @@ public class FragmentReceive extends Fragment {
 		obfuscateSwitch = rootView.findViewById(R.id.wallet_receive_switch_stealth);
 		cardLayout = rootView.findViewById(R.id.wallet_receive_card_layout);
 		addressTextView = rootView.findViewById(R.id.send_balance_address);
+		addressTextView.setText(mViewModel.getReceiveAddress());
 	}
 
 	private void setListeners() {

@@ -8,33 +8,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.vision.barcode.Barcode;
-import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.viewmodel.SendFragmentViewModel;
 
 @SuppressLint("ValidFragment")
 public class FragmentSend extends Fragment {
 
-
-	View rootView;
+	private String requestedAddress;
 	private TextView amountTextView;
 	private EditText amount;
 	private EditText address;
-	private ImageView qrCodeIcon;
-
+	private SendFragmentViewModel mViewModel;
 	//External inputs
 	private double requestedAmount;
-	private String requestedAddress;
-
 
 	public FragmentSend() {
-
 	}
 
 	@SuppressLint("ValidFragment")
@@ -47,44 +39,34 @@ public class FragmentSend extends Fragment {
 		requestedAddress = address[0];
 	}
 
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
+
+		mViewModel = ViewModelProviders.of(this).get(SendFragmentViewModel.class);
+
 		// Inflate the layout for this fragment
 
-		//mock balance
-		double balance = 10d;
-
-
-		if (balance <= 0) {
+		View rootView;
+		if (mViewModel.getBalance() <= 0) {
 			rootView = inflater.inflate(R.layout.fragment_send_nobalance, container, false);
 		} else {
 			rootView = inflater.inflate(R.layout.fragment_send_balance, container, false);
-			initComponents();
+			amountTextView = rootView.findViewById(R.id.transaction_total_amount);
+			address = rootView.findViewById(R.id.send_balance_address);
+			amount = rootView.findViewById(R.id.amount);
+			amount.addTextChangedListener(amountTW());
+
+			if (requestedAmount != 0) {
+				setPreRequestedAmount();
+			}
+			if (requestedAddress != null) {
+				setPreRequestedAddress();
+			}
 		}
 
 		return rootView;
-	}
-
-	private void initComponents() {
-
-		amountTextView = rootView.findViewById(R.id.transaction_total_amount);
-		address = rootView.findViewById(R.id.send_balance_address);
-
-		qrCodeIcon = rootView.findViewById(R.id.send_balance_qr_icon);
-		qrCodeIcon.setOnClickListener(onQRCodeIconClickListener());
-
-		amount = rootView.findViewById(R.id.amount);
-		amount.addTextChangedListener(amountTW());
-
-
-
-		if (requestedAmount != 0) {
-			setPreRequestedAmount();
-		}
-		if (requestedAddress != null) {
-			setPreRequestedAddress();
-		}
 	}
 
 	private TextWatcher amountTW() {
@@ -105,26 +87,6 @@ public class FragmentSend extends Fragment {
 			}
 		};
 	}
-
-	private View.OnClickListener onQRCodeIconClickListener() {
-		return v-> {
-			/*BarcodeDetector detector =
-					new BarcodeDetector.Builder(getContext())
-							.setBarcodeFormats(Barcode.QR_CODE)
-							.build();
-			if(!detector.isOperational()){
-				Toast.makeText(getContext(),"Could not setup", Toast.LENGTH_SHORT).show();
-				//return;
-			}*/
-
-			//Frame frame = new Frame.Builder().setBitmap(myBitmap).build();
-			//SparseArray<Barcode> barcodes = detector.detect(frame);
-			//Barcode thisCode = barcodes.valueAt(0);
-			//TextView txtView = (TextView) findViewById(R.id.txtContent);
-			//txtView.setText(thisCode.rawValue);
-		};
-	}
-
 
 	public void setPreRequestedAmount() {
 		amount.setText("" + requestedAmount);
