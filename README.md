@@ -8,7 +8,7 @@
 
 This Android wallet provides an easy and secure wallet on your Android device. With **Tor** integrated you can be sure your http communication is private. Sending and receiving XVG in a secure and easy to use wallet will actually change the way you use Verge Currency. 💪
 
-# DEVELOPMENT IS ONGOING - EVEN IF YOU CAN GENERATE AN ADDRESS YOU SHOULDN'T DEPOSIT ANYTHING IN THERE. 
+## DEVELOPMENT IS ONGOING - EVEN IF YOU CAN GENERATE AN ADDRESS YOU SHOULDN'T DEPOSIT ANYTHING IN THERE. 
 
 ## Features:
 
