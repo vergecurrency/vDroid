@@ -51,6 +51,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:id="@+id/send_balance_qr_icon"
             android:src="@drawable/icon_qrcode" />
 
         <EditText
