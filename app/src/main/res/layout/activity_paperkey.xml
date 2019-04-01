@@ -38,7 +38,7 @@
 		android:textAlignment="center" />
 
 	<Button
-		android:id="@+id/button_open_wallet"
+		android:id="@+id/activity_paperkey_button"
 		android:layout_alignParentBottom="true"
 		android:layout_width="match_parent"
 		android:layout_height="50dp"

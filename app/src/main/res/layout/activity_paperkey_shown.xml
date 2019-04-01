@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/verge_white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/paperkey_shown_close_button"
+        style="@style/closebutton"/>
+
+    <TextView
+        android:id="@+id/paperkey_shown_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="110dp"
+        android:text="@string/paperkey_shown_title"
+        android:textAlignment="center"
+        android:textColor="@color/verge_colorPrimaryDark"
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/paperkey_shown_subtitle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/avenir_next_regular"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:text="@string/paperkey_shown_sub1"
+        android:textAlignment="center"
+        android:textColor="@color/verge_colorPrimary" />
+
+    <TextView
+        android:id="@+id/paperkey_shown_subtitle2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/avenir_next_regular"
+        android:paddingStart="40dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="40dp"
+        android:text="@string/paperkey_shown_sub2"
+        android:textAlignment="center"
+        android:textColor="@color/verge_colorPrimaryDark" />
+
+    <TextView
+        android:id="@+id/paperkey_shown_pk"
+        android:textSize="22sp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:textColor="@color/verge_colorPrimaryDark"
+        android:background="@color/verge_realWhite"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>

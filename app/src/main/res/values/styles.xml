@@ -18,4 +18,14 @@
         <item name="android:textColor">@color/verge_colorAccent</item>
     </style>
 
+    <style name="closebutton">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:tint">@color/verge_colorPrimary</item>
+        <item name="android:src">@drawable/icon_close</item>
+    </style>
+
+
 </resources>
