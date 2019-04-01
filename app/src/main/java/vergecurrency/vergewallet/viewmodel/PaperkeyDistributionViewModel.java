@@ -12,7 +12,7 @@ public class PaperkeyDistributionViewModel extends ViewModel {
 	private WalletManager wm;
 
 	public PaperkeyDistributionViewModel() {
-		wm = new WalletManager();
+		wm = WalletManager.init();
 		pm = PreferencesManager.getInstance();
 		if(!pm.getFirstLaunch()) {
 			seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());

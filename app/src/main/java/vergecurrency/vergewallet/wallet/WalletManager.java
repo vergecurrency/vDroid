@@ -21,32 +21,48 @@ import static io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType;
 
 public class WalletManager implements Listener {
 
-	private String networkName;
+	private static WalletManager INSTANCE = null;
 	private MutableLiveData<Long> balance;
 	private MnemonicSeed seed;
 	private PreferencesManager pm;
+	private BitcoinKit wallet;
 
-	public WalletManager() {
+	private WalletManager() {
 		pm = PreferencesManager.getInstance();
 
 	}
 
+	public static WalletManager init() {
+		if (INSTANCE != null) {
+			throw new AssertionError("You already initialized an object of this type");
+		}
+		return INSTANCE = new WalletManager();
+	}
 
-	public void startWallet() {
+	public static WalletManager getInstance() {
+		if (INSTANCE == null) {
+			throw new AssertionError("You haven't initialized an object of this type yet.");
+		}
+		return INSTANCE;
+	}
+
+	public void startWallet() throws Exception {
 		NetworkType netType = NetworkType.MainNet;
-		String [] seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());
-		if(seed != null) {
-			BitcoinKit wallet = new BitcoinKit((List<String>) Arrays.asList(seed), netType, null, 10, true, 1);
+		String[] seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());
+		if (seed != null) {
+			wallet = new BitcoinKit((List<String>) Arrays.asList(seed), netType, null, 10, true, 1);
 			wallet.setListener(this);
-			networkName = netType.name();
+			String networkName = netType.name();
 			balance.setValue(wallet.getBalance());
-
 
 			wallet.start();
 		} else {
 			//I don't know, I'll see how to handle this.
+			throw new Exception();
 		}
 	}
+
+
 
 
 	public void generateSeed() {
@@ -84,7 +100,15 @@ public class WalletManager implements Listener {
 
 	}
 
-	//store wallet
+	public void setBalance(MutableLiveData<Long> balance) {
+		this.balance = balance;
+	}
+
+	public MutableLiveData<Long> getBalance() {
+		balance.setValue(wallet.getBalance());
+		return balance;
+	}
+//store wallet
 
 
 	//fuck wallet

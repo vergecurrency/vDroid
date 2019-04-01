@@ -2,7 +2,6 @@ package vergecurrency.vergewallet.view.ui.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -12,92 +11,91 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.viewmodel.SendFragmentViewModel;
 
 @SuppressLint("ValidFragment")
 public class FragmentSend extends Fragment {
 
+	String requestedAddress;
+	private TextView amountTextView;
+	private EditText amount;
+	private EditText address;
+	private View rootView;
+	//External inputs
+	private double requestedAmount;
+	private SendFragmentViewModel mViewModel;
 
-    TextView amountTextView;
+	public FragmentSend() {
+	}
 
-    //mock balance
-    double balance = 10d;
+	@SuppressLint("ValidFragment")
+	public FragmentSend(double... amount) {
+		requestedAmount = amount[0];
+	}
 
-    EditText amount;
-    EditText address;
-    PopupWindow popup;
-    View rootView;
-    //External inputs
-    double requestedAmount;
-    String requestedAddress;
-
-
-    public FragmentSend() {
-
-    }
-
-    @SuppressLint("ValidFragment")
-    public FragmentSend(double... amount) {
-        requestedAmount = amount[0];
-    }
-
-    @SuppressLint("ValidFragment")
-    public FragmentSend(String... address) {
-        requestedAddress = address[0];
-    }
+	@SuppressLint("ValidFragment")
+	public FragmentSend(String... address) {
+		requestedAddress = address[0];
+	}
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	                         Bundle savedInstanceState) {
 
-        if (balance <= 0) {
-            rootView = inflater.inflate(R.layout.fragment_send_nobalance, container, false);
-        } else {
-            rootView = inflater.inflate(R.layout.fragment_send_balance, container, false);
-            amountTextView = rootView.findViewById(R.id.transaction_total_amount);
-            address = rootView.findViewById(R.id.send_balance_address);
-            amount = rootView.findViewById(R.id.amount);
-            amount.addTextChangedListener(amountTW());
+		mViewModel = ViewModelProviders.of(this).get(SendFragmentViewModel.class);
 
-            if (requestedAmount != 0) {
-                setPreRequestedAmount();
-            }
-            if (requestedAddress != null) {
-                setPreRequestedAddress();
-            }
-        }
+		// Inflate the layout for this fragment
 
-        popup = new PopupWindow(this.getContext());
+		if (mViewModel.getBalance() <= 0) {
+			rootView = inflater.inflate(R.layout.fragment_send_nobalance, container, false);
+		} else {
+			rootView = inflater.inflate(R.layout.fragment_send_balance, container, false);
+			amountTextView = rootView.findViewById(R.id.transaction_total_amount);
+			address = rootView.findViewById(R.id.send_balance_address);
+			amount = rootView.findViewById(R.id.amount);
+			amount.addTextChangedListener(amountTW());
 
-        return rootView;
-    }
+			if (requestedAmount != 0) {
+				setPreRequestedAmount();
+			}
+			if (requestedAddress != null) {
+				setPreRequestedAddress();
+			}
+		}
 
-    private TextWatcher amountTW() {
-        return new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		popup = new PopupWindow(this.getContext());
 
-            }
+		return rootView;
+	}
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                amountTextView.setText(s);
-            }
+	private TextWatcher amountTW() {
+		return new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            @Override
-            public void afterTextChanged(Editable s) {
+			}
 
-            }
-        };
-    }
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				amountTextView.setText(s);
+			}
 
-    public void setPreRequestedAmount() {
-        amount.setText(""+requestedAmount);
-    }
+			@Override
+			public void afterTextChanged(Editable s) {
 
-    public void setPreRequestedAddress() {
-        address.setText(requestedAddress);
-    }
+			}
+		};
+	}
+
+	public void setPreRequestedAmount() {
+		amount.setText("" + requestedAmount);
+	}
+
+	public void setPreRequestedAddress() {
+		address.setText(requestedAddress);
+	}
 }
