@@ -62,7 +62,9 @@ public class WalletManager implements Listener {
 		}
 	}
 
-
+	public String getReceiveAddress() {
+		return wallet.receiveAddress();
+	}
 
 
 	public void generateSeed() {

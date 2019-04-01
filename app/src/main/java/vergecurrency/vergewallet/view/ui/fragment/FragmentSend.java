@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -19,14 +18,13 @@ import vergecurrency.vergewallet.viewmodel.SendFragmentViewModel;
 @SuppressLint("ValidFragment")
 public class FragmentSend extends Fragment {
 
-	String requestedAddress;
+	private String requestedAddress;
 	private TextView amountTextView;
 	private EditText amount;
 	private EditText address;
-	private View rootView;
+	private SendFragmentViewModel mViewModel;
 	//External inputs
 	private double requestedAmount;
-	private SendFragmentViewModel mViewModel;
 
 	public FragmentSend() {
 	}
@@ -50,6 +48,7 @@ public class FragmentSend extends Fragment {
 
 		// Inflate the layout for this fragment
 
+		View rootView;
 		if (mViewModel.getBalance() <= 0) {
 			rootView = inflater.inflate(R.layout.fragment_send_nobalance, container, false);
 		} else {
@@ -66,8 +65,6 @@ public class FragmentSend extends Fragment {
 				setPreRequestedAddress();
 			}
 		}
-
-		popup = new PopupWindow(this.getContext());
 
 		return rootView;
 	}
