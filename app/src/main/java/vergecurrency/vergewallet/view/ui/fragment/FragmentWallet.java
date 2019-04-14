@@ -51,8 +51,11 @@ public class FragmentWallet extends Fragment {
 		TextView balanceLabel = rootView.findViewById(R.id.wallet_card_balance_label);
 		balanceLabel.setText(String.format("%s BALANCE", currencyCode));
 
-		TextView balanceAmount = rootView.findViewById(R.id.wallet_card_balance);
-		balanceAmount.setText(String.format("%s %o", currencyCode, mViewModel.getBalance()));
+		TextView balanceXVG = rootView.findViewById(R.id.wallet_card_verge_balance);
+		balanceXVG.setText(String.format("XVG %o", mViewModel.getBalance()));
+
+		TextView balanceFiat = rootView.findViewById(R.id.wallet_card_fiat_balance);
+		balanceFiat.setText(String.format("%s %o", currencyCode, mViewModel.getBalance()));
 
 		TextView changeLabel = rootView.findViewById(R.id.wallet_card_change_label);
 		changeLabel.setText(String.format("%s/XVG", currencyCode));

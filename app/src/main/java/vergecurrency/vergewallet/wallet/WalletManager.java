@@ -29,6 +29,7 @@ public class WalletManager implements Listener {
 
 	private WalletManager() {
 		pm = PreferencesManager.getInstance();
+		balance = new MutableLiveData<>();
 
 	}
 
@@ -50,12 +51,13 @@ public class WalletManager implements Listener {
 		NetworkType netType = NetworkType.MainNet;
 		String[] seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());
 		if (seed != null) {
-			wallet = new BitcoinKit((List<String>) Arrays.asList(seed), netType, null, 10, true, 1);
+			wallet = new BitcoinKit((List<String>) Arrays.asList(seed), netType, "wallet", 10, true, 1);
 			wallet.setListener(this);
 			String networkName = netType.name();
-			balance.setValue(wallet.getBalance());
 
 			wallet.start();
+
+			balance.setValue(wallet.getBalance());
 		} else {
 			//I don't know, I'll see how to handle this.
 			throw new Exception();
@@ -64,6 +66,9 @@ public class WalletManager implements Listener {
 
 	public String getReceiveAddress() {
 		return wallet.receiveAddress();
+	}
+
+	public void getTransactions() {
 	}
 
 
@@ -110,6 +115,8 @@ public class WalletManager implements Listener {
 		balance.setValue(wallet.getBalance());
 		return balance;
 	}
+
+
 //store wallet
 
 

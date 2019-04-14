@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/wallet_card_verge_balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="1dp"
@@ -44,7 +45,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/wallet_card_balance"
+                    android:id="@+id/wallet_card_fiat_balance"
                     android:textColor="@color/bg_color"
                     android:textSize="20sp" />
 

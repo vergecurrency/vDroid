@@ -60,24 +60,26 @@ public class FragmentReceive extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_receive, container, false);
 
 		mViewModel = ViewModelProviders.of(this).get(ReceiveFragmentViewModel.class);
-
-		initElements(rootView);
+		String recAddress = mViewModel.getReceiveAddress();
+		initElements(rootView, recAddress);
 		setListeners();
 
 		ImageView vQRCode = rootView.findViewById(R.id.qr_code_receive);
-		generateQRCode(mViewModel.getReceiveAddress(), vQRCode);
+		generateQRCode(recAddress, vQRCode);
 
 		// Inflate the layout for this fragment
 		return rootView;
 	}
 
-	private void initElements(View rootView) {
+	private void initElements(View rootView, String recAddress) {
 		shareButton = rootView.findViewById(R.id.receive_button_share);
 		backgroundCard = rootView.findViewById(R.id.wallet_card_background_receive);
 		obfuscateSwitch = rootView.findViewById(R.id.wallet_receive_switch_stealth);
 		cardLayout = rootView.findViewById(R.id.wallet_receive_card_layout);
 		addressTextView = rootView.findViewById(R.id.send_balance_address);
-		addressTextView.setText(mViewModel.getReceiveAddress());
+		addressTextView.setText(recAddress);
+		TextView cardText = rootView.findViewById(R.id.receive_address_card);
+		cardText.setText(recAddress);
 	}
 
 	private void setListeners() {

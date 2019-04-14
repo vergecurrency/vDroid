@@ -19,11 +19,16 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.service.model.Transaction;
+import vergecurrency.vergewallet.view.adapter.WalletAdapter;
+import vergecurrency.vergewallet.wallet.WalletManager;
 
 public class TransactionsViewModel extends AndroidViewModel {
 
 	public TransactionsViewModel(@NonNull Application application) {
 		super(application);
+		WalletManager wm ;
+		wm = WalletManager.getInstance();
+
 	}
 
 

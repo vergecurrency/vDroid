@@ -20,4 +20,7 @@ public class ReceiveFragmentViewModel extends ViewModel {
 	public void setReceiveAddress(String receiveAddress) {
 		this.receiveAddress = receiveAddress;
 	}
+
+	public void newReceiveAddress() {
+	}
 }
