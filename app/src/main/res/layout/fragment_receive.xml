@@ -3,6 +3,7 @@
     android:id="@+id/activity_wallet_receive"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/verge_white"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -24,7 +25,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="175dp"
             android:text="@string/receive_current_code"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -32,13 +33,13 @@
 
         <ImageView
             android:id="@+id/qr_code_receive"
-            android:layout_width="205dp"
-            android:layout_height="205dp"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
             android:adjustViewBounds="true"
             android:layout_alignParentEnd="true"
             android:background="@drawable/form_rounded_rect_white_bord"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="35dp"
+            android:layout_marginTop="58dp"
+            android:layout_marginEnd="30dp"
             android:scaleType="fitCenter" />
 
     </RelativeLayout>

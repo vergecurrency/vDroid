@@ -3,6 +3,7 @@ package vergecurrency.vergewallet.view.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import com.testfairy.TestFairy;
 
@@ -12,6 +13,7 @@ import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.view.ui.activity.firstlaunch.FirstLaunchActivity;
+import vergecurrency.vergewallet.wallet.WalletManager;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -25,6 +27,7 @@ public class SplashActivity extends AppCompatActivity {
 		//TestFairy.begin(this, "a67a4df6e2a8a0c981638eb0f168297fd45aed73");
 
 		BitcoinKit.Companion.init(this);
+
 
 		//gets the holy preferences
 		pm = PreferencesManager.init(getApplicationContext());
@@ -43,7 +46,12 @@ public class SplashActivity extends AppCompatActivity {
 			finish();
 			startActivity(new Intent(getApplicationContext(), FirstLaunchActivity.class));
 		} else {
-
+			WalletManager wm = WalletManager.init();
+			try {
+				wm.startWallet();
+			} catch (Exception e) {
+				Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+			}
 			finish();
 			startActivity(new Intent(getApplicationContext(), WalletActivity.class));
 		}

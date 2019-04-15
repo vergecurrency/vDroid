@@ -52,7 +52,7 @@ dependencies {
     //Centered buttons
     implementation 'com.github.Omega-R:OmegaCenterIconButton:0.0.3@aar'
     //BitcoinKit
-    implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.2.0c'
+    implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.2.1b'
     //Twitter
     implementation 'com.twitter.sdk.android:twitter:3.1.1'
     //Json, not sure if used

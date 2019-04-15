@@ -37,19 +37,19 @@ public class WalletActivity extends AppCompatActivity {//extends LockActivity
 
 						return true;
 					case R.id.navigation_transactions:
-						showFragment(new FragmentTransactions(), R.string.title_transactions, getResources().getColor(R.color.verge_colorPrimaryDark), getResources().getColor(R.color.verge_colorBackgroundTwo));
+						showFragment(new FragmentTransactions(), R.string.title_transactions, getResources().getColor(R.color.verge_colorPrimaryDark), getResources().getColor(R.color.verge_white));
 
 						return true;
 					case R.id.navigation_send:
-						showFragment(new FragmentSend(), R.string.title_send, getResources().getColor(R.color.verge_colorPrimaryDark), getResources().getColor(R.color.verge_colorBackgroundTwo));
+						showFragment(new FragmentSend(), R.string.title_send, getResources().getColor(R.color.verge_colorPrimaryDark), getResources().getColor(R.color.verge_white));
 
 						return true;
 					case R.id.navigation_receive:
-						showFragment(new FragmentReceive(), R.string.title_receive, getResources().getColor(R.color.verge_colorPrimaryDark), getResources().getColor(R.color.verge_colorBackgroundTwo));
+						showFragment(new FragmentReceive(), R.string.title_receive, getResources().getColor(R.color.verge_colorPrimaryDark), getResources().getColor(R.color.verge_white));
 
 						return true;
 					case R.id.navigation_settings:
-						showFragment(new FragmentSettings(), R.string.title_settings, getResources().getColor(R.color.verge_colorPrimaryDark), getResources().getColor(R.color.verge_colorBackgroundTwo));
+						showFragment(new FragmentSettings(), R.string.title_settings, getResources().getColor(R.color.verge_colorPrimaryDark), getResources().getColor(R.color.verge_white));
 						return true;
 				}
 				return false;
