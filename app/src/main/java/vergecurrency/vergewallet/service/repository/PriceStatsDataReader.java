@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.util.Map;
+import java.util.Objects;
 
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.utilities.MathUtils;
@@ -56,14 +57,14 @@ public final class PriceStatsDataReader {
 		map.remove("openday");
 		map.remove("rank");
 		map.remove("supply");
-		map.put("XVG/USD", map.remove("price"));
-		map.put("Market Cap", map.remove("mktcap"));
-		map.put("24h Change %", map.remove("changepct24Hour"));
-		map.put("24h High", map.remove("high24Hour"));
-		map.put("24h Low", map.remove("low24Hour"));
-		map.put("24h Change", map.remove("change24Hour"));
-		map.put("24h Volume XVG", map.remove("totalvolume24H"));
-		map.put("24h Volume", map.remove("totalvolume24Hto"));
+		map.put("XVG/USD", Objects.requireNonNull(map.remove("price")));
+		map.put("Market Cap", Objects.requireNonNull(map.remove("mktcap")));
+		map.put("24h Change %", Objects.requireNonNull(map.remove("changepct24Hour")));
+		map.put("24h High", Objects.requireNonNull(map.remove("high24Hour")));
+		map.put("24h Low", Objects.requireNonNull(map.remove("low24Hour")));
+		map.put("24h Change", Objects.requireNonNull(map.remove("change24Hour")));
+		map.put("24h Volume XVG", Objects.requireNonNull(map.remove("totalvolume24H")));
+		map.put("24h Volume", Objects.requireNonNull(map.remove("totalvolume24Hto")));
 
 		return map;
 	}
