@@ -16,7 +16,9 @@ public final class Constants {
     public final static String VERGE_WEBSITE = "https://vergecurrency.com";
     public final static String VDROID_REPO = "https://github.com/vergecurrency/vDroid";
     public final static String BLOCKCHAIN_EXPLORER = "https://verge-blockchain.info";
-    public final static String VWS_ENDPOINT = "https://vws2.swenvanzanten.com/vws/api";
+    //public final static String VWS_ENDPOINT = "https://vws2.swenvanzanten.com/vws/api";
+    public final static String VWS_ENDPOINT = "https://vws.2lazy2.dev/vws/api";
+
 
     //Secondary Service Urls
     public final static String PRICE_DATA_ENDPOINT = "https://vws2.swenvanzanten.com/price/api/v1/price/";
