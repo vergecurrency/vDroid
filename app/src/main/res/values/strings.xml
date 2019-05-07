@@ -108,5 +108,13 @@
     <string name="paperkey_shown_title">Your paper key</string>
     <string name="paperkey_shown_sub1">Taking a screenshot is not secure. Write down the paper key on a piece of paper with a pen</string>
     <string name="paperkey_shown_sub2">Write down each word carefully without capital letters</string>
+    <string name="passphrase_title">Derive your paper key with a passphrase</string>
+    <string name="passphrase_desc">Encrypting your paper key is an important safety measure. Make sure when restoring a wallet to use your previous passphrase.</string>
+    <string name="passphrase_button">Confirm</string>
+    <string name="passphrase_8_chars">Min. 8 characters</string>
+    <string name="passphrase_upper_lower">Uppercase and lowercase</string>
+    <string name="passphrase_symbols"><![CDATA[Special character (!.,-#€%&+#)]]></string>
+    <string name="passphrase_hint">Enter your passphrase</string>
+    <string name="passphrase_confirm_title">Confirm your passphrase</string>
 
 </resources>

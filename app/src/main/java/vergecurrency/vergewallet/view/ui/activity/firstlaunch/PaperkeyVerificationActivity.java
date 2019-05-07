@@ -70,25 +70,22 @@ public class PaperkeyVerificationActivity extends AppCompatActivity {
 	}
 
 	private Button.OnClickListener onNextClick() {
-		return new Button.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (firstWordInput.getText().toString().equals(verificationWords.first[0].toLowerCase())) {
-					if (secondWordInput.getText().toString().equals(verificationWords.first[1].toLowerCase())) {
-						//Announce that it's not the first launch anymore
-						mViewModel.setFirstLaunch(false);
-						//Get to the main activity
-						startActivity(new Intent(getApplicationContext(), EndSetupActivity.class));
+		return v -> {
+			if (firstWordInput.getText().toString().equals(verificationWords.first[0].toLowerCase())) {
+				if (secondWordInput.getText().toString().equals(verificationWords.first[1].toLowerCase())) {
+					//Announce that it's not the first launch anymore
+					//Get to the main activity
+					startActivity(new Intent(getApplicationContext(), PassphraseCreationActivity.class));
 
-					} else {
-						secondWordInput.setBackgroundResource(R.color.material_red_200);
-					}
+
 				} else {
-					firstWordInput.setBackgroundResource(R.color.material_red_200);
+					secondWordInput.setBackgroundResource(R.color.material_red_200);
 				}
-
-
+			} else {
+				firstWordInput.setBackgroundResource(R.color.material_red_200);
 			}
+
+
 		};
 	}
 

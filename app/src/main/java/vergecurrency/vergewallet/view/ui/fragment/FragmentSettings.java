@@ -59,7 +59,7 @@ public class FragmentSettings extends Fragment {
 	private void initGeneralSettings(View view) {
 		SettingsListViewData itemsDataSettings[] = {
 				new SettingsListViewData("Fiat currency", R.drawable.icon_currency_exchange, v -> startActivity(new Intent(v.getContext(), SelectCurrencyActivity.class))),
-				new SettingsListViewData("Change wallet PIN", R.drawable.icon_pin, null),
+				new SettingsListViewData("Change wallet PIN", R.drawable.icon_lock, null),
 				new SettingsListViewData("Use fingerprint", R.drawable.icon_fingerprint, null),
 				new SettingsListViewData("Tor connection", R.drawable.icon_onion, v -> startActivity(new Intent(v.getContext(), TorSettingsActivity.class)))
 		};

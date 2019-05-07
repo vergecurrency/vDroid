@@ -49,6 +49,8 @@
         <activity android:name=".view.ui.activity.settings.DonateActivity" />
         <activity android:name=".view.ui.activity.settings.SelectCurrencyActivity" />
         <activity android:name=".view.ui.activity.settings.ShowPaperkeyActivity" />
+        <activity android:name=".view.ui.activity.firstlaunch.PassphraseValidationActivity" />
+        <activity android:name=".view.ui.activity.firstlaunch.PassphraseCreationActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

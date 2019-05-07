@@ -26,11 +26,11 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.google.android.material:material:1.0.0-beta01'
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0-beta01'
-    implementation 'androidx.media:media:1.0.0-beta01'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.media:media:1.0.1'
     implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
     //QR Reader implementation included in play services
     implementation 'com.google.android.gms:play-services-vision:17.0.2'
@@ -52,7 +52,7 @@ dependencies {
     //Centered buttons
     implementation 'com.github.Omega-R:OmegaCenterIconButton:0.0.3@aar'
     //BitcoinKit
-    implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.2.2'
+    implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.2.3'
     //Twitter
     implementation 'com.twitter.sdk.android:twitter:3.1.1'
     //Json, not sure if used

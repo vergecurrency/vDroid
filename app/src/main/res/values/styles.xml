@@ -27,5 +27,9 @@
         <item name="android:src">@drawable/icon_close</item>
     </style>
 
+    <style name="passphrase_check">
+
+    </style>
+
 
 </resources>
