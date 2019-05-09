@@ -42,4 +42,9 @@ public class EndSetupActivity extends AppCompatActivity {
 			startActivity(new Intent(getApplicationContext(), WalletActivity.class));
 		};
 	}
+
+	@Override
+	public void onBackPressed() {
+		//on purpose
+	}
 }

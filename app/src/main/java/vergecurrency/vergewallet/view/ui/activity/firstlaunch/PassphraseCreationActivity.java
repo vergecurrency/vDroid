@@ -34,7 +34,7 @@ public class PassphraseCreationActivity extends AppCompatActivity {
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.activity_new_passphrase);
+		setContentView(R.layout.activity_passphrase_create);
 
 		initComponents();
 	}

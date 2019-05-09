@@ -39,6 +39,7 @@
         android:id="@+id/passphrase_field_validate"
         android:paddingTop="15dp"
         android:layout_marginLeft="40dp"
+        android:inputType="textPassword"
         android:layout_marginRight="40dp"
         android:layout_below="@id/passphrase_subtitle"
         android:hint="@string/passphrase_hint"/>

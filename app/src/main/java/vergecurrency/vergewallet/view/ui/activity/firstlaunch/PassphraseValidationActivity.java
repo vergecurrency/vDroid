@@ -1,6 +1,7 @@
 package vergecurrency.vergewallet.view.ui.activity.firstlaunch;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,7 +28,7 @@ public class PassphraseValidationActivity extends AppCompatActivity {
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.activity_validate_passphrase);
+		setContentView(R.layout.activity_passphrase_validate);
 
 		passphraseToValidate = getIntent().getStringExtra("passphrase");
 
@@ -39,6 +40,7 @@ public class PassphraseValidationActivity extends AppCompatActivity {
 
 	private void initComponents() {
 		passphraseEditText = findViewById(R.id.passphrase_field_validate);
+		passphraseEditText.addTextChangedListener(passphraseTextWatcher());
 		validateButton = findViewById(R.id.button_passphrase_validate);
 		validateButton.setOnClickListener(onValidateClick());
 
@@ -53,7 +55,13 @@ public class PassphraseValidationActivity extends AppCompatActivity {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				validateButton.setEnabled(s.toString().equals(passphraseToValidate));
+				boolean isAllOk = s.toString().equals(passphraseToValidate);
+				validateButton.setEnabled(isAllOk);
+				if(isAllOk){
+					validateButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.verge_colorPrimary)));
+				} else {
+					validateButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.verge_colorAccent)));
+				}
 			}
 
 			@Override
@@ -65,7 +73,9 @@ public class PassphraseValidationActivity extends AppCompatActivity {
 
 	View.OnClickListener onValidateClick() {
 		return v->{
-			//mViewModel.setFirstLaunch(false);
+			mViewModel.setFirstLaunch(false);
+			mViewModel.setPassphrase(passphraseToValidate);
+			finish();
 			startActivity(new Intent(getApplicationContext(), EndSetupActivity.class));
 		};
 	}

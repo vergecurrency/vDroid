@@ -16,4 +16,6 @@ public class PassphraseVerificationViewModel extends ViewModel {
 	public void setFirstLaunch(boolean isFirstLaunch) {
 		pm.setFirstLaunch(isFirstLaunch);
 	}
+
+	public void setPassphrase(String passphrase) {pm.setPassphrase(passphrase);}
 }

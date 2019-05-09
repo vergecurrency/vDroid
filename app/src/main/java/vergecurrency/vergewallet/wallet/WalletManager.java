@@ -51,7 +51,7 @@ public class WalletManager implements Listener {
 		NetworkType netType = NetworkType.MainNet;
 		String[] seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());
 		if (seed != null) {
-			wallet = new BitcoinKit((List<String>) Arrays.asList(seed), "salt", netType, "wallet", 10, true, 1);
+			wallet = new BitcoinKit((List<String>) Arrays.asList(seed), pm.getPassphrase(), netType, "wallet", 10, true, 1);
 			wallet.setListener(this);
 			String networkName = netType.name();
 

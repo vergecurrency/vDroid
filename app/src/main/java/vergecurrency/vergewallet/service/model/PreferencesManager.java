@@ -78,6 +78,14 @@ public class PreferencesManager {
 		prefs.edit().putLong("balance", balance).apply();
     }
 
+    public String getPassphrase() {
+		return prefs.getString("passphrase", "mnemonic");
+	}
+
+	public void setPassphrase(String passphrase) {
+		prefs.edit().putString("passphrase", passphrase).apply();
+	}
+
     public Long getCurrentBalance() {
 		return prefs.getLong("balance", 0l);
 	}

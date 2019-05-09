@@ -127,6 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/passphrase_check_symbols"
         android:layout_marginLeft="40dp"
+        android:inputType="textPassword"
         android:layout_marginRight="40dp"
         android:hint="@string/passphrase_hint"
         android:paddingTop="15dp"
