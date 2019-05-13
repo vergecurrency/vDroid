@@ -1,7 +1,6 @@
 package vergecurrency.vergewallet.viewmodel;
 
 import androidx.lifecycle.ViewModel;
-import vergecurrency.vergewallet.service.model.MnemonicSeed;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 
 public class PassphraseVerificationViewModel extends ViewModel {

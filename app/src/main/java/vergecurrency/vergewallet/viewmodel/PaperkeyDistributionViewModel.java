@@ -1,7 +1,7 @@
 package vergecurrency.vergewallet.viewmodel;
 
 import androidx.lifecycle.ViewModel;
-import vergecurrency.vergewallet.service.model.MnemonicSeed;
+import vergecurrency.vergewallet.service.model.MnemonicManager;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.wallet.WalletManager;
 
@@ -15,7 +15,7 @@ public class PaperkeyDistributionViewModel extends ViewModel {
 		wm = WalletManager.init();
 		pm = PreferencesManager.getInstance();
 		if(!pm.getFirstLaunch()) {
-			seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());
+			seed = MnemonicManager.getMnemonicFromJSON(pm.getMnemonic());
 		}
 
 	}
@@ -31,7 +31,7 @@ public class PaperkeyDistributionViewModel extends ViewModel {
 
 	public void generateMnemonics() {
 		//Should be created at the launch
-		wm.generateSeed();
-		seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());
+		wm.generateMnemonic();
+		seed = MnemonicManager.getMnemonicFromJSON(pm.getMnemonic());
 	}
 }

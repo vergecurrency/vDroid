@@ -1,6 +1,5 @@
 package vergecurrency.vergewallet.wallet;
 
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -10,22 +9,21 @@ import androidx.lifecycle.MutableLiveData;
 import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import io.horizontalsystems.bitcoinkit.models.BlockInfo;
 import io.horizontalsystems.bitcoinkit.models.TransactionInfo;
-import io.horizontalsystems.hdwalletkit.Mnemonic;
-import vergecurrency.vergewallet.service.model.MnemonicSeed;
+import io.horizontalsystems.hdwalletkit.HDKeychain;
+import vergecurrency.vergewallet.service.model.MnemonicManager;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 
 import static io.horizontalsystems.bitcoinkit.BitcoinKit.KitState;
 import static io.horizontalsystems.bitcoinkit.BitcoinKit.Listener;
 import static io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType;
 
-
 public class WalletManager implements Listener {
 
 	private static WalletManager INSTANCE = null;
 	private MutableLiveData<Long> balance;
-	private MnemonicSeed seed;
 	private PreferencesManager pm;
 	private BitcoinKit wallet;
+	private HDKeychain hdKeychain;
 
 	private WalletManager() {
 		pm = PreferencesManager.getInstance();
@@ -49,20 +47,22 @@ public class WalletManager implements Listener {
 
 	public void startWallet() throws Exception {
 		NetworkType netType = NetworkType.MainNet;
-		String[] seed = MnemonicSeed.getSeedFromJson(pm.getMnemonic());
-		if (seed != null) {
-			wallet = new BitcoinKit((List<String>) Arrays.asList(seed), pm.getPassphrase(), netType, "wallet", 10, true, 1);
+		String[] mnemonic = MnemonicManager.getMnemonicFromJSON(pm.getMnemonic());
+		if (mnemonic != null) {
+			wallet = new BitcoinKit((List<String>) Arrays.asList(mnemonic), pm.getPassphrase(), netType, "wallet", 10, true, 1);
 			wallet.setListener(this);
 			String networkName = netType.name();
 
 			wallet.start();
 
 			balance.setValue(wallet.getBalance());
+
 		} else {
 			//I don't know, I'll see how to handle this.
 			throw new Exception();
 		}
 	}
+
 
 	public String getReceiveAddress() {
 		return wallet.receiveAddress();
@@ -71,16 +71,21 @@ public class WalletManager implements Listener {
 	public void getTransactions() {
 	}
 
+	public void generateMnemonic() {
 
-	public void generateSeed() {
-
-		seed = new MnemonicSeed();
-
-		seed.setSeed(new Mnemonic().generate(Mnemonic.Strength.Default).toArray(new String[0]));
-
-		pm.setMnemonic(seed.getSeedAsJson());
+		MnemonicManager mnemonicManager = new MnemonicManager();
+		mnemonicManager.setMnemonic(new io.horizontalsystems.hdwalletkit.Mnemonic().generate(io.horizontalsystems.hdwalletkit.Mnemonic.Strength.Default).toArray(new String[0]));
+		pm.setMnemonic(mnemonicManager.getMnemonicAsJSON());
 	}
 
+	public MutableLiveData<Long> getBalance() {
+		balance.setValue(wallet.getBalance());
+		return balance;
+	}
+
+	public void setBalance(MutableLiveData<Long> balance) {
+		this.balance = balance;
+	}
 
 	@Override
 	public void onBalanceUpdate(@NotNull BitcoinKit bitcoinKit, long l) {
@@ -106,19 +111,4 @@ public class WalletManager implements Listener {
 	public void onTransactionsUpdate(@NotNull BitcoinKit bitcoinKit, @NotNull List<TransactionInfo> list, @NotNull List<TransactionInfo> list1) {
 
 	}
-
-	public void setBalance(MutableLiveData<Long> balance) {
-		this.balance = balance;
-	}
-
-	public MutableLiveData<Long> getBalance() {
-		balance.setValue(wallet.getBalance());
-		return balance;
-	}
-
-
-//store wallet
-
-
-	//fuck wallet
 }

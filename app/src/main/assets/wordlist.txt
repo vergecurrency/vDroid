@@ -1557,7 +1557,7 @@ second
 secret
 section
 security
-seed
+mnemonic
 seek
 segment
 select
