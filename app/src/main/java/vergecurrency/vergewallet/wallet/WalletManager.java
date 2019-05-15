@@ -9,7 +9,6 @@ import androidx.lifecycle.MutableLiveData;
 import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import io.horizontalsystems.bitcoinkit.models.BlockInfo;
 import io.horizontalsystems.bitcoinkit.models.TransactionInfo;
-import io.horizontalsystems.hdwalletkit.HDKeychain;
 import vergecurrency.vergewallet.service.model.MnemonicManager;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 
@@ -23,7 +22,6 @@ public class WalletManager implements Listener {
 	private MutableLiveData<Long> balance;
 	private PreferencesManager pm;
 	private BitcoinKit wallet;
-	private HDKeychain hdKeychain;
 
 	private WalletManager() {
 		pm = PreferencesManager.getInstance();
