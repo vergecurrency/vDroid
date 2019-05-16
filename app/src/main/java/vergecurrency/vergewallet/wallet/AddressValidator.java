@@ -24,7 +24,11 @@ public class AddressValidator {
 			vc.setAddress(address);
 		}
 
-		String splittedAddress[] = address.replace("verge://", "").replace("verge:", "").split("'?");
+		String splittedRequest[] = address.replace("verge://", "").replace("verge:", "").split("\\?");
+
+
+
+		return vc;
 	}
 
 
