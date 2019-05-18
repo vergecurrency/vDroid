@@ -3,11 +3,7 @@ package vergecurrency.vergewallet.service.model;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.TreeSet;
-
-import androidx.lifecycle.MutableLiveData;
+import vergecurrency.vergewallet.Constants;
 
 /**
  * Warning fella : this class is a singleton object if you are wondering why I did that shitshow ;)
@@ -46,6 +42,24 @@ public class PreferencesManager {
 		prefs.edit().putBoolean("firstlaunch", firstLaunchValue).apply();
 	}
 
+	//-------Pin
+	public String getPin() {
+		return prefs.getString("pin","");
+	}
+
+	public void setPin(String pin){
+		prefs.edit().putString("pin",pin).apply();
+	}
+
+	//-------Pin digits
+	public int getPinCount() {
+		return prefs.getInt("pinCount",6);
+	}
+
+	public void setPinCount(int pinCount) {
+		prefs.edit().putInt("pinCount", pinCount).apply();;
+	}
+
 	//---------Preferred currency
 	public String getPreferredCurrency() {
 		return prefs.getString("preferredCurrency", new Currency("United States Dollar", "USD").getCurrencyAsJSON());
@@ -64,9 +78,8 @@ public class PreferencesManager {
 		prefs.edit().putBoolean("usingTor", isUsingTor).apply();
 	}
 
-
+	//--------12words mnemonic
 	public String getMnemonic() {
-
 		return prefs.getString("mnemonic", null);
 	}
 
@@ -74,11 +87,8 @@ public class PreferencesManager {
 		prefs.edit().putString("mnemonic", mnemonic).apply();
 	}
 
-    public void setCurrentBalance(Long balance) {
-		prefs.edit().putLong("balance", balance).apply();
-    }
-
-    public String getPassphrase() {
+	//-------User passphrase
+	public String getPassphrase() {
 		return prefs.getString("passphrase", "mnemonic");
 	}
 
@@ -86,7 +96,68 @@ public class PreferencesManager {
 		prefs.edit().putString("passphrase", passphrase).apply();
 	}
 
-    public Long getCurrentBalance() {
-		return prefs.getLong("balance", 0l);
+	//---------Wallet amount
+
+	public float getAmount() {
+		 return prefs.getFloat("amount",0f);
 	}
+
+	public void setAmount(float amount) {
+		if(amount < 0f) {
+			amount = 0f;
+		}
+		prefs.edit().putFloat("amount", amount).apply();
+	}
+
+	//--------auth for unlocking wallet
+	public boolean getLocalAuthForWalletUnlock() {
+		return prefs.getBoolean("authUnlockWallet",false);
+	}
+
+	public void setLocalAuthForWalletUnlock(boolean value) {
+		prefs.edit().putBoolean("authUnlockWallet", value).apply();
+	}
+
+	//--------auth for sending xvg
+	public boolean getLocalAuthForSendingXVG() {
+		return prefs.getBoolean("authSendXVG",false);
+	}
+
+	public void setLocalAuthForSendingXVG(boolean value) {
+		prefs.edit().putBoolean("authSendXVG", value).apply();
+	}
+
+	//--------vws endpoint
+	public String getWalletServiceUrl() {
+		return prefs.getString("walletServiceURL", Constants.VWS_ENDPOINT);
+	}
+
+	public void setWalletServiceUrl(String url) {
+		prefs.edit().putString("walletServiceURL", url).apply();
+	}
+
+	//--------walletid
+	public String getWalletId() {
+		return prefs.getString("walletId", null) ;
+	}
+
+	public void setWalletId(String id) {
+		if (id == null) {
+			prefs.edit().putString("walletId", "");
+		}
+		prefs.edit().putString("walletId", id).apply();
+	}
+
+	//--------walletname
+	public String getWalletName() {
+		return prefs.getString("walletName", null) ;
+	}
+
+	public void setWalletName(String name) {
+		if (name == null) {
+			prefs.edit().putString("walletName", "");
+		}
+		prefs.edit().putString("walletName", name).apply();
+	}
+
 }
