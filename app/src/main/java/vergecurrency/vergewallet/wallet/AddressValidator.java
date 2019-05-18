@@ -1,6 +1,10 @@
 package vergecurrency.vergewallet.wallet;
 
 
+import android.provider.Telephony;
+
+import java.util.HashMap;
+
 import io.horizontalsystems.bitcoinkit.exceptions.AddressFormatException;
 import io.horizontalsystems.bitcoinkit.network.MainNet;
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter;
@@ -24,9 +28,29 @@ public class AddressValidator {
 			vc.setAddress(address);
 		}
 
-		String splittedRequest[] = address.replace("verge://", "").replace("verge:", "").split("\\?");
+		String[] splittedRequest = address.replace("verge://", "").replace("verge:", "").split("\\?");
 
+		String [] parameters = splittedRequest[splittedRequest.length-1].split("&");
 
+		if (AddressValidator.isValidAddress(splittedRequest[0])) {
+			vc.setValid(true);
+			vc.setAddress(splittedRequest[0]);
+		} else {
+			return vc;
+		}
+
+		String [] splittedParameters = parameters[parameters.length-1].split("&");
+
+		HashMap<String,String> definitiveParameters = new HashMap<>();
+
+		for (String param : splittedParameters) {
+			String[] parameterPair = param.split("=");
+			definitiveParameters.put(parameterPair[0], parameterPair[1]);
+		}
+
+		Float amount = Float.parseFloat(definitiveParameters.getOrDefault("amount","0"));
+
+		vc.setAmount(amount);
 
 		return vc;
 	}
