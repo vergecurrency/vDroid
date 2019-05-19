@@ -143,7 +143,7 @@ public class PreferencesManager {
 
 	public void setWalletId(String id) {
 		if (id == null) {
-			prefs.edit().putString("walletId", "");
+			id = "";
 		}
 		prefs.edit().putString("walletId", id).apply();
 	}
@@ -155,9 +155,30 @@ public class PreferencesManager {
 
 	public void setWalletName(String name) {
 		if (name == null) {
-			prefs.edit().putString("walletName", "");
+			name = "";
 		}
 		prefs.edit().putString("walletName", name).apply();
+	}
+
+	//--------walletsecret
+	public String getWalletSecret() {
+		return prefs.getString("walletSecret", null) ;
+	}
+
+	public void setWalletSecret(String secret) {
+		if (secret == null) {
+			secret = "";
+		}
+		prefs.edit().putString("walletSecret", secret).apply();
+	}
+
+	//--------walletsecret
+	public String getDeviceToken() {
+		return prefs.getString("deviceToken","");
+	}
+
+	public void setDeviceToken(String token) {
+		prefs.edit().putString("deviceToken", token).apply();
 	}
 
 }
