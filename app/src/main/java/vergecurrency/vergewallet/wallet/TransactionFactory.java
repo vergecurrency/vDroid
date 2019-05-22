@@ -13,7 +13,7 @@ public class TransactionFactory {
 	}
 
 	private void setBy(String currency, float amount) {
-		if(currency == "XVG") {
+		if(currency.equals("XVG")) {
 			this.amount = amount;
 		} else {
 			fiatAmount = amount;
@@ -24,10 +24,10 @@ public class TransactionFactory {
 
 	private void update(String currency) {
 		String info = ticker.getRateInfo();
-		if (currency == "XVG") {
-			fiatAmount = (float)(amount  * info.getPrice());
+		if (currency.equals("XVG")) {
+			//fiatAmount = (float)(amount  * info.getPrice());
 		} else {
-			amount = (float)(fiatAmount / info.getPrice());
+			//amount = (float)(fiatAmount / info.getPrice());
 		}
 
 	}
