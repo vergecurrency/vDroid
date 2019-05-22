@@ -32,7 +32,7 @@
     <string name="receive_current_code">DSiXiwK9uZ1uAy6PuqQWYBVQUaoGENZZaZ</string>
     <string name="receive_xvg_main">Send only XVG to this deposit address. \n Sending any other coin or token to this address may result in the loss of your deposit.</string>
     //Settings fragment
-    <string name="settings_desc1">Disconnect your wallet from this device or write down your paperkey</string>
+    <string name="settings_desc1">Disconnect your wallet from this device or write down your paper key</string>
 
     //Splash screen texts
     <string name="splash_title">Verge Android wallet</string>
@@ -48,14 +48,14 @@
 
     //Disconnect activity
     <string name="disconnect_title">Disconnect this device from your current wallet</string>
-    <string name="disconnect_desc">You\'re about to disconnect this device from your current wallet. \n Please make absolutely sure you have written down your paperkey. Remember that your paperkey is the only way to restore your current wallet.</string>
+    <string name="disconnect_desc">You\'re about to disconnect this device from your current wallet. \n Please make absolutely sure you have written down your paper key. Remember that your paper key is the only way to restore your current wallet.</string>
     <string name="disconnect_button">Disconnect</string>
-    <string name="disconnect_show_paperkey">Or check your paperkey once again…</string>
+    <string name="disconnect_show_paperkey">Or check your paper key once again…</string>
 
-    //Paperkey activity
-    <string name="paperkey_title">Write down your wallet paperkey again</string>
-    <string name="paperkey_desc">You want to see your paperkey again? On the next screen, you\'ll be shown a list of words to write down on a piece of paper, which you should keep very safe!</string>
-    <string name="paperkey_button">Show Paperkey</string>
+    //paper key activity
+    <string name="paperkey_title">Write down your wallet paper key again</string>
+    <string name="paperkey_desc">You want to see your paper key again? On the next screen, you\'ll be shown a list of words to write down on a piece of paper, which you should keep very safe!</string>
+    <string name="paperkey_button">Show paper key</string>
 
     //Donate activity
     <string name="donate_title">Donate to support development</string>
@@ -69,16 +69,16 @@
     <string name="pinlock_setup_instructions">Your wallet PIN will be used to open this \n app and to send XVG with. If you forget it, \n you won\'t be able to access your wallet.</string>
     <string name="pinlock_title">Set wallet PIN</string>
 
-    //Paperkey introduction activity
-    <string name="paperkey_activity_title">Paperkey</string>
+    //paper key introduction activity
+    <string name="paperkey_activity_title">Paper key</string>
     <string name="paperkey_activity_main">On the next screen, you\'ll be shown a list of words to write down on a piece of paper, which you should keep very safe!</string>
-    <string name="paperkey_activity_sub">Your paperkey is the only way to restore your Verge Wallet if your phone is lost, stolen, broken or replaced. </string>
-    //Paperkey mnemonic activity
-    <string name="paperkey_activity_button">Write down Paperkey</string>
+    <string name="paperkey_activity_sub">Your paper key is the only way to restore your Verge Wallet if your phone is lost, stolen, broken or replaced. </string>
+    //paper key mnemonic activity
+    <string name="paperkey_activity_button">Write down paper key</string>
     <string name="paperkey_instructions">Write down each word in the correct order on your paper. Keep this paper in a secure location.</string>
     <string name="paperkey_wallet_previous">Previous</string>
     <string name="paperkey_wallet_next">Next</string>
-    //Paperkey confirm mnemonic activity
+    //paper key confirm mnemonic activity
     <string name="paperkey_confirm_instructions">To make sure everything was written down correctly please enter the following words from your paper.</string>
     <string name="paperkey_confirm_submit">Submit</string>
     <string name="wallet_ready">Your wallet is ready! \n Congratulations</string>
@@ -116,5 +116,7 @@
     <string name="passphrase_symbols"><![CDATA[Special character (!.,-#€%&+#)]]></string>
     <string name="passphrase_hint">Enter your passphrase</string>
     <string name="passphrase_confirm_title">Confirm your passphrase</string>
+    <string name="qr_option_btn">QR</string>
+    <string name="words_option_btn">Words</string>
 
 </resources>

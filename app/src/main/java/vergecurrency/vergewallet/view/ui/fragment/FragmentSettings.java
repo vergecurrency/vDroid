@@ -46,7 +46,7 @@ public class FragmentSettings extends Fragment {
 	private void initWalletSettings(View view) {
 		SettingsListViewData itemsDataWallet[] = {
 				new SettingsListViewData("Disconnect this device", R.drawable.icon_disconnected, v -> startActivity(new Intent(v.getContext(), DisconnectActivity.class))),
-				new SettingsListViewData("Paperkey", R.drawable.icon_paperkey, v -> {
+				new SettingsListViewData("Paper key", R.drawable.icon_paperkey, v -> {
 					startActivity(new Intent(v.getContext(), PaperkeyActivity.class));
 				}),
 		};
