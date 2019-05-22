@@ -13,7 +13,6 @@ public class PreferencesManager {
 	static PreferencesManager INSTANCE = null;
 	SharedPreferences prefs;
 
-
 	private PreferencesManager(Context context) {
 		prefs = context.getSharedPreferences("com.vergecurrency.vergewallet", Context.MODE_PRIVATE);
 	}
