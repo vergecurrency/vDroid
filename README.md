@@ -28,6 +28,8 @@ If you want to help us out on the development use this guide:
 
 2. Fire up Android Studio and you're done. 
 
+# Note : If you change indentation to spaces, and then you submit a PR, you're a bad person.
+
 ## Built With
 
 * Credits list coming in a second time
