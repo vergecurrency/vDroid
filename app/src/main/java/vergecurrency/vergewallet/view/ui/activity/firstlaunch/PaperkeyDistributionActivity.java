@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.excpetion.DefaultExceptionHandler;
 import vergecurrency.vergewallet.excpetion.VergeException;
 import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 import vergecurrency.vergewallet.viewmodel.PaperkeyDistributionViewModel;
@@ -32,6 +33,7 @@ public class PaperkeyDistributionActivity extends VergeActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paperkey_seed);
 
+
         //learn it and shut up
         mViewModel = ViewModelProviders.of(this).get(PaperkeyDistributionViewModel.class);
 
@@ -47,7 +49,7 @@ public class PaperkeyDistributionActivity extends VergeActivity {
         try {
             seed = mViewModel.getSeed();
         } catch (Exception e) {
-            exceptionHandler.handle(new VergeException(e, FAILED_TO_GENERATE_SEED));
+            DefaultExceptionHandler.getInstance().handle(new VergeException(e, FAILED_TO_GENERATE_SEED));
         }
     }
 

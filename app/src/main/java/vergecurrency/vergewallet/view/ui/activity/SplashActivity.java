@@ -12,10 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
+import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 import vergecurrency.vergewallet.view.ui.activity.firstlaunch.FirstLaunchActivity;
 import vergecurrency.vergewallet.wallet.WalletManager;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends VergeActivity {
 
 	PreferencesManager pm;
 

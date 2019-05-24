@@ -1,13 +1,14 @@
 package vergecurrency.vergewallet.excpetion;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 
 import java.io.StringWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 import vergecurrency.vergewallet.view.ui.activity.error.ErrorRecoveryActivity;
 
 public class DefaultExceptionHandler implements Thread.UncaughtExceptionHandler {
@@ -16,10 +17,33 @@ public class DefaultExceptionHandler implements Thread.UncaughtExceptionHandler 
     public static final String EXTRA_ERROR_MESSAGE = "error-message";
     public static final String EXTRA_ERROR_REPORT = "error-report";
     private static final String NEWLINE = "\n";
-    private VergeActivity activity;
+    private Context context;
 
-    public DefaultExceptionHandler(VergeActivity activity) {
-        this.activity = activity;
+    static DefaultExceptionHandler INSTANCE = null;
+    SharedPreferences prefs;
+
+
+    private DefaultExceptionHandler(Context context) {
+        this.context = context;
+    }
+
+    //--------Singleton methods
+    public static DefaultExceptionHandler init(Context context) {
+        if (INSTANCE != null) {
+            throw new AssertionError("You already initialized an object of this type");
+        }
+        return INSTANCE = new DefaultExceptionHandler(context);
+    }
+
+    public static DefaultExceptionHandler getInstance() {
+        if (INSTANCE == null) {
+            throw new AssertionError("You haven't initialized an object of this type yet.");
+        }
+        return INSTANCE;
+    }
+
+    public static boolean initialized() {
+        return INSTANCE != null;
     }
 
     @Override
@@ -28,7 +52,7 @@ public class DefaultExceptionHandler implements Thread.UncaughtExceptionHandler 
     }
 
     public void handle(Throwable e) {
-        Intent intent = new Intent(this.activity, ErrorRecoveryActivity.class);
+        Intent intent = new Intent(context, ErrorRecoveryActivity.class);
         if (e instanceof VergeException) {
             intent.putExtra(EXTRA_ERROR_CODE, ((VergeException) e).getError().getCode());
             intent.putExtra(EXTRA_ERROR_MESSAGE, ((VergeException) e).getError().getMessage());
@@ -78,7 +102,9 @@ public class DefaultExceptionHandler implements Thread.UncaughtExceptionHandler 
 
         //Create intent and start Activity
         intent.putExtra(EXTRA_ERROR_REPORT, report.toString());
+        //required
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        this.activity.startActivity(intent);
+        context.startActivity(intent);
     }
 }
