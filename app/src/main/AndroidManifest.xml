@@ -51,6 +51,7 @@
         <activity android:name=".view.ui.activity.settings.ShowPaperkeyActivity" />
         <activity android:name=".view.ui.activity.firstlaunch.PassphraseValidationActivity" />
         <activity android:name=".view.ui.activity.firstlaunch.PassphraseCreationActivity" />
+        <activity android:name=".view.ui.activity.error.ErrorRecoveryActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -10,12 +10,12 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 import vergecurrency.vergewallet.viewmodel.TorSettingsViewModel;
 
-public class TorSettingsActivity extends AppCompatActivity {
+public class TorSettingsActivity extends VergeActivity {
 
 	MapView map;
 	TextView ip;

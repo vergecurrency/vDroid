@@ -1,18 +1,16 @@
 package vergecurrency.vergewallet.view.ui.activity.settings;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.utilities.CurrenciesUtils;
+import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 import vergecurrency.vergewallet.view.adapter.CurrenciesAdapter;
 import vergecurrency.vergewallet.viewmodel.SelectCurrencyViewModel;
 
-public class SelectCurrencyActivity extends AppCompatActivity {
+public class SelectCurrencyActivity extends VergeActivity {
 
 
 	@Override

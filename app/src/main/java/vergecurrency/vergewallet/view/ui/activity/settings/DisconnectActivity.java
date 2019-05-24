@@ -2,11 +2,11 @@ package vergecurrency.vergewallet.view.ui.activity.settings;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 
-public class DisconnectActivity extends AppCompatActivity {
+public class DisconnectActivity extends VergeActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

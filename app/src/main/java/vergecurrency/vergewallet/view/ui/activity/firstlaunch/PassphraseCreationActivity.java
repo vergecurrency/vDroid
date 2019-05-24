@@ -13,11 +13,11 @@ import android.widget.TextView;
 import com.omega_r.libs.OmegaCenterIconButton;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.ImageViewCompat;
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 
-public class PassphraseCreationActivity extends AppCompatActivity {
+public class PassphraseCreationActivity extends VergeActivity {
 
 	private ImageView eightCharsTickImageView;
 	private TextView eightCharsLabel;
@@ -126,13 +126,13 @@ public class PassphraseCreationActivity extends AppCompatActivity {
 	}
 
 	private boolean hasPassphraseUpperCaseChar(String s) {
-		if (s == s.toLowerCase()) {
+		if (s.equals(s.toLowerCase())) {
 			return false;
 		} else return true;
 	}
 
 	private boolean hasPassphraseLowerCaseChar(String s) {
-		if (s == s.toUpperCase()) {
+		if (s.equals(s.toUpperCase())) {
 			return false;
 		} else return true;
 	}

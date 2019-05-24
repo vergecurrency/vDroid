@@ -3,9 +3,8 @@ package vergecurrency.vergewallet.view.ui.activity.firstlaunch;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Pair;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,9 +16,10 @@ import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.utilities.MathUtils;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
+import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 import vergecurrency.vergewallet.viewmodel.PaperkeyVerificationViewModel;
 
-public class PaperkeyVerificationActivity extends AppCompatActivity {
+public class PaperkeyVerificationActivity extends VergeActivity {
 
 	TextView firstWordCaption;
 	TextView secondWordCaption;

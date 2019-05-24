@@ -3,12 +3,15 @@ package vergecurrency.vergewallet.view.ui.activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+
+import com.balram.locker.view.LockActivity;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import vergecurrency.vergewallet.R;
@@ -18,7 +21,7 @@ import vergecurrency.vergewallet.view.ui.fragment.FragmentSettings;
 import vergecurrency.vergewallet.view.ui.fragment.FragmentTransactions;
 import vergecurrency.vergewallet.view.ui.fragment.FragmentWallet;
 
-public class WalletActivity extends AppCompatActivity {//extends LockActivity
+public class WalletActivity extends LockActivity {
 
 	private int currentItem;
 
@@ -62,6 +65,7 @@ public class WalletActivity extends AppCompatActivity {//extends LockActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
 		//Initialize upper text view
 		mTextMessage = findViewById(R.id.mTextMessage);

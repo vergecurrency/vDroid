@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Verge</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiMmxhenkyZGVidWciLCJhIjoiY2pvbzdqdHJjMDFkOTNrc3U3cnlyZ3A0aCJ9.u6hnc-wFQhgefZW0eQRwFw</string>
 
@@ -85,6 +85,11 @@
 
     //Fiat Currency activity
     <string name="title_fiat_currency">Fiat currency</string>
+
+    //Error report activity
+    <string name="error_report_copy_button">&lt;b>&lt;big>Copy error report to clipboard&lt;/big>&lt;/b></string>
+    <string name="error_report_exit_button"> &lt;b>&lt;big>Exit Verge Android Wallet&lt;/big>&lt;/b></string>
+
 
 
     //Others

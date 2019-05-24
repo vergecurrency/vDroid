@@ -11,13 +11,13 @@ import android.widget.EditText;
 import com.omega_r.libs.OmegaCenterIconButton;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 import vergecurrency.vergewallet.viewmodel.PassphraseVerificationViewModel;
 
 
-public class PassphraseValidationActivity extends AppCompatActivity {
+public class PassphraseValidationActivity extends VergeActivity {
 
 	private PassphraseVerificationViewModel mViewModel;
 	private String passphraseToValidate;
