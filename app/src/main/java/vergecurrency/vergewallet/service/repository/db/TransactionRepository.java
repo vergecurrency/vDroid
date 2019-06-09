@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import vergecurrency.vergewallet.service.model.vws.InputOutput;
 import vergecurrency.vergewallet.service.model.vws.TxHistory;
 
-class TransactionRepository  extends SQLiteOpenHelper {
+public class TransactionRepository  extends SQLiteOpenHelper {
 
 	//Database Information
 	private static final int DATABASE_VERSION = 1;
@@ -84,7 +84,7 @@ class TransactionRepository  extends SQLiteOpenHelper {
 
 
 	public ArrayList<TxHistory> getByAddress(String address) {
-		String query = "Select * from" + TABLE_NAME + "WHERE"+ COLUMN_SAVEDADDRESS + "=" + address ;
+		String query = "Select * from" + TABLE_NAME + "WHERE"+ COLUMN_SAVEDADDRESS + "like" + address ;
 
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery(query, null);
@@ -118,5 +118,7 @@ class TransactionRepository  extends SQLiteOpenHelper {
 
 		return results;
 	}
+
+
 
 }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Pair;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,7 +14,7 @@ import java.util.Arrays;
 import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.utilities.MathUtils;
+import vergecurrency.vergewallet.helpers.utils.MathUtils;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.viewmodel.PaperkeyVerificationViewModel;
 
