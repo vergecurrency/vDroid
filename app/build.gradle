@@ -52,7 +52,9 @@ dependencies {
     //Centered buttons
     implementation 'com.github.Omega-R:OmegaCenterIconButton:0.0.3@aar'
     //BitcoinKit
-    implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.2.4'
+    implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.2.3'
+    //HD Wallet Kit
+    implementation 'com.github.2lazy2debug:hd-wallet-kit-android:1.1.0'
     //GreenDao
     implementation 'org.greenrobot:greendao:3.2.2'
     //Json, not sure if used

@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.greenrobot.greendao.AbstractDaoSession;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.internal.DaoConfig;
 
@@ -21,8 +22,8 @@ import vergecurrency.vergewallet.wallet.WalletManager;
 public class SplashActivity extends AppCompatActivity {
 
 	PreferencesManager pm;
-	DbOpenHelper dbOpenHelper;
-	//private DaoSession daoSession;
+	//DbOpenHelper dbOpenHelper;
+	//private AbstractDaoSession daoSession;
 
 
 	@Override
@@ -31,6 +32,10 @@ public class SplashActivity extends AppCompatActivity {
 
 		//TestFairy token for getting info on beta testing
 		//TestFairy.begin(this, "a67a4df6e2a8a0c981638eb0f168297fd45aed73");
+		//init db
+		//dbOpenHelper = new DbOpenHelper(this,"verge.db",1);
+		//Database db = dbOpenHelper.getWritableDb();
+		//daoSession = new AbstractDaoMaster;
 
 		//init BitcoinKit
 		BitcoinKit.Companion.init(this);
@@ -38,10 +43,7 @@ public class SplashActivity extends AppCompatActivity {
 		//gets the holy preferences
 		pm = PreferencesManager.init(getApplicationContext());
 
-		//init db
-		dbOpenHelper = new DbOpenHelper(this,"verge.db",1);
-		Database db = dbOpenHelper.getWritableDb();
-		//daoSession = new AbstractDaoMaster(db,1).;
+
 
 		setContentView(R.layout.activity_splash);
 
