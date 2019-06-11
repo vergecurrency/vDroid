@@ -38,7 +38,6 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
         generateSeed();
         //get the first word
         mViewModel.nextWord(wordView, nextButton);
-        throw new RuntimeException();
     }
 
     private void generateSeed() {
