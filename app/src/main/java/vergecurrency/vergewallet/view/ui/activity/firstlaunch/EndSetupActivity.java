@@ -6,13 +6,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 import vergecurrency.vergewallet.view.ui.activity.WalletActivity;
 import vergecurrency.vergewallet.wallet.WalletManager;
 
-public class EndSetupActivity extends VergeActivity {
+public class EndSetupActivity extends AppCompatActivity {
 
 	Button openWallet;
 	WalletManager wm;

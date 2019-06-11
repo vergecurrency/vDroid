@@ -89,6 +89,8 @@
     //Error report activity
     <string name="error_report_copy_button">&lt;b>&lt;big>Copy error report to clipboard&lt;/big>&lt;/b></string>
     <string name="error_report_exit_button"> &lt;b>&lt;big>Exit Verge Android Wallet&lt;/big>&lt;/b></string>
+    <string name="error_uncaught_exception">Verge Android Wallet Unexpected Error</string>
+    <string name="error_uncaught_exception_show_report">Show error report</string>
 
 
 
@@ -96,8 +98,6 @@
     <string name="statistics_pageview_header">Price Statistics</string>
     <string name="charts_pageview_header">History Chart</string>
     <string name="twitter_pageview_header">Last tweets</string>
-
-
 
     <string name="file_provider_authority" translatable="false">com.vergecurrency.vergewallet.fileprovider</string>
     <string name="paperkey_write_seed">Write down each word in the correct order on your paper</string>

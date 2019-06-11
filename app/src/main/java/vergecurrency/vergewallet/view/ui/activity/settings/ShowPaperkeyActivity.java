@@ -6,12 +6,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
+
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 import vergecurrency.vergewallet.viewmodel.ShowPaperkeyViewModel;
 
-public class ShowPaperkeyActivity extends VergeActivity {
+public class ShowPaperkeyActivity extends AppCompatActivity {
 
 	private ShowPaperkeyViewModel mViewModel;
 	private TextView seedTextView;

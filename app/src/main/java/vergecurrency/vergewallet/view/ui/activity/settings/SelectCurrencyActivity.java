@@ -4,24 +4,25 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
+
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 import vergecurrency.vergewallet.view.adapter.CurrenciesAdapter;
 import vergecurrency.vergewallet.viewmodel.SelectCurrencyViewModel;
 
-public class SelectCurrencyActivity extends VergeActivity {
+public class SelectCurrencyActivity extends AppCompatActivity {
 
 
-	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_select_currency);
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_select_currency);
 
-		SelectCurrencyViewModel mViewModel = ViewModelProviders.of(this).get(SelectCurrencyViewModel.class);
+        SelectCurrencyViewModel mViewModel = ViewModelProviders.of(this).get(SelectCurrencyViewModel.class);
 
-		ListView currenciesList = findViewById(R.id.activity_select_currency_listview);
-		currenciesList.setAdapter(new CurrenciesAdapter(getApplicationContext(), mViewModel.getCurrencies()));
+        ListView currenciesList = findViewById(R.id.activity_select_currency_listview);
+        currenciesList.setAdapter(new CurrenciesAdapter(getApplicationContext(), mViewModel.getCurrencies()));
 
-	}
+    }
 }

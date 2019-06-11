@@ -2,24 +2,24 @@ package vergecurrency.vergewallet.view.ui.activity.firstlaunch;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-
 import android.util.Pair;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+
 import java.util.Arrays;
 
-import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.utilities.MathUtils;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
-import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
+import vergecurrency.vergewallet.utilities.MathUtils;
 import vergecurrency.vergewallet.viewmodel.PaperkeyVerificationViewModel;
 
-public class PaperkeyVerificationActivity extends VergeActivity {
+public class PaperkeyVerificationActivity extends AppCompatActivity {
 
 	TextView firstWordCaption;
 	TextView secondWordCaption;

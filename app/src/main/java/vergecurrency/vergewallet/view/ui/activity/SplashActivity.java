@@ -5,30 +5,27 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
-import com.testfairy.TestFairy;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
-import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 import vergecurrency.vergewallet.view.ui.activity.firstlaunch.FirstLaunchActivity;
 import vergecurrency.vergewallet.wallet.WalletManager;
 
-public class SplashActivity extends VergeActivity {
+public class SplashActivity extends AppCompatActivity {
 
 	PreferencesManager pm;
 
 	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
+	protected void onCreate(@Nullable Bundle savedInstanceState) throws RuntimeException {
 		super.onCreate(savedInstanceState);
 
 		//TestFairy token for getting info on beta testing
 		//TestFairy.begin(this, "a67a4df6e2a8a0c981638eb0f168297fd45aed73");
 
 		BitcoinKit.Companion.init(this);
-
 
 		//gets the holy preferences
 		pm = PreferencesManager.init(getApplicationContext());
@@ -37,7 +34,6 @@ public class SplashActivity extends VergeActivity {
 
 		//Just to have the splash screen going briefly
 		new Handler().postDelayed(() -> startApplication(), 500);
-
 	}
 
 

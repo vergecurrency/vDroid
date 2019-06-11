@@ -9,19 +9,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 
-import static vergecurrency.vergewallet.excpetion.DefaultExceptionHandler.EXTRA_ERROR_CODE;
-import static vergecurrency.vergewallet.excpetion.DefaultExceptionHandler.EXTRA_ERROR_MESSAGE;
-import static vergecurrency.vergewallet.excpetion.DefaultExceptionHandler.EXTRA_ERROR_REPORT;
+import static vergecurrency.vergewallet.excpetion.DefaultUncaughtExceptionHandler.EXTRA_ERROR_REPORT;
 
-public class ErrorRecoveryActivity extends VergeActivity {
+public class ErrorRecoveryActivity extends AppCompatActivity {
     private CharSequence errorReport;
-    private CharSequence errorMessage;
-    private int errorCode;
     Button button;
     TextView error_description;
 
@@ -30,8 +26,6 @@ public class ErrorRecoveryActivity extends VergeActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         errorReport = intent.getStringExtra(EXTRA_ERROR_REPORT);
-        errorMessage = intent.getStringExtra(EXTRA_ERROR_MESSAGE);
-        errorCode = intent.getIntExtra(EXTRA_ERROR_CODE, 0);
         setContentView(R.layout.activity_error_report);
         this.instantiateButtons();
         this.instantiateTextView();
@@ -39,12 +33,7 @@ public class ErrorRecoveryActivity extends VergeActivity {
 
     private void instantiateTextView() {
         error_description = findViewById(R.id.error_description);
-        if (errorCode != 0 && errorMessage != null) {
-            error_description.setText(String.join(" : ", Integer.toString(errorCode), errorMessage));
-        } else {
-            error_description.setText("An unexpected error occurred");
-        }
-
+        error_description.setText("If you would like to report an issue with our application, please create a new issue on \n https://github.com/vergecurrency/vDroid/issues");
     }
 
     private void instantiateButtons() {
@@ -61,7 +50,7 @@ public class ErrorRecoveryActivity extends VergeActivity {
         return v -> {
             copyErrorReport();
             Toast toast = Toast.makeText(getApplicationContext(), "Copied to clipboard", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.TOP,0,75);
+            toast.setGravity(Gravity.TOP, 0, 25);
             toast.show();
         };
     }
@@ -79,7 +68,7 @@ public class ErrorRecoveryActivity extends VergeActivity {
     }
 
     private void exit() {
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
+        finish();
+        System.exit(2);
     }
 }

@@ -1,11 +1,12 @@
 package vergecurrency.vergewallet.wallet;
 
+import androidx.lifecycle.MutableLiveData;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
 
-import androidx.lifecycle.MutableLiveData;
 import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import io.horizontalsystems.bitcoinkit.models.BlockInfo;
 import io.horizontalsystems.bitcoinkit.models.TransactionInfo;

@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 
-public class PaperkeyInstructionsActivity extends VergeActivity {
+public class PaperkeyInstructionsActivity extends AppCompatActivity {
 
 
 	//The dumbest class you'll find here... jump to the next one

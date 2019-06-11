@@ -6,17 +6,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.excpetion.DefaultExceptionHandler;
-import vergecurrency.vergewallet.excpetion.VergeException;
-import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 import vergecurrency.vergewallet.viewmodel.PaperkeyDistributionViewModel;
 
-import static vergecurrency.vergewallet.excpetion.VergeError.FAILED_TO_GENERATE_SEED;
-
-public class PaperkeyDistributionActivity extends VergeActivity {
+public class PaperkeyDistributionActivity extends AppCompatActivity {
 
 
     //variable decl.
@@ -42,6 +38,7 @@ public class PaperkeyDistributionActivity extends VergeActivity {
         generateSeed();
         //get the first word
         mViewModel.nextWord(wordView, nextButton);
+        throw new RuntimeException();
     }
 
     private void generateSeed() {
@@ -49,7 +46,8 @@ public class PaperkeyDistributionActivity extends VergeActivity {
         try {
             seed = mViewModel.getSeed();
         } catch (Exception e) {
-            DefaultExceptionHandler.getInstance().handle(new VergeException(e, FAILED_TO_GENERATE_SEED));
+            //TODO ...
+           e.printStackTrace();
         }
     }
 

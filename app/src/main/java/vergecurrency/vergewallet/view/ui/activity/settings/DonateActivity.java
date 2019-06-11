@@ -1,20 +1,20 @@
 package vergecurrency.vergewallet.view.ui.activity.settings;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 import vergecurrency.vergewallet.view.ui.fragment.FragmentSend;
 
-public class DonateActivity extends VergeActivity {
+public class DonateActivity extends AppCompatActivity {
 
     Button donateButton;
     ImageView donateHeader;

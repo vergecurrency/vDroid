@@ -6,11 +6,11 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 
-public class PaperkeyActivity extends VergeActivity {
+public class PaperkeyActivity extends AppCompatActivity {
 
     Button showPaperkeyButton;
 

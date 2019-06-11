@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.view.ui.activity.base.VergeActivity;
 
-public class FirstLaunchActivity extends VergeActivity {
+public class FirstLaunchActivity extends AppCompatActivity {
 
 	Button bottomButton;
 
@@ -18,7 +18,6 @@ public class FirstLaunchActivity extends VergeActivity {
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_first_launch);
-
 		instantiateButtons();
 	}
 
