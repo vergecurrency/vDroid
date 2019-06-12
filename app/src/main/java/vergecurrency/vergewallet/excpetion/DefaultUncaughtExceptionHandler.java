@@ -46,10 +46,6 @@ public class DefaultUncaughtExceptionHandler implements Thread.UncaughtException
         return INSTANCE;
     }
 
-    public static boolean initialized() {
-        return INSTANCE != null;
-    }
-
     @Override
     public void uncaughtException(Thread t, Throwable e) {
         this.handle(e);

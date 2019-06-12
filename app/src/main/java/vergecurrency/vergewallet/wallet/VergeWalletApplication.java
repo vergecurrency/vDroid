@@ -106,7 +106,7 @@ public class VergeWalletApplication extends Application implements Application.A
 
     @MainThread
     private void initExceptionHandler() {
-        if (!DefaultUncaughtExceptionHandler.initialized()) {
+        if (DefaultUncaughtExceptionHandler.getInstance() == null) {
             DefaultUncaughtExceptionHandler.init();
             //Set Exception Handler on main thread
             Thread.setDefaultUncaughtExceptionHandler(DefaultUncaughtExceptionHandler.getInstance());
