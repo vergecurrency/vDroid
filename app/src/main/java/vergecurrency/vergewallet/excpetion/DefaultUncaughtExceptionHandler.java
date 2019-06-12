@@ -40,9 +40,6 @@ public class DefaultUncaughtExceptionHandler implements Thread.UncaughtException
     }
 
     public static DefaultUncaughtExceptionHandler getInstance() {
-        if (INSTANCE == null) {
-            throw new AssertionError("You haven't initialized an object of this type yet.");
-        }
         return INSTANCE;
     }
 
