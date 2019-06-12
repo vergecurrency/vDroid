@@ -31,7 +31,8 @@ public final class Constants {
     public static List<String> seed;
 
     //Resource directories
-	public final static String CURRENCIES_FILE_PATH = "currencies.json";
+    public final static String CURRENCIES_FILE_PATH = "currencies.json";
+    public final static String LANGUAGES_FILE_PATH = "languages.json";
 	public final static String MOCK_TRANSACTIONS_FILE_PATH = "transactions.json";
 
 

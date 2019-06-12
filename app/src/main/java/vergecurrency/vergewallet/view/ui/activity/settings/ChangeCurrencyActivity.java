@@ -10,13 +10,13 @@ import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.adapter.CurrenciesAdapter;
 import vergecurrency.vergewallet.viewmodel.SelectCurrencyViewModel;
 
-public class SelectCurrencyActivity extends AppCompatActivity {
+public class ChangeCurrencyActivity extends AppCompatActivity {
 
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_select_currency);
+		setContentView(R.layout.activity_currency_change);
 
 		SelectCurrencyViewModel mViewModel = ViewModelProviders.of(this).get(SelectCurrencyViewModel.class);
 
