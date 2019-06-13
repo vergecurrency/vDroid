@@ -31,12 +31,11 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.utilities.AnimationUtils;
-import vergecurrency.vergewallet.utilities.FileUtils;
-import vergecurrency.vergewallet.utilities.ImageUtils;
+import vergecurrency.vergewallet.helpers.utils.AnimationUtils;
+import vergecurrency.vergewallet.helpers.utils.FileUtils;
+import vergecurrency.vergewallet.helpers.utils.ImageUtils;
 import vergecurrency.vergewallet.viewmodel.ReceiveFragmentViewModel;
 
 public class FragmentReceive extends Fragment {

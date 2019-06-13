@@ -1,9 +1,7 @@
 package vergecurrency.vergewallet.wallet;
 
-import android.os.Message;
 
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;

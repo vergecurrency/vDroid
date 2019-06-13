@@ -44,20 +44,21 @@ public class PreferencesManager {
 
 	//-------Pin
 	public String getPin() {
-		return prefs.getString("pin","");
+		return prefs.getString("pin", "");
 	}
 
-	public void setPin(String pin){
-		prefs.edit().putString("pin",pin).apply();
+	public void setPin(String pin) {
+		prefs.edit().putString("pin", pin).apply();
 	}
 
 	//-------Pin digits
 	public int getPinCount() {
-		return prefs.getInt("pinCount",6);
+		return prefs.getInt("pinCount", 6);
 	}
 
 	public void setPinCount(int pinCount) {
-		prefs.edit().putInt("pinCount", pinCount).apply();;
+		prefs.edit().putInt("pinCount", pinCount).apply();
+		;
 	}
 
 	//---------Preferred currency
@@ -67,6 +68,16 @@ public class PreferencesManager {
 
 	public void setSelectedCurrency(String preferredCurrency) {
 		prefs.edit().putString("preferredCurrency", preferredCurrency).apply();
+	}
+
+	//---------Preferred language
+
+	public String getCurrentLanguage() {
+		return prefs.getString("language", new Language("English", "en").getLanguageAsJson());
+	}
+
+	public void setCurrentLanguage(String language) {
+		prefs.edit().putString("language", language).apply();
 	}
 
 	//---------Using Tor
@@ -99,11 +110,11 @@ public class PreferencesManager {
 	//---------Wallet amount
 
 	public float getAmount() {
-		 return prefs.getFloat("amount",0f);
+		return prefs.getFloat("amount", 0f);
 	}
 
 	public void setAmount(float amount) {
-		if(amount < 0f) {
+		if (amount < 0f) {
 			amount = 0f;
 		}
 		prefs.edit().putFloat("amount", amount).apply();
@@ -111,7 +122,7 @@ public class PreferencesManager {
 
 	//--------auth for unlocking wallet
 	public boolean getLocalAuthForWalletUnlock() {
-		return prefs.getBoolean("authUnlockWallet",false);
+		return prefs.getBoolean("authUnlockWallet", false);
 	}
 
 	public void setLocalAuthForWalletUnlock(boolean value) {
@@ -120,7 +131,7 @@ public class PreferencesManager {
 
 	//--------auth for sending xvg
 	public boolean getLocalAuthForSendingXVG() {
-		return prefs.getBoolean("authSendXVG",false);
+		return prefs.getBoolean("authSendXVG", false);
 	}
 
 	public void setLocalAuthForSendingXVG(boolean value) {
@@ -138,7 +149,7 @@ public class PreferencesManager {
 
 	//--------walletid
 	public String getWalletId() {
-		return prefs.getString("walletId", null) ;
+		return prefs.getString("walletId", null);
 	}
 
 	public void setWalletId(String id) {
@@ -150,7 +161,7 @@ public class PreferencesManager {
 
 	//--------walletname
 	public String getWalletName() {
-		return prefs.getString("walletName", null) ;
+		return prefs.getString("walletName", null);
 	}
 
 	public void setWalletName(String name) {
@@ -162,7 +173,7 @@ public class PreferencesManager {
 
 	//--------walletsecret
 	public String getWalletSecret() {
-		return prefs.getString("walletSecret", null) ;
+		return prefs.getString("walletSecret", null);
 	}
 
 	public void setWalletSecret(String secret) {
@@ -174,11 +185,12 @@ public class PreferencesManager {
 
 	//--------walletsecret
 	public String getDeviceToken() {
-		return prefs.getString("deviceToken","");
+		return prefs.getString("deviceToken", "");
 	}
 
 	public void setDeviceToken(String token) {
 		prefs.edit().putString("deviceToken", token).apply();
 	}
+
 
 }

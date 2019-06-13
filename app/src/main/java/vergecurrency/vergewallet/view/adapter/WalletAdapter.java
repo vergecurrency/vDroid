@@ -29,8 +29,6 @@ public class WalletAdapter extends FragmentPagerAdapter {
 				return FragmentStatisticsPageView.instantiate(context, FragmentStatisticsPageView.class.getName());
 			case 2:
 				return FragmentChartsPageView.instantiate(context, FragmentChartsPageView.class.getName());
-			//case 3:
-			//	return FragmentTwitterPageView.instantiate(context, FragmentTwitterPageView.class.getName());
 			default:
 				return null;
 		}

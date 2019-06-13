@@ -17,23 +17,34 @@ import vergecurrency.vergewallet.wallet.WalletManager;
 public class SplashActivity extends AppCompatActivity {
 
 	PreferencesManager pm;
+	//DbOpenHelper dbOpenHelper;
+	//private AbstractDaoSession daoSession;
+
 
 	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) throws RuntimeException {
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		//TestFairy token for getting info on beta testing
 		//TestFairy.begin(this, "a67a4df6e2a8a0c981638eb0f168297fd45aed73");
+		//init db
+		//dbOpenHelper = new DbOpenHelper(this,"verge.db",1);
+		//Database db = dbOpenHelper.getWritableDb();
+		//daoSession = new AbstractDaoMaster;
 
+		//init BitcoinKit
 		BitcoinKit.Companion.init(this);
 
 		//gets the holy preferences
 		pm = PreferencesManager.init(getApplicationContext());
 
+
+
 		setContentView(R.layout.activity_splash);
 
 		//Just to have the splash screen going briefly
 		new Handler().postDelayed(() -> startApplication(), 500);
+
 	}
 
 

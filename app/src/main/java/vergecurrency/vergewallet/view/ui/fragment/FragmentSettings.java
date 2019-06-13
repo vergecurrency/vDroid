@@ -15,10 +15,11 @@ import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.service.model.SettingsListViewData;
 import vergecurrency.vergewallet.service.model.SettingsListViewHeader;
 import vergecurrency.vergewallet.view.adapter.SettingsListsAdapter;
+import vergecurrency.vergewallet.view.ui.activity.settings.ChooseLanguageActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.DisconnectActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.DonateActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.PaperkeyActivity;
-import vergecurrency.vergewallet.view.ui.activity.settings.SelectCurrencyActivity;
+import vergecurrency.vergewallet.view.ui.activity.settings.ChangeCurrencyActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.TorSettingsActivity;
 
 public class FragmentSettings extends Fragment {
@@ -58,7 +59,8 @@ public class FragmentSettings extends Fragment {
 
 	private void initGeneralSettings(View view) {
 		SettingsListViewData itemsDataSettings[] = {
-				new SettingsListViewData("Fiat currency", R.drawable.icon_currency_exchange, v -> startActivity(new Intent(v.getContext(), SelectCurrencyActivity.class))),
+				new SettingsListViewData("Fiat currency", R.drawable.icon_currency_exchange, v -> startActivity(new Intent(v.getContext(), ChangeCurrencyActivity.class))),
+				new SettingsListViewData("Choose Language",R.drawable.icon_home, v-> startActivity(new Intent(v.getContext(), ChooseLanguageActivity.class))),
 				new SettingsListViewData("Change wallet PIN", R.drawable.icon_lock, null),
 				new SettingsListViewData("Use fingerprint", R.drawable.icon_fingerprint, null),
 				new SettingsListViewData("Tor connection", R.drawable.icon_onion, v -> startActivity(new Intent(v.getContext(), TorSettingsActivity.class)))

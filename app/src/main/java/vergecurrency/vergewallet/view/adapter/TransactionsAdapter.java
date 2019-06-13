@@ -16,7 +16,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.utilities.MathUtils;
+import vergecurrency.vergewallet.helpers.utils.MathUtils;
 import vergecurrency.vergewallet.service.model.Transaction;
 
 public class TransactionsAdapter extends ArrayAdapter<Transaction> implements View.OnClickListener {

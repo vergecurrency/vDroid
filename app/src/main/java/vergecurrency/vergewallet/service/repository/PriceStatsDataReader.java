@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import vergecurrency.vergewallet.Constants;
-import vergecurrency.vergewallet.utilities.MathUtils;
+import vergecurrency.vergewallet.helpers.utils.MathUtils;
 import vergecurrency.vergewallet.service.model.network.layers.ClearnetGateway;
 
 public final class PriceStatsDataReader {

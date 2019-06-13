@@ -84,7 +84,7 @@
     <string name="wallet_ready">Your wallet is ready! \n Congratulations</string>
 
     //Fiat Currency activity
-    <string name="title_fiat_currency">Fiat currency</string>
+    <string name="title_fiat_currency">Fiat language</string>
 
     //Error report activity
     <string name="error_report_copy_button">&lt;b>&lt;big>Copy error report to clipboard&lt;/big>&lt;/b></string>
@@ -123,5 +123,6 @@
     <string name="passphrase_confirm_title">Confirm your passphrase</string>
     <string name="qr_option_btn">QR</string>
     <string name="words_option_btn">Words</string>
+    <string name="title_change_language">Change Language</string>
 
 </resources>

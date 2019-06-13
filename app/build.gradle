@@ -53,19 +53,22 @@ dependencies {
     implementation 'com.github.Omega-R:OmegaCenterIconButton:0.0.3@aar'
     //BitcoinKit
     implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.2.3'
-    //TODO Remove
-    implementation 'com.github.2lazy2debug:hd-wallet-kit-android:1.0.0'
-
-    //Twitter
-    implementation 'com.twitter.sdk.android:twitter:3.1.1'
+    //HD Wallet Kit
+    implementation 'com.github.2lazy2debug:hd-wallet-kit-android:1.1.0'
+    //GreenDao
+    implementation 'org.greenrobot:greendao:3.2.2'
     //Json, not sure if used
     implementation files('src/main/libs/json-simple-1.1.1.jar')
-    //GSON
-    //implementation files('src/main/libs/gson-2.8.5.jar')
     //I2P router library
     implementation files('src/main/libs/i2p-router.jar')
     //TOR library
     implementation project(':ThaliOnionProxyAndroid-release')
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+    //language switcher
+    implementation 'com.akexorcist:localizationactivity:1.2.2'
+    //easy app reboot
+    implementation 'com.jakewharton:process-phoenix:2.0.0'
 
 
     testImplementation 'junit:junit:4.12'

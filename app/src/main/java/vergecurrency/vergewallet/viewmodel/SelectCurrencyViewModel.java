@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import vergecurrency.vergewallet.service.model.Currency;
-import vergecurrency.vergewallet.utilities.CurrenciesUtils;
+import vergecurrency.vergewallet.helpers.utils.CurrenciesUtils;
 
 
 public class SelectCurrencyViewModel extends AndroidViewModel {
