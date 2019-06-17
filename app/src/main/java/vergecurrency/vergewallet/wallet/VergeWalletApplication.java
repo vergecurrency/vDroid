@@ -11,12 +11,14 @@ import android.os.Bundle;
 import androidx.annotation.MainThread;
 
 import vergecurrency.vergewallet.excpetion.DefaultUncaughtExceptionHandler;
+import vergecurrency.vergewallet.service.model.PreferencesManager;
 
 public class VergeWalletApplication extends Application implements Application.ActivityLifecycleCallbacks {
 
     public static String UNCAUGHT_EXCEPTION_CHANNEL_ID = "888671";
     public static String UNCAUGHT_EXCEPTION_CHANNEL_NAME = "Verge Android Wallet uncaught exception error channel";
     public static String UNCAUGHT_EXCEPTION_CHANNEL_DESCRIPTION = "Transmission of error reports";
+    public static PreferencesManager PREFERENCES_MANAGER;
     public static VergeWalletApplication INSTANCE;
 
 
@@ -29,6 +31,7 @@ public class VergeWalletApplication extends Application implements Application.A
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
+        PREFERENCES_MANAGER = PreferencesManager.init(getApplicationContext());
         this.initExceptionHandler();
         registerActivityLifecycleCallbacks(this);
         createNotificationChannel();

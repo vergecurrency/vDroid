@@ -11,21 +11,19 @@ import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import io.horizontalsystems.bitcoinkit.models.BlockInfo;
 import io.horizontalsystems.bitcoinkit.models.TransactionInfo;
 import vergecurrency.vergewallet.service.model.MnemonicManager;
-import vergecurrency.vergewallet.service.model.PreferencesManager;
 
 import static io.horizontalsystems.bitcoinkit.BitcoinKit.KitState;
 import static io.horizontalsystems.bitcoinkit.BitcoinKit.Listener;
 import static io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType;
+import static vergecurrency.vergewallet.wallet.VergeWalletApplication.PREFERENCES_MANAGER;
 
 public class WalletManager implements Listener {
 
 	private static WalletManager INSTANCE = null;
 	private MutableLiveData<Long> balance;
-	private PreferencesManager pm;
 	private BitcoinKit wallet;
 
 	private WalletManager() {
-		pm = PreferencesManager.getInstance();
 		balance = new MutableLiveData<>();
 
 	}
@@ -46,9 +44,9 @@ public class WalletManager implements Listener {
 
 	public void startWallet() throws Exception {
 		NetworkType netType = NetworkType.MainNet;
-		String[] mnemonic = MnemonicManager.getMnemonicFromJSON(pm.getMnemonic());
+		String[] mnemonic = MnemonicManager.getMnemonicFromJSON(PREFERENCES_MANAGER.getMnemonic());
 		if (mnemonic != null) {
-			wallet = new BitcoinKit((List<String>) Arrays.asList(mnemonic), pm.getPassphrase(), netType, "wallet", 10, true, 1);
+			wallet = new BitcoinKit((List<String>) Arrays.asList(mnemonic), PREFERENCES_MANAGER.getPassphrase(), netType, "wallet", 10, true, 1);
 			wallet.setListener(this);
 			String networkName = netType.name();
 
@@ -74,7 +72,7 @@ public class WalletManager implements Listener {
 
 		MnemonicManager mnemonicManager = new MnemonicManager();
 		mnemonicManager.setMnemonic(new io.horizontalsystems.hdwalletkit.Mnemonic().generate(io.horizontalsystems.hdwalletkit.Mnemonic.Strength.Default).toArray(new String[0]));
-		pm.setMnemonic(mnemonicManager.getMnemonicAsJSON());
+		PREFERENCES_MANAGER.setMnemonic(mnemonicManager.getMnemonicAsJSON());
 	}
 
 	public MutableLiveData<Long> getBalance() {

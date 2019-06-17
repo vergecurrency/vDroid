@@ -1,10 +1,12 @@
 package vergecurrency.vergewallet.viewmodel;
 
 import androidx.lifecycle.ViewModel;
+
 import vergecurrency.vergewallet.service.model.Currency;
-import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.service.repository.PriceStatsDataReader;
 import vergecurrency.vergewallet.wallet.WalletManager;
+
+import static vergecurrency.vergewallet.wallet.VergeWalletApplication.PREFERENCES_MANAGER;
 
 public class WalletFragmentViewModel extends ViewModel {
 
@@ -19,7 +21,7 @@ public class WalletFragmentViewModel extends ViewModel {
     }
 
     public String getCurrencyCode() {
-        return Currency.getCurrencyFromJson(PreferencesManager.getInstance().getPreferredCurrency()).getCurrency();
+        return Currency.getCurrencyFromJson(PREFERENCES_MANAGER.getPreferredCurrency()).getCurrency();
     }
 
 

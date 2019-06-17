@@ -16,17 +16,17 @@ import kotlin.text.Charsets;
 import vergecurrency.vergewallet.service.model.MnemonicManager;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 
+import static vergecurrency.vergewallet.wallet.VergeWalletApplication.PREFERENCES_MANAGER;
+
 public class Credentials {
 
 	private HDKeychain hdKeychain;
-	private PreferencesManager pm;
 	public Credentials() {
 		hdKeychain = initHDKeyChain();
-		pm = PreferencesManager.getInstance();
 	}
 	public HDKeychain initHDKeyChain() {
-		String[] mnemonic = MnemonicManager.getMnemonicFromJSON(pm.getMnemonic());
-		String passphrase = pm.getPassphrase();
+		String[] mnemonic = MnemonicManager.getMnemonicFromJSON(PREFERENCES_MANAGER.getMnemonic());
+		String passphrase = PREFERENCES_MANAGER.getPassphrase();
 
 		byte[] seed = new io.horizontalsystems.hdwalletkit.Mnemonic().toSeed((List<String>) Arrays.asList(mnemonic), passphrase);
 		return new HDKeychain(seed, true);

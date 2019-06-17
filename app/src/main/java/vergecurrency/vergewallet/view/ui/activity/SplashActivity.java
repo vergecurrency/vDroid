@@ -10,13 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.view.ui.activity.firstlaunch.FirstLaunchActivity;
 import vergecurrency.vergewallet.wallet.WalletManager;
 
-public class SplashActivity extends AppCompatActivity {
+import static vergecurrency.vergewallet.wallet.VergeWalletApplication.PREFERENCES_MANAGER;
 
-	PreferencesManager pm;
+public class SplashActivity extends AppCompatActivity {
 	//DbOpenHelper dbOpenHelper;
 	//private AbstractDaoSession daoSession;
 
@@ -36,7 +35,6 @@ public class SplashActivity extends AppCompatActivity {
 		BitcoinKit.Companion.init(this);
 
 		//gets the holy preferences
-		pm = PreferencesManager.init(getApplicationContext());
 
 
 
@@ -50,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
 
 	public void startApplication() {
 
-		if (pm.getFirstLaunch()) {
+		if (PREFERENCES_MANAGER.getFirstLaunch()) {
 			finish();
 			startActivity(new Intent(getApplicationContext(), FirstLaunchActivity.class));
 		} else {

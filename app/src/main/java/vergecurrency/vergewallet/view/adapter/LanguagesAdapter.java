@@ -20,11 +20,10 @@ import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.utils.LanguagesUtils;
 import vergecurrency.vergewallet.service.model.Currency;
 import vergecurrency.vergewallet.service.model.Language;
-import vergecurrency.vergewallet.service.model.PreferencesManager;
+
+import static vergecurrency.vergewallet.wallet.VergeWalletApplication.PREFERENCES_MANAGER;
 
 public class LanguagesAdapter extends ArrayAdapter<Language> implements View.OnClickListener {
-
-	private PreferencesManager pm;
 	private Activity a;
 
 	/**
@@ -35,7 +34,6 @@ public class LanguagesAdapter extends ArrayAdapter<Language> implements View.OnC
 	 */
 	public LanguagesAdapter(@NonNull Context context, ArrayList<Language> langs) {
 		super(context, R.layout.listview_item_language, langs);
-		pm = PreferencesManager.getInstance();
 		this.a = a;
 	}
 
@@ -48,7 +46,7 @@ public class LanguagesAdapter extends ArrayAdapter<Language> implements View.OnC
 		switch (v.getId()) {
 			case R.id.listview_language_item:
 				Toast.makeText(v.getContext(), "Language chosen : " + lang.getName(), Toast.LENGTH_SHORT).show();
-				pm.setCurrentLanguage(lang.getLanguageAsJson());
+				PREFERENCES_MANAGER.setCurrentLanguage(lang.getLanguageAsJson());
 				LanguagesUtils.setLanguage(lang.getLanguage(), getContext());
 				ProcessPhoenix.triggerRebirth(getContext());
 				break;

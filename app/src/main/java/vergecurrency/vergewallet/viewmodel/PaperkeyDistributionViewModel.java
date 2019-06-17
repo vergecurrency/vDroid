@@ -6,23 +6,21 @@ import android.widget.TextView;
 import androidx.lifecycle.ViewModel;
 
 import vergecurrency.vergewallet.service.model.MnemonicManager;
-import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.wallet.WalletManager;
 
 import static vergecurrency.vergewallet.Constants.SEED_SIZE;
+import static vergecurrency.vergewallet.wallet.VergeWalletApplication.PREFERENCES_MANAGER;
 
 public class PaperkeyDistributionViewModel extends ViewModel {
 
     String[] seed;
-    PreferencesManager pm;
     private int currentWordIndex = -1;
     private WalletManager wm;
 
     public PaperkeyDistributionViewModel() {
         wm = WalletManager.init();
-        pm = PreferencesManager.getInstance();
-        if (!pm.getFirstLaunch()) {
-            seed = MnemonicManager.getMnemonicFromJSON(pm.getMnemonic());
+        if (!PREFERENCES_MANAGER.getFirstLaunch()) {
+            seed = MnemonicManager.getMnemonicFromJSON(PREFERENCES_MANAGER.getMnemonic());
         }
 
     }
@@ -61,7 +59,7 @@ public class PaperkeyDistributionViewModel extends ViewModel {
     public void generateMnemonics() {
         //Should be created at the launch
         wm.generateMnemonic();
-        seed = MnemonicManager.getMnemonicFromJSON(pm.getMnemonic());
+        seed = MnemonicManager.getMnemonicFromJSON(PREFERENCES_MANAGER.getMnemonic());
     }
 
     private void increaseWordIndex() {
