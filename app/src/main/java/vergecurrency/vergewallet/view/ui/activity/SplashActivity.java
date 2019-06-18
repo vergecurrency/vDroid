@@ -37,13 +37,12 @@ public class SplashActivity extends AppCompatActivity {
 		//Database db = dbOpenHelper.getWritableDb();
 		//daoSession = new AbstractDaoMaster;
 
-		//init BitcoinKit
-		BitcoinKit.Companion.init(this);
-
 		//gets the holy preferences
-		pm = PreferencesManager.init(getApplicationContext());
-
-
+		try {
+			pm = PreferencesManager.init(getApplicationContext());
+		} catch (AssertionError e) {
+			pm = PreferencesManager.getInstance();
+		}
 
 		setContentView(R.layout.activity_splash);
 

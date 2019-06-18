@@ -25,7 +25,7 @@ public class ChooseLanguageActivity  extends LocalizationActivity {
 
 		LanguagesViewModel mViewModel = ViewModelProviders.of(this).get(LanguagesViewModel.class);
 
-		ListView languagesList = findViewById(R.id.activity_select_currency_listview);
+		ListView languagesList = findViewById(R.id.activity_change_language_listview);
 		languagesList.setAdapter(new LanguagesAdapter(getApplicationContext(),mViewModel.getLanguages()));
 
 	}

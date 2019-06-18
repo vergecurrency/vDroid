@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.helpers.utils.LanguagesUtils;
+import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.viewmodel.ShowPaperkeyViewModel;
 
 public class ShowPaperkeyActivity extends AppCompatActivity {
@@ -21,9 +23,9 @@ public class ShowPaperkeyActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		mViewModel = ViewModelProviders.of(this).get(ShowPaperkeyViewModel.class);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_paperkey_shown);
-		mViewModel = ViewModelProviders.of(this).get(ShowPaperkeyViewModel.class);
 		initComponents();
 	}
 
@@ -36,12 +38,6 @@ public class ShowPaperkeyActivity extends AppCompatActivity {
 		closeButton = findViewById(R.id.paperkey_shown_close_button);
 		closeButton.setOnClickListener(onCloseClickListener());
 	}
-
-
-
-
-
-
 
 	View.OnClickListener onCloseClickListener() {
 		return v -> {

@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:contentDescription="Verge Background"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_darkmountain" />
+        android:src="@drawable/bg_main" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -94,7 +94,6 @@
 
 
 
-    <string name="file_provider_authority" translatable="false">com.vergecurrency.vergewallet.fileprovider</string>
     <string name="paperkey_write_seed">Write down each word in the correct order on your paper</string>
     <string name="charts_high_label">High</string>
     <string name="charts_average_label">Average</string>

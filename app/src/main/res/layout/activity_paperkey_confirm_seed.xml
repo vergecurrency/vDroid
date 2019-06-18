@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:contentDescription="Verge Background"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_darkmountain"
+        android:src="@drawable/bg_main"
         tools:ignore="HardcodedText" />
 
 
