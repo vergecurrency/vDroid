@@ -21,7 +21,6 @@ import vergecurrency.vergewallet.helpers.utils.LanguagesUtils;
 import vergecurrency.vergewallet.service.model.Language;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 
-
 public class LanguagesAdapter extends ArrayAdapter<Language> implements View.OnClickListener {
 	private Activity a;
 
@@ -46,7 +45,7 @@ public class LanguagesAdapter extends ArrayAdapter<Language> implements View.OnC
 			case R.id.listview_language_item:
 				Toast.makeText(v.getContext(), "Language chosen : " + lang.getName(), Toast.LENGTH_SHORT).show();
 				PreferencesManager.setCurrentLanguage(lang.getLanguageAsJson());
-				LanguagesUtils.setLanguage(lang.getLanguage(), getContext());
+				LanguagesUtils.setLocale(getContext(), lang.getLanguage());
 				ProcessPhoenix.triggerRebirth(getContext());
 				break;
 		}
@@ -64,6 +63,7 @@ public class LanguagesAdapter extends ArrayAdapter<Language> implements View.OnC
 			LayoutInflater inflater = LayoutInflater.from(getContext());
 			convertView = inflater.inflate(R.layout.listview_item_language, parent, false);
 			vh.languageName = convertView.findViewById(R.id.listview_language_name);
+			vh.languageId = convertView.findViewById(R.id.listview_language_item);
 
 			convertView.setTag(vh);
 

@@ -18,12 +18,17 @@ public class ShowPaperkeyActivity extends AppCompatActivity {
 	private TextView seedTextView;
 	private ImageView closeButton;
 
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		mViewModel = ViewModelProviders.of(this).get(ShowPaperkeyViewModel.class);
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_paperkey_shown);
+		initComponents();
 	}
 
+	//TODO : require passphrase before showing seed, create function for toggling between
+	// qr and text views
 
 	private void initComponents() {
 		seedTextView = findViewById(R.id.paperkey_shown_pk);

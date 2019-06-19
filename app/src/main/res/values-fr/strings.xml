@@ -94,7 +94,6 @@
 
 
 
-    <string name="file_provider_authority" translatable="false">com.vergecurrency.vergewallet.fileprovider</string>
     <string name="paperkey_write_seed">Write down each word in the correct order on your paper</string>
     <string name="charts_high_label">High</string>
     <string name="charts_average_label">Average</string>
@@ -105,9 +104,9 @@
     <string name="graph_3m">3m</string>
     <string name="graph_1y">1y</string>
     <string name="graph_all">All</string>
-    <string name="paperkey_shown_title">Your paper key</string>
-    <string name="paperkey_shown_sub1">Taking a screenshot is not secure. Write down the paper key on a piece of paper with a pen</string>
-    <string name="paperkey_shown_sub2">Write down each word carefully without capital letters</string>
+    <string name="paperkey_shown_title">Ta clé privée</string>
+    <string name="paperkey_shown_sub1">Une capture d\'écran n\'est pas sure. Ecris la clé privé avec du papier et un stylo</string>
+    <string name="paperkey_shown_sub2">Note chaque mot attentivement et sans majuscules.</string>
     <string name="passphrase_title">Derive your paper key with a passphrase</string>
     <string name="passphrase_desc">Encrypting your paper key is an important safety measure. Make sure when restoring a wallet to use your previous passphrase.</string>
     <string name="passphrase_button">Confirm</string>

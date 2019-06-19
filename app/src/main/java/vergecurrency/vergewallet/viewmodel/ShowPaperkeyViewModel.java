@@ -30,4 +30,5 @@ public class ShowPaperkeyViewModel extends ViewModel {
 		}
 		return result.toString();
 	}
+
 }

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Verge</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiMmxhenkyZGVidWciLCJhIjoiY2pvbzdqdHJjMDFkOTNrc3U3cnlyZ3A0aCJ9.u6hnc-wFQhgefZW0eQRwFw</string>
 
@@ -99,7 +99,6 @@
     <string name="charts_pageview_header">History Chart</string>
     <string name="twitter_pageview_header">Last tweets</string>
 
-    <string name="file_provider_authority" translatable="false">com.vergecurrency.vergewallet.fileprovider</string>
     <string name="paperkey_write_seed">Write down each word in the correct order on your paper</string>
     <string name="charts_high_label">High</string>
     <string name="charts_average_label">Average</string>

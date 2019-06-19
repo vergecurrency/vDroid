@@ -12,7 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.adapter.WalletAdapter;
 import vergecurrency.vergewallet.viewmodel.WalletFragmentViewModel;
-
+import java.util.*;
 
 public class FragmentWallet extends Fragment {
 

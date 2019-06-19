@@ -8,12 +8,16 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.greenrobot.greendao.AbstractDaoSession;
+import org.greenrobot.greendao.database.Database;
+import org.greenrobot.greendao.internal.DaoConfig;
+
 import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.helpers.DbOpenHelper;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.view.ui.activity.firstlaunch.FirstLaunchActivity;
 import vergecurrency.vergewallet.wallet.WalletManager;
-
 
 public class SplashActivity extends AppCompatActivity {
 	//DbOpenHelper dbOpenHelper;
@@ -30,9 +34,6 @@ public class SplashActivity extends AppCompatActivity {
 		//dbOpenHelper = new DbOpenHelper(this,"verge.db",1);
 		//Database db = dbOpenHelper.getWritableDb();
 		//daoSession = new AbstractDaoMaster;
-
-		//init BitcoinKit
-		BitcoinKit.Companion.init(this);
 
 		//gets the holy preferences
 

@@ -9,8 +9,7 @@
         android:required="false" />
     <!-- Permissions -->
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
-    <!--<uses-permission android:name="android.permission.READ_LOGS" />-->
-    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -38,8 +37,8 @@
         <activity android:name=".view.ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".view.ui.activity.firstlaunch.PaperkeyVerificationActivity" />
@@ -50,20 +49,20 @@
         <activity android:name=".view.ui.activity.settings.DonateActivity" />
         <activity android:name=".view.ui.activity.settings.ChangeCurrencyActivity" />
         <activity android:name=".view.ui.activity.settings.ShowPaperkeyActivity" />
-        <!--<activity android:name=".view.ui.activity.settings.ChooseLanguageActivity" />-->
+        <activity android:name=".view.ui.activity.settings.ChooseLanguageActivity" />
         <activity android:name=".view.ui.activity.firstlaunch.PassphraseValidationActivity" />
         <activity android:name=".view.ui.activity.firstlaunch.PassphraseCreationActivity" />
         <activity android:name=".view.ui.activity.error.ErrorRecoveryActivity" />
-        <!--
+
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="@string/file_provider_authority"
+            android:authorities="@file/file_provider_authority"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider_paths" />
-        </provider>-->
+        </provider>
 
     </application>
 

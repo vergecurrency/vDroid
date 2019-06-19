@@ -10,7 +10,9 @@ import android.os.Bundle;
 
 import androidx.annotation.MainThread;
 
+import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import vergecurrency.vergewallet.excpetion.DefaultUncaughtExceptionHandler;
+import vergecurrency.vergewallet.helpers.utils.LanguagesUtils;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 
 public class VergeWalletApplication extends Application implements Application.ActivityLifecycleCallbacks {
@@ -23,11 +25,13 @@ public class VergeWalletApplication extends Application implements Application.A
     @Override
     public void onCreate() {
         super.onCreate();
+        BitcoinKit.Companion.init(this);
         PreferencesManager.init(getApplicationContext());
         WalletManager.init();
         initExceptionHandler();
         registerActivityLifecycleCallbacks(this);
         createNotificationChannel();
+        LanguagesUtils.setLocale(getApplicationContext(), PreferencesManager.getCurrentLanguage());
     }
 
     @Override
