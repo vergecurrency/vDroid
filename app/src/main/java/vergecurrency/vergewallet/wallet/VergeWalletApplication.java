@@ -18,21 +18,14 @@ public class VergeWalletApplication extends Application implements Application.A
     public static String UNCAUGHT_EXCEPTION_CHANNEL_ID = "888671";
     public static String UNCAUGHT_EXCEPTION_CHANNEL_NAME = "Verge Android Wallet uncaught exception error channel";
     public static String UNCAUGHT_EXCEPTION_CHANNEL_DESCRIPTION = "Transmission of error reports";
-    public static PreferencesManager PREFERENCES_MANAGER;
-    public static VergeWalletApplication INSTANCE;
-
-
-    public static VergeWalletApplication getInstance() {
-        return INSTANCE;
-    }
 
     // Called when the application is starting, before any other application objects have been created.
     @Override
     public void onCreate() {
         super.onCreate();
-        INSTANCE = this;
-        PREFERENCES_MANAGER = PreferencesManager.init(getApplicationContext());
-        this.initExceptionHandler();
+        PreferencesManager.init(getApplicationContext());
+        WalletManager.init();
+        initExceptionHandler();
         registerActivityLifecycleCallbacks(this);
         createNotificationChannel();
     }

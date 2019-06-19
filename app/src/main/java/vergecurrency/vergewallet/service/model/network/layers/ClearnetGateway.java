@@ -7,6 +7,7 @@ import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
 import cz.msebera.android.httpclient.util.EntityUtils;
 
 public class ClearnetGateway extends AsyncTask<String, Void, String> {
@@ -23,8 +24,8 @@ public class ClearnetGateway extends AsyncTask<String, Void, String> {
 
 			//TODO : CHECK INTERNET CONNECTION YOU IDIOT
 			HttpGet httppost = new HttpGet(url[0]);
-			HttpClient httpclient = new DefaultHttpClient();
-			HttpResponse response = httpclient.execute(httppost);
+			HttpClient httpClient = HttpClientBuilder.create().build();
+			HttpResponse response = httpClient.execute(httppost);
 
 			// StatusLine stat = response.getStatusLine();
 			int status = response.getStatusLine().getStatusCode();

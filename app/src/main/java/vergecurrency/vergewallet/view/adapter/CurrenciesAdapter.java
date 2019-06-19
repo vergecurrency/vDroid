@@ -17,8 +17,6 @@ import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.service.model.Currency;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 
-import static vergecurrency.vergewallet.wallet.VergeWalletApplication.PREFERENCES_MANAGER;
-
 public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.OnClickListener {
 
 	/**
@@ -40,7 +38,7 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 		switch (v.getId()) {
 			case R.id.listview_currency_item:
 				Toast.makeText(v.getContext(), "Currency chosen : " + cur.getName(), Toast.LENGTH_SHORT).show();
-				PREFERENCES_MANAGER.setSelectedCurrency(cur.getCurrencyAsJSON());
+				PreferencesManager.setSelectedCurrency(cur.getCurrencyAsJSON());
 				break;
 		}
 

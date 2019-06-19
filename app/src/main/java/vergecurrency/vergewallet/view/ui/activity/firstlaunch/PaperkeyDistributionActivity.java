@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
-
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.viewmodel.PaperkeyDistributionViewModel;
 
@@ -21,6 +20,7 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
     Button nextButton;
     Button previousButton;
     TextView wordView;
+    int currentWordIndex = -1;
 
     String[] seed;
 
@@ -29,7 +29,6 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paperkey_seed);
 
-
         //learn it and shut up
         mViewModel = ViewModelProviders.of(this).get(PaperkeyDistributionViewModel.class);
 
@@ -37,16 +36,18 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 
         generateSeed();
         //get the first word
-        mViewModel.nextWord(wordView, nextButton);
+        nextWord();
+
     }
 
     private void generateSeed() {
         mViewModel.generateMnemonics();
         try {
             seed = mViewModel.getSeed();
+
         } catch (Exception e) {
-            //TODO ...
-           e.printStackTrace();
+            //TODO : do it better
+            e.printStackTrace();
         }
     }
 
@@ -63,18 +64,46 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
 
     Button.OnClickListener onNextListener() {
         return v -> {
-            if (mViewModel.isPaperKeyCompleted()) {
+            if (currentWordIndex == 11) {
                 startActivity(new Intent(getApplicationContext(), PaperkeyVerificationActivity.class));
             }
-            mViewModel.nextWord(wordView, nextButton);
+            nextWord();
         };
     }
 
     Button.OnClickListener onPreviousListener() {
         return v -> {
             //get to the previous word.
-            mViewModel.previousWord(wordView, nextButton);
+            previousWord();
         };
     }
 
+    //TODO : move to the viewmodel
+    private void nextWord() {
+        //Increase if not the last
+        if (currentWordIndex < 11) {
+            currentWordIndex += 1;
+            nextButton.setText("Next");
+        }
+        //change button text if last
+        if (currentWordIndex == 11) {
+            nextButton.setText("Done");
+        }
+        wordView.setText(getWord());
+    }
+
+    //TODO : move to the viewmodel
+    private void previousWord() {
+        //Decrease if not the first
+        if (currentWordIndex > 0) {
+            currentWordIndex -= 1;
+            nextButton.setText("Next");
+        }
+        wordView.setText(getWord());
+    }
+
+    //TODO : move to the viewmodel
+    private String getWord() {
+        return seed[currentWordIndex];
+    }
 }

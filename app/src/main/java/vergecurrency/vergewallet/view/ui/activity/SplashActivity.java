@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.view.ui.activity.firstlaunch.FirstLaunchActivity;
 import vergecurrency.vergewallet.wallet.WalletManager;
 
-import static vergecurrency.vergewallet.wallet.VergeWalletApplication.PREFERENCES_MANAGER;
 
 public class SplashActivity extends AppCompatActivity {
 	//DbOpenHelper dbOpenHelper;
@@ -48,13 +48,12 @@ public class SplashActivity extends AppCompatActivity {
 
 	public void startApplication() {
 
-		if (PREFERENCES_MANAGER.getFirstLaunch()) {
+		if (PreferencesManager.getFirstLaunch()) {
 			finish();
 			startActivity(new Intent(getApplicationContext(), FirstLaunchActivity.class));
 		} else {
-			WalletManager wm = WalletManager.init();
 			try {
-				wm.startWallet();
+				WalletManager.startWallet();
 			} catch (Exception e) {
 				Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
 			}

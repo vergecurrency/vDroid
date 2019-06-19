@@ -4,13 +4,13 @@ import androidx.lifecycle.ViewModel;
 
 import vergecurrency.vergewallet.service.model.MnemonicManager;
 
-import static vergecurrency.vergewallet.wallet.VergeWalletApplication.PREFERENCES_MANAGER;
+import static vergecurrency.vergewallet.service.model.PreferencesManager.getMnemonic;
 
 public class ShowPaperkeyViewModel extends ViewModel {
 	String[] seed;
 
 	public ShowPaperkeyViewModel() {
-		seed = MnemonicManager.getMnemonicFromJSON(PREFERENCES_MANAGER.getMnemonic());
+		seed = MnemonicManager.getMnemonicFromJSON(getMnemonic());
 
 	}
 
