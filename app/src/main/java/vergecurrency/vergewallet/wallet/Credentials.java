@@ -4,7 +4,6 @@ package vergecurrency.vergewallet.wallet;
 import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.Base64;
-import java.util.List;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -26,7 +25,7 @@ public class Credentials {
 		String[] mnemonic = MnemonicManager.getMnemonicFromJSON(PreferencesManager.getMnemonic());
 		String passphrase = PreferencesManager.getPassphrase();
 
-		byte[] seed = new io.horizontalsystems.hdwalletkit.Mnemonic().toSeed((List<String>) Arrays.asList(mnemonic), passphrase);
+		byte[] seed = new io.horizontalsystems.hdwalletkit.Mnemonic().toSeed(Arrays.asList(mnemonic), passphrase);
 		return new HDKeychain(seed, true);
 	}
 

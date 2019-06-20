@@ -12,16 +12,13 @@ public class GeocodingService {
 
 	public String readCoordinates(String rawData) {
 
-		String lat = "";
-		String lon = "";
-
 
 		if (rawData != null && !rawData.equals("")) {
 			JSONObject reader;
 			try {
 				reader = new JSONObject(rawData);
-				lat = reader.getString("latitude");
-				lon = reader.getString("longitude");
+				String lat = reader.getString("latitude");
+				String lon = reader.getString("longitude");
 				return String.format("%s;%s", lat, lon);
 			} catch (JSONException e) {
 				e.printStackTrace();

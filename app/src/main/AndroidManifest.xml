@@ -9,7 +9,6 @@
         android:required="false" />
     <!-- Permissions -->
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
-    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,7 +18,7 @@
 
     <application
         android:name=".wallet.VergeWalletApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -53,6 +52,7 @@
         <activity android:name=".view.ui.activity.firstlaunch.PassphraseValidationActivity" />
         <activity android:name=".view.ui.activity.firstlaunch.PassphraseCreationActivity" />
         <activity android:name=".view.ui.activity.error.ErrorRecoveryActivity" />
+        <activity android:name=".view.ui.activity.QRCodeReaderActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

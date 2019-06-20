@@ -26,7 +26,7 @@
         android:padding="12dip"
         android:textAlignment="center"
         android:text="@string/send_message_main"
-        android:textSize="18dp"
+        android:textSize="18sp"
         />
 
     <TextView
@@ -40,7 +40,7 @@
         android:padding="12dp"
         android:textAlignment="center"
         android:text="@string/send_message_sub"
-        android:textSize="12dp"
+        android:textSize="12sp"
         />
 
 </RelativeLayout>

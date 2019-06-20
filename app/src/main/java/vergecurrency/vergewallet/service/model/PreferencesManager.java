@@ -76,7 +76,6 @@ public class PreferencesManager {
 
 	public static void setPinCount(int pinCount) {
 		preferences.edit().putInt(PIN_COUNT, pinCount).apply();
-		;
 	}
 
 	//---------Preferred currency

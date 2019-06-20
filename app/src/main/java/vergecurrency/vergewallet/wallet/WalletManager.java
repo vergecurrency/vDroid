@@ -28,11 +28,11 @@ public final class WalletManager implements Listener {
 		balance = new MutableLiveData<>();
 	}
 
-	public static WalletManager init() {
+	public static void init() {
 		if (INSTANCE != null) {
 			throw new AssertionError("You already initialized an object of this type");
 		}
-		return INSTANCE = new WalletManager();
+		INSTANCE = new WalletManager();
 	}
 
 	public static WalletManager getInstance() {
@@ -46,7 +46,7 @@ public final class WalletManager implements Listener {
 		NetworkType netType = NetworkType.MainNet;
 		String[] mnemonic = MnemonicManager.getMnemonicFromJSON(PreferencesManager.getMnemonic());
 		if (mnemonic != null) {
-			wallet = new BitcoinKit((List<String>) Arrays.asList(mnemonic), PreferencesManager.getPassphrase(), netType, "wallet", 10, true, 1);
+			wallet = new BitcoinKit(Arrays.asList(mnemonic), PreferencesManager.getPassphrase(), netType, "wallet", 10, true, 1);
 			wallet.setListener(INSTANCE);
 			String networkName = netType.name();
 
@@ -81,7 +81,7 @@ public final class WalletManager implements Listener {
 	}
 
 	public void setBalance(MutableLiveData<Long> balance) {
-		this.balance = balance;
+		WalletManager.balance = balance;
 	}
 
 	@Override

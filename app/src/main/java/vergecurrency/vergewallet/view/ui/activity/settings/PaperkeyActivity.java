@@ -26,8 +26,6 @@ public class PaperkeyActivity extends AppCompatActivity {
 
 
     View.OnClickListener onShowPaperkeyListener() {
-    	return v -> {
-			startActivity(new Intent(getApplicationContext(), ShowPaperkeyActivity.class));
-		};
+    	return v -> startActivity(new Intent(getApplicationContext(), ShowPaperkeyActivity.class));
 	}
 }

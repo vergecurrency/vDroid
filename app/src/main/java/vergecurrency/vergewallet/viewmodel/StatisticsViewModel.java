@@ -6,7 +6,6 @@ import java.util.Map;
 
 import androidx.lifecycle.ViewModel;
 import vergecurrency.vergewallet.service.model.Currency;
-import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.service.repository.PriceStatsDataReader;
 
 import static vergecurrency.vergewallet.service.model.PreferencesManager.getPreferredCurrency;

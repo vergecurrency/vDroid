@@ -9,10 +9,10 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
+
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.adapter.WalletAdapter;
 import vergecurrency.vergewallet.viewmodel.WalletFragmentViewModel;
-import java.util.*;
 
 public class FragmentWallet extends Fragment {
 
@@ -26,7 +26,7 @@ public class FragmentWallet extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	                         Bundle savedInstanceState) {
+							 Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		mViewModel = ViewModelProviders.of(this).get(WalletFragmentViewModel.class);
@@ -62,12 +62,6 @@ public class FragmentWallet extends Fragment {
 
 		TextView changeAmount = rootView.findViewById(R.id.wallet_card_change);
 		changeAmount.setText(String.format("%s 0.017", currencyCode));
-	}
-
-
-	@Override
-	public void onDestroyView() {
-		super.onDestroyView();
 	}
 
 }

@@ -56,9 +56,7 @@ public class ErrorRecoveryActivity extends AppCompatActivity {
     }
 
     private Button.OnClickListener exitOnClickListener() {
-        return v -> {
-            exit();
-        };
+        return v -> exit();
     }
 
     private void copyErrorReport() {

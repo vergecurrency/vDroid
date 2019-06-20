@@ -45,11 +45,9 @@ public class FragmentSettings extends Fragment {
 	}
 
 	private void initWalletSettings(View view) {
-		SettingsListViewData itemsDataWallet[] = {
+		SettingsListViewData[] itemsDataWallet = {
 				new SettingsListViewData("Disconnect this device", R.drawable.icon_disconnected, v -> startActivity(new Intent(v.getContext(), DisconnectActivity.class))),
-				new SettingsListViewData("Paperkey", R.drawable.icon_paperkey, v -> {
-					startActivity(new Intent(v.getContext(), PaperkeyActivity.class));
-				}),
+				new SettingsListViewData("Paperkey", R.drawable.icon_paperkey, v -> startActivity(new Intent(v.getContext(), PaperkeyActivity.class))),
 		};
 
 		fillRecyclerView(view, R.id.settings_list_wallet, new SettingsListViewHeader("WALLET"), itemsDataWallet);
@@ -58,9 +56,9 @@ public class FragmentSettings extends Fragment {
 
 
 	private void initGeneralSettings(View view) {
-		SettingsListViewData itemsDataSettings[] = {
+		SettingsListViewData[] itemsDataSettings = {
 				new SettingsListViewData("Fiat currency", R.drawable.icon_currency_exchange, v -> startActivity(new Intent(v.getContext(), ChangeCurrencyActivity.class))),
-				new SettingsListViewData("Choose Language",R.drawable.icon_home, v-> startActivity(new Intent(v.getContext(), ChooseLanguageActivity.class))),
+				new SettingsListViewData("Choose Language", R.drawable.icon_home, v -> startActivity(new Intent(v.getContext(), ChooseLanguageActivity.class))),
 				new SettingsListViewData("Change wallet PIN", R.drawable.icon_lock, null),
 				new SettingsListViewData("Use fingerprint", R.drawable.icon_fingerprint, null),
 				new SettingsListViewData("Tor connection", R.drawable.icon_onion, v -> startActivity(new Intent(v.getContext(), TorSettingsActivity.class)))
@@ -71,7 +69,7 @@ public class FragmentSettings extends Fragment {
 	}
 
 	private void initOtherSettings(View view) {
-		SettingsListViewData itemsDataOther[] = {
+		SettingsListViewData[] itemsDataOther = {
 				new SettingsListViewData("Credits", R.drawable.icon_credits, null),
 				new SettingsListViewData("Donate", R.drawable.icon_donate, v -> startActivity(new Intent(v.getContext(), DonateActivity.class))),
 				new SettingsListViewData("Rate app", R.drawable.icon_star, null),

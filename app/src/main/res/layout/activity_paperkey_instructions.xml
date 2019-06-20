@@ -10,9 +10,9 @@
         android:id="@+id/fl_welcome_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="Verge Background"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_main" />
+        android:src="@drawable/bg_main"
+        android:contentDescription="@string/verge_bg_tag" />
 
 
     <TextView
@@ -57,7 +57,7 @@
             android:paddingRight="40dp"
             android:text="@string/paperkey_activity_main"
             android:textAlignment="center"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -81,7 +81,7 @@
 
             <Button
                 android:text="@string/paperkey_activity_button"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:id="@+id/paperkey_next_button"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

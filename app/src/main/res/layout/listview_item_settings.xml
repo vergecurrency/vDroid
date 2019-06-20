@@ -29,7 +29,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/listview_item_icon"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textColor="@color/verge_colorPrimaryDark"
         android:backgroundTint="@color/verge_colorBackgroundTwo"
         android:gravity="center_vertical"

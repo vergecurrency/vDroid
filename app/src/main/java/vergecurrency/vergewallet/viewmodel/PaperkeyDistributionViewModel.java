@@ -16,7 +16,7 @@ public class PaperkeyDistributionViewModel extends ViewModel {
 
     }
 
-    public String[] getSeed() throws Exception {
+    public String[] getSeed() {
 
         return seed;
     }

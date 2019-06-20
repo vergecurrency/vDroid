@@ -1,6 +1,5 @@
 package vergecurrency.vergewallet.view.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,32 +21,27 @@ import vergecurrency.vergewallet.service.model.Language;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 
 public class LanguagesAdapter extends ArrayAdapter<Language> implements View.OnClickListener {
-	private Activity a;
 
 	/**
 	 * Transaction adapter constructor
 	 *
 	 * @param context the application context
-	 * @param langs    the languages list we need to display
+	 * @param langs   the languages list we need to display
 	 */
 	public LanguagesAdapter(@NonNull Context context, ArrayList<Language> langs) {
 		super(context, R.layout.listview_item_language, langs);
-		this.a = a;
 	}
 
 	@Override
 	public void onClick(View v) {
 		int position = (Integer) v.getTag();
-		Object object = getItem(position);
-		Language lang = (Language) object;
+		Language lang = getItem(position);
 
-		switch (v.getId()) {
-			case R.id.listview_language_item:
-				Toast.makeText(v.getContext(), "Language chosen : " + lang.getName(), Toast.LENGTH_SHORT).show();
-				PreferencesManager.setCurrentLanguage(lang.getLanguageAsJson());
-				LanguagesUtils.setLocale(getContext(), lang.getLanguage());
-				ProcessPhoenix.triggerRebirth(getContext());
-				break;
+		if (v.getId() == R.id.listview_language_item) {
+			Toast.makeText(v.getContext(), "Language chosen : " + lang.getName(), Toast.LENGTH_SHORT).show();
+			PreferencesManager.setCurrentLanguage(lang.getLanguageAsJson());
+			LanguagesUtils.setLocale(getContext(), lang.getLanguage());
+			ProcessPhoenix.triggerRebirth(getContext());
 		}
 
 	}

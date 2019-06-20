@@ -122,27 +122,19 @@ public class PassphraseCreationActivity extends AppCompatActivity {
     }
 
     private boolean isPassphraseEightCharsLong(String s) {
-        if (s.length() >= 8) {
-            return true;
-        } else return false;
+        return s.length() >= 8;
     }
 
     private boolean hasPassphraseUpperCaseChar(String s) {
-        if (s.equals(s.toLowerCase())) {
-            return false;
-        } else return true;
+        return !s.equals(s.toLowerCase());
     }
 
     private boolean hasPassphraseLowerCaseChar(String s) {
-        if (s.equals(s.toUpperCase())) {
-            return false;
-        } else return true;
+        return !s.equals(s.toUpperCase());
     }
 
     private boolean isPassphraseContainingSpecialChars(String s) {
-        if (s.matches("[A-Za-z0-9 ]*")) {
-            return false;
-        } else return true;
+        return !s.matches("[A-Za-z0-9 ]*");
     }
 
     private View.OnClickListener onConfirmButtonClick() {

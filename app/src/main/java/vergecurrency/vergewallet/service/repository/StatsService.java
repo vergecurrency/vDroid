@@ -14,14 +14,13 @@ public class StatsService {
 	private String filter;
 
 	public static GraphInfo readPriceStatistics(int filter) {
-		String rawData = null;
+		String rawData;
 		GraphInfo result;
 		try {
 			String request = String.format("%s%s", Constants.CHART_DATA_ENDPOINT, getUnixTimeframe(filter));
 			rawData = new ClearnetGateway().execute(request).get();
 			result = new Gson().fromJson(rawData, GraphInfo.class);
 		} catch (Exception e) {
-			rawData = "error";
 			result = null;
 		}
 

@@ -1,13 +1,10 @@
 package vergecurrency.vergewallet.helpers.utils;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Build;
 
-import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate;
 import com.google.gson.GsonBuilder;
 
 import org.json.simple.JSONArray;
@@ -72,21 +69,15 @@ public final class LanguagesUtils {
 		String language = Language.getLanguageFromJson(lang).getLanguage();
 		persist(lang);
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-			return updateResources(context, language);
-		}
-
-		return updateResourcesLegacy(context, language);
+		return updateResources(context, language);
 	}
 
 	private static String getPersistedData() {
-		PreferencesManager pm = PreferencesManager.getInstance();
-		return pm.getCurrentLanguage();
+		return PreferencesManager.getCurrentLanguage();
 	}
 
 	private static void persist(String language) {
-		PreferencesManager pm = PreferencesManager.getInstance();
-		pm.setCurrentLanguage(language);
+		PreferencesManager.setCurrentLanguage(language);
 	}
 
 	@TargetApi(Build.VERSION_CODES.N)
@@ -99,21 +90,5 @@ public final class LanguagesUtils {
 
 		return context.createConfigurationContext(configuration);
 	}
-
-	@SuppressWarnings("deprecation")
-	private static Context updateResourcesLegacy(Context context, String language) {
-		Locale locale = new Locale(language);
-		Locale.setDefault(locale);
-
-		Resources resources = context.getResources();
-
-		Configuration configuration = resources.getConfiguration();
-		configuration.locale = locale;
-
-		resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-
-		return context;
-	}
-
 
 }

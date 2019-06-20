@@ -56,16 +56,20 @@ public class PriceStatisticsAdapter extends ArrayAdapter<Map.Entry<String, Strin
 		String key = currentEntry.getKey();
 		String value = currentEntry.getValue();
 
-		if (key == "24h Change %") {
-			if (value.contains("-"))
-				vh.statValue.setTextColor(getContext().getResources().getColor(R.color.material_red_500));
-			else
-				vh.statValue.setTextColor(getContext().getResources().getColor(R.color.material_green_500));
+		switch (key) {
+			case "24h Change %":
+				if (value.contains("-"))
+					vh.statValue.setTextColor(getContext().getResources().getColor(R.color.material_red_500));
+				else
+					vh.statValue.setTextColor(getContext().getResources().getColor(R.color.material_green_500));
 
-		} else if (key == "24h High") {
-			vh.statValue.setTextColor(getContext().getResources().getColor(R.color.material_green_500));
-		} else if (key == "24h Low") {
-			vh.statValue.setTextColor(getContext().getResources().getColor(R.color.material_red_500));
+				break;
+			case "24h High":
+				vh.statValue.setTextColor(getContext().getResources().getColor(R.color.material_green_500));
+				break;
+			case "24h Low":
+				vh.statValue.setTextColor(getContext().getResources().getColor(R.color.material_red_500));
+				break;
 		}
 
 		vh.statLabel.setText(key);

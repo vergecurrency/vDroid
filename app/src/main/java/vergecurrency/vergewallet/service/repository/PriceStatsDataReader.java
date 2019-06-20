@@ -23,7 +23,7 @@ public final class PriceStatsDataReader {
 		TorLayerGateway tlg = TorLayerGateway.getInstance();
 		String rawData = tlg.retrieveDataFromService(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, currency)); */
 
-		String rawData = null;
+		String rawData;
 		try {
 			rawData = new ClearnetGateway().execute(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, currency)).get();
 		} catch (Exception e) {
@@ -41,10 +41,9 @@ public final class PriceStatsDataReader {
 
 	private static Map<String, String> reworkMap(Map<String, String> map, String currency) {
 		Map<String, String> arrangedMap = arrangeItems(map);
-		Map<String, String> formattedData = formatItems(arrangedMap, currency);
 
 
-		return formattedData;
+		return formatItems(arrangedMap, currency);
 	}
 
 	private static Map<String, String> arrangeItems(Map<String, String> map) {

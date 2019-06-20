@@ -12,6 +12,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 
 import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.HttpResponse;
@@ -99,7 +100,7 @@ public class TorLayerGateway extends AsyncTask<String, Integer, String> {
 	public String retrieveDataFromService(String uri) {
 		try {
 
-			String result = "";
+			StringBuilder result = new StringBuilder();
 
 			//Creates the http client according to the previous method
 			int port = onionProxyManager.getIPv4LocalHostSocksPort();
@@ -117,15 +118,15 @@ public class TorLayerGateway extends AsyncTask<String, Integer, String> {
 
 			//Reads the whole content because I had nothing better to do and followed a well documented example
 			BufferedReader httpResponseReader = new BufferedReader(
-					new InputStreamReader(httpResponseStream, "iso-8859-1"), 8);
-			String line = null;
+					new InputStreamReader(httpResponseStream, StandardCharsets.ISO_8859_1), 8);
+			String line;
 
 			while ((line = httpResponseReader.readLine()) != null) {
-				result += line;
+				result.append(line);
 			}
 			httpResponseStream.close();
 
-			return result;
+			return result.toString();
 		} catch (Exception ex) {
 			//TODO : Catch exception properly
 			ex.printStackTrace();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/verge_realWhite"
@@ -18,11 +19,11 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:adjustViewBounds="true"
-            android:contentDescription="Icon"
             android:padding="7dp"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_chart"
-            android:tint="@color/verge_colorPrimaryDark" />
+            android:tint="@color/verge_colorPrimaryDark"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/charts_card_title"
@@ -44,7 +45,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -69,7 +70,8 @@
                     android:text="$"
                     android:textAlignment="textEnd"
                     android:textColor="@color/verge_colorPrimaryDark"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -104,7 +106,8 @@
                     android:text="$"
                     android:textAlignment="textEnd"
                     android:textColor="@color/verge_colorPrimary"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -138,7 +141,8 @@
                     android:text="$"
                     android:textAlignment="textEnd"
                     android:textColor="@color/verge_colorAccent"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -154,10 +158,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="chart data only available in USD"
+                android:text="@string/history_chart_usd_only"
                 android:textAlignment="center"
                 android:textColor="@color/verge_colorAccent"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
 
             <com.github.mikephil.charting.charts.CombinedChart
                 android:id="@+id/charts_card_chartview"

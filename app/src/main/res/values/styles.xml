@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/verge_colorAccent</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:fontFamily">@font/avenir_next_demibold</item>
+        <item name="android:backgroundTint">@color/verge_white</item>
     </style>
 
     <style name="graphtextview">

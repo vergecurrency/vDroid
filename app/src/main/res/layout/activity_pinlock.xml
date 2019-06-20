@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:paddingVertical="10dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:text="@string/pinlock_title"
         app:layout_constraintEnd_toEndOf="parent"

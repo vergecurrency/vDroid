@@ -6,7 +6,6 @@ import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
-import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
 import cz.msebera.android.httpclient.util.EntityUtils;
 
@@ -32,10 +31,9 @@ public class ClearnetGateway extends AsyncTask<String, Void, String> {
 
 			if (status == 200) {
 				HttpEntity entity = response.getEntity();
-				String data = EntityUtils.toString(entity);
 
 
-				return data;
+				return EntityUtils.toString(entity);
 			} else return "error";
 
 		} catch (Exception e) {

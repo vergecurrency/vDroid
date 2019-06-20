@@ -16,7 +16,6 @@ import java.util.Arrays;
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.utils.MathUtils;
-import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.viewmodel.PaperkeyVerificationViewModel;
 
 public class PaperkeyVerificationActivity extends AppCompatActivity {
@@ -27,7 +26,6 @@ public class PaperkeyVerificationActivity extends AppCompatActivity {
 	EditText secondWordInput;
 	Button confirmButton;
 	Pair<String[], int[]> verificationWords;
-	PreferencesManager pm;
 	String[] seed;
 
 	PaperkeyVerificationViewModel mViewModel;

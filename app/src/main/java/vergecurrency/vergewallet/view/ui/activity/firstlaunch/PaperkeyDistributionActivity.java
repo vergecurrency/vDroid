@@ -78,31 +78,28 @@ public class PaperkeyDistributionActivity extends AppCompatActivity {
         };
     }
 
-    //TODO : move to the viewmodel
     private void nextWord() {
         //Increase if not the last
         if (currentWordIndex < 11) {
             currentWordIndex += 1;
-            nextButton.setText("Next");
+            nextButton.setText(getString(R.string.paperkey_view_next));
         }
         //change button text if last
         if (currentWordIndex == 11) {
-            nextButton.setText("Done");
+            nextButton.setText(getString(R.string.paperkey_view_done));
         }
         wordView.setText(getWord());
     }
 
-    //TODO : move to the viewmodel
     private void previousWord() {
         //Decrease if not the first
         if (currentWordIndex > 0) {
             currentWordIndex -= 1;
-            nextButton.setText("Next");
+            nextButton.setText(getString(R.string.paperkey_view_next));
         }
         wordView.setText(getWord());
     }
 
-    //TODO : move to the viewmodel
     private String getWord() {
         return seed[currentWordIndex];
     }

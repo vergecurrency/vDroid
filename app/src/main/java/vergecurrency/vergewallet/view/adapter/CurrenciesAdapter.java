@@ -32,14 +32,11 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 	@Override
 	public void onClick(View v) {
 		int position = (Integer) v.getTag();
-		Object object = getItem(position);
-		Currency cur = (Currency) object;
+		Currency currency = getItem(position);
 
-		switch (v.getId()) {
-			case R.id.listview_currency_item:
-				Toast.makeText(v.getContext(), "Currency chosen : " + cur.getName(), Toast.LENGTH_SHORT).show();
-				PreferencesManager.setSelectedCurrency(cur.getCurrencyAsJSON());
-				break;
+		if (v.getId() == R.id.listview_currency_item) {
+			Toast.makeText(v.getContext(), "Currency chosen : " + currency.getName(), Toast.LENGTH_SHORT).show();
+			PreferencesManager.setSelectedCurrency(currency.getCurrencyAsJSON());
 		}
 
 	}

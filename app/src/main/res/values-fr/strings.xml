@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources >
     <string name="app_name">Verge</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiMmxhenkyZGVidWciLCJhIjoiY2pvbzdqdHJjMDFkOTNrc3U3cnlyZ3A0aCJ9.u6hnc-wFQhgefZW0eQRwFw</string>
 
@@ -37,7 +37,7 @@
     //Splash screen texts
     <string name="splash_title">Porte-monnaie Verge Android</string>
     <string name="splash_slogan">La confidentialité est notre norme.</string>
-    <string name="splash_sub">Démarrage...</string>
+    <string name="splash_sub">Démarrage…</string>
 
     //Tor settings activity
     <string name="tor_settings_title">Tor est là pour votre vie privée et cache votre emplacement</string>
@@ -118,5 +118,25 @@
     <string name="qr_option_btn">QR</string>
     <string name="words_option_btn">Words</string>
     <string name="title_change_language">Change Language</string>
+    <string name="error_label">An error occurred</string>
+    <string name="prog_placeholder">programatically</string>
+    <string name="verge_bg_tag">Verge Background</string>
+    <string name="localhost_label">127.0.0.1</string>
+    <string name="wallet_ready_open">Open your wallet</string>
+    <string name="history_chart_usd_only">chart data only available in USD</string>
+    <string name="error_report_copy_button">&lt;b>&lt;big>Copy error report to clipboard&lt;/big>&lt;/b></string>
+    <string name="error_report_exit_button">" &lt;b>&lt;big>Exit Verge Android Wallet&lt;/big>&lt;/b>"</string>
+    <string name="error_uncaught_exception">Verge Android Wallet Unexpected Error</string>
+    <string name="error_uncaught_exception_show_report">Show error report</string>
+    <string name="receive_view_amount_hint">Amount to receive</string>
+    <string name="send_view_share">Share</string>
+    <string name="send_view_recipient_hint">Recipient address</string>
+    <string name="send_view_amount_hint">Amount</string>
+    <string name="send_amount_memo_label">Internal memo (optional)</string>
+    <string name="send_view_memo_hint">Gift to Justin</string>
+    <string name="send_view_send_button">Send XVG</string>
+    <string name="wallet_view_balance_label">XVG BALANCE</string>
+    <string name="paperkey_view_next">Next</string>
+    <string name="paperkey_view_done">Done</string>
 
 </resources>

@@ -33,11 +33,8 @@ public class SettingsListsAdapter extends RecyclerView.Adapter<RecyclerView.View
         else if(viewType == TYPE_ITEM) {
             View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_item_settings, null);
 
-            itemLayoutView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //TODO : map each button to an action.
-                }
+            itemLayoutView.setOnClickListener(v -> {
+                //TODO : map each button to an action.
             });
 
 

@@ -1,7 +1,6 @@
 package vergecurrency.vergewallet.wallet;
 
 
-import android.provider.Telephony;
 
 import java.util.HashMap;
 
@@ -48,7 +47,7 @@ public class AddressValidator {
 			definitiveParameters.put(parameterPair[0], parameterPair[1]);
 		}
 
-		Float amount = Float.parseFloat(definitiveParameters.getOrDefault("amount","0"));
+		Float amount = Float.parseFloat(definitiveParameters.getOrDefault("amount","0f"));
 
 		vc.setAmount(amount);
 

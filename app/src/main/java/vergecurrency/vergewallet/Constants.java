@@ -1,6 +1,5 @@
 package vergecurrency.vergewallet;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class Constants {

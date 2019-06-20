@@ -33,7 +33,7 @@ public class ContactRepository extends SQLiteOpenHelper {
 	}
 	
 	public String loadHandler() {
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		String query =  "Select * from " + TABLE_NAME;
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery(query, null);
@@ -41,12 +41,12 @@ public class ContactRepository extends SQLiteOpenHelper {
 			int result_id = cursor.getInt(0);
 			String result_name = cursor.getString(1);
 			String result_address = cursor.getString(2);
-			result += String.valueOf(result_id) + " " + result_name + " " + result_address + System.getProperty("line.separator");
+			result.append(result_id).append(" ").append(result_name).append(" ").append(result_address).append(System.getProperty("line.separator"));
 		}
 		
 		cursor.close();
 		db.close();
-		return result;
+		return result.toString();
 	}
 	
 	public void addContact(Contact contact) {

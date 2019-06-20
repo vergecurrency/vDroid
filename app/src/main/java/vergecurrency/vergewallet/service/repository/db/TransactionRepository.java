@@ -115,7 +115,7 @@ public class TransactionRepository  extends SQLiteOpenHelper {
 				results.add(txhist);
 			}
 		}
-
+		cursor.close();
 		return results;
 	}
 

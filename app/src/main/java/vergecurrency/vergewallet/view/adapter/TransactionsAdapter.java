@@ -57,14 +57,11 @@ public class TransactionsAdapter extends ArrayAdapter<Transaction> implements Vi
 	public void onClick(View v) {
 
 		int position = (Integer) v.getTag();
-		Object object = getItem(position);
-		Transaction tx = (Transaction) object;
+		Transaction tx = getItem(position);
 
-		switch (v.getId()) {
-			case R.id.listview_transaction_id:
-				Snackbar.make(v, "Release date " + tx.getAddress(), Snackbar.LENGTH_LONG)
-						.setAction("No action", null).show();
-				break;
+		if (v.getId() == R.id.listview_transaction_id) {
+			Snackbar.make(v, "Release date " + tx.getAddress(), Snackbar.LENGTH_LONG)
+					.setAction("No action", null).show();
 		}
 	}
 
@@ -91,12 +88,12 @@ public class TransactionsAdapter extends ArrayAdapter<Transaction> implements Vi
 		}
 
 		if (tx.getCategory().equals("send")) {
-			vh.txAmount.setText("- " + (Double.toString(MathUtils.round(tx.getAmount(), 2))) + " XVG");
+			vh.txAmount.setText(String.format("- %s XVG", MathUtils.round(tx.getAmount(), 2)));
 			vh.txAmount.setTextColor(getContext().getResources().getColor(R.color.material_red_500));
 			vh.txIcon.setImageResource(R.drawable.icon_arrow_up);
 			DrawableCompat.setTint(vh.txIcon.getDrawable(), ContextCompat.getColor(context, R.color.material_red_500));
 		} else if (tx.getCategory().equals("receive")) {
-			vh.txAmount.setText("+ " + (Double.toString(MathUtils.round(tx.getAmount(), 2))) + " XVG");
+			vh.txAmount.setText(String.format("+ %s XVG", MathUtils.round(tx.getAmount(), 2)));
 			vh.txAmount.setTextColor(getContext().getResources().getColor(R.color.material_green_500));
 			vh.txIcon.setImageResource(R.drawable.icon_arrow_down);
 			DrawableCompat.setTint(vh.txIcon.getDrawable(), ContextCompat.getColor(context, R.color.material_green_500));

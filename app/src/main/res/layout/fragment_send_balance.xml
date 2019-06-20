@@ -58,7 +58,7 @@
             android:id="@+id/send_balance_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Recipient address" />
+            android:hint="@string/send_view_recipient_hint" />
 
     </LinearLayout>
 
@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:hint="Amount" />
+            android:hint="@string/send_view_amount_hint" />
 
     </LinearLayout>
 
@@ -98,12 +98,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Internal memo (optional)" />
+            android:text="@string/send_amount_memo_label" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Gift to Justin" />
+            android:hint="@string/send_view_memo_hint" />
 
     </LinearLayout>
 
@@ -119,7 +119,7 @@
         android:background="@drawable/form_rounded_white_rect"
         android:backgroundTint="@color/verge_colorPrimary"
         android:scaleType="fitCenter"
-        android:text="Send XVG"
+        android:text="@string/send_view_send_button"
         android:textColor="@color/verge_colorBackgroundTwo"
         android:textSize="18sp" />
 

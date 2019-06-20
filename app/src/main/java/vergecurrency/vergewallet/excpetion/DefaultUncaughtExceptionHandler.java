@@ -25,18 +25,18 @@ public class DefaultUncaughtExceptionHandler implements Thread.UncaughtException
     public static final String EXTRA_ERROR_REPORT = "error-report";
     private static final String NEWLINE = "\n";
     private Activity currentActivity;
-    static DefaultUncaughtExceptionHandler INSTANCE = null;
+    private static DefaultUncaughtExceptionHandler INSTANCE = null;
 
 
     private DefaultUncaughtExceptionHandler() {
     }
 
     //--------Singleton methods
-    public static DefaultUncaughtExceptionHandler init() {
+    public static void  init() {
         if (INSTANCE != null) {
             throw new AssertionError("You already initialized an object of this type");
         }
-        return INSTANCE = new DefaultUncaughtExceptionHandler();
+        INSTANCE = new DefaultUncaughtExceptionHandler();
     }
 
     public static DefaultUncaughtExceptionHandler getInstance() {
@@ -51,43 +51,6 @@ public class DefaultUncaughtExceptionHandler implements Thread.UncaughtException
     private void handle(Throwable e) {
         StringWriter stackTrace = new StringWriter();
         e.printStackTrace(new PrintWriter(stackTrace));
-        StringBuilder report = new StringBuilder();
-        report.append("************ CAUSE OF ERROR ************");
-        report.append(NEWLINE);
-        report.append(NEWLINE);
-        report.append(stackTrace.toString());
-        report.append(NEWLINE);
-        report.append("************ DEVICE INFORMATION ***********");
-        report.append(NEWLINE);
-        report.append("Brand: ");
-        report.append(Build.BRAND);
-        report.append(NEWLINE);
-        report.append("Device: ");
-        report.append(Build.DEVICE);
-        report.append(NEWLINE);
-        report.append("Model: ");
-        report.append(Build.MODEL);
-        report.append(NEWLINE);
-        report.append("Id: ");
-        report.append(Build.ID);
-        report.append(NEWLINE);
-        report.append("Product: ");
-        report.append(Build.PRODUCT);
-        report.append(NEWLINE);
-        report.append(NEWLINE);
-        report.append("************ FIRMWARE ************");
-        report.append(NEWLINE);
-        report.append("SDK: ");
-        report.append(Build.VERSION.CODENAME);
-        report.append(" - ");
-        report.append(Build.VERSION.SDK_INT);
-        report.append(NEWLINE);
-        report.append("Release: ");
-        report.append(Build.VERSION.RELEASE);
-        report.append(NEWLINE);
-        report.append("Incremental: ");
-        report.append(Build.VERSION.INCREMENTAL);
-        report.append(NEWLINE);
 
         //Logger
         LOGGER.log(Level.SEVERE, stackTrace.toString());
@@ -95,7 +58,43 @@ public class DefaultUncaughtExceptionHandler implements Thread.UncaughtException
         Intent intent = new Intent(currentActivity, ErrorRecoveryActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //Schedule App restart containing error report
-        intent.putExtra(EXTRA_ERROR_REPORT, report.toString());
+        String report = "************ CAUSE OF ERROR ************" +
+                NEWLINE +
+                NEWLINE +
+                stackTrace.toString() +
+                NEWLINE +
+                "************ DEVICE INFORMATION ***********" +
+                NEWLINE +
+                "Brand: " +
+                Build.BRAND +
+                NEWLINE +
+                "Device: " +
+                Build.DEVICE +
+                NEWLINE +
+                "Model: " +
+                Build.MODEL +
+                NEWLINE +
+                "Id: " +
+                Build.ID +
+                NEWLINE +
+                "Product: " +
+                Build.PRODUCT +
+                NEWLINE +
+                NEWLINE +
+                "************ FIRMWARE ************" +
+                NEWLINE +
+                "SDK: " +
+                Build.VERSION.CODENAME +
+                " - " +
+                Build.VERSION.SDK_INT +
+                NEWLINE +
+                "Release: " +
+                Build.VERSION.RELEASE +
+                NEWLINE +
+                "Incremental: " +
+                Build.VERSION.INCREMENTAL +
+                NEWLINE;
+        intent.putExtra(EXTRA_ERROR_REPORT, report);
         PendingIntent pendingIntent = PendingIntent.getActivity(currentActivity, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         //Prepare Error Notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder(currentActivity, UNCAUGHT_EXCEPTION_CHANNEL_ID)

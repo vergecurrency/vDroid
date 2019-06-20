@@ -132,9 +132,7 @@ public class FragmentChartsPageView extends Fragment {
 		xAxis.setGranularity(1f);
 		xAxis.setDrawGridLines(false);
 		xAxis.setDrawLabels(false);
-		xAxis.setValueFormatter((value, axis) -> {
-			return new DecimalFormat("########0.0").format(value);
-		});
+		xAxis.setValueFormatter((value, axis) -> new DecimalFormat("########0.0").format(value));
 
 		rightAxis.setAxisMaximum(data.getLineData().getYMax() * 1.1f);
 		leftAxis.setAxisMaximum(data.getBarData().getYMax() * 1.1f);

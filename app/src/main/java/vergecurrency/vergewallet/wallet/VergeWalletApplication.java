@@ -47,13 +47,6 @@ public class VergeWalletApplication extends Application implements Application.A
         super.onConfigurationChanged(newConfig);
     }
 
-    // This is called when the overall system is running low on memory,
-    // and would like actively running processes to tighten their belts.
-    // Overriding this method is totally optional!
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-    }
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {

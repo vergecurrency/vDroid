@@ -32,10 +32,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="An error occurred"
+            android:text="@string/error_label"
             android:textAlignment="center"
             android:textColor="@color/verge_colorBackground"
-            android:textSize="28dp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
@@ -43,10 +43,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
-            android:text="programatically"
+            android:text="@string/prog_placeholder"
             android:textAlignment="center"
             android:textColor="@color/verge_colorBackground"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
 
     </LinearLayout>
@@ -74,7 +74,7 @@
                 android:adjustViewBounds="true"
                 android:backgroundTint="@color/verge_colorPrimary"
                 android:scaleType="fitCenter"
-                android:text="programmatically"
+                android:text="@string/prog_placeholder"
                 android:textColor="@color/verge_colorBackgroundTwo" />
 
             <Button
@@ -85,7 +85,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/verge_colorBackgroundTwo"
-                android:text="programmatically"
+                android:text="@string/prog_placeholder"
                 android:textColor="@color/verge_colorPrimaryDark" />
 
         </LinearLayout>

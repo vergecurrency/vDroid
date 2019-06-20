@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="XVG BALANCE"
+            android:text="@string/wallet_view_balance_label"
             android:textColor="@color/bg_color"
             android:textSize="14sp" />
 

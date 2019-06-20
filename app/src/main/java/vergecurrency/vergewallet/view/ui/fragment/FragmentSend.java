@@ -89,7 +89,7 @@ public class FragmentSend extends Fragment {
 	}
 
 	public void setPreRequestedAmount() {
-		amount.setText("" + requestedAmount);
+		amount.setText(String.format("%s",requestedAmount));
 	}
 
 	public void setPreRequestedAddress() {
