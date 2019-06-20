@@ -26,7 +26,7 @@ public class PreferencesManager {
     private static final String WALLET_SECRET = "walletSecret";
     private static final String DEVICE_TOKEN = "deviceToken";
 
-	static PreferencesManager INSTANCE = null;
+	private static PreferencesManager INSTANCE = null;
 	private static SharedPreferences preferences;
 
 
