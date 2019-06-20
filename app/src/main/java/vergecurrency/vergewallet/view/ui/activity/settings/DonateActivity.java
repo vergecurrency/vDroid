@@ -8,30 +8,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import vergecurrency.vergewallet.BaseActivity;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.ui.fragment.FragmentSend;
 
-public class DonateActivity extends AppCompatActivity {
+public class DonateActivity extends BaseActivity {
 
-    Button donateButton;
-    ImageView donateHeader;
-    TextView donateDesc1;
-    TextView donateDesc2;
+	Button donateButton;
+	ImageView donateHeader;
+	TextView donateDesc1;
+	TextView donateDesc2;
 
-    FrameLayout fl;
+	FrameLayout fl;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_donate);
+	@Override
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_donate);
 
-        initComponents();
-    }
+		initComponents();
+	}
 
-    private void initComponents() {
+	private void initComponents() {
 		donateHeader = findViewById(R.id.donate_header);
 		donateDesc1 = findViewById(R.id.donate_desc1);
 		donateDesc2 = findViewById(R.id.donate_desc2);
@@ -41,24 +41,24 @@ public class DonateActivity extends AppCompatActivity {
 
 		donateButton = findViewById(R.id.button_donate);
 		donateButton.setOnClickListener(setOcl());
-    }
+	}
 
 
-    private View.OnClickListener setOcl() {
-        return v -> {
+	private View.OnClickListener setOcl() {
+		return v -> {
 
-            fl.setVisibility(View.VISIBLE);
-            donateDesc1.setVisibility(View.INVISIBLE);
-            donateDesc2.setVisibility(View.INVISIBLE);
-            donateHeader.setVisibility(View.INVISIBLE);
-            donateButton.setVisibility(View.INVISIBLE);
+			fl.setVisibility(View.VISIBLE);
+			donateDesc1.setVisibility(View.INVISIBLE);
+			donateDesc2.setVisibility(View.INVISIBLE);
+			donateHeader.setVisibility(View.INVISIBLE);
+			donateButton.setVisibility(View.INVISIBLE);
 
-            FragmentSend fs = new FragmentSend(getText(R.string.donate_donation_address).toString());
+			FragmentSend fs = new FragmentSend(getText(R.string.donate_donation_address).toString());
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.donate_content, fs)
-                    .commit();
-        };
-    }
+			FragmentManager fragmentManager = getSupportFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.donate_content, fs)
+					.commit();
+		};
+	}
 }

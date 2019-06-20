@@ -1,6 +1,7 @@
 package vergecurrency.vergewallet.view.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-public class QRCodeReaderActivity extends AppCompatActivity {
+import vergecurrency.vergewallet.BaseActivity;
+
+public class QRCodeReaderActivity extends BaseActivity {
 }

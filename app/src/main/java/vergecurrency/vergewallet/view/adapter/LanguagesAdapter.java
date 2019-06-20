@@ -1,6 +1,7 @@
 package vergecurrency.vergewallet.view.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,10 +41,18 @@ public class LanguagesAdapter extends ArrayAdapter<Language> implements View.OnC
 		if (v.getId() == R.id.listview_language_item) {
 			Toast.makeText(v.getContext(), "Language chosen : " + lang.getName(), Toast.LENGTH_SHORT).show();
 			PreferencesManager.setCurrentLanguage(lang.getLanguageAsJson());
-			LanguagesUtils.setLocale(getContext(), lang.getLanguage());
-			ProcessPhoenix.triggerRebirth(getContext());
+			LanguagesUtils.setLocale(getContext(), lang.getLanguageAsJson());
+			//ProcessPhoenix.triggerRebirth(getContext());
+			restart(getContext());
 		}
 
+	}
+
+	private void restart(Context c) {
+		Intent i = c.getPackageManager()
+				.getLaunchIntentForPackage( c.getPackageName() );
+		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		c.startActivity(i);
 	}
 
 	@Override

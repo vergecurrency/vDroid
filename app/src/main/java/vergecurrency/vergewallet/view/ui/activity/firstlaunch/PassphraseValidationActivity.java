@@ -14,11 +14,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.omega_r.libs.OmegaCenterIconButton;
 
+import vergecurrency.vergewallet.BaseActivity;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.viewmodel.PassphraseVerificationViewModel;
 
 
-public class PassphraseValidationActivity extends AppCompatActivity {
+public class PassphraseValidationActivity extends BaseActivity {
 
 	private PassphraseVerificationViewModel mViewModel;
 	private String passphraseToValidate;

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import org.osmdroid.api.IMapController;
@@ -13,10 +12,11 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 
+import vergecurrency.vergewallet.BaseActivity;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.viewmodel.TorSettingsViewModel;
 
-public class TorSettingsActivity extends AppCompatActivity {
+public class TorSettingsActivity extends BaseActivity {
 
 	MapView map;
 	TextView ip;

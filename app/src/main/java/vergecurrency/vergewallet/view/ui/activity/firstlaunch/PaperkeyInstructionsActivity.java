@@ -7,9 +7,10 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import vergecurrency.vergewallet.BaseActivity;
 import vergecurrency.vergewallet.R;
 
-public class PaperkeyInstructionsActivity extends AppCompatActivity {
+public class PaperkeyInstructionsActivity extends BaseActivity {
 
 
 	//The dumbest class you'll find here... jump to the next one

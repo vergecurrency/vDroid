@@ -12,11 +12,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 
+import vergecurrency.vergewallet.BaseActivity;
 import vergecurrency.vergewallet.R;
 
 import static vergecurrency.vergewallet.excpetion.DefaultUncaughtExceptionHandler.EXTRA_ERROR_REPORT;
 
-public class ErrorRecoveryActivity extends AppCompatActivity {
+public class ErrorRecoveryActivity extends BaseActivity {
     private CharSequence errorReport;
     Button button;
     TextView error_description;

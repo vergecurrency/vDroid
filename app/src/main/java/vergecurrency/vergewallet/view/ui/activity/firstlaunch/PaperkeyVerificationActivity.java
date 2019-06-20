@@ -13,12 +13,13 @@ import androidx.lifecycle.ViewModelProviders;
 
 import java.util.Arrays;
 
+import vergecurrency.vergewallet.BaseActivity;
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.utils.MathUtils;
 import vergecurrency.vergewallet.viewmodel.PaperkeyVerificationViewModel;
 
-public class PaperkeyVerificationActivity extends AppCompatActivity {
+public class PaperkeyVerificationActivity extends BaseActivity {
 
 	TextView firstWordCaption;
 	TextView secondWordCaption;

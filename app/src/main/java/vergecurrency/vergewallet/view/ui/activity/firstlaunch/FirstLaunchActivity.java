@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 
+import vergecurrency.vergewallet.BaseActivity;
 import vergecurrency.vergewallet.R;
 
-public class FirstLaunchActivity extends AppCompatActivity {
+public class FirstLaunchActivity extends BaseActivity {
 
 	Button bottomButton;
 
@@ -49,7 +49,6 @@ public class FirstLaunchActivity extends AppCompatActivity {
 			//HERE TOO YOU ASSHOLE OF A DEV
 		};
 	}
-
 
 
 }

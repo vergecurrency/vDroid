@@ -17,7 +17,7 @@
 
 
     <application
-        android:name=".wallet.VergeWalletApplication"
+        android:name=".VergeWalletApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -26,7 +26,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustResize"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:allowBackup">
         <activity
             android:name=".view.ui.activity.WalletActivity"
             android:label="@string/app_name" />

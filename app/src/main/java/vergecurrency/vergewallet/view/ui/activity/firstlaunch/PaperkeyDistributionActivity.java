@@ -8,10 +8,12 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
+
+import vergecurrency.vergewallet.BaseActivity;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.viewmodel.PaperkeyDistributionViewModel;
 
-public class PaperkeyDistributionActivity extends AppCompatActivity {
+public class PaperkeyDistributionActivity extends BaseActivity {
 
 
     //variable decl.

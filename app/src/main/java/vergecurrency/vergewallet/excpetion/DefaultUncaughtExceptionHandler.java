@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.ui.activity.error.ErrorRecoveryActivity;
 
-import static vergecurrency.vergewallet.wallet.VergeWalletApplication.UNCAUGHT_EXCEPTION_CHANNEL_ID;
+import static vergecurrency.vergewallet.VergeWalletApplication.UNCAUGHT_EXCEPTION_CHANNEL_ID;
 
 public class DefaultUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
     private final static AtomicInteger notificationNumber = new AtomicInteger(0);
