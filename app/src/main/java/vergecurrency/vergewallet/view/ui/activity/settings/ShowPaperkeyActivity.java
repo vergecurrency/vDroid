@@ -1,6 +1,5 @@
 package vergecurrency.vergewallet.view.ui.activity.settings;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,9 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
+
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.helpers.utils.LanguagesUtils;
-import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.viewmodel.ShowPaperkeyViewModel;
 
 public class ShowPaperkeyActivity extends AppCompatActivity {

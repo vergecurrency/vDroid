@@ -2,6 +2,9 @@ package vergecurrency.vergewallet.viewmodel;
 
 import android.app.Application;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+
 import com.google.gson.GsonBuilder;
 
 import org.json.simple.JSONArray;
@@ -15,20 +18,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.service.model.Transaction;
-import vergecurrency.vergewallet.view.adapter.WalletAdapter;
-import vergecurrency.vergewallet.wallet.WalletManager;
 
 public class TransactionsViewModel extends AndroidViewModel {
 
 	public TransactionsViewModel(@NonNull Application application) {
 		super(application);
-		WalletManager wm ;
-		wm = WalletManager.getInstance();
-
 	}
 
 

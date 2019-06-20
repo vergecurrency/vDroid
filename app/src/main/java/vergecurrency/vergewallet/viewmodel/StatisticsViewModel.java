@@ -9,16 +9,15 @@ import vergecurrency.vergewallet.service.model.Currency;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.service.repository.PriceStatsDataReader;
 
+import static vergecurrency.vergewallet.service.model.PreferencesManager.getPreferredCurrency;
+
 public class StatisticsViewModel extends ViewModel {
 
-
-	private PreferencesManager pm;
 	private String currencyCode;
 	private ArrayList<Map.Entry<String, String>> statistics ;
 
 	public StatisticsViewModel() {
-		pm = PreferencesManager.getInstance();
-		currencyCode = Currency.getCurrencyFromJson(pm.getPreferredCurrency()).getCurrency();
+		currencyCode = Currency.getCurrencyFromJson(getPreferredCurrency()).getCurrency();
 		statistics = new ArrayList<>(PriceStatsDataReader.readPriceStatistics(getCurrencyCode()).entrySet());
 	}
 

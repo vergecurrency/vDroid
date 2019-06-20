@@ -1,14 +1,15 @@
 package vergecurrency.vergewallet.view.ui.activity.settings;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.ui.fragment.FragmentSend;

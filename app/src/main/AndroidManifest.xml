@@ -18,7 +18,7 @@
 
 
     <application
-        android:name=".App"
+        android:name=".wallet.VergeWalletApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -52,6 +52,7 @@
         <activity android:name=".view.ui.activity.settings.ChooseLanguageActivity" />
         <activity android:name=".view.ui.activity.firstlaunch.PassphraseValidationActivity" />
         <activity android:name=".view.ui.activity.firstlaunch.PassphraseCreationActivity" />
+        <activity android:name=".view.ui.activity.error.ErrorRecoveryActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

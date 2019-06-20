@@ -1,11 +1,12 @@
 package vergecurrency.vergewallet.wallet;
 
+import androidx.lifecycle.MutableLiveData;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
 
-import androidx.lifecycle.MutableLiveData;
 import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import io.horizontalsystems.bitcoinkit.models.BlockInfo;
 import io.horizontalsystems.bitcoinkit.models.TransactionInfo;
@@ -15,18 +16,16 @@ import vergecurrency.vergewallet.service.model.PreferencesManager;
 import static io.horizontalsystems.bitcoinkit.BitcoinKit.KitState;
 import static io.horizontalsystems.bitcoinkit.BitcoinKit.Listener;
 import static io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType;
+import static vergecurrency.vergewallet.service.model.PreferencesManager.setMnemonic;
 
-public class WalletManager implements Listener {
+public final class WalletManager implements Listener {
 
 	private static WalletManager INSTANCE = null;
-	private MutableLiveData<Long> balance;
-	private PreferencesManager pm;
-	private BitcoinKit wallet;
+	private static MutableLiveData<Long> balance;
+	private static BitcoinKit wallet;
 
 	private WalletManager() {
-		pm = PreferencesManager.getInstance();
 		balance = new MutableLiveData<>();
-
 	}
 
 	public static WalletManager init() {
@@ -43,12 +42,12 @@ public class WalletManager implements Listener {
 		return INSTANCE;
 	}
 
-	public void startWallet() throws Exception {
+	public static   void startWallet() throws Exception {
 		NetworkType netType = NetworkType.MainNet;
-		String[] mnemonic = MnemonicManager.getMnemonicFromJSON(pm.getMnemonic());
+		String[] mnemonic = MnemonicManager.getMnemonicFromJSON(PreferencesManager.getMnemonic());
 		if (mnemonic != null) {
-			wallet = new BitcoinKit((List<String>) Arrays.asList(mnemonic), pm.getPassphrase(), netType, "wallet", 10, true, 1);
-			wallet.setListener(this);
+			wallet = new BitcoinKit((List<String>) Arrays.asList(mnemonic), PreferencesManager.getPassphrase(), netType, "wallet", 10, true, 1);
+			wallet.setListener(INSTANCE);
 			String networkName = netType.name();
 
 			wallet.start();
@@ -62,21 +61,21 @@ public class WalletManager implements Listener {
 	}
 
 
-	public String getReceiveAddress() {
+	public static String getReceiveAddress() {
 		return wallet.receiveAddress();
 	}
 
-	public void getTransactions() {
+	public static void getTransactions() {
 	}
 
-	public void generateMnemonic() {
+	public static void generateMnemonic() {
 
 		MnemonicManager mnemonicManager = new MnemonicManager();
 		mnemonicManager.setMnemonic(new io.horizontalsystems.hdwalletkit.Mnemonic().generate(io.horizontalsystems.hdwalletkit.Mnemonic.Strength.Default).toArray(new String[0]));
-		pm.setMnemonic(mnemonicManager.getMnemonicAsJSON());
+		setMnemonic(mnemonicManager.getMnemonicAsJSON());
 	}
 
-	public MutableLiveData<Long> getBalance() {
+	public static MutableLiveData<Long> getBalance() {
 		balance.setValue(wallet.getBalance());
 		return balance;
 	}

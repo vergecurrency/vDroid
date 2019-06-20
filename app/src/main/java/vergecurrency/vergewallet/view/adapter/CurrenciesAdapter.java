@@ -1,7 +1,6 @@
 package vergecurrency.vergewallet.view.adapter;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +9,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.service.model.Currency;
+import vergecurrency.vergewallet.service.model.PreferencesManager;
 
 public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.OnClickListener {
-
-	private PreferencesManager pm;
 
 	/**
 	 * Transaction adapter constructor
@@ -28,7 +27,6 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 	 */
 	public CurrenciesAdapter(@NonNull Context context, ArrayList<Currency> curs) {
 		super(context, R.layout.listview_item_currency, curs);
-		pm = PreferencesManager.getInstance();
 	}
 
 	@Override
@@ -40,7 +38,7 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 		switch (v.getId()) {
 			case R.id.listview_currency_item:
 				Toast.makeText(v.getContext(), "Currency chosen : " + cur.getName(), Toast.LENGTH_SHORT).show();
-				pm.setSelectedCurrency(cur.getCurrencyAsJSON());
+				PreferencesManager.setSelectedCurrency(cur.getCurrencyAsJSON());
 				break;
 		}
 

@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import vergecurrency.vergewallet.R;
 
 public class PaperkeyInstructionsActivity extends AppCompatActivity {

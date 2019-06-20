@@ -9,12 +9,31 @@ import vergecurrency.vergewallet.Constants;
  * Warning fella : this class is a singleton object if you are wondering why I did that shitshow ;)
  */
 public class PreferencesManager {
+    private static final String FIRST_LAUNCH = "firstlaunch";
+    private static final String PIN = "pin";
+    private static final String PIN_COUNT = "pinCount";
+    private static final String PREFERRED_CURRENCY = "preferredCurrency";
+    private static final String USING_TOR = "usingTor";
+    private static final String LANGUAGE = "language";
+    private static final String MNEMONIC = "mnemonic";
+    private static final String PASSPHRASE = "passphrase";
+    private static final String AMOUNT = "amount";
+    private static final String AUTH_UNLOCK_WALLET = "authUnlockWallet";
+    private static final String AUTH_SEND_XVG = "authSendXVG";
+    private static final String WALLET_SERVICE_URL = "walletServiceURL";
+    private static final String WALLET_ID = "walletId";
+    private static final String WALLET_NAME = "walletName";
+    private static final String WALLET_SECRET = "walletSecret";
+    private static final String DEVICE_TOKEN = "deviceToken";
 
-	static PreferencesManager INSTANCE = null;
-	SharedPreferences prefs;
+	private static PreferencesManager INSTANCE = null;
+	private static SharedPreferences preferences;
+
+
+
 
 	private PreferencesManager(Context context) {
-		prefs = context.getSharedPreferences("com.vergecurrency.vergewallet", Context.MODE_PRIVATE);
+		preferences = context.getSharedPreferences("com.vergecurrency.vergewallet", Context.MODE_PRIVATE);
 	}
 
 	//--------Singleton methods
@@ -33,162 +52,162 @@ public class PreferencesManager {
 	}
 
 	//---------First launch
-	public boolean getFirstLaunch() {
-		return prefs.getBoolean("firstlaunch", true);
+	public static boolean getFirstLaunch() {
+		return preferences.getBoolean(FIRST_LAUNCH, true);
 	}
 
-	public void setFirstLaunch(boolean firstLaunchValue) {
-		prefs.edit().putBoolean("firstlaunch", firstLaunchValue).apply();
+	public static void setFirstLaunch(boolean firstLaunchValue) {
+		preferences.edit().putBoolean(FIRST_LAUNCH, firstLaunchValue).apply();
 	}
 
 	//-------Pin
-	public String getPin() {
-		return prefs.getString("pin", "");
+	public static String getPin() {
+		return preferences.getString(PIN, "");
 	}
 
-	public void setPin(String pin) {
-		prefs.edit().putString("pin", pin).apply();
+	public static void setPin(String pin) {
+		preferences.edit().putString(PIN, pin).apply();
 	}
 
 	//-------Pin digits
-	public int getPinCount() {
-		return prefs.getInt("pinCount", 6);
+	public static int getPinCount() {
+		return preferences.getInt(PIN_COUNT, 6);
 	}
 
-	public void setPinCount(int pinCount) {
-		prefs.edit().putInt("pinCount", pinCount).apply();
+	public static void setPinCount(int pinCount) {
+		preferences.edit().putInt(PIN_COUNT, pinCount).apply();
 		;
 	}
 
 	//---------Preferred currency
-	public String getPreferredCurrency() {
-		return prefs.getString("preferredCurrency", new Currency("United States Dollar", "USD").getCurrencyAsJSON());
+	public static String getPreferredCurrency() {
+		return preferences.getString(PREFERRED_CURRENCY, new Currency("United States Dollar", "USD").getCurrencyAsJSON());
 	}
 
-	public void setSelectedCurrency(String preferredCurrency) {
-		prefs.edit().putString("preferredCurrency", preferredCurrency).apply();
+	public static void setSelectedCurrency(String preferredCurrency) {
+		preferences.edit().putString(PREFERRED_CURRENCY, preferredCurrency).apply();
 	}
 
 	//---------Preferred language
 
-	public String getCurrentLanguage() {
-		return prefs.getString("language", new Language("English", "en").getLanguageAsJson());
+	public static String getCurrentLanguage() {
+		return preferences.getString(LANGUAGE, new Language("English", "en").getLanguageAsJson());
 	}
 
-	public void setCurrentLanguage(String language) {
-		prefs.edit().putString("language", language).apply();
+	public static void setCurrentLanguage(String language) {
+		preferences.edit().putString(LANGUAGE, language).apply();
 	}
 
 	//---------Using Tor
-	public boolean getUsingTor() {
-		return prefs.getBoolean("usingTor", false);
+	public static boolean getUsingTor() {
+		return preferences.getBoolean(USING_TOR, false);
 	}
 
-	public void setUsingTor(boolean isUsingTor) {
-		prefs.edit().putBoolean("usingTor", isUsingTor).apply();
+	public static void setUsingTor(boolean isUsingTor) {
+		preferences.edit().putBoolean(USING_TOR, isUsingTor).apply();
 	}
 
 	//--------12words mnemonic
-	public String getMnemonic() {
-		return prefs.getString("mnemonic", null);
+	public static String getMnemonic() {
+		return preferences.getString(MNEMONIC, null);
 	}
 
-	public void setMnemonic(String mnemonic) {
-		prefs.edit().putString("mnemonic", mnemonic).apply();
+	public static void setMnemonic(String mnemonic) {
+		preferences.edit().putString(MNEMONIC, mnemonic).apply();
 	}
 
 	//-------User passphrase
-	public String getPassphrase() {
-		return prefs.getString("passphrase", "mnemonic");
+	public static String getPassphrase() {
+		return preferences.getString(PASSPHRASE, "mnemonic");
 	}
 
-	public void setPassphrase(String passphrase) {
-		prefs.edit().putString("passphrase", passphrase).apply();
+	public static void setPassphrase(String passphrase) {
+		preferences.edit().putString(PASSPHRASE, passphrase).apply();
 	}
 
 	//---------Wallet amount
 
-	public float getAmount() {
-		return prefs.getFloat("amount", 0f);
+	public static float getAmount() {
+		return preferences.getFloat(AMOUNT, 0f);
 	}
 
-	public void setAmount(float amount) {
+	public static void setAmount(float amount) {
 		if (amount < 0f) {
 			amount = 0f;
 		}
-		prefs.edit().putFloat("amount", amount).apply();
+		preferences.edit().putFloat(AMOUNT, amount).apply();
 	}
 
 	//--------auth for unlocking wallet
-	public boolean getLocalAuthForWalletUnlock() {
-		return prefs.getBoolean("authUnlockWallet", false);
+	public static boolean getLocalAuthForWalletUnlock() {
+		return preferences.getBoolean(AUTH_UNLOCK_WALLET, false);
 	}
 
-	public void setLocalAuthForWalletUnlock(boolean value) {
-		prefs.edit().putBoolean("authUnlockWallet", value).apply();
+	public static void setLocalAuthForWalletUnlock(boolean value) {
+		preferences.edit().putBoolean(AUTH_UNLOCK_WALLET, value).apply();
 	}
 
 	//--------auth for sending xvg
-	public boolean getLocalAuthForSendingXVG() {
-		return prefs.getBoolean("authSendXVG", false);
+	public static boolean getLocalAuthForSendingXVG() {
+		return preferences.getBoolean(AUTH_SEND_XVG, false);
 	}
 
-	public void setLocalAuthForSendingXVG(boolean value) {
-		prefs.edit().putBoolean("authSendXVG", value).apply();
+	public static void setLocalAuthForSendingXVG(boolean value) {
+		preferences.edit().putBoolean(AUTH_SEND_XVG, value).apply();
 	}
 
 	//--------vws endpoint
-	public String getWalletServiceUrl() {
-		return prefs.getString("walletServiceURL", Constants.VWS_ENDPOINT);
+	public static String getWalletServiceUrl() {
+		return preferences.getString(WALLET_SERVICE_URL, Constants.VWS_ENDPOINT);
 	}
 
-	public void setWalletServiceUrl(String url) {
-		prefs.edit().putString("walletServiceURL", url).apply();
+	public static void setWalletServiceUrl(String url) {
+		preferences.edit().putString(WALLET_SERVICE_URL, url).apply();
 	}
 
 	//--------walletid
-	public String getWalletId() {
-		return prefs.getString("walletId", null);
+	public static String getWalletId() {
+		return preferences.getString(WALLET_ID, null);
 	}
 
-	public void setWalletId(String id) {
+	public static void setWalletId(String id) {
 		if (id == null) {
 			id = "";
 		}
-		prefs.edit().putString("walletId", id).apply();
+		preferences.edit().putString(WALLET_ID, id).apply();
 	}
 
 	//--------walletname
-	public String getWalletName() {
-		return prefs.getString("walletName", null);
+	public static String getWalletName() {
+		return preferences.getString(WALLET_NAME, null);
 	}
 
-	public void setWalletName(String name) {
+	public static void setWalletName(String name) {
 		if (name == null) {
 			name = "";
 		}
-		prefs.edit().putString("walletName", name).apply();
+		preferences.edit().putString(WALLET_NAME, name).apply();
 	}
 
 	//--------walletsecret
-	public String getWalletSecret() {
-		return prefs.getString("walletSecret", null);
+	public static String getWalletSecret() {
+		return preferences.getString(WALLET_SECRET, null);
 	}
 
-	public void setWalletSecret(String secret) {
+	public static void setWalletSecret(String secret) {
 		if (secret == null) {
 			secret = "";
 		}
-		prefs.edit().putString("walletSecret", secret).apply();
+		preferences.edit().putString(WALLET_SECRET, secret).apply();
 	}
 
 	//--------walletsecret
-	public String getDeviceToken() {
-		return prefs.getString("deviceToken", "");
+	public static String getDeviceToken() {
+		return preferences.getString(DEVICE_TOKEN, "");
 	}
 
-	public void setDeviceToken(String token) {
-		prefs.edit().putString("deviceToken", token).apply();
+	public static void setDeviceToken(String token) {
+		preferences.edit().putString(DEVICE_TOKEN, token).apply();
 	}
 
 

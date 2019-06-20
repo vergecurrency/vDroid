@@ -19,14 +19,12 @@ import vergecurrency.vergewallet.service.model.PreferencesManager;
 public class Credentials {
 
 	private HDKeychain hdKeychain;
-	private PreferencesManager pm;
 	public Credentials() {
 		hdKeychain = initHDKeyChain();
-		pm = PreferencesManager.getInstance();
 	}
 	public HDKeychain initHDKeyChain() {
-		String[] mnemonic = MnemonicManager.getMnemonicFromJSON(pm.getMnemonic());
-		String passphrase = pm.getPassphrase();
+		String[] mnemonic = MnemonicManager.getMnemonicFromJSON(PreferencesManager.getMnemonic());
+		String passphrase = PreferencesManager.getPassphrase();
 
 		byte[] seed = new io.horizontalsystems.hdwalletkit.Mnemonic().toSeed((List<String>) Arrays.asList(mnemonic), passphrase);
 		return new HDKeychain(seed, true);

@@ -20,8 +20,6 @@ import vergecurrency.vergewallet.view.ui.activity.firstlaunch.FirstLaunchActivit
 import vergecurrency.vergewallet.wallet.WalletManager;
 
 public class SplashActivity extends AppCompatActivity {
-
-	PreferencesManager pm;
 	//DbOpenHelper dbOpenHelper;
 	//private AbstractDaoSession daoSession;
 
@@ -38,11 +36,8 @@ public class SplashActivity extends AppCompatActivity {
 		//daoSession = new AbstractDaoMaster;
 
 		//gets the holy preferences
-		try {
-			pm = PreferencesManager.init(getApplicationContext());
-		} catch (AssertionError e) {
-			pm = PreferencesManager.getInstance();
-		}
+
+
 
 		setContentView(R.layout.activity_splash);
 
@@ -54,13 +49,12 @@ public class SplashActivity extends AppCompatActivity {
 
 	public void startApplication() {
 
-		if (pm.getFirstLaunch()) {
+		if (PreferencesManager.getFirstLaunch()) {
 			finish();
 			startActivity(new Intent(getApplicationContext(), FirstLaunchActivity.class));
 		} else {
-			WalletManager wm = WalletManager.init();
 			try {
-				wm.startWallet();
+				WalletManager.startWallet();
 			} catch (Exception e) {
 				Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
 			}

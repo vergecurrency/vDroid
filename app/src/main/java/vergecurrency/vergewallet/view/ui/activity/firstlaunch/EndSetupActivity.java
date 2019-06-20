@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.ui.activity.WalletActivity;
 import vergecurrency.vergewallet.wallet.WalletManager;
@@ -14,16 +15,14 @@ import vergecurrency.vergewallet.wallet.WalletManager;
 public class EndSetupActivity extends AppCompatActivity {
 
 	Button openWallet;
-	WalletManager wm;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_wallet_ready);
 
-		wm = WalletManager.getInstance();
 		try {
-			wm.startWallet();
+			WalletManager.startWallet();
 		} catch (Exception e) {
 			System.err.print(e);
 			Toast.makeText(getApplicationContext(), "Impossible to start wallet. Manuel you did some crap", Toast.LENGTH_LONG).show();
