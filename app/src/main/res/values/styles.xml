@@ -10,6 +10,7 @@
         <item name="android:fontFamily">@font/avenir_next_regular</item>
     </style>
 
+    <!-- Different items -->
 
     <style name="graphtextview">
         <item name="android:textAlignment">center</item>
@@ -19,6 +20,15 @@
         <item name="android:textColor">@color/verge_colorAccent</item>
     </style>
 
+    <style name="activitiesTitle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:paddingVertical">@dimen/title_regular_margin_top</item>
+        <item name="android:textSize">@dimen/text_subtitle_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="closebutton">
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">40dp</item>
@@ -26,6 +36,22 @@
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:tint">@color/verge_colorPrimary</item>
         <item name="android:src">@drawable/icon_close</item>
+    </style>
+
+    <style name="blue_button">
+        <!--android:layout_alignParentBottom="true"-->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/button_regular_height</item>
+        <item name="android:layout_marginBottom">@dimen/button_regular_margin</item>
+        <item name="android:layout_marginLeft">@dimen/button_regular_margin</item>
+        <item name="android:layout_marginRight">@dimen/button_regular_margin</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:background">@drawable/form_rounded_white_rect</item>
+        <item name="android:backgroundTint">@color/verge_colorPrimary</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:textColor">@color/verge_colorBackgroundTwo</item>
+        <item name="android:textSize">@dimen/text_regular_size</item>
+        <item name="android:layout_alignParentBottom">true</item>
     </style>
 
 

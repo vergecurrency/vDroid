@@ -5,6 +5,7 @@
     <dimen name="design_bottom_navigation_text_size" tools:override="true">9dp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">9dp</dimen>
 
+    <!--Text sizes-->
     <dimen name="text_balance_size">42sp</dimen>
     <dimen name="text_title_size">24sp</dimen>
     <dimen name="text_subtitle_size">20sp</dimen>
@@ -13,4 +14,9 @@
     <dimen name="text_smaller_size">14sp</dimen>
     <dimen name="text_smallest_size">12sp</dimen>
 
+    <!--Element sizes-->
+    <dimen name="button_regular_height">50dp</dimen>
+    <dimen name="button_regular_margin">30dp</dimen>
+
+    <dimen name="title_regular_margin_top">10dp</dimen>
 </resources>

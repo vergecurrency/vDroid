@@ -9,19 +9,8 @@
 
     <Button
         android:id="@+id/button_donate"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/form_rounded_white_rect"
-        android:backgroundTint="@color/verge_colorPrimary"
-        android:scaleType="fitCenter"
         android:text="@string/donate_button"
-        android:textColor="@color/verge_colorBackgroundTwo"
-        android:textSize="@dimen/text_regular_size" />
+        style="@style/blue_button" />
 
     <FrameLayout
         android:id="@+id/donate_content"

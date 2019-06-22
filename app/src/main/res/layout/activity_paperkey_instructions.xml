@@ -70,32 +70,14 @@
             android:text="@string/paperkey_activity_sub"
             android:textAlignment="center" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center|bottom"
-            android:orientation="vertical"
-            >
 
 
-            <Button
-                android:text="@string/paperkey_activity_button"
-                android:textSize="@dimen/text_regular_size"
-                android:id="@+id/paperkey_next_button"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/form_rounded_rect"
-                android:layout_gravity="center_horizontal|center"
-                android:adjustViewBounds="true"
-                android:backgroundTint="@color/verge_colorPrimary"
-                android:textColor="@color/verge_colorBackgroundTwo" />
-        </LinearLayout>
 
     </LinearLayout>
-
+    <Button
+        android:text="@string/paperkey_activity_button"
+        android:id="@+id/paperkey_next_button"
+        style="@style/blue_button"
+         />
 
 </RelativeLayout>
