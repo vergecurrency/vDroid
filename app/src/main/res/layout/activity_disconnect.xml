@@ -15,7 +15,7 @@
         android:text="@string/disconnect_title"
         android:textAlignment="center"
         android:textColor="@color/verge_colorPrimaryDark"
-        android:textSize="24sp" />
+        android:textSize="@dimen/text_title_size" />
 
     <ImageView
         android:padding="20dp"
@@ -33,7 +33,7 @@
         android:layout_marginTop="20dp"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_small_size"
         android:text="@string/disconnect_desc"
         android:textAlignment="center" />
 
@@ -51,7 +51,7 @@
         android:scaleType="fitCenter"
         android:text="@string/disconnect_button"
         android:textColor="@color/verge_colorBackgroundTwo"
-        android:textSize="18sp" />
+        android:textSize="@dimen/text_regular_size" />
     <TextView
         android:id="@+id/button_open_wallet"
         android:layout_below="@+id/button_disconnect"
@@ -61,6 +61,6 @@
         android:layout_height="50dp"
         android:text="@string/disconnect_show_paperkey"
         android:textColor="@color/verge_colorPrimary"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_smaller_size" />
 
 </RelativeLayout>

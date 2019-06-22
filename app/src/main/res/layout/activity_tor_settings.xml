@@ -14,7 +14,7 @@
         android:text="@string/tor_settings_title"
         android:textAlignment="center"
         android:textColor="@color/verge_colorPrimaryDark"
-        android:textSize="24sp" />
+        android:textSize="@dimen/text_title_size" />
 
     <ImageView
         android:id="@+id/tor_settings_header"
@@ -33,7 +33,7 @@
         android:paddingRight="40dp"
         android:text="@string/tor_settings_desc1"
         android:textAlignment="center"
-        android:textSize="16sp" />
+        android:textSize="@dimen/text_small_size" />
 
     <TextView
         android:id="@+id/tor_settings_desc2"
@@ -45,7 +45,7 @@
         android:paddingRight="40dp"
         android:text="@string/tor_settings_desc2"
         android:textAlignment="center"
-        android:textSize="16sp" />
+        android:textSize="@dimen/text_small_size" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/tor_settings_obfuscate"

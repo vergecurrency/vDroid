@@ -29,7 +29,7 @@
             android:text="@string/receive_current_code"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="@dimen/text_smaller_size" />
 
         <ImageView
             android:id="@+id/qr_code_receive"
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:inputType="none"
             android:text="@string/receive_current_code"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_small_size" />
 
     </LinearLayout>
 
@@ -132,7 +132,7 @@
         android:drawableTint="@color/verge_colorBackground"
         android:text="@string/send_view_share"
         android:textColor="@color/verge_colorBackground"
-        android:textSize="18sp" />
+        android:textSize="@dimen/text_regular_size" />
 
 
 </RelativeLayout>

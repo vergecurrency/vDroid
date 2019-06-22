@@ -32,7 +32,7 @@
 
             android:text="@string/card_transactions_title"
             android:textColor="@color/verge_colorPrimaryDark"
-            android:textSize="18sp" />
+            android:textSize="@dimen/text_regular_size" />
 
 
     </LinearLayout>

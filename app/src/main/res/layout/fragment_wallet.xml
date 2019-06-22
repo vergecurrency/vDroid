@@ -19,7 +19,7 @@
             android:paddingTop="1dp"
             android:text="200.00 XVG"
             android:textColor="@color/bg_color"
-            android:textSize="42sp"
+            android:textSize="@dimen/text_balance_size"
             android:textStyle="bold" />
 
         <TextView
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:text="@string/wallet_view_balance_label"
             android:textColor="@color/bg_color"
-            android:textSize="14sp" />
+            android:textSize="@dimen/text_smaller_size" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/wallet_card_fiat_balance"
                     android:textColor="@color/bg_color"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/text_subtitle_size" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/wallet_card_change"
                     android:textColor="@color/bg_color"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/text_subtitle_size" />
 
                 <TextView
                     android:id="@+id/wallet_card_change_label"

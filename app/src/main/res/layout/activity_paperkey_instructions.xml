@@ -23,7 +23,7 @@
         android:text="@string/paperkey_activity_title"
         android:textAlignment="center"
         android:textColor="@color/verge_colorBackground"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_smaller_size"
         android:textStyle="bold"
 
         />
@@ -57,7 +57,7 @@
             android:paddingRight="40dp"
             android:text="@string/paperkey_activity_main"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_regular_size"
             android:textStyle="bold" />
 
         <TextView
@@ -81,7 +81,7 @@
 
             <Button
                 android:text="@string/paperkey_activity_button"
-                android:textSize="18sp"
+                android:textSize="@dimen/text_regular_size"
                 android:id="@+id/paperkey_next_button"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

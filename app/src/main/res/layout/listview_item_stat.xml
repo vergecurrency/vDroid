@@ -14,7 +14,7 @@
         android:adjustViewBounds="true"
         android:gravity="center_vertical"
         android:textColor="@color/verge_colorPrimaryDark"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_smaller_size" />
 
     <TextView
         android:id="@+id/listview_item_stat_value"
@@ -24,6 +24,6 @@
         android:gravity="end"
         android:paddingRight="8dp"
         android:textColor="@color/verge_colorPrimaryDark"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_smaller_size" />
 
 </LinearLayout>

@@ -33,7 +33,7 @@
             android:paddingStart="5dp"
             android:text="@string/cand_history_title"
             android:textColor="@color/verge_colorPrimaryDark"
-            android:textSize="18sp" />
+            android:textSize="@dimen/text_regular_size" />
 
 
     </LinearLayout>
@@ -60,7 +60,7 @@
                     android:paddingStart="60dp"
                     android:text="@string/charts_high_label"
                     android:textColor="@color/verge_colorPrimaryDark"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/text_regular_size" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -70,7 +70,7 @@
                     android:text="$"
                     android:textAlignment="textEnd"
                     android:textColor="@color/verge_colorPrimaryDark"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_regular_size"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -96,7 +96,7 @@
                     android:paddingStart="60dp"
                     android:text="@string/charts_average_label"
                     android:textColor="@color/verge_colorPrimary"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/text_regular_size" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -106,7 +106,7 @@
                     android:text="$"
                     android:textAlignment="textEnd"
                     android:textColor="@color/verge_colorPrimary"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_regular_size"
                     tools:ignore="HardcodedText" />
 
                 <TextView
@@ -131,7 +131,7 @@
                     android:paddingStart="60dp"
                     android:text="@string/charts_average_low"
                     android:textColor="@color/verge_colorAccent"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/text_regular_size" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -141,7 +141,7 @@
                     android:text="$"
                     android:textAlignment="textEnd"
                     android:textColor="@color/verge_colorAccent"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_regular_size"
                     tools:ignore="HardcodedText" />
 
                 <TextView

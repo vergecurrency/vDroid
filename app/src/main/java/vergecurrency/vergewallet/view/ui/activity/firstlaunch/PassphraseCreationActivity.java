@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
 
@@ -49,8 +48,8 @@ public class PassphraseCreationActivity extends BaseActivity {
         eightCharsTickImageView = findViewById(R.id.passphrase_tick_8_chars);
         eightCharsLabel = findViewById(R.id.passphrase_label_8_chars);
 
-        upperLowerCaseTickImageView = findViewById(R.id.passphrase_tick_upperlower);
-        upperLowerCaseLabel = findViewById(R.id.passphrase_label_upperlower);
+        upperLowerCaseTickImageView = findViewById(R.id.passphrase_tick_upper_lower);
+        upperLowerCaseLabel = findViewById(R.id.passphrase_label_upper_lower);
 
         specialCharsTickImageView = findViewById(R.id.passphrase_ticked_special_chars);
         specialCharsLabel = findViewById(R.id.passphrase_label_special_chars);

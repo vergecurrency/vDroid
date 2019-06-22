@@ -14,7 +14,7 @@
         android:layout_height="37dp"
         android:paddingTop="7dp"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_subtitle_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

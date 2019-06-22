@@ -15,7 +15,7 @@
         android:text="@string/passphrase_title"
         android:textAlignment="center"
         android:textColor="@color/verge_colorPrimaryDark"
-        android:textSize="24sp" />
+        android:textSize="@dimen/text_title_size" />
 
     <ImageView
         android:id="@+id/passphrase_header"
@@ -38,87 +38,51 @@
         android:text="@string/passphrase_desc"
 
         android:textAlignment="center"
-        android:textSize="16sp" />
+        android:textSize="@dimen/text_small_size" />
 
     <LinearLayout
         android:id="@+id/passphrase_check_chars"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/passphrase_subtitle"
-        android:orientation="horizontal"
-        android:paddingLeft="40dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp">
+        style="@style/passphrase_check_layout"
+        android:layout_below="@id/passphrase_subtitle">
 
         <ImageView
             android:id="@+id/passphrase_tick_8_chars"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/icon_checked"
-            android:tint="@color/verge_colorAccent" />
+            style="@style/passphrase_check_icon" />
 
         <TextView
             android:id="@+id/passphrase_label_8_chars"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="15dp"
             android:text="@string/passphrase_8_chars"
-            android:textSize="16sp" />
+            style="@style/passphrase_check_label"/>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/passphrase_check_upperlower"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/passphrase_check_chars"
-        android:orientation="horizontal"
-        android:paddingLeft="40dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp">
+        android:id="@+id/passphrase_check_upper_lower"
+        style="@style/passphrase_check_layout"
+        android:layout_below="@id/passphrase_check_chars">
 
         <ImageView
-            android:id="@+id/passphrase_tick_upperlower"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/icon_checked"
-            android:tint="@color/verge_colorAccent" />
+            android:id="@+id/passphrase_tick_upper_lower"
+            style="@style/passphrase_check_icon"  />
 
         <TextView
-            android:id="@+id/passphrase_label_upperlower"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="15dp"
+            android:id="@+id/passphrase_label_upper_lower"
             android:text="@string/passphrase_upper_lower"
-            android:textSize="16sp" />
+            style="@style/passphrase_check_label" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/passphrase_check_symbols"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/passphrase_check_upperlower"
-        android:orientation="horizontal"
-        android:paddingLeft="40dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp">
+        style="@style/passphrase_check_layout"
+        android:layout_below="@id/passphrase_check_upper_lower">
 
         <ImageView
             android:id="@+id/passphrase_ticked_special_chars"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/icon_checked"
-            android:tint="@color/verge_colorAccent" />
+            style="@style/passphrase_check_icon"  />
 
         <TextView
             android:id="@+id/passphrase_label_special_chars"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="15dp"
             android:text="@string/passphrase_symbols"
-            android:textSize="16sp" />
+            style="@style/passphrase_check_label" />
     </LinearLayout>
 
     <EditText
@@ -127,9 +91,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/passphrase_check_symbols"
         android:layout_marginLeft="40dp"
-        android:inputType="textPassword"
         android:layout_marginRight="40dp"
         android:hint="@string/passphrase_hint"
+        android:inputType="textPassword"
         android:paddingTop="15dp"
         android:textAlignment="center" />
 
@@ -144,11 +108,11 @@
         android:background="@drawable/form_rounded_white_rect"
         android:backgroundTint="@color/verge_colorAccent"
         android:drawableStart="@drawable/icon_lock"
-        android:drawableTint="@color/verge_colorBackground"
+        android:drawableTint="@color/verge_white"
         android:enabled="false"
         android:text="@string/passphrase_button"
-        android:textColor="@color/verge_colorBackground"
-        android:textSize="18sp" />
+        android:textColor="@color/verge_white"
+        android:textSize="@dimen/text_regular_size" />
 
 
 </RelativeLayout>

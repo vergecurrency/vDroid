@@ -23,7 +23,7 @@
         android:text="@string/paperkey_activity_title"
         android:textAlignment="center"
         android:textColor="@color/verge_colorBackground"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_smaller_size"
         android:textStyle="bold"
 
         />
@@ -38,7 +38,7 @@
         android:text="@string/paperkey_write_seed"
         android:textAlignment="center"
         android:textColor="@color/verge_colorBackground"
-        android:textSize="18sp" />
+        android:textSize="@dimen/text_regular_size" />
 
     <TextView
         android:id="@+id/paperkey_logo"
@@ -86,7 +86,7 @@
                 android:backgroundTint="@color/verge_colorBackground"
                 android:text="@string/paperkey_wallet_previous"
                 android:textColor="@color/verge_colorPrimaryDark"
-                android:textSize="18sp" />
+                android:textSize="@dimen/text_regular_size" />
 
             <Button
                 android:id="@+id/paperkey_next_word"
@@ -101,7 +101,7 @@
                 android:backgroundTint="@color/verge_colorPrimary"
                 android:text="@string/paperkey_wallet_next"
                 android:textColor="@color/verge_colorBackgroundTwo"
-                android:textSize="18sp" />
+                android:textSize="@dimen/text_regular_size" />
         </LinearLayout>
 
     </LinearLayout>

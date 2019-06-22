@@ -37,7 +37,7 @@
                 android:backgroundTint="@color/verge_white"
                 android:gravity="center_vertical"
                 android:textColor="@color/verge_colorPrimaryDark"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_smaller_size" />
 
             <TextView
                 android:id="@+id/listview_transaction_item_datetime"
@@ -60,7 +60,7 @@
             android:paddingRight="8dp"
             android:textAlignment="viewEnd"
             android:textColor="@color/verge_colorPrimaryDark"
-            android:textSize="14sp" />
+            android:textSize="@dimen/text_smaller_size" />
 
 
     </LinearLayout>

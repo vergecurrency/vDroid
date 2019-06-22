@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="@string/wallet_ready"
             android:textColor="@color/bg_color"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_regular_size"
             android:textAlignment="center"
             android:layout_gravity="center_horizontal"
             />
@@ -55,6 +55,6 @@
                 android:scaleType="fitCenter"
                 android:text="@string/wallet_ready_open"
                 android:textColor="@color/verge_colorBackgroundTwo"
-                android:textSize="18sp" />
+                android:textSize="@dimen/text_regular_size" />
 
 </RelativeLayout>

@@ -7,13 +7,14 @@
         <item name="colorPrimaryDark">@color/verge_colorPrimaryDark</item>
         <item name="colorAccent">@color/verge_colorAccent</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:fontFamily">@font/avenir_next_demibold</item>
+        <item name="android:fontFamily">@font/avenir_next_regular</item>
     </style>
+
 
     <style name="graphtextview">
         <item name="android:textAlignment">center</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/text_regular_size</item>
         <item name="android:layout_columnWeight">1</item>
         <item name="android:textColor">@color/verge_colorAccent</item>
     </style>
@@ -27,9 +28,30 @@
         <item name="android:src">@drawable/icon_close</item>
     </style>
 
-    <style name="passphrase_check">
 
+    <!-- Passphrase activity -->
+    <style name="passphrase_check_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">40dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
     </style>
 
+    <style name="passphrase_check_icon">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:src">@drawable/icon_checked</item>
+        <item name="android:tint">@color/verge_colorAccent</item>
+    </style>
+
+    <style name="passphrase_check_label">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:textSize">@dimen/text_small_size</item>
+    </style>
 
 </resources>
