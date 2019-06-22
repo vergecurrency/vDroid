@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fl_welcome_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,60 +8,32 @@
 
     <ImageView
         android:id="@+id/fl_welcome_bg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="Verge Background"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bg_main"
-        tools:ignore="HardcodedText" />
-
+        style="@style/activities_paper_key_setup_background"
+        android:src="@drawable/bg_main" />
 
     <TextView
-        android:id="@+id/paperkey_title"
-        android:layout_width="fill_parent"
-        android:layout_height="37dp"
-        android:paddingVertical="10dp"
-        android:text="@string/paperkey_activity_title"
-        android:textAlignment="center"
-        android:textColor="@color/verge_colorBackground"
-        android:textSize="@dimen/text_smaller_size"
-        android:textStyle="bold"
-
-        />
+        android:id="@+id/paper_key_title"
+        style="@style/activities_paper_key_setup_title"
+        android:text="@string/paperkey_activity_title" />
 
     <ImageView
-        android:id="@+id/paperkey_logo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_below="@id/paperkey_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:id="@+id/paper_key_logo"
+        android:layout_below="@id/paper_key_title"
         android:background="@drawable/icon_rename"
-        android:backgroundTint="@color/verge_colorPrimary"
-        android:elevation="1dp"
-        android:gravity="center_vertical"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        style="@style/activities_paper_key_setup_icon"
+ />
 
     <TextView
-        android:id="@+id/paperkey_confirm_instructions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/paperkey_logo"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
+        android:id="@+id/paper_key_confirm_instructions"
         android:text="@string/paperkey_confirm_instructions"
-        android:textAlignment="center"
-        android:textColor="@color/verge_colorBackground"
-        android:textSize="@dimen/text_regular_size" />
+        android:layout_below="@id/paper_key_logo"
+        style="@style/activities_paper_key_description" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/paperkey_confirm_instructions"
+        android:layout_below="@id/paper_key_confirm_instructions"
         android:layout_marginTop="20dp"
         android:background="@color/bg_color"
         android:orientation="vertical"
@@ -72,6 +43,7 @@
         <TextView
             android:id="@+id/label_first_word"
             android:layout_width="wrap_content"
+            android:text="@string/prog_placeholder"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp" />
 
@@ -84,6 +56,7 @@
         <TextView
             android:id="@+id/label_second_word"
             android:layout_width="wrap_content"
+            android:text="@string/prog_placeholder"
             android:layout_height="wrap_content" />
 
         <EditText
@@ -95,7 +68,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/paperkey_confirm_next"
+        android:id="@+id/paper_key_confirm_next"
         style="@style/blue_button"
         android:text="@string/paperkey_wallet_next" />
 

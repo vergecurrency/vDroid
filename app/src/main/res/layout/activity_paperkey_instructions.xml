@@ -16,7 +16,7 @@
 
 
     <TextView
-        android:id="@+id/paperkey_title"
+        android:id="@+id/paper_key_title"
         android:layout_width="fill_parent"
         android:layout_height="37dp"
         android:paddingVertical="10dp"
@@ -29,10 +29,10 @@
         />
 
     <ImageView
-        android:id="@+id/paperkey_logo"
+        android:id="@+id/paper_key_logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_below="@id/paperkey_title"
+        android:layout_below="@id/paper_key_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:elevation="1dp"
@@ -43,7 +43,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/paperkey_logo"
+        android:layout_below="@id/paper_key_logo"
         android:layout_marginTop="-56dp"
         android:background="@color/verge_white"
         android:gravity="center"

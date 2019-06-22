@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import vergecurrency.vergewallet.BaseActivity;
@@ -55,7 +54,7 @@ public class PaperkeyDistributionActivity extends BaseActivity {
 
 
     private void initComponents() {
-        wordView = findViewById(R.id.paperkey_logo);
+        wordView = findViewById(R.id.paper_key_logo);
 
         nextButton = findViewById(R.id.paperkey_next_word);
         nextButton.setOnClickListener(onNextListener());

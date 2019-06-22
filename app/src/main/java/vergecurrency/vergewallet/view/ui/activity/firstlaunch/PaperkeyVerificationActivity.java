@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import java.util.Arrays;
@@ -64,7 +63,7 @@ public class PaperkeyVerificationActivity extends BaseActivity {
 
 
 		//assign a click listener to the
-		confirmButton = findViewById(R.id.paperkey_confirm_next);
+		confirmButton = findViewById(R.id.paper_key_confirm_next);
 		confirmButton.setOnClickListener(onNextClick());
 	}
 

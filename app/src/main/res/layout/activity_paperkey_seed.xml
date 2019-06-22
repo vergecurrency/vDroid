@@ -16,7 +16,7 @@
 
 
     <TextView
-        android:id="@+id/paperkey_title"
+        android:id="@+id/paper_key_title"
         android:layout_width="fill_parent"
         android:layout_height="37dp"
         android:paddingVertical="10dp"
@@ -41,7 +41,7 @@
         android:textSize="@dimen/text_regular_size" />
 
     <TextView
-        android:id="@+id/paperkey_logo"
+        android:id="@+id/paper_key_logo"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:gravity="center_vertical"
@@ -58,7 +58,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/paperkey_logo"
+        android:layout_below="@id/paper_key_logo"
         android:layout_marginTop="-86dp"
         android:background="@color/bg_color"
         android:gravity="center"

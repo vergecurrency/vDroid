@@ -11,7 +11,6 @@
     </style>
 
     <!-- Different items -->
-
     <style name="activities_title_top">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -124,7 +123,7 @@
     <style name="activities_settings_description.sub">
         <item name="android:textSize">@dimen/text_smaller_size</item>
     </style>
-
+    <!--Paperkey specifics-->
     <style name="activities_settings_description.sub.paperkey_first">
         <item name="android:textColor">@color/verge_colorPrimary</item>
     </style>
@@ -132,5 +131,46 @@
     <style name="activities_settings_description.sub.paperkey_second">
         <item name="android:textColor">@color/verge_colorPrimaryDark</item>
     </style>
+
+    <!-- Paperkey Setup -->
+
+    <style name="activities_paper_key_setup_title">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingVertical">10dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/verge_colorBackground</item>
+        <item name="android:textSize">@dimen/text_small_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="activities_paper_key_setup_background">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+
+    <style name="activities_paper_key_setup_icon">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:backgroundTint">@color/verge_colorPrimary</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="activities_paper_key_description">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:paddingLeft">40dp</item>
+        <item name="android:paddingRight">40dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/verge_colorBackground</item>
+        <item name="android:textSize">@dimen/text_regular_size</item>
+    </style>
+
 
 </resources>
