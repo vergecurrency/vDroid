@@ -24,8 +24,13 @@
     <dimen name="activities_title_padding">40dp</dimen>
     <dimen name="activities_title_margin_top">20dp</dimen>
     <!--Settings activities-->
+    <dimen name="activities_title_extended_padding_top">100dp</dimen>
     <dimen name="activities_settings_img_height">190dp</dimen>
     <dimen name="activities_settings_img_padding">20dp</dimen>
     <dimen name="activities_settings_desc_layout_margintop">20dp</dimen>
     <dimen name="activities_settings_desc_padding_lr">40dp</dimen>
+    <!-- passphrase only-->
+    <dimen name="activities_passphrase_text_field_margin_lr">40dp</dimen>
+    <dimen name="activities_passphrase_text_field_padding_top">35dp</dimen>
+
 </resources>

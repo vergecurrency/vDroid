@@ -1,44 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-	<TextView
-		android:id="@+id/paperkey_title"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="20dp"
-		android:paddingLeft="40dp"
-		android:paddingRight="40dp"
-		android:text="@string/paperkey_title"
-		android:textAlignment="center"
-		android:textColor="@color/verge_colorPrimaryDark"
-		android:textSize="@dimen/text_title_size" />
+    <TextView
+        android:id="@+id/paperkey_title"
+        style="@style/activities_settings_title"
+        android:text="@string/paperkey_title" />
 
-	<ImageView
-		android:layout_below="@+id/paperkey_title"
-		android:layout_width="wrap_content"
-		android:padding="20dp"
-		android:layout_height="190dp"
-		android:id="@+id/paperkey_header"
-		android:src="@drawable/header_paperkey" />
+    <ImageView
+        android:id="@+id/paperkey_header"
+        style="@style/activities_settings_image_header"
+        android:layout_below="@+id/paperkey_title"
+        android:src="@drawable/header_paperkey" />
 
-	<TextView
-		android:layout_below="@+id/paperkey_header"
-		android:id="@+id/paperkey_desc"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="20dp"
-		android:paddingLeft="40dp"
-		android:paddingRight="40dp"
-		android:textSize="@dimen/text_small_size"
-		android:text="@string/paperkey_desc"
-		android:textAlignment="center" />
+    <TextView
+        android:id="@+id/paperkey_desc"
+        android:layout_below="@+id/paperkey_header"
+        android:text="@string/paperkey_desc"
+        style="@style/activities_settings_description"/>
 
-	<Button
-		android:id="@+id/activity_paperkey_button"
-		android:text="@string/paperkey_button"
-		style="@style/blue_button" />
+    <Button
+        android:id="@+id/activity_paperkey_button"
+        style="@style/blue_button"
+        android:text="@string/paperkey_button" />
 
 </RelativeLayout>

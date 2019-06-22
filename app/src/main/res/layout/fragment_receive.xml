@@ -35,11 +35,11 @@
             android:id="@+id/qr_code_receive"
             android:layout_width="175dp"
             android:layout_height="175dp"
-            android:adjustViewBounds="true"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/form_rounded_rect_white_bord"
             android:layout_marginTop="58dp"
             android:layout_marginEnd="30dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/form_rounded_rect_white_bord"
             android:scaleType="fitCenter" />
 
     </RelativeLayout>
@@ -86,9 +86,9 @@
         <EditText
             android:id="@+id/send_balance_address2"
             android:layout_width="match_parent"
-            android:inputType="numberDecimal"
             android:layout_height="wrap_content"
-            android:hint="@string/receive_view_amount_hint" />
+            android:hint="@string/receive_view_amount_hint"
+            android:inputType="numberDecimal" />
 
     </LinearLayout>
 
@@ -99,9 +99,9 @@
         android:layout_below="@id/wallet_receive_amount"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
-        android:visibility="invisible"
         android:layout_marginRight="15dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="invisible">
 
         <ImageView
             android:layout_width="40dp"
@@ -120,19 +120,10 @@
 
     <com.omega_r.libs.OmegaCenterIconButton
         android:id="@+id/receive_button_share"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/form_rounded_white_rect"
-        android:backgroundTint="@color/verge_colorPrimary"
+        style="@style/blue_button"
         android:drawableStart="@drawable/icon_send"
-        android:drawableTint="@color/verge_colorBackground"
-        android:text="@string/send_view_share"
-        android:textColor="@color/verge_colorBackground"
-        android:textSize="@dimen/text_regular_size" />
+        android:drawableTint="@color/verge_white"
+        android:text="@string/send_view_share" />
 
 
 </RelativeLayout>

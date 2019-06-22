@@ -1,63 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:backgroundTint="@color/verge_white"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/verge_white"
     android:orientation="vertical">
 
     <TextView
-        android:paddingTop="40dp"
         android:id="@+id/passphrase_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:text="@string/passphrase_confirm_title"
-        android:textAlignment="center"
-        android:textColor="@color/verge_colorPrimaryDark"
-        android:textSize="@dimen/text_title_size" />
+        style="@style/activities_settings_title.extended_top_padding"
+        android:text="@string/passphrase_confirm_title" />
 
     <TextView
         android:id="@+id/passphrase_subtitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/activities_settings_description"
         android:layout_below="@+id/passphrase_title"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:paddingBottom="30dp"
-        android:text="@string/passphrase_desc"
-        android:textAlignment="center"
-        android:textSize="@dimen/text_small_size" />
-
+        android:text="@string/passphrase_desc" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:id="@+id/passphrase_field_validate"
-        android:paddingTop="15dp"
-        android:layout_marginLeft="40dp"
-        android:inputType="textPassword"
-        android:layout_marginRight="40dp"
+        android:hint="@string/passphrase_hint"
         android:layout_below="@id/passphrase_subtitle"
-        android:hint="@string/passphrase_hint"/>
+        style="@style/passphrase_text_field" />
 
     <com.omega_r.libs.OmegaCenterIconButton
         android:id="@+id/button_passphrase_validate"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/button_regular_margin"
-        android:layout_marginRight="@dimen/button_regular_margin"
-        android:layout_marginBottom="@dimen/button_regular_margin"
-        android:background="@drawable/form_rounded_white_rect"
+        style="@style/blue_button"
         android:backgroundTint="@color/verge_colorAccent"
         android:drawableStart="@drawable/icon_lock"
-        android:drawableTint="@color/verge_colorBackground"
+        android:drawableTint="@color/verge_white"
+        android:enabled="false"
         android:text="@string/passphrase_button"
-        android:textColor="@color/verge_colorBackground"
         android:textSize="@dimen/text_regular_size" />
 
 

@@ -6,62 +6,34 @@
     android:backgroundTint="@color/verge_white"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/donate_title"
+        android:text="@string/donate_title"
+        style="@style/activities_settings_title"/>
 
-    <Button
-        android:id="@+id/button_donate"
-        android:text="@string/donate_button"
-        style="@style/blue_button" />
-
-    <FrameLayout
-        android:id="@+id/donate_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:backgroundTint="@color/bg_color"
-        android:backgroundTintMode="add" />
 
     <ImageView
         android:id="@+id/donate_header"
-        android:layout_width="wrap_content"
-        android:layout_height="190dp"
+        android:src="@drawable/header_donate"
         android:layout_below="@+id/donate_title"
-        android:padding="20dp"
-        android:src="@drawable/header_donate" />
-
-    <TextView
-        android:id="@+id/donate_desc2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/donate_desc1"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:text="@string/donate_desc2"
-        android:textAlignment="center"
-        android:textSize="@dimen/text_smaller_size" />
-
-    <TextView
-        android:id="@+id/donate_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:text="@string/donate_title"
-        android:textAlignment="center"
-        android:textColor="@color/verge_colorPrimaryDark"
-        android:textSize="@dimen/text_title_size" />
+        style="@style/activities_settings_image_header"
+        />
 
     <TextView
         android:id="@+id/donate_desc1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/donate_header"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
         android:text="@string/donate_desc1"
-        android:textAlignment="center"
-        android:textSize="@dimen/text_small_size" />
+        android:layout_below="@+id/donate_header"
+        style="@style/activities_settings_description" />
 
+    <TextView
+        android:id="@+id/donate_desc2"
+        android:text="@string/donate_desc2"
+        android:layout_below="@+id/donate_desc1"
+        style="@style/activities_settings_description.sub"/>
+
+    <Button
+        android:id="@+id/button_donate"
+        style="@style/blue_button"
+        android:text="@string/donate_button" />
 
 </RelativeLayout>

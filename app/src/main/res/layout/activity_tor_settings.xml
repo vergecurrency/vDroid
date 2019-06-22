@@ -6,46 +6,27 @@
 
     <TextView
         android:id="@+id/tor_settings_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
         android:text="@string/tor_settings_title"
-        android:textAlignment="center"
-        android:textColor="@color/verge_colorPrimaryDark"
-        android:textSize="@dimen/text_title_size" />
+        style="@style/activities_settings_title" />
 
     <ImageView
         android:id="@+id/tor_settings_header"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
         android:layout_below="@+id/tor_settings_title"
-        android:src="@drawable/header_tor" />
+        android:src="@drawable/header_tor"
+        style="@style/activities_settings_image_header"
+        />
 
     <TextView
         android:id="@+id/tor_settings_desc1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tor_settings_header"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
         android:text="@string/tor_settings_desc1"
-        android:textAlignment="center"
-        android:textSize="@dimen/text_small_size" />
+        android:layout_below="@id/tor_settings_header"
+        style="@style/activities_settings_description" />
 
     <TextView
         android:id="@+id/tor_settings_desc2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tor_settings_desc1"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
         android:text="@string/tor_settings_desc2"
-        android:textAlignment="center"
-        android:textSize="@dimen/text_small_size" />
+        android:layout_below="@id/tor_settings_desc1"
+        style="@style/activities_settings_description" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/tor_settings_obfuscate"

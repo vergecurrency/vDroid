@@ -79,6 +79,16 @@
         <item name="android:textSize">@dimen/text_small_size</item>
     </style>
 
+    <style name="passphrase_text_field">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/activities_passphrase_text_field_margin_lr</item>
+        <item name="android:layout_marginRight">@dimen/activities_passphrase_text_field_margin_lr</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:paddingTop">@dimen/activities_passphrase_text_field_padding_top</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
     <!-- Settings default styles -->
     <style name="activities_settings_title">
         <item name="android:layout_width">match_parent</item>
@@ -89,6 +99,10 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/verge_colorPrimaryDark</item>
         <item name="android:textSize">@dimen/text_title_size</item>
+    </style>
+
+    <style name="activities_settings_title.extended_top_padding">
+        <item name="android:paddingTop">@dimen/activities_title_extended_padding_top</item>
     </style>
 
     <style name="activities_settings_image_header">
@@ -105,6 +119,18 @@
         <item name="android:paddingRight">@dimen/activities_settings_desc_padding_lr</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">@dimen/text_small_size</item>
+    </style>
+
+    <style name="activities_settings_description.sub">
+        <item name="android:textSize">@dimen/text_smaller_size</item>
+    </style>
+
+    <style name="activities_settings_description.sub.paperkey_first">
+        <item name="android:textColor">@color/verge_colorPrimary</item>
+    </style>
+
+    <style name="activities_settings_description.sub.paperkey_second">
+        <item name="android:textColor">@color/verge_colorPrimaryDark</item>
     </style>
 
 </resources>

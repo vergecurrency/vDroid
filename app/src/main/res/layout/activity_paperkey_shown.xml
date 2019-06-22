@@ -11,40 +11,19 @@
 
     <TextView
         android:id="@+id/paperkey_shown_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="100dp"
-        android:paddingBottom="10dp"
         android:text="@string/paperkey_shown_title"
-        android:textAlignment="center"
-        android:textColor="@color/verge_colorPrimaryDark"
-        android:textSize="28sp" />
+        style="@style/activities_settings_title.extended_top_padding" />
 
     <TextView
         android:id="@+id/paperkey_shown_subtitle1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/avenir_next_regular"
-        android:paddingStart="40dp"
-        android:paddingEnd="40dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
         android:text="@string/paperkey_shown_sub1"
-        android:textAlignment="center"
-        android:textColor="@color/verge_colorPrimary" />
+        style="@style/activities_settings_description.sub.paperkey_first" />
 
     <TextView
         android:id="@+id/paperkey_shown_subtitle2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/avenir_next_regular"
-        android:paddingStart="40dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="5dp"
-        android:paddingEnd="40dp"
         android:text="@string/paperkey_shown_sub2"
-        android:textAlignment="center"
-        android:textColor="@color/verge_colorPrimaryDark" />
+        style="@style/activities_settings_description.sub.paperkey_second"
+         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

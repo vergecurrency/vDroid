@@ -109,18 +109,7 @@
 
     <Button
         android:id="@+id/button_open_wallet"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/form_rounded_white_rect"
-        android:backgroundTint="@color/verge_colorPrimary"
-        android:scaleType="fitCenter"
         android:text="@string/send_view_send_button"
-        android:textColor="@color/verge_colorBackgroundTwo"
-        android:textSize="@dimen/text_regular_size" />
+        style="@style/blue_button"/>
 
 </RelativeLayout>
