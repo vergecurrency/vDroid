@@ -6,14 +6,8 @@
 
     <TextView
         android:id="@+id/mTextMessage"
-        android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        android:textAlignment="center"
-        android:paddingTop="7dp"
-        android:textColor="@color/verge_colorPrimaryDark"
         android:text="@string/title_fiat_currency"
-        android:textSize="@dimen/text_subtitle_size"
-        android:backgroundTint="@color/verge_white"
+        style="@style/activities_title_top"
         />
 
     <ListView

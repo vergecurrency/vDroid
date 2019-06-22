@@ -12,21 +12,21 @@
 
     <!-- Different items -->
 
+    <style name="activities_title_top">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:paddingVertical">@dimen/title_regular_margin_top</item>
+        <item name="android:textSize">@dimen/text_subtitle_size</item>
+    </style>
+
+
     <style name="graphtextview">
         <item name="android:textAlignment">center</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">@dimen/text_regular_size</item>
         <item name="android:layout_columnWeight">1</item>
         <item name="android:textColor">@color/verge_colorAccent</item>
-    </style>
-
-    <style name="activitiesTitle">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:paddingVertical">@dimen/title_regular_margin_top</item>
-        <item name="android:textSize">@dimen/text_subtitle_size</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="closebutton">
@@ -54,7 +54,6 @@
         <item name="android:layout_alignParentBottom">true</item>
     </style>
 
-
     <!-- Passphrase activity -->
     <style name="passphrase_check_layout">
         <item name="android:layout_width">match_parent</item>
@@ -77,6 +76,34 @@
         <item name="android:layout_height">30dp</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:paddingLeft">15dp</item>
+        <item name="android:textSize">@dimen/text_small_size</item>
+    </style>
+
+    <!-- Settings default styles -->
+    <style name="activities_settings_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/activities_title_margin_top</item>
+        <item name="android:paddingLeft">@dimen/activities_title_padding</item>
+        <item name="android:paddingRight">@dimen/activities_title_padding</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/verge_colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/text_title_size</item>
+    </style>
+
+    <style name="activities_settings_image_header">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/activities_settings_img_height</item>
+        <item name="android:padding">@dimen/activities_settings_img_padding</item>
+    </style>
+
+    <style name="activities_settings_description">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/activities_settings_desc_layout_margintop</item>
+        <item name="android:paddingLeft">@dimen/activities_settings_desc_padding_lr</item>
+        <item name="android:paddingRight">@dimen/activities_settings_desc_padding_lr</item>
+        <item name="android:textAlignment">center</item>
         <item name="android:textSize">@dimen/text_small_size</item>
     </style>
 

@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/pin_lock_title"
         android:text="@string/pinlock_title"
-        style="@style/activitiesTitle"
+        style="@style/activities_title_top"
         />
 
 

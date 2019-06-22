@@ -15,8 +15,17 @@
     <dimen name="text_smallest_size">12sp</dimen>
 
     <!--Element sizes-->
+    <!--all buttons-->
     <dimen name="button_regular_height">50dp</dimen>
     <dimen name="button_regular_margin">30dp</dimen>
 
     <dimen name="title_regular_margin_top">10dp</dimen>
+    <!--Standard activities-->
+    <dimen name="activities_title_padding">40dp</dimen>
+    <dimen name="activities_title_margin_top">20dp</dimen>
+    <!--Settings activities-->
+    <dimen name="activities_settings_img_height">190dp</dimen>
+    <dimen name="activities_settings_img_padding">20dp</dimen>
+    <dimen name="activities_settings_desc_layout_margintop">20dp</dimen>
+    <dimen name="activities_settings_desc_padding_lr">40dp</dimen>
 </resources>

@@ -7,35 +7,20 @@
 
     <TextView
         android:id="@+id/disconnect_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:text="@string/disconnect_title"
-        android:textAlignment="center"
-        android:textColor="@color/verge_colorPrimaryDark"
-        android:textSize="@dimen/text_title_size" />
+        style="@style/activities_settings_title"
+        android:text="@string/disconnect_title" />
 
     <ImageView
         android:id="@+id/disconnect_header"
-        android:layout_width="wrap_content"
-        android:layout_height="190dp"
+        style="@style/activities_settings_image_header"
         android:layout_below="@+id/disconnect_title"
-        android:padding="20dp"
         android:src="@drawable/header_disconnect" />
 
     <TextView
         android:id="@+id/tor_settings_desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/disconnect_header"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
         android:text="@string/disconnect_desc"
-        android:textAlignment="center"
-        android:textSize="@dimen/text_small_size" />
+        android:layout_below="@+id/disconnect_header"
+        style="@style/activities_settings_description" />
 
     <Button
         android:id="@+id/button_disconnect"
