@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/verge_realWhite"
+    android:background="?vg_backgroundWhite"
     android:orientation="vertical">
 
     <LinearLayout
@@ -20,7 +20,7 @@
             android:padding="7dp"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_transactions"
-            android:tint="@color/verge_colorPrimaryDark" />
+            android:tint="?vg_primaryDark" />
 
         <TextView
             android:id="@+id/transactions_card_title"
@@ -31,7 +31,7 @@
 
 
             android:text="@string/card_transactions_title"
-            android:textColor="@color/verge_colorPrimaryDark"
+            android:textColor="?vg_primaryDark"
             android:textSize="@dimen/text_regular_size" />
 
 

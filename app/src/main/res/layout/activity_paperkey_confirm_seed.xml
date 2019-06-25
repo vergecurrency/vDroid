@@ -18,34 +18,27 @@
 
     <ImageView
         android:id="@+id/paper_key_logo"
-        android:layout_below="@id/paper_key_title"
-        android:background="@drawable/icon_rename"
         style="@style/activities_paper_key_setup_icon"
- />
+        android:layout_below="@id/paper_key_title"
+        android:background="@drawable/icon_rename" />
 
     <TextView
         android:id="@+id/paper_key_confirm_instructions"
-        android:text="@string/paperkey_confirm_instructions"
+        style="@style/activities_paper_key_description"
         android:layout_below="@id/paper_key_logo"
-        style="@style/activities_paper_key_description" />
+        android:text="@string/paperkey_confirm_instructions" />
 
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/paper_key_confirm_instructions"
-        android:layout_marginTop="20dp"
-        android:background="@color/bg_color"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        style="@style/activities_paper_key_layout"
+        android:layout_below="@id/paper_key_confirm_instructions">
 
         <TextView
             android:id="@+id/label_first_word"
             android:layout_width="wrap_content"
-            android:text="@string/prog_placeholder"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:text="@string/prog_placeholder" />
 
         <EditText
             android:id="@+id/seed_first_word"
@@ -56,8 +49,8 @@
         <TextView
             android:id="@+id/label_second_word"
             android:layout_width="wrap_content"
-            android:text="@string/prog_placeholder"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/prog_placeholder" />
 
         <EditText
             android:id="@+id/seed_second_word"

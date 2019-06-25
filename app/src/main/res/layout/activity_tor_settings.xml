@@ -37,7 +37,7 @@
         android:layout_marginTop="20dp"
         android:padding="15dp"
         android:text="@string/tor_settings_obfuscate_on_off"
-        android:textColor="@color/verge_colorPrimaryDark" />
+        android:textColor="?vg_primaryDark" />
 
     <FrameLayout
         android:id="@+id/tor_settings_ip"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:text="@string/tor_settings_ip_desc"
-            android:textColor="@color/verge_colorPrimaryDark" />
+            android:textColor="?vg_primaryDark" />
 
         <TextView
             android:id="@+id/tor_settings_ip_address"

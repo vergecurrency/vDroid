@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="vg_primaryDark" format="reference"/>
+    <attr name="vg_primaryLight" format="reference"/>
+    <attr name="vg_secondaryDark" format="reference"/>
+    <attr name="vg_secondaryLight" format="reference"/>
+    <attr name="vg_backgroundBlue" format="reference"/>
+    <attr name="vg_backgroundGrey" format="reference"/>
+    <attr name="vg_backgroundWhite" format="reference"/>
 
+    <attr name="vg_separatorColor" format="reference"/>
+    <attr name="vg_placeholderColor" format="reference"/>
+    <attr name="vg_backgroundTopColor" format="reference"/>
+    <attr name="vg_backgroundBottomColor" format="reference"/>
+    <attr name="vg_qrCodeColor" format="reference"/>
+    <attr name="vg_priceChartColor" format="reference"/>
 
+    <attr name="vg_vergeNoChange" format="reference"/>
+    <attr name="vg_vergeUp" format="reference"/>
+    <attr name="vg_vergeDown" format="reference"/>
 </resources>

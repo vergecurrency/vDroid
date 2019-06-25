@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?vg_backgroundGrey"
     android:orientation="vertical">
 
     <ListView
         android:id="@+id/transactions_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/verge_white"
-        android:backgroundTint="@color/verge_white" />
+        android:background="?vg_backgroundGrey"
+        android:backgroundTint="?vg_backgroundGrey" />
 
 </LinearLayout>
 

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="?vg_backgroundGrey"
     android:layout_height="match_parent">
 
     <ImageView
@@ -22,7 +23,7 @@
         android:layout_marginTop="-120dp"
         android:text="-XVG80.10"
         android:textAlignment="textEnd"
-        android:textColor="@color/verge_colorBackgroundTwo"
+        android:textColor="?vg_backgroundBlue"
         android:textSize="30dp"
         tools:ignore="SpUsage" />
 
@@ -34,7 +35,7 @@
         android:layout_marginEnd="40dp"
         android:text="**** 1234"
         android:textAlignment="textEnd"
-        android:textColor="@color/verge_colorBackgroundTwo"
+        android:textColor="?vg_backgroundBlue"
         android:textSize="18dp"
         tools:ignore="SpUsage" />
 

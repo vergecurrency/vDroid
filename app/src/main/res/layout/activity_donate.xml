@@ -3,9 +3,14 @@
     android:id="@+id/activity_donate_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/verge_white"
+    android:background="?vg_backgroundGrey"
     android:orientation="vertical">
-
+    <FrameLayout
+        android:id="@+id/donate_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="?vg_backgroundGrey"
+        android:backgroundTintMode="add" />
     <TextView
         android:id="@+id/donate_title"
         android:text="@string/donate_title"

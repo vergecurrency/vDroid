@@ -14,8 +14,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="10dip"
-        android:tint="@color/verge_colorPrimary"
-        android:backgroundTint="@color/verge_colorBackgroundTwo"
+        android:tint="?vg_primaryLight"
+        android:backgroundTint="?vg_backgroundBlue"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:padding="5dp"
@@ -30,8 +30,8 @@
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/listview_item_icon"
         android:textSize="@dimen/text_regular_size"
-        android:textColor="@color/verge_colorPrimaryDark"
-        android:backgroundTint="@color/verge_colorBackgroundTwo"
+        android:textColor="?vg_primaryDark"
+        android:backgroundTint="?vg_backgroundBlue"
         android:gravity="center_vertical"
         />
 

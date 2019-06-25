@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="@string/error_label"
             android:textAlignment="center"
-            android:textColor="@color/verge_colorBackground"
+            android:textColor="?vg_backgroundBlue"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
             android:paddingTop="10dp"
             android:text="@string/prog_placeholder"
             android:textAlignment="center"
-            android:textColor="@color/verge_colorBackground"
+            android:textColor="?vg_backgroundBlue"
             android:textSize="@dimen/text_smaller_size" />
 
 
@@ -72,10 +72,10 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:adjustViewBounds="true"
-                android:backgroundTint="@color/verge_colorPrimary"
+                android:backgroundTint="?vg_primaryLight"
                 android:scaleType="fitCenter"
                 android:text="@string/prog_placeholder"
-                android:textColor="@color/verge_colorBackgroundTwo" />
+                android:textColor="?vg_backgroundBlue" />
 
             <Button
                 android:id="@+id/button_restore_wallet"
@@ -84,9 +84,9 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/verge_colorBackgroundTwo"
+                android:backgroundTint="?vg_backgroundBlue"
                 android:text="@string/prog_placeholder"
-                android:textColor="@color/verge_colorPrimaryDark" />
+                android:textColor="?vg_primaryDark" />
 
         </LinearLayout>
     </RelativeLayout>
