@@ -110,7 +110,7 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> implement
     }
 
     private boolean filterMatch(Transaction tx, String charText){
-        return tx.getAddress().toLowerCase().contains(charText) || new Double(tx.getAmount()).toString().toLowerCase().contains(charText);
+        return tx.getAddress().toLowerCase().contains(charText.toLowerCase()) || new Double(tx.getAmount()).toString().toLowerCase().contains(charText.toLowerCase());
     }
 
 

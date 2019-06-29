@@ -24,7 +24,6 @@ import vergecurrency.vergewallet.viewmodel.TransactionsViewModel;
 
 public class FragmentTransactions extends Fragment implements SearchView.OnQueryTextListener {
     private TransactionsAdapter txa ;
-    private boolean desc;
 
 	public FragmentTransactions() {
 
@@ -47,12 +46,9 @@ public class FragmentTransactions extends Fragment implements SearchView.OnQuery
 			transactionList.setDivider(null);
 			txa = new TransactionsAdapter(this.getContext(), mViewModel.getTransactionsList());
             transactionList.setAdapter(txa);
-        }
-
-		SearchView transactionSearchView = rootView.findViewById(R.id.search);
-		transactionSearchView.setOnQueryTextListener(this);
-
-
+			SearchView transactionSearchView = rootView.findViewById(R.id.search);
+			transactionSearchView.setOnQueryTextListener(this);
+        };
 		return rootView;
 	}
 
