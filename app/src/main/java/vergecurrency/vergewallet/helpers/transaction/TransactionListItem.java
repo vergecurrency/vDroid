@@ -17,7 +17,7 @@ import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.utils.MathUtils;
 import vergecurrency.vergewallet.service.model.Transaction;
 
-public class TransactionListItem implements TransactionItem, View.OnClickListener  {
+public class TransactionListItem implements TransactionItem, View.OnClickListener {
     private final Transaction tx;
 
     public TransactionListItem(Transaction transaction) {
@@ -64,12 +64,12 @@ public class TransactionListItem implements TransactionItem, View.OnClickListene
             vh = (TransactionItemViewHolder) convertView.getTag();
         }
 
-        if (tx.getCategory().equals("send")) {
+        if (tx.isSend()) {
             vh.txAmount.setText(String.format("- %s XVG", MathUtils.round(tx.getAmount(), 2)));
             vh.txAmount.setTextColor(ContextCompat.getColor(convertView.getContext(), R.color.material_red_500));
             vh.txIcon.setImageResource(R.drawable.icon_arrow_up);
             DrawableCompat.setTint(vh.txIcon.getDrawable(), ContextCompat.getColor(convertView.getContext(), R.color.material_red_500));
-        } else if (tx.getCategory().equals("receive")) {
+        } else if (tx.isReceive()) {
             vh.txAmount.setText(String.format("+ %s XVG", MathUtils.round(tx.getAmount(), 2)));
             vh.txAmount.setTextColor(ContextCompat.getColor(convertView.getContext(), R.color.material_green_500));
             vh.txIcon.setImageResource(R.drawable.icon_arrow_down);

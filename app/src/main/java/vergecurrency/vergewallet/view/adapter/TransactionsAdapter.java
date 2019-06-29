@@ -14,6 +14,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.transaction.TransactionHeaderItem;
@@ -21,6 +22,7 @@ import vergecurrency.vergewallet.helpers.transaction.TransactionItem;
 import vergecurrency.vergewallet.helpers.transaction.TransactionListItem;
 import vergecurrency.vergewallet.helpers.transaction.TransactionRowType;
 import vergecurrency.vergewallet.service.model.Transaction;
+import vergecurrency.vergewallet.service.model.TransactionFilterOption;
 
 public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
     Context context;
@@ -76,25 +78,35 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
         return transactionItems;
     }
 
-    public void filter(String charText) {
+    public void filter(String charText, TransactionFilterOption filterOption) {
         this.clear();
-        ArrayList filteredTransactions = new ArrayList<Transaction>();
+        ArrayList filteredTransactions = filterByOption(this.transactions, filterOption);
         this.transactions.forEach(tx -> {
-            if(this.filterMatch(tx, charText)){
-             filteredTransactions.add(tx);
+            if (!this.filterMatch(tx, charText)) {
+                filteredTransactions.remove(tx);
             }
         });
         addAll(toTransactionListItem(filteredTransactions));
         notifyDataSetChanged();
     }
 
-    private boolean filterMatch(Transaction tx, String charText){
+    private boolean filterMatch(Transaction tx, String charText) {
         return tx.getAddress().toLowerCase().contains(charText.toLowerCase()) || new Double(tx.getAmount()).toString().toLowerCase().contains(charText.toLowerCase());
     }
 
-
-    public LocalDate convertToLocalDateViaMilisecond(long time) {
+    private LocalDate convertToLocalDateViaMilisecond(long time) {
         return Instant.ofEpochMilli(time).atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    private ArrayList<Transaction> filterByOption(ArrayList<Transaction> txs, TransactionFilterOption filterOption) {
+        switch (filterOption) {
+            case RECEIVE:
+                return new ArrayList<Transaction>(txs.stream().filter(tx -> tx.isSend()).collect(Collectors.toList()));
+            case SEND:
+                return new ArrayList<Transaction>(txs.stream().filter(tx -> tx.isReceive()).collect(Collectors.toList()));
+            default:
+                return new ArrayList<Transaction>(txs);
+        }
     }
 
     private int isSameDate(Transaction tx1, Transaction tx2) {

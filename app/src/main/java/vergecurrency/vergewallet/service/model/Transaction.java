@@ -114,6 +114,14 @@ public class Transaction implements Comparable<Transaction> {
         this.timereceived = timereceived;
     }
 
+    public boolean isSend(){
+        return  getCategory().equals("send");
+    }
+
+    public boolean isReceive(){
+        return getCategory().equals("receive");
+    }
+
     @Override
     public int compareTo(Transaction o) {
         return 0;

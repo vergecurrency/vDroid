@@ -27,7 +27,7 @@ public class TransactionHeaderItem implements TransactionItem {
     public View getView(LayoutInflater inflater, View convertView, ViewGroup parent, int position) {
         View view;
         if (convertView == null) {
-            view = (View) inflater.inflate(R.layout.listview_item_transactions_header, null);
+            view = inflater.inflate(R.layout.listview_item_transactions_header, null);
         } else {
             view = convertView;
         }
