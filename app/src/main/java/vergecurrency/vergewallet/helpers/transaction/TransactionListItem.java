@@ -9,13 +9,15 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
-import java.sql.Date;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Date;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.utils.MathUtils;
 import vergecurrency.vergewallet.service.model.Transaction;
 
-public class TransactionListItem implements TransactionItem {
+public class TransactionListItem implements TransactionItem, View.OnClickListener  {
     private final Transaction tx;
 
     public TransactionListItem(Transaction transaction) {
@@ -27,8 +29,25 @@ public class TransactionListItem implements TransactionItem {
         return TransactionRowType.LIST_ITEM.ordinal();
     }
 
+
+    /**
+     * OnClick listener to show up transaction details
+     * TODO: display a view with the details, for now just the address is shown up on a snackbar
+     * That said, isn't "Snackbar" class name funny? Why not "KinderBueno"? It's a snack, no?
+     *
+     * @param v the clicked view.
+     */
     @Override
-    public View getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
+    public void onClick(View v) {
+        if (v.getId() == R.id.listview_transaction_id) {
+            Snackbar.make(v, "Release date " + tx.getAddress(), Snackbar.LENGTH_LONG)
+                    .setAction("No action", null).show();
+        }
+    }
+
+
+    @Override
+    public View getView(LayoutInflater inflater, View convertView, ViewGroup parent, int position) {
         TransactionItemViewHolder vh;
         if (convertView == null) {
             vh = new TransactionItemViewHolder();
@@ -61,8 +80,8 @@ public class TransactionListItem implements TransactionItem {
         vh.txAddress.setText(String.format("%s******", tx.getAddress().substring(0, 6)));
         vh.txDateTime.setText(new Date(tx.getTime() * 1000).toString());
 
-        //vh.txAddress.setOnClickListener(this);
-        //vh.txAddress.setTag(position);
+        vh.txAddress.setOnClickListener(this);
+        vh.txAddress.setTag(position);
         // Return the completed view to render on screen
         return convertView;
     }

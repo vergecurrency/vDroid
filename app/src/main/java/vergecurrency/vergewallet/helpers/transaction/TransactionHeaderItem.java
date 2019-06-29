@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.w3c.dom.Text;
 
 import vergecurrency.vergewallet.R;
@@ -22,7 +24,7 @@ public class TransactionHeaderItem implements TransactionItem {
     }
 
     @Override
-    public View getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
+    public View getView(LayoutInflater inflater, View convertView, ViewGroup parent, int position) {
         View view;
         if (convertView == null) {
             view = (View) inflater.inflate(R.layout.listview_item_transactions_header, null);

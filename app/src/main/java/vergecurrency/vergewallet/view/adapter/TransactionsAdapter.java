@@ -22,7 +22,7 @@ import vergecurrency.vergewallet.helpers.transaction.TransactionListItem;
 import vergecurrency.vergewallet.helpers.transaction.TransactionRowType;
 import vergecurrency.vergewallet.service.model.Transaction;
 
-public class TransactionsAdapter extends ArrayAdapter<TransactionItem> implements View.OnClickListener {
+public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
     Context context;
     ArrayList<Transaction> transactions;
     LayoutInflater inflater;
@@ -43,30 +43,9 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> implement
         this.inflater = LayoutInflater.from(context);
     }
 
-
-    /**
-     * OnClick listener to show up transaction details
-     * TODO: display a view with the details, for now just the address is shown up on a snackbar
-     * That said, isn't "Snackbar" class name funny? Why not "KinderBueno"? It's a snack, no?
-     *
-     * @param v the clicked view.
-     */
-    @Override
-    public void onClick(View v) {
-
-		/*
-		int position = (Integer) v.getTag();
-		Transaction tx = getItem(position);
-		if (v.getId() == R.id.listview_transaction_id) {
-			Snackbar.make(v, "Release date " + tx.getAddress(), Snackbar.LENGTH_LONG)
-					.setAction("No action", null).show();
-		}
-		*/
-    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return getItem(position).getView(inflater, convertView, parent);
+        return getItem(position).getView(inflater, convertView, parent, position);
     }
 
 
