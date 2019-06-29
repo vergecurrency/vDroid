@@ -24,7 +24,6 @@ import vergecurrency.vergewallet.service.model.Transaction;
 import vergecurrency.vergewallet.service.model.TransactionSortOrder;
 
 public class TransactionsViewModel extends AndroidViewModel {
-    private TransactionSortOrder sortOrder = TransactionSortOrder.TIME_RECEIVED_DESC;
 
 	public TransactionsViewModel(@NonNull Application application) {
 		super(application);
@@ -42,7 +41,6 @@ public class TransactionsViewModel extends AndroidViewModel {
 
 			Transaction[] txsArray = new GsonBuilder().create().fromJson(transactionsListJSON.toJSONString(), Transaction[].class);
             ArrayList<Transaction> transactions = new ArrayList<>(Arrays.asList(txsArray));
-            sort(transactions);
 			return transactions;
 		} catch (IOException e) {
 			//TODO : Catch Exception properly
@@ -58,35 +56,4 @@ public class TransactionsViewModel extends AndroidViewModel {
 	public double getBalance() {
 		return 10d;
 	}
-
-
-    private void sort(ArrayList transactions) {
-        switch (sortOrder) {
-            case AMOUNT_ASC:
-                Collections.sort(transactions, Transaction.AmountComparatorASC);
-                break;
-            case AMOUNT_DESC:
-                Collections.sort(transactions, Transaction.AmountComparatorDESC);
-                break;
-            case ADDRESS_ASC:
-                Collections.sort(transactions, Transaction.AddressComparatorASC);
-                break;
-            case ADDRESS_DESC:
-                Collections.sort(transactions, Transaction.AddressComparatorDESC);
-                break;
-            case TIME_RECEIVED_ASC:
-                Collections.sort(transactions, Transaction.TimeReceivedComparatorASC);
-                break;
-            case TIME_RECEIVED_DESC:
-                Collections.sort(transactions, Transaction.TimeReceivedComparatorDESC);
-                break;
-            default:
-                Collections.sort(transactions, Transaction.TimeReceivedComparatorDESC);
-                break;
-        }
-    }
-
-    public void setSortOrder(TransactionSortOrder sortOrder) {
-        this.sortOrder = sortOrder;
-    }
 }

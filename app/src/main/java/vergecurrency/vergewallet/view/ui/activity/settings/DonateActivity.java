@@ -36,7 +36,7 @@ public class DonateActivity extends BaseActivity {
 		donateDesc1 = findViewById(R.id.donate_desc1);
 		donateDesc2 = findViewById(R.id.donate_desc2);
 
-		fl = findViewById(R.id.donate_content);
+		//fl = findViewById(R.id.donate_content);
 		fl.setVisibility(View.INVISIBLE);
 
 		donateButton = findViewById(R.id.button_donate);
@@ -56,9 +56,9 @@ public class DonateActivity extends BaseActivity {
 			FragmentSend fs = new FragmentSend(getText(R.string.donate_donation_address).toString());
 
 			FragmentManager fragmentManager = getSupportFragmentManager();
-			fragmentManager.beginTransaction()
+			/*fragmentManager.beginTransaction()
 					.replace(R.id.donate_content, fs)
-					.commit();
+					.commit();*/
 		};
 	}
 }
