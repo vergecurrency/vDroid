@@ -10,7 +10,10 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.zxing.common.StringUtils;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import vergecurrency.vergewallet.R;
@@ -18,6 +21,8 @@ import vergecurrency.vergewallet.helpers.utils.MathUtils;
 import vergecurrency.vergewallet.service.model.Transaction;
 
 public class TransactionListItem implements TransactionItem, View.OnClickListener {
+    private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd LLLL yyyy");
+    private static final SimpleDateFormat TIME_FORMATTER = new SimpleDateFormat("HH:mm");
     private final Transaction tx;
 
     public TransactionListItem(Transaction transaction) {
@@ -76,9 +81,13 @@ public class TransactionListItem implements TransactionItem, View.OnClickListene
             DrawableCompat.setTint(vh.txIcon.getDrawable(), ContextCompat.getColor(convertView.getContext(), R.color.material_green_500));
         }
 
-
-        vh.txAddress.setText(String.format("%s******", tx.getAddress().substring(0, 6)));
-        vh.txDateTime.setText(new Date(tx.getTime() * 1000).toString());
+        if (tx.getAccount() == null) {
+            vh.txAddress.setText(String.format("%s******", tx.getAddress().substring(0, 6)));
+        } else {
+            vh.txAddress.setText(tx.getAccount());
+        }
+        Date date = new Date(tx.getTime() * 1000);
+        vh.txDateTime.setText(String.join(" ", DATE_FORMATTER.format(date), "at", TIME_FORMATTER.format(date)));
 
         vh.txAddress.setOnClickListener(this);
         vh.txAddress.setTag(position);
