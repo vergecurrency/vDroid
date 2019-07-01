@@ -25,6 +25,7 @@
         <item name="vg_backgroundBlue">@color/backgroundBlue_lt</item>
         <item name="vg_backgroundGrey">@color/backgroundGrey_lt</item>
         <item name="vg_backgroundWhite">@color/backgroundWhite_lt</item>
+        <item name="vg_whiteGeneral">@color/verge_white</item>
         
         <item name="vg_separatorColor">@color/separatorColor_lt</item>
         <item name="vg_placeholderColor">@color/placeholderColor_lt</item>
@@ -55,6 +56,7 @@
         <item name="vg_backgroundBlue">@color/backgroundBlue_dt</item>
         <item name="vg_backgroundGrey">@color/backgroundGrey_dt</item>
         <item name="vg_backgroundWhite">@color/backgroundWhite_dt</item>
+        <item name="vg_whiteGeneral">@color/verge_white</item>
 
         <item name="vg_separatorColor">@color/separatorColor_dt</item>
         <item name="vg_placeholderColor">@color/placeholderColor_dt</item>

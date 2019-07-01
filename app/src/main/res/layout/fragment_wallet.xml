@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="1dp"
             android:text="200.00 XVG"
-            android:textColor="?vg_backgroundGrey"
+            android:textColor="?attr/vg_whiteGeneral"
             android:textSize="@dimen/text_balance_size"
             android:textStyle="bold" />
 
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/wallet_view_balance_label"
-            android:textColor="?vg_backgroundGrey"
+            android:textColor="?vg_whiteGeneral"
             android:textSize="@dimen/text_smaller_size" />
 
         <LinearLayout
@@ -47,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/wallet_card_fiat_balance"
-                    android:textColor="?vg_backgroundGrey"
+                    android:textColor="?vg_whiteGeneral"
                     android:textSize="@dimen/text_subtitle_size" />
 
                 <TextView
@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/wallet_card_balance_label"
                     android:textSize="12sp"
-                    android:textColor="?vg_backgroundGrey" />
+                    android:textColor="?vg_whiteGeneral" />
             </LinearLayout>
 
             <LinearLayout
@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/wallet_card_change"
-                    android:textColor="?vg_backgroundGrey"
+                    android:textColor="?vg_whiteGeneral"
                     android:textSize="@dimen/text_subtitle_size" />
 
                 <TextView
@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:textColor="?vg_backgroundGrey" />
+                    android:textColor="?vg_whiteGeneral" />
 
             </LinearLayout>
 

@@ -8,12 +8,14 @@
     <color name="verge_colorBackground">#DCF0FD</color>
     <color name="verge_colorBackgroundTwo">#f8f7f7</color>
     <color name="verge_colorAccent">#9B9B9B</color>
-    <color name="verge_white">#F9F5F2</color>
+
     <color name="verge_realWhite">#FFFFFF</color>
     <color name="default_gray">#bbbbbb</color>
 
     <color name="verge_fadeBlueStart">#AABCF1FF</color>
     <color name="verge_fadeBlueStop">#AAf8f7f7</color>
+
+    <color name="verge_white">#F9F5F2</color>
 
     <!--colors for light theme -->
     <color name="primaryDark_lt">#112034</color>

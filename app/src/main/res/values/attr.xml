@@ -8,6 +8,7 @@
         <attr name="vg_backgroundBlue" format="color|reference" />
         <attr name="vg_backgroundGrey" format="color|reference" />
         <attr name="vg_backgroundWhite" format="color|reference" />
+        <attr name="vg_whiteGeneral" format="color|reference" />
 
         <attr name="vg_separatorColor" format="color|reference" />
         <attr name="vg_placeholderColor" format="color|reference" />

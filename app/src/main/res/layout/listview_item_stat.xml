@@ -13,6 +13,7 @@
         android:layout_weight="0.5"
         android:adjustViewBounds="true"
         android:gravity="center_vertical"
+        android:paddingStart="8dp"
         android:textColor="?vg_primaryDark"
         android:textSize="@dimen/text_smaller_size" />
 
