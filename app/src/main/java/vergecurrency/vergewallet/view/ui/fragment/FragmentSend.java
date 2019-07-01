@@ -10,13 +10,14 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.view.base.BaseFragment;
 import vergecurrency.vergewallet.viewmodel.SendFragmentViewModel;
 
 @SuppressLint("ValidFragment")
-public class FragmentSend extends Fragment {
+public class FragmentSend extends BaseFragment {
 
 	private String requestedAddress;
 	private TextView amountTextView;
@@ -89,7 +90,7 @@ public class FragmentSend extends Fragment {
 	}
 
 	public void setPreRequestedAmount() {
-		amount.setText(String.format("%s",requestedAmount));
+		amount.setText(String.format("%s", requestedAmount));
 	}
 
 	public void setPreRequestedAddress() {

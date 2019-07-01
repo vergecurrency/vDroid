@@ -6,9 +6,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import vergecurrency.vergewallet.BaseActivity;
+import vergecurrency.vergewallet.view.base.BaseActivity;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.ui.activity.WalletActivity;
 import vergecurrency.vergewallet.wallet.WalletManager;

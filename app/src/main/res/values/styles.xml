@@ -39,7 +39,7 @@
         
     </style>
 
-    <style name="DarkTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="MoonMode" parent="Theme.AppCompat.NoActionBar">
 
         <item name="android:fontFamily">@font/avenir_next_regular</item>
         <item name="android:textAllCaps">false</item>

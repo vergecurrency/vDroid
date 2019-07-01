@@ -6,13 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.adapter.TransactionsAdapter;
+import vergecurrency.vergewallet.view.base.BaseFragment;
 import vergecurrency.vergewallet.viewmodel.TransactionsViewModel;
 
-public class FragmentTransactions extends Fragment {
+public class FragmentTransactions extends BaseFragment {
 
 	public FragmentTransactions() {
 

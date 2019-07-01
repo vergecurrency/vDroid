@@ -47,13 +47,14 @@
         <activity android:name=".view.ui.activity.settings.PaperkeyActivity" />
         <activity android:name=".view.ui.activity.settings.DisconnectActivity" />
         <activity android:name=".view.ui.activity.settings.DonateActivity" />
-        <activity android:name=".view.ui.activity.settings.ChangeCurrencyActivity" />
+        <activity android:name=".view.ui.activity.settings.ChooseCurrencyActivity" />
         <activity android:name=".view.ui.activity.settings.ShowPaperkeyActivity" />
         <activity android:name=".view.ui.activity.settings.ChooseLanguageActivity" />
         <activity android:name=".view.ui.activity.firstlaunch.PassphraseValidationActivity" />
         <activity android:name=".view.ui.activity.firstlaunch.PassphraseCreationActivity" />
         <activity android:name=".view.ui.activity.error.ErrorRecoveryActivity" />
         <activity android:name=".view.ui.activity.QRCodeReaderActivity" />
+        <activity android:name=".view.ui.activity.settings.ChooseThemeActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

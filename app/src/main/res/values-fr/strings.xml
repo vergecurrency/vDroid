@@ -138,6 +138,5 @@
     <string name="wallet_view_balance_label">XVG BALANCE</string>
     <string name="paperkey_view_next">Next</string>
     <string name="paperkey_view_done">Done</string>
-    <string name="title_change_theme">Change Theme</string>
 
 </resources>

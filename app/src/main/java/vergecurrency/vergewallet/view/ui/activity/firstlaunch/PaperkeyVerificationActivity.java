@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import java.util.Arrays;
 
-import vergecurrency.vergewallet.BaseActivity;
+import vergecurrency.vergewallet.view.base.BaseActivity;
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.utils.MathUtils;

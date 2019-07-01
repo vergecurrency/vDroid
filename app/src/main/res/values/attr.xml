@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomColors">
+        <attr name="vg_primaryDark" format="color|reference" />
+        <attr name="vg_primaryLight" format="color|reference" />
+        <attr name="vg_secondaryDark" format="color|reference" />
+        <attr name="vg_secondaryLight" format="color|reference" />
+        <attr name="vg_backgroundBlue" format="color|reference" />
+        <attr name="vg_backgroundGrey" format="color|reference" />
+        <attr name="vg_backgroundWhite" format="color|reference" />
+
+        <attr name="vg_separatorColor" format="color|reference" />
+        <attr name="vg_placeholderColor" format="color|reference" />
+        <attr name="vg_backgroundTopColor" format="color|reference" />
+        <attr name="vg_backgroundBottomColor" format="color|reference" />
+        <attr name="vg_qrCodeColor" format="color|reference" />
+        <attr name="vg_priceChartColor" format="color|reference" />
+
+        <attr name="vg_vergeNoChange" format="color|reference" />
+        <attr name="vg_vergeUp" format="color|reference" />
+        <attr name="vg_vergeDown" format="color|reference" />
+    </declare-styleable>
+</resources>

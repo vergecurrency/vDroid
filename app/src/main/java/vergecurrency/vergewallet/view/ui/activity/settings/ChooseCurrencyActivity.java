@@ -6,12 +6,12 @@ import android.widget.ListView;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
-import vergecurrency.vergewallet.BaseActivity;
+import vergecurrency.vergewallet.view.base.BaseActivity;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.adapter.CurrenciesAdapter;
 import vergecurrency.vergewallet.viewmodel.SelectCurrencyViewModel;
 
-public class ChangeCurrencyActivity extends BaseActivity {
+public class ChooseCurrencyActivity extends BaseActivity {
 
 
 	@Override
@@ -22,7 +22,7 @@ public class ChangeCurrencyActivity extends BaseActivity {
 		SelectCurrencyViewModel mViewModel = ViewModelProviders.of(this).get(SelectCurrencyViewModel.class);
 
 		ListView currenciesList = findViewById(R.id.activity_select_currency_listview);
-		currenciesList.setAdapter(new CurrenciesAdapter(getApplicationContext(), mViewModel.getCurrencies()));
+		currenciesList.setAdapter(new CurrenciesAdapter(this, mViewModel.getCurrencies()));
 
 	}
 }

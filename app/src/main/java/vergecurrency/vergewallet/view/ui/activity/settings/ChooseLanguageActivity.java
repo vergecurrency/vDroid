@@ -5,14 +5,12 @@ import android.widget.ListView;
 
 import androidx.lifecycle.ViewModelProviders;
 
-import com.akexorcist.localizationactivity.ui.LocalizationActivity;
-
-
+import vergecurrency.vergewallet.view.base.BaseActivity;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.adapter.LanguagesAdapter;
 import vergecurrency.vergewallet.viewmodel.LanguagesViewModel;
 
-public class ChooseLanguageActivity  extends LocalizationActivity {
+public class ChooseLanguageActivity extends BaseActivity {
 
 
 	@Override
@@ -21,12 +19,10 @@ public class ChooseLanguageActivity  extends LocalizationActivity {
 		setContentView(R.layout.activity_language_change);
 
 
-
-
 		LanguagesViewModel mViewModel = ViewModelProviders.of(this).get(LanguagesViewModel.class);
 
 		ListView languagesList = findViewById(R.id.activity_change_language_listview);
-		languagesList.setAdapter(new LanguagesAdapter(getApplicationContext(),mViewModel.getLanguages()));
+		languagesList.setAdapter(new LanguagesAdapter(this, mViewModel.getLanguages()));
 
 	}
 }

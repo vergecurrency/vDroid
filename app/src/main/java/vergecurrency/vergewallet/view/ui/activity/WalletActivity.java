@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
-import vergecurrency.vergewallet.BaseActivity;
+import vergecurrency.vergewallet.view.base.BaseActivity;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.ui.fragment.FragmentReceive;
 import vergecurrency.vergewallet.view.ui.fragment.FragmentSend;
@@ -21,9 +21,7 @@ import vergecurrency.vergewallet.view.ui.fragment.FragmentSettings;
 import vergecurrency.vergewallet.view.ui.fragment.FragmentTransactions;
 import vergecurrency.vergewallet.view.ui.fragment.FragmentWallet;
 
-//TODO Define LockActivity as super class
-public class WalletActivity extends
-		BaseActivity /* extends LockActivity */ {
+public class WalletActivity extends BaseActivity {
 
 	private int currentItem;
 

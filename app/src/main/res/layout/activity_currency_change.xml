@@ -12,7 +12,7 @@
 
     <ListView
         android:id="@+id/activity_select_currency_listview"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:backgroundTint="?vg_backgroundGrey"
         android:layout_height="wrap_content"/>
 

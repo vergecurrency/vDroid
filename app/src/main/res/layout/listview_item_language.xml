@@ -3,10 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:background="@drawable/selector_item"
+    android:backgroundTint="?attr/vg_backgroundBlue"
+
     android:paddingStart="5dp">
 
     <LinearLayout
-
         android:id="@+id/listview_language_item"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -22,6 +23,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"
             android:clickable="false"
+
             android:textColor="?vg_primaryDark"
             android:textSize="@dimen/text_small_size" />
 
