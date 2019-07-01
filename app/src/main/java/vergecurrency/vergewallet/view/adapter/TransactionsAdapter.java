@@ -101,9 +101,9 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
     private ArrayList<Transaction> filterByOption(ArrayList<Transaction> txs, TransactionFilterOption filterOption) {
         switch (filterOption) {
             case RECEIVE:
-                return new ArrayList<Transaction>(txs.stream().filter(tx -> tx.isSend()).collect(Collectors.toList()));
-            case SEND:
                 return new ArrayList<Transaction>(txs.stream().filter(tx -> tx.isReceive()).collect(Collectors.toList()));
+            case SEND:
+                return new ArrayList<Transaction>(txs.stream().filter(tx -> tx.isSend()).collect(Collectors.toList()));
             default:
                 return new ArrayList<Transaction>(txs);
         }
