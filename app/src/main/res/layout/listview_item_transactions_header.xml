@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/listview_header"
+    android:id="@+id/listview_item_transactions_header"
     android:background="@color/verge_realWhite">
     <TextView
         android:id="@+id/listview_transactions_header_title"

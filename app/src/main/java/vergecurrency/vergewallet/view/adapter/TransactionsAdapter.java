@@ -39,7 +39,7 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
      */
     public TransactionsAdapter(@NonNull Context context, ArrayList<Transaction> txs) {
         super(context, R.layout.listview_item_transaction, new ArrayList<>());
-        super.addAll(toTransactionListItem(txs));
+        super.addAll(toTransactionItemList(txs));
         this.context = context;
         this.transactions = txs;
         this.inflater = LayoutInflater.from(context);
@@ -63,13 +63,15 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
     }
 
 
-    private ArrayList<TransactionItem> toTransactionListItem(ArrayList<Transaction> txs) {
+    private ArrayList<TransactionItem> toTransactionItemList(ArrayList<Transaction> txs) {
         ArrayList<TransactionItem> transactionItems = new ArrayList();
         Collections.sort(txs, Transaction.TimeComparatorDESC);
         txs.forEach(tx -> {
+            //If tx isn't the last transaction
             if (txs.indexOf(tx) != txs.size() - 1) {
-                Transaction tx2 = txs.get(txs.indexOf(tx) + 1);
-                if (tx2 != null && isSameDate(tx, tx2) != 0) {
+                Transaction nextTx = txs.get(txs.indexOf(tx) + 1);
+                //If current and next transaction having not the same date
+                if (nextTx != null && isSameDate(tx, nextTx) != 0) {
                     transactionItems.add(new TransactionHeaderItem(this.convertToLocalDateViaMilisecond(tx.getTime() * 1000).format(formatter)));
                 }
             }
@@ -79,18 +81,18 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
     }
 
     public void filter(String charText, TransactionFilterOption filterOption) {
-        this.clear();
+        clear();
         ArrayList filteredTransactions = filterByOption(this.transactions, filterOption);
         this.transactions.forEach(tx -> {
-            if (!this.filterMatch(tx, charText)) {
+            if (!this.currentTextFilterMatch(tx, charText)) {
                 filteredTransactions.remove(tx);
             }
         });
-        addAll(toTransactionListItem(filteredTransactions));
+        addAll(toTransactionItemList(filteredTransactions));
         notifyDataSetChanged();
     }
 
-    private boolean filterMatch(Transaction tx, String charText) {
+    private boolean currentTextFilterMatch(Transaction tx, String charText) {
         return tx.getAddress().toLowerCase().contains(charText.toLowerCase()) || new Double(tx.getAmount()).toString().toLowerCase().contains(charText.toLowerCase());
     }
 
