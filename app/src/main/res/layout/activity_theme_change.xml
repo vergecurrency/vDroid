@@ -5,15 +5,15 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/mTextMessage"
-        android:text="@string/title_fiat_currency"
+        android:id="@+id/activity_theme_change_title"
+        android:text="Change Theme"
         style="@style/activities_title_top"
         />
 
     <ListView
-        android:id="@+id/activity_select_currency_listview"
+        android:backgroundTint="?vg_backgroundBlue"
+        android:id="@+id/activity_change_theme_listview"
         android:layout_width="match_parent"
-        android:backgroundTint="?vg_backgroundGrey"
         android:layout_height="wrap_content"/>
 
 </LinearLayout>

@@ -25,6 +25,7 @@ public class PreferencesManager {
     private static final String WALLET_NAME = "walletName";
     private static final String WALLET_SECRET = "walletSecret";
     private static final String DEVICE_TOKEN = "deviceToken";
+    private static final String PREFERRED_THEME = "preferredTheme";
 
 	private static PreferencesManager INSTANCE = null;
 	private static SharedPreferences preferences;
@@ -209,5 +210,12 @@ public class PreferencesManager {
 		preferences.edit().putString(DEVICE_TOKEN, token).apply();
 	}
 
+	public static String getCurrentTheme() {
+		return preferences.getString(PREFERRED_THEME, "Feather Theme");
+	}
+
+	public static void setCurrentTheme(String theme) {
+		preferences.edit().putString(PREFERRED_THEME, theme).apply();
+	}
 
 }

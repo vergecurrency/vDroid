@@ -24,13 +24,19 @@
     <dimen name="activities_title_padding">40dp</dimen>
     <dimen name="activities_title_margin_top">20dp</dimen>
     <!--Settings activities-->
-    <dimen name="activities_title_extended_padding_top">100dp</dimen>
-    <dimen name="activities_settings_img_height">190dp</dimen>
-    <dimen name="activities_settings_img_padding">20dp</dimen>
-    <dimen name="activities_settings_desc_layout_margintop">20dp</dimen>
-    <dimen name="activities_settings_desc_padding_lr">40dp</dimen>
+    <dimen name="act_title_extended_padding_top">100dp</dimen>
+    <dimen name="act_settings_img_height">190dp</dimen>
+    <dimen name="act_settings_img_padding">20dp</dimen>
+    <dimen name="act_settings_desc_layout_margintop">20dp</dimen>
+    <dimen name="act_settings_desc_padding_lr">40dp</dimen>
     <!-- passphrase only-->
-    <dimen name="activities_passphrase_text_field_margin_lr">40dp</dimen>
-    <dimen name="activities_passphrase_text_field_padding_top">35dp</dimen>
-
+    <dimen name="act_passphrase_text_field_margin_lr">40dp</dimen>
+    <dimen name="act_passphrase_text_field_padding_top">35dp</dimen>
+    <!-- paper key -->
+    <dimen name="act_paper_key_title_paddingTop">10dp</dimen>
+    <dimen name="act_paper_key_icon_size">150dp</dimen>
+    <dimen name="act_paper_key_regular_marginTop">20dp</dimen>
+    <dimen name="act_paper_key_big_marginTop">40dp</dimen>
+    <dimen name="act_paper_key_desc_padding">40dp</dimen>
+    <dimen name="act_paper_key_layout_padding">40dp</dimen>
 </resources>

@@ -8,11 +8,55 @@
     <color name="verge_colorBackground">#DCF0FD</color>
     <color name="verge_colorBackgroundTwo">#f8f7f7</color>
     <color name="verge_colorAccent">#9B9B9B</color>
-    <color name="verge_white">#F9F5F2</color>
+
     <color name="verge_realWhite">#FFFFFF</color>
     <color name="default_gray">#bbbbbb</color>
 
     <color name="verge_fadeBlueStart">#AABCF1FF</color>
     <color name="verge_fadeBlueStop">#AAf8f7f7</color>
+
+    <color name="verge_white">#F9F5F2</color>
+
+    <!--colors for light theme -->
+    <color name="primaryDark_lt">#112034</color>
+    <color name="primaryLight_lt">#37BCE1</color>
+    <color name="secondaryDark_lt">#183C54</color>
+    <color name="secondaryLight_lt">#637885</color>
+    <color name="backgroundBlue_lt">#DCEFFC</color>
+    <color name="backgroundGrey_lt">#F8F7F7</color>
+    <color name="backgroundWhite_lt">#FFF</color>
+
+    <color name="separatorColor_lt">#FFD8D8E5</color>
+    <color name="placeholderColor_lt">#4c000000</color>
+    <color name="backgroundTopColor_lt">#FF63CCDB</color>
+    <color name="backgroundBottomColor_lt">#37BCE1</color>
+    <color name="qrCodeColor_lt">#FF1C9ED3</color>
+    <color name="priceChartColor_lt">#FFFFFF</color>
+
+    <color name="vergeNoChange_lt">#9b9b9b</color>
+    <color name="vergeUp_lt">#008570</color>
+    <color name="vergeDown_lt">#FF5252</color>
+
+
+    <!--colors for dark theme -->
+    <color name="primaryDark_dt">#dceffc</color>
+    <color name="primaryLight_dt">#37bce1</color>
+    <color name="secondaryDark_dt">#f8f7f7</color>
+    <color name="secondaryLight_dt">#738fa0</color>
+    <color name="backgroundBlue_dt">#113354</color>
+    <color name="backgroundGrey_dt">#101e2e</color>
+    <color name="backgroundWhite_dt">#19293c</color>
+
+    <color name="separatorColor_dt">#3f5266</color>
+    <color name="placeholderColor_dt">#384350</color>
+    <color name="backgroundTopColor_dt">#09131e</color>
+    <color name="backgroundBottomColor_dt">#0c1928</color>
+    <color name="qrCodeColor_dt">#101e2e</color>
+    <color name="priceChartColor_dt">#19293c</color>
+
+    <color name="vergeNoChange_dt">#9b9b9b</color>
+    <color name="vergeUp_dt">#008570</color>
+    <color name="vergeDown_dt">#FF5252</color>
+
 
 </resources>

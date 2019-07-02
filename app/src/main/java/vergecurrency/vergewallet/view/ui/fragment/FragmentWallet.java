@@ -6,15 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.view.adapter.WalletAdapter;
+import vergecurrency.vergewallet.view.base.BaseFragment;
 import vergecurrency.vergewallet.viewmodel.WalletFragmentViewModel;
 
-public class FragmentWallet extends Fragment {
+public class FragmentWallet extends BaseFragment {
 
 	private View rootView;
 	private String currencyCode;

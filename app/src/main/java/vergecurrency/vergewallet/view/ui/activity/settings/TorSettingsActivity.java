@@ -12,7 +12,7 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 
-import vergecurrency.vergewallet.BaseActivity;
+import vergecurrency.vergewallet.view.base.BaseActivity;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.viewmodel.TorSettingsViewModel;
 

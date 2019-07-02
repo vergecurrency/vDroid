@@ -14,6 +14,7 @@ import androidx.annotation.MainThread;
 import io.horizontalsystems.bitcoinkit.BitcoinKit;
 import vergecurrency.vergewallet.excpetion.DefaultUncaughtExceptionHandler;
 import vergecurrency.vergewallet.helpers.utils.LanguagesUtils;
+import vergecurrency.vergewallet.helpers.utils.ThemeUtils;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 import vergecurrency.vergewallet.wallet.WalletManager;
 
@@ -37,7 +38,9 @@ public class VergeWalletApplication extends Application implements Application.A
     @Override
     protected void attachBaseContext(Context base) {
         PreferencesManager.init(base);
-        super.attachBaseContext(updateBaseContextLocale(base));
+        Context c = updateBaseContextLocale(base);
+        ThemeUtils.setTheme(PreferencesManager.getCurrentTheme(),c,false);
+        super.attachBaseContext(c);
     }
 
     private Context updateBaseContextLocale(Context context) {

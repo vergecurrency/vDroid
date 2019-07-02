@@ -24,7 +24,7 @@
 
     //Transaction fragment
     <string name="transaction_message_main">Aucune transaction reçue</string>
-    <string name="transaction_message_sub"> </string>
+    <string name="transaction_message_sub">Open the bug XVG guide or receive XVG</string>
     //Send fragment
     <string name="send_message_main">Solde insuffisant</string>
     <string name="send_message_sub">Vous n\'avez aucun XVG à disposition. SVP augmentez votre solde.</string>

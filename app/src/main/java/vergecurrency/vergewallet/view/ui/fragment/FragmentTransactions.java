@@ -8,22 +8,22 @@ import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.SearchView;
 
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.service.model.TransactionFilterOption;
 import vergecurrency.vergewallet.view.adapter.TransactionsAdapter;
+import vergecurrency.vergewallet.view.base.BaseFragment;
 import vergecurrency.vergewallet.viewmodel.TransactionsViewModel;
 
-public class FragmentTransactions extends Fragment implements SearchView.OnQueryTextListener, RadioGroup.OnCheckedChangeListener {
+public class FragmentTransactions extends BaseFragment implements SearchView.OnQueryTextListener, RadioGroup.OnCheckedChangeListener {
     private TransactionsAdapter txa;
     private TransactionFilterOption option = TransactionFilterOption.ALL;
     private String currentText = "";
 
     public FragmentTransactions() {
 
-    }
+	}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

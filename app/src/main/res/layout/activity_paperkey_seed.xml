@@ -22,7 +22,7 @@
         android:paddingVertical="10dp"
         android:text="@string/paperkey_activity_title"
         android:textAlignment="center"
-        android:textColor="@color/verge_colorBackground"
+        android:textColor="?vg_backgroundBlue"
         android:textSize="@dimen/text_smaller_size"
         android:textStyle="bold"
 
@@ -37,7 +37,7 @@
         android:paddingRight="40dp"
         android:text="@string/paperkey_write_seed"
         android:textAlignment="center"
-        android:textColor="@color/verge_colorBackground"
+        android:textColor="?vg_backgroundBlue"
         android:textSize="@dimen/text_regular_size" />
 
     <TextView
@@ -60,7 +60,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/paper_key_logo"
         android:layout_marginTop="-86dp"
-        android:background="@color/bg_color"
+        android:background="?vg_backgroundGrey"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/verge_white"
+            android:backgroundTint="?vg_backgroundGrey"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -83,9 +83,9 @@
                 android:layout_marginRight="20dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/form_rounded_rect"
-                android:backgroundTint="@color/verge_colorBackground"
+                android:backgroundTint="?vg_backgroundBlue"
                 android:text="@string/paperkey_wallet_previous"
-                android:textColor="@color/verge_colorPrimaryDark"
+                android:textColor="?vg_primaryDark"
                 android:textSize="@dimen/text_regular_size" />
 
             <Button
@@ -98,9 +98,9 @@
                 android:layout_marginRight="20dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/form_rounded_rect"
-                android:backgroundTint="@color/verge_colorPrimary"
+                android:backgroundTint="?vg_primaryLight"
                 android:text="@string/paperkey_wallet_next"
-                android:textColor="@color/verge_colorBackgroundTwo"
+                android:textColor="?vg_backgroundBlue"
                 android:textSize="@dimen/text_regular_size" />
         </LinearLayout>
 

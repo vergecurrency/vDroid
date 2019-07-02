@@ -3,12 +3,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?vg_backgroundGrey"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@color/verge_colorPrimary"
+        android:background="?vg_primaryLight"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -18,7 +19,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="1dp"
             android:text="200.00 XVG"
-            android:textColor="@color/bg_color"
+            android:textColor="?attr/vg_whiteGeneral"
             android:textSize="@dimen/text_balance_size"
             android:textStyle="bold" />
 
@@ -26,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/wallet_view_balance_label"
-            android:textColor="@color/bg_color"
+            android:textColor="?vg_whiteGeneral"
             android:textSize="@dimen/text_smaller_size" />
 
         <LinearLayout
@@ -46,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/wallet_card_fiat_balance"
-                    android:textColor="@color/bg_color"
+                    android:textColor="?vg_whiteGeneral"
                     android:textSize="@dimen/text_subtitle_size" />
 
                 <TextView
@@ -54,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/wallet_card_balance_label"
                     android:textSize="12sp"
-                    android:textColor="@color/bg_color" />
+                    android:textColor="?vg_whiteGeneral" />
             </LinearLayout>
 
             <LinearLayout
@@ -69,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/wallet_card_change"
-                    android:textColor="@color/bg_color"
+                    android:textColor="?vg_whiteGeneral"
                     android:textSize="@dimen/text_subtitle_size" />
 
                 <TextView
@@ -77,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:textColor="@color/bg_color" />
+                    android:textColor="?vg_whiteGeneral" />
 
             </LinearLayout>
 

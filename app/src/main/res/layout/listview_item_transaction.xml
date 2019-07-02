@@ -3,14 +3,14 @@
     android:id="@+id/listview_transaction_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/verge_realWhite"
+    android:backgroundTint="?vg_backgroundGrey"
     android:orientation="horizontal">
 
     <LinearLayout
         android:id="@+id/listview_transaction_item"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:backgroundTint="@color/verge_realWhite"
+        android:backgroundTint="?vg_backgroundGrey"
         android:orientation="horizontal"
         android:paddingTop="8dp">
 
@@ -19,7 +19,7 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:backgroundTint="@color/verge_realWhite"
+            android:backgroundTint="?vg_backgroundGrey"
             android:padding="5dp"
             android:scaleType="fitCenter" />
 
@@ -27,26 +27,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
-            android:backgroundTint="@color/verge_realWhite"
+            android:backgroundTint="?vg_backgroundGrey"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/listview_transaction_item_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:backgroundTint="@color/verge_realWhite"
+                android:backgroundTint="?vg_backgroundGrey"
                 android:gravity="center_vertical"
-                android:textColor="@color/verge_colorPrimaryDark"
+                android:textColor="?vg_primaryDark"
                 android:textSize="@dimen/text_smaller_size" />
 
             <TextView
                 android:id="@+id/listview_transaction_item_datetime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/verge_realWhite"
+                android:backgroundTint="?vg_backgroundGrey"
                 android:gravity="bottom"
-                android:textColor="@color/verge_colorPrimaryDark"
+                android:textColor="?vg_primaryDark"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -56,11 +55,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:backgroundTint="@color/verge_realWhite"
+            android:backgroundTint="?vg_backgroundGrey"
             android:gravity="end"
             android:paddingRight="8dp"
             android:textAlignment="viewEnd"
-            android:textColor="@color/verge_colorPrimaryDark"
+            android:textColor="?vg_primaryDark"
             android:textSize="@dimen/text_smaller_size" />
 
 

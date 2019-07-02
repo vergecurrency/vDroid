@@ -2,16 +2,16 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="40dp"
     android:id="@+id/listview_header"
-    android:background="@color/verge_colorBackgroundTwo">
+    android:background="?vg_backgroundBlue">
     <TextView
         android:id="@+id/listview_header_title"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/verge_colorBackgroundTwo"
+        android:layout_height="match_parent"
+        android:backgroundTint="?vg_backgroundBlue"
         android:textSize="@dimen/text_smaller_size"
-        android:textColor="@color/verge_colorAccent"
+        android:textColor="?vg_secondaryLight"
         android:paddingLeft="15dp"
         android:paddingBottom="5dp"
         android:gravity="bottom"/>

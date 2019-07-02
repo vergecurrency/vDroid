@@ -22,23 +22,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.google.zxing.EncodeHintType;
 import com.omega_r.libs.OmegaCenterIconButton;
 
 import net.glxn.qrgen.android.QRCode;
 
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.utils.AnimationUtils;
 import vergecurrency.vergewallet.helpers.utils.FileUtils;
 import vergecurrency.vergewallet.helpers.utils.ImageUtils;
+import vergecurrency.vergewallet.view.base.BaseFragment;
 import vergecurrency.vergewallet.viewmodel.ReceiveFragmentViewModel;
 
-public class FragmentReceive extends Fragment {
+public class FragmentReceive extends BaseFragment {
 
 	private static int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE;
 	private SwitchCompat obfuscateSwitch;
@@ -125,7 +126,7 @@ public class FragmentReceive extends Fragment {
 			ClipData clip = ClipData.newPlainText("Address", address);
 			clipboard.setPrimaryClip(clip);
 
-			Toast.makeText(getContext(),"Copied to clipboard",Toast.LENGTH_SHORT).show();
+			Toast.makeText(getContext(), "Copied to clipboard", Toast.LENGTH_SHORT).show();
 
 			return false;
 		};

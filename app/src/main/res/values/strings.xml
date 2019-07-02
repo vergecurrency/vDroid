@@ -123,6 +123,7 @@
     <string name="qr_option_btn">QR</string>
     <string name="words_option_btn">Words</string>
     <string name="title_change_language">Change Language</string>
+    <string name="title_change_theme">Change Theme</string>
     <string name="error_label">An error occurred</string>
     <string name="prog_placeholder">programatically</string>
     <string name="verge_bg_tag">Verge Background</string>

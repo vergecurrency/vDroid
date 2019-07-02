@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/verge_realWhite"
+    android:background="?vg_backgroundWhite"
     android:orientation="vertical">
 
 
@@ -22,7 +22,7 @@
             android:padding="7dp"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_chart"
-            android:tint="@color/verge_colorPrimaryDark"
+            android:tint="?vg_primaryDark"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -32,7 +32,7 @@
             android:gravity="center_vertical"
             android:paddingStart="5dp"
             android:text="@string/cand_history_title"
-            android:textColor="@color/verge_colorPrimaryDark"
+            android:textColor="?vg_primaryDark"
             android:textSize="@dimen/text_regular_size" />
 
 
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="60dp"
                     android:text="@string/charts_high_label"
-                    android:textColor="@color/verge_colorPrimaryDark"
+                    android:textColor="?vg_primaryDark"
                     android:textSize="@dimen/text_regular_size" />
 
                 <TextView
@@ -69,7 +69,7 @@
                     android:paddingEnd="10dp"
                     android:text="$"
                     android:textAlignment="textEnd"
-                    android:textColor="@color/verge_colorPrimaryDark"
+                    android:textColor="?vg_primaryDark"
                     android:textSize="@dimen/text_regular_size"
                     tools:ignore="HardcodedText" />
 
@@ -79,7 +79,7 @@
                     android:paddingEnd="60dp"
                     android:text="0.0062"
                     android:textAlignment="textEnd"
-                    android:textColor="@color/verge_colorPrimaryDark"
+                    android:textColor="?vg_primaryDark"
                     android:textSize="22sp" />
 
             </LinearLayout>
@@ -87,7 +87,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/verge_realWhite"
+                android:background="?vg_backgroundWhite"
                 android:orientation="horizontal">
 
                 <TextView
@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="60dp"
                     android:text="@string/charts_average_label"
-                    android:textColor="@color/verge_colorPrimary"
+                    android:textColor="?vg_primaryLight"
                     android:textSize="@dimen/text_regular_size" />
 
                 <TextView
@@ -105,7 +105,7 @@
                     android:paddingEnd="10dp"
                     android:text="$"
                     android:textAlignment="textEnd"
-                    android:textColor="@color/verge_colorPrimary"
+                    android:textColor="?vg_primaryLight"
                     android:textSize="@dimen/text_regular_size"
                     tools:ignore="HardcodedText" />
 
@@ -115,7 +115,7 @@
                     android:paddingEnd="60dp"
                     android:text="0.0062"
                     android:textAlignment="textEnd"
-                    android:textColor="@color/verge_colorPrimary"
+                    android:textColor="?vg_primaryLight"
                     android:textSize="22sp" />
 
             </LinearLayout>
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="60dp"
                     android:text="@string/charts_average_low"
-                    android:textColor="@color/verge_colorAccent"
+                    android:textColor="?vg_secondaryLight"
                     android:textSize="@dimen/text_regular_size" />
 
                 <TextView
@@ -140,7 +140,7 @@
                     android:paddingEnd="10dp"
                     android:text="$"
                     android:textAlignment="textEnd"
-                    android:textColor="@color/verge_colorAccent"
+                    android:textColor="?vg_secondaryLight"
                     android:textSize="@dimen/text_regular_size"
                     tools:ignore="HardcodedText" />
 
@@ -150,7 +150,7 @@
                     android:paddingEnd="60dp"
                     android:text="0.0062"
                     android:textAlignment="textEnd"
-                    android:textColor="@color/verge_colorAccent"
+                    android:textColor="?vg_secondaryLight"
                     android:textSize="22sp" />
 
             </LinearLayout>
@@ -160,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/history_chart_usd_only"
                 android:textAlignment="center"
-                android:textColor="@color/verge_colorAccent"
+                android:textColor="?vg_secondaryLight"
                 android:textSize="12sp" />
 
             <com.github.mikephil.charting.charts.CombinedChart

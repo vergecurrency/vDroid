@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="50dp"
     android:id="@+id/listview_layout"
+    android:backgroundTint="?attr/vg_backgroundBlue"
+
     android:clickable="true"
     android:background="@drawable/selector_item"
     >
@@ -14,8 +16,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="10dip"
-        android:tint="@color/verge_colorPrimary"
-        android:backgroundTint="@color/verge_colorBackgroundTwo"
+        android:tint="?attr/vg_primaryLight"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:padding="5dp"
@@ -30,8 +31,7 @@
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/listview_item_icon"
         android:textSize="@dimen/text_regular_size"
-        android:textColor="@color/verge_colorPrimaryDark"
-        android:backgroundTint="@color/verge_colorBackgroundTwo"
+        android:textColor="?attr/vg_primaryDark"
         android:gravity="center_vertical"
         />
 

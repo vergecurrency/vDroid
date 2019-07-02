@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import vergecurrency.vergewallet.BaseActivity;
+import vergecurrency.vergewallet.view.base.BaseActivity;
 import vergecurrency.vergewallet.R;
 
 public class DisconnectActivity extends BaseActivity {

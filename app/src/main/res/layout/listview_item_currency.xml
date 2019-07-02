@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
+    android:backgroundTint="?attr/vg_backgroundBlue"
+
     android:background="@drawable/selector_item"
     android:paddingStart="5dp">
 
@@ -22,14 +24,14 @@
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"
             android:clickable="false"
-            android:textColor="@color/verge_colorPrimaryDark"
+            android:textColor="?vg_primaryDark"
             android:textSize="@dimen/text_small_size" />
 
         <TextView
             android:id="@+id/listview_currency_name"
             android:layout_width="match_parent"
             android:clickable="false"
-            android:textColor="@color/verge_colorPrimaryDark"
+            android:textColor="?vg_primaryDark"
             android:layout_height="wrap_content"
             android:textSize="12sp" />
 

@@ -10,6 +10,70 @@
         <item name="android:fontFamily">@font/avenir_next_regular</item>
     </style>
 
+    <style name="FeatherTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/avenir_next_regular</item>
+        <item name="android:textAllCaps">false</item>
+
+        <item name="colorPrimary">@color/primaryLight_lt</item>
+        <item name="colorPrimaryDark">@color/primaryDark_lt</item>
+        <item name="colorAccent">@color/secondaryLight_lt</item>
+
+        <item name="vg_primaryDark">@color/primaryDark_lt</item>
+        <item name="vg_primaryLight">@color/primaryLight_lt</item>
+        <item name="vg_secondaryDark">@color/secondaryDark_lt</item>
+        <item name="vg_secondaryLight">@color/secondaryLight_lt</item>
+        <item name="vg_backgroundBlue">@color/backgroundBlue_lt</item>
+        <item name="vg_backgroundGrey">@color/backgroundGrey_lt</item>
+        <item name="vg_backgroundWhite">@color/backgroundWhite_lt</item>
+        <item name="vg_whiteGeneral">@color/verge_white</item>
+        
+        <item name="vg_separatorColor">@color/separatorColor_lt</item>
+        <item name="vg_placeholderColor">@color/placeholderColor_lt</item>
+        <item name="vg_backgroundTopColor">@color/backgroundTopColor_lt</item>
+        <item name="vg_backgroundBottomColor">@color/backgroundBottomColor_lt</item>
+        <item name="vg_qrCodeColor">@color/qrCodeColor_lt</item>
+        <item name="vg_priceChartColor">@color/priceChartColor_lt</item>
+        
+        <item name="vg_vergeNoChange">@color/vergeNoChange_lt</item>
+        <item name="vg_vergeUp">@color/vergeUp_lt</item>
+        <item name="vg_vergeDown">@color/vergeDown_lt</item>
+        
+    </style>
+
+    <style name="MoonMode" parent="Theme.AppCompat.NoActionBar">
+
+        <item name="android:fontFamily">@font/avenir_next_regular</item>
+        <item name="android:textAllCaps">false</item>
+
+        <item name="colorPrimary">@color/primaryLight_lt</item>
+        <item name="colorPrimaryDark">@color/primaryDark_lt</item>
+        <item name="colorAccent">@color/secondaryLight_lt</item>
+
+        <item name="vg_primaryDark">@color/primaryDark_dt</item>
+        <item name="vg_primaryLight">@color/primaryLight_dt</item>
+        <item name="vg_secondaryDark">@color/secondaryDark_dt</item>
+        <item name="vg_secondaryLight">@color/secondaryLight_dt</item>
+        <item name="vg_backgroundBlue">@color/backgroundBlue_dt</item>
+        <item name="vg_backgroundGrey">@color/backgroundGrey_dt</item>
+        <item name="vg_backgroundWhite">@color/backgroundWhite_dt</item>
+        <item name="vg_whiteGeneral">@color/verge_white</item>
+
+        <item name="vg_separatorColor">@color/separatorColor_dt</item>
+        <item name="vg_placeholderColor">@color/placeholderColor_dt</item>
+        <item name="vg_backgroundTopColor">@color/backgroundTopColor_dt</item>
+        <item name="vg_backgroundBottomColor">@color/backgroundBottomColor_dt</item>
+        <item name="vg_qrCodeColor">@color/qrCodeColor_dt</item>
+        <item name="vg_priceChartColor">@color/priceChartColor_dt</item>
+
+        <item name="vg_vergeNoChange">@color/vergeNoChange_dt</item>
+        <item name="vg_vergeUp">@color/vergeUp_dt</item>
+        <item name="vg_vergeDown">@color/vergeDown_dt</item>
+
+    </style>
+
+    
+    
+    
     <!-- Different items -->
     <style name="activities_title_top">
         <item name="android:layout_width">fill_parent</item>
@@ -17,6 +81,7 @@
         <item name="android:textAlignment">center</item>
         <item name="android:paddingVertical">@dimen/title_regular_margin_top</item>
         <item name="android:textSize">@dimen/text_subtitle_size</item>
+
     </style>
 
 
@@ -25,7 +90,7 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">@dimen/text_regular_size</item>
         <item name="android:layout_columnWeight">1</item>
-        <item name="android:textColor">@color/verge_colorAccent</item>
+        <item name="android:textColor">?vg_primaryDark</item>
     </style>
 
     <style name="closebutton">
@@ -33,7 +98,7 @@
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_marginStart">5dp</item>
         <item name="android:layout_marginTop">5dp</item>
-        <item name="android:tint">@color/verge_colorPrimary</item>
+        <item name="android:tint">?vg_primaryLight</item>
         <item name="android:src">@drawable/icon_close</item>
     </style>
 
@@ -46,9 +111,9 @@
         <item name="android:layout_marginRight">@dimen/button_regular_margin</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:background">@drawable/form_rounded_white_rect</item>
-        <item name="android:backgroundTint">@color/verge_colorPrimary</item>
+        <item name="android:backgroundTint">?vg_primaryLight</item>
         <item name="android:scaleType">fitCenter</item>
-        <item name="android:textColor">@color/verge_colorBackgroundTwo</item>
+        <item name="android:textColor">?vg_backgroundGrey</item>
         <item name="android:textSize">@dimen/text_regular_size</item>
         <item name="android:layout_alignParentBottom">true</item>
     </style>
@@ -67,7 +132,7 @@
         <item name="android:layout_width">30dp</item>
         <item name="android:layout_height">30dp</item>
         <item name="android:src">@drawable/icon_checked</item>
-        <item name="android:tint">@color/verge_colorAccent</item>
+        <item name="android:tint">?vg_secondaryLight</item>
     </style>
 
     <style name="passphrase_check_label">
@@ -81,10 +146,10 @@
     <style name="passphrase_text_field">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">@dimen/activities_passphrase_text_field_margin_lr</item>
-        <item name="android:layout_marginRight">@dimen/activities_passphrase_text_field_margin_lr</item>
+        <item name="android:layout_marginLeft">@dimen/act_passphrase_text_field_margin_lr</item>
+        <item name="android:layout_marginRight">@dimen/act_passphrase_text_field_margin_lr</item>
         <item name="android:inputType">textPassword</item>
-        <item name="android:paddingTop">@dimen/activities_passphrase_text_field_padding_top</item>
+        <item name="android:paddingTop">@dimen/act_passphrase_text_field_padding_top</item>
         <item name="android:textAlignment">center</item>
     </style>
 
@@ -96,26 +161,26 @@
         <item name="android:paddingLeft">@dimen/activities_title_padding</item>
         <item name="android:paddingRight">@dimen/activities_title_padding</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/verge_colorPrimaryDark</item>
+        <item name="android:textColor">?vg_primaryDark</item>
         <item name="android:textSize">@dimen/text_title_size</item>
     </style>
 
     <style name="activities_settings_title.extended_top_padding">
-        <item name="android:paddingTop">@dimen/activities_title_extended_padding_top</item>
+        <item name="android:paddingTop">@dimen/act_title_extended_padding_top</item>
     </style>
 
     <style name="activities_settings_image_header">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">@dimen/activities_settings_img_height</item>
-        <item name="android:padding">@dimen/activities_settings_img_padding</item>
+        <item name="android:layout_height">@dimen/act_settings_img_height</item>
+        <item name="android:padding">@dimen/act_settings_img_padding</item>
     </style>
 
     <style name="activities_settings_description">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/activities_settings_desc_layout_margintop</item>
-        <item name="android:paddingLeft">@dimen/activities_settings_desc_padding_lr</item>
-        <item name="android:paddingRight">@dimen/activities_settings_desc_padding_lr</item>
+        <item name="android:layout_marginTop">@dimen/act_settings_desc_layout_margintop</item>
+        <item name="android:paddingLeft">@dimen/act_settings_desc_padding_lr</item>
+        <item name="android:paddingRight">@dimen/act_settings_desc_padding_lr</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">@dimen/text_small_size</item>
     </style>
@@ -125,11 +190,11 @@
     </style>
     <!--Paperkey specifics-->
     <style name="activities_settings_description.sub.paperkey_first">
-        <item name="android:textColor">@color/verge_colorPrimary</item>
+        <item name="android:textColor">?vg_primaryLight</item>
     </style>
 
     <style name="activities_settings_description.sub.paperkey_second">
-        <item name="android:textColor">@color/verge_colorPrimaryDark</item>
+        <item name="android:textColor">?vg_primaryDark</item>
     </style>
 
     <!-- Paperkey Setup -->
@@ -137,9 +202,9 @@
     <style name="activities_paper_key_setup_title">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingVertical">10dp</item>
+        <item name="android:paddingVertical">@dimen/act_paper_key_title_paddingTop</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/verge_colorBackground</item>
+        <item name="android:textColor">?vg_backgroundBlue</item>
         <item name="android:textSize">@dimen/text_small_size</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -152,11 +217,11 @@
 
 
     <style name="activities_paper_key_setup_icon">
-        <item name="android:layout_width">150dp</item>
-        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_width">@dimen/act_paper_key_icon_size</item>
+        <item name="android:layout_height">@dimen/act_paper_key_icon_size</item>
         <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_marginTop">40dp</item>
-        <item name="android:backgroundTint">@color/verge_colorPrimary</item>
+        <item name="android:layout_marginTop">@dimen/act_paper_key_big_marginTop</item>
+        <item name="android:backgroundTint">?vg_primaryLight</item>
         <item name="android:elevation">1dp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
@@ -164,13 +229,23 @@
     <style name="activities_paper_key_description">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:paddingLeft">40dp</item>
-        <item name="android:paddingRight">40dp</item>
+        <item name="android:layout_marginTop">@dimen/act_paper_key_regular_marginTop</item>
+        <item name="android:paddingLeft">@dimen/act_paper_key_desc_padding</item>
+        <item name="android:paddingRight">@dimen/act_paper_key_desc_padding</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/verge_colorBackground</item>
+        <item name="android:textColor">?vg_backgroundBlue</item>
         <item name="android:textSize">@dimen/text_regular_size</item>
     </style>
 
+    <style name="activities_paper_key_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/act_paper_key_regular_marginTop</item>
+        <item name="android:background">?vg_backgroundGrey</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">@dimen/act_paper_key_layout_padding</item>
+        <item name="android:paddingRight">@dimen/act_paper_key_layout_padding</item>
+
+    </style>
 
 </resources>

@@ -22,7 +22,7 @@
         android:paddingVertical="10dp"
         android:text="@string/paperkey_activity_title"
         android:textAlignment="center"
-        android:textColor="@color/verge_colorBackground"
+        android:textColor="?vg_backgroundBlue"
         android:textSize="@dimen/text_smaller_size"
         android:textStyle="bold"
 
@@ -38,14 +38,14 @@
         android:elevation="1dp"
         android:scaleType="fitXY"
         android:src="@drawable/icon_paperkey"
-        android:tint="@color/verge_colorPrimary" />
+        android:tint="?vg_primaryLight" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/paper_key_logo"
         android:layout_marginTop="-56dp"
-        android:background="@color/verge_white"
+        android:background="?vg_backgroundGrey"
         android:gravity="center"
         android:orientation="vertical">
 

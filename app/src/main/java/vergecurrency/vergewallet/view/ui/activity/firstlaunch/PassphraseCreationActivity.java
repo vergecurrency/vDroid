@@ -16,7 +16,7 @@ import androidx.core.widget.ImageViewCompat;
 
 import com.omega_r.libs.OmegaCenterIconButton;
 
-import vergecurrency.vergewallet.BaseActivity;
+import vergecurrency.vergewallet.view.base.BaseActivity;
 import vergecurrency.vergewallet.R;
 
 public class PassphraseCreationActivity extends BaseActivity {

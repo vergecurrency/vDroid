@@ -26,7 +26,7 @@
             android:layout_marginTop="80dp"
             android:scaleType="fitXY"
             android:src="@drawable/icon_done"
-            android:tint="@color/bg_color" />
+            android:tint="?vg_backgroundGrey" />
 
         <TextView
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/wallet_ready"
             android:textAlignment="center"
-            android:textColor="@color/bg_color"
+            android:textColor="?vg_backgroundGrey"
             android:textSize="@dimen/text_regular_size" />
     </LinearLayout>
 

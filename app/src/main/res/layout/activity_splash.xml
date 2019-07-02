@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="@string/splash_title"
             android:textAlignment="center"
-            android:textColor="@color/verge_colorBackground"
+            android:textColor="?vg_backgroundBlue"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
             android:paddingBottom="60dp"
             android:text="@string/splash_slogan"
             android:textAlignment="center"
-            android:textColor="@color/verge_colorBackground"
+            android:textColor="?vg_backgroundBlue"
             android:textSize="@dimen/text_title_size"
             android:textStyle="italic" />
 
@@ -65,7 +65,7 @@
             android:paddingBottom="10dp"
             android:text="@string/splash_sub"
             android:textAlignment="center"
-            android:textColor="@color/verge_colorBackground"
+            android:textColor="?vg_backgroundBlue"
             android:textSize="@dimen/text_regular_size" />
 
     </RelativeLayout>

@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
-import vergecurrency.vergewallet.BaseActivity;
+import vergecurrency.vergewallet.view.base.BaseActivity;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.viewmodel.PaperkeyDistributionViewModel;
 
