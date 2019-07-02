@@ -33,7 +33,6 @@ public class FragmentTransactionsPageView extends Fragment {
 			rootView = inflater.inflate(R.layout.fragment_pageview_transactions, container, false);
 			ListView transactionList = rootView.findViewById(R.id.transactions_listview);
 			transactionList.setAdapter(new TransactionsAdapter(this.getContext(), mViewModel.getTransactionsList(), false));
-			transactionList.setDivider(null);
 		}
 
 		return rootView;
