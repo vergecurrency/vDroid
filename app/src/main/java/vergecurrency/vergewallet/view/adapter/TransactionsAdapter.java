@@ -28,6 +28,7 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
     Context context;
     ArrayList<Transaction> transactions;
     LayoutInflater inflater;
+    private boolean appendListHeader;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
 
 
@@ -37,12 +38,13 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
      * @param context the application context
      * @param txs     the transactions list we need to display
      */
-    public TransactionsAdapter(@NonNull Context context, ArrayList<Transaction> txs) {
+    public TransactionsAdapter(@NonNull Context context, ArrayList<Transaction> txs, boolean appendListHeader) {
         super(context, R.layout.listview_item_transaction, new ArrayList<>());
-        super.addAll(toTransactionItemList(txs));
+        this.appendListHeader = appendListHeader;
         this.context = context;
         this.transactions = txs;
         this.inflater = LayoutInflater.from(context);
+        super.addAll(toTransactionItemList(txs));
     }
 
     @Override
@@ -68,10 +70,10 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
         Collections.sort(txs, Transaction.TimeComparatorDESC);
         txs.forEach(tx -> {
             //If tx isn't the last transaction
-            if (txs.indexOf(tx) != txs.size() - 1) {
+            if (txs.indexOf(tx) != txs.size() - 1 && appendListHeader) {
                 Transaction nextTx = txs.get(txs.indexOf(tx) + 1);
                 //If current and next transaction having not the same date
-                if (nextTx != null && isSameDate(tx, nextTx) != 0) {
+                if (txs.indexOf(tx) != txs.size() - 1 && nextTx != null && isSameDate(tx, nextTx) != 0) {
                     transactionItems.add(new TransactionHeaderItem(this.convertToLocalDateViaMilisecond(tx.getTime() * 1000).format(formatter)));
                 }
             }
