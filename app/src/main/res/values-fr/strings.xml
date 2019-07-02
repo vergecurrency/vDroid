@@ -138,5 +138,7 @@
     <string name="wallet_view_balance_label">XVG BALANCE</string>
     <string name="paperkey_view_next">Next</string>
     <string name="paperkey_view_done">Done</string>
+    <string name="splash_alpha_notice">This wallet is in alpha version for development and testing purposes. Do not deposit any funds on it.</string>
+    <string name="title_change_theme">Changer de thème</string>
 
 </resources>

@@ -7,14 +7,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import vergecurrency.vergewallet.helpers.utils.LanguagesUtils;
-import vergecurrency.vergewallet.helpers.utils.ThemeUtils;
+import vergecurrency.vergewallet.helpers.utils.UIUtils;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 
 public class BaseActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		ThemeUtils.setTheme(PreferencesManager.getCurrentTheme(),this,false);
+		UIUtils.setTheme(PreferencesManager.getCurrentTheme(),this,false);
 		super.onCreate(savedInstanceState);
 	}
 

@@ -14,10 +14,11 @@
         android:orientation="vertical">
 
         <TextView
+
             android:id="@+id/wallet_card_verge_balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="1dp"
+            android:paddingTop="@dimen/fragment_title_paddingTop"
             android:text="200.00 XVG"
             android:textColor="?attr/vg_whiteGeneral"
             android:textSize="@dimen/text_balance_size"
@@ -40,22 +41,22 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="20dp"
-                android:paddingHorizontal="36dp">
+                android:paddingHorizontal="36dp"
+                android:paddingTop="20dp">
 
                 <TextView
+                    android:id="@+id/wallet_card_fiat_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/wallet_card_fiat_balance"
                     android:textColor="?vg_whiteGeneral"
                     android:textSize="@dimen/text_subtitle_size" />
 
                 <TextView
+                    android:id="@+id/wallet_card_balance_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/wallet_card_balance_label"
-                    android:textSize="12sp"
-                    android:textColor="?vg_whiteGeneral" />
+                    android:textColor="?vg_whiteGeneral"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -63,13 +64,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="20dp"
-                android:paddingHorizontal="40dp">
+                android:paddingHorizontal="40dp"
+                android:paddingTop="20dp">
 
                 <TextView
+                    android:id="@+id/wallet_card_change"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/wallet_card_change"
                     android:textColor="?vg_whiteGeneral"
                     android:textSize="@dimen/text_subtitle_size" />
 
@@ -77,8 +78,8 @@
                     android:id="@+id/wallet_card_change_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="?vg_whiteGeneral" />
+                    android:textColor="?vg_whiteGeneral"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -92,9 +93,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="-40dp"
         android:layout_marginRight="20dp"
-        android:padding="2dp"
         android:background="@drawable/form_rounded_white_rect"
-        android:fillViewport="true" />
+        android:fillViewport="true"
+        android:padding="2dp" />
 
 </LinearLayout>
 

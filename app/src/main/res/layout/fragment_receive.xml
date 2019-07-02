@@ -6,8 +6,14 @@
     android:background="?vg_backgroundGrey"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/wallet_receive_title"
+        android:text="@string/title_receive"
+        style="@style/fragment_title" />
+
     <RelativeLayout
         android:id="@+id/wallet_receive_card_layout"
+        android:layout_below="@id/wallet_receive_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -122,7 +128,7 @@
         android:id="@+id/receive_button_share"
         style="@style/blue_button"
         android:drawableStart="@drawable/icon_send"
-        android:drawableTint="?vg_backgroundGrey"
+        android:drawableTint="?vg_whiteGeneral"
         android:text="@string/send_view_share" />
 
 

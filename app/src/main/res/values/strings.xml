@@ -36,8 +36,9 @@
 
     //Splash screen texts
     <string name="splash_title">Verge Android wallet</string>
+    <string name="splash_alpha_notice">This wallet is in alpha version for development and testing purposes. Do not deposit any funds on it.</string>
     <string name="splash_slogan">Privacy is our standard.</string>
-    <string name="splash_sub">Starting…</string>
+    <string name="splash_sub">Alpha version 0.1.5 - Development use only</string>
 
     //Tor settings activity
     <string name="tor_settings_title">Tor is here for your privacy and hides your location</string>

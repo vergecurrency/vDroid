@@ -1,11 +1,13 @@
 package vergecurrency.vergewallet.view.ui.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import vergecurrency.vergewallet.view.base.BaseActivity;
 import vergecurrency.vergewallet.R;
@@ -31,11 +33,10 @@ public class SplashActivity extends BaseActivity {
 
 		//gets the holy preferences
 
-
 		setContentView(R.layout.activity_splash);
 
 		//Just to have the splash screen going briefly
-		new Handler().postDelayed(this::startApplication, 500);
+		new Handler().postDelayed(this::startApplication, 5000);
 
 	}
 
@@ -43,18 +44,19 @@ public class SplashActivity extends BaseActivity {
 	public void startApplication() {
 
 		if (PreferencesManager.getFirstLaunch()) {
-			finish();
 			startActivity(new Intent(getApplicationContext(), FirstLaunchActivity.class));
+			finish();
 		} else {
 			try {
 				WalletManager.startWallet();
 			} catch (Exception e) {
 				Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
 			}
-			finish();
 			startActivity(new Intent(getApplicationContext(), WalletActivity.class));
+			finish();
 		}
 	}
+
 
 	@Override
 	public void onBackPressed() {

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.utils.LanguagesUtils;
+import vergecurrency.vergewallet.helpers.utils.UIUtils;
 import vergecurrency.vergewallet.service.model.Language;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 
@@ -42,18 +43,12 @@ public class LanguagesAdapter extends ArrayAdapter<Language> implements View.OnC
 			Toast.makeText(v.getContext(), "Language chosen : " + lang.getName(), Toast.LENGTH_SHORT).show();
 			PreferencesManager.setCurrentLanguage(lang.getLanguageAsJson());
 			LanguagesUtils.setLocale(getContext(), lang.getLanguageAsJson());
-			//ProcessPhoenix.triggerRebirth(getContext());
-			restart(getContext());
+			UIUtils.restartApplication(getContext());
 		}
 
 	}
 
-	private void restart(Context c) {
-		Intent i = c.getPackageManager()
-				.getLaunchIntentForPackage( c.getPackageName() );
-		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		c.startActivity(i);
-	}
+
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {

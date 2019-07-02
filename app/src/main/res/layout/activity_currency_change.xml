@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/mTextMessage"
+        android:id="@+id/wallet_receive_title"
         android:text="@string/title_fiat_currency"
         style="@style/activities_title_top"
         />
