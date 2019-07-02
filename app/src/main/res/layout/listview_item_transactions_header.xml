@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/listview_item_transactions_header"
-    android:background="@color/verge_realWhite">
+    android:backgroundTint="?attr/vg_backgroundBlue">
     <TextView
         android:id="@+id/listview_transactions_header_title"
         android:layout_width="match_parent"
         android:layout_height="28dp"
         android:textStyle="bold"
-        android:backgroundTint="@color/verge_realWhite"
+        android:backgroundTint="?attr/vg_backgroundBlue"
         android:textSize="@dimen/text_smaller_size"
-        android:textColor="@color/verge_colorAccent"
+        android:textColor="?attr/vg_primaryDark"
         android:paddingBottom="5dp"
         android:paddingLeft="5dp"
         android:gravity="bottom"/>
