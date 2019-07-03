@@ -113,10 +113,21 @@
         <item name="android:background">@drawable/form_rounded_white_rect</item>
         <item name="android:backgroundTint">?vg_primaryLight</item>
         <item name="android:scaleType">fitCenter</item>
-        <item name="android:textColor">?vg_backgroundGrey</item>
+        <item name="android:textColor">?vg_whiteGeneral</item>
         <item name="android:textSize">@dimen/text_regular_size</item>
         <item name="android:layout_alignParentBottom">true</item>
     </style>
+
+    <style name="fragment_title">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/fragment_title_height</item>
+        <item name="android:paddingTop">@dimen/fragment_title_paddingTop</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/text_subtitle_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
 
     <!-- Passphrase activity -->
     <style name="passphrase_check_layout">

@@ -5,25 +5,27 @@
     android:background="?vg_backgroundGrey"
     >
 
+    <TextView
+        android:id="@+id/wallet_send_title"
+        android:text="@string/title_send"
+        style="@style/fragment_title" />
     <ImageView
         android:id="@+id/transaction_background"
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="350dp"
         android:scaleType="fitCenter"
         android:src="@drawable/bg_no_balance">
 
     </ImageView>
 
     <TextView
+        android:layout_below="@id/transaction_background"
         android:id="@+id/mTransactionsMessageMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="144dp"
-        android:padding="12dip"
+        android:padding="12dp"
         android:textAlignment="center"
         android:text="@string/send_message_main"
         android:textSize="@dimen/text_regular_size"
@@ -31,12 +33,12 @@
 
     <TextView
         android:id="@+id/mTransactionsMessageSub"
+        android:layout_below="@id/mTransactionsMessageMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="104dp"
         android:padding="12dp"
         android:textAlignment="center"
         android:text="@string/send_message_sub"

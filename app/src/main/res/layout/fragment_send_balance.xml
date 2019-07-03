@@ -5,7 +5,13 @@
     android:background="?vg_backgroundGrey"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/wallet_send_title"
+        android:text="@string/title_send"
+        style="@style/fragment_title" />
+
     <ImageView
+        android:layout_below="@id/wallet_send_title"
         android:id="@+id/transaction_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

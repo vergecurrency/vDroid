@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.helpers.utils.ThemeUtils;
+import vergecurrency.vergewallet.helpers.utils.UIUtils;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
 
 public class ThemesAdapter extends ArrayAdapter<String> implements View.OnClickListener {
@@ -38,7 +38,8 @@ public class ThemesAdapter extends ArrayAdapter<String> implements View.OnClickL
 			Toast.makeText(v.getContext(), "Theme switched to " + theme, Toast.LENGTH_SHORT).show();
 			PreferencesManager.setCurrentTheme(theme);
 
-			ThemeUtils.setTheme(theme, getContext(), true);
+			UIUtils.setTheme(theme, getContext(), true);
+			UIUtils.restartApplication(getContext());
 		}
 	}
 

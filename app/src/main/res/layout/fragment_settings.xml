@@ -10,9 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-
         >
-
+        <TextView
+            android:id="@+id/wallet_settings_title"
+            android:text="@string/title_settings"
+            style="@style/fragment_title" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/settings_list_wallet"
             android:layout_width="match_parent"

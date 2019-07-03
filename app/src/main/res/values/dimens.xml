@@ -23,6 +23,10 @@
     <!--Standard activities-->
     <dimen name="activities_title_padding">40dp</dimen>
     <dimen name="activities_title_margin_top">20dp</dimen>
+
+    <!-- Fragments -->
+    <dimen name="fragment_title_height">40dp</dimen>
+    <dimen name="fragment_title_paddingTop">7dp</dimen>
     <!--Settings activities-->
     <dimen name="act_title_extended_padding_top">100dp</dimen>
     <dimen name="act_settings_img_height">190dp</dimen>
