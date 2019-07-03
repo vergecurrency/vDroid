@@ -61,6 +61,7 @@
             android:paddingRight="8dp"
             android:textAlignment="viewEnd"
             android:textColor="?vg_primaryDark"
+            android:textStyle="bold"
             android:textSize="@dimen/text_smaller_size" />
 
 
