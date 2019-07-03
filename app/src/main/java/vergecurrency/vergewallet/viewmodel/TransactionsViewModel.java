@@ -27,7 +27,6 @@ public class TransactionsViewModel extends AndroidViewModel {
 		super(application);
 	}
 
-
 	public ArrayList<Transaction> getTransactionsList() {
 
 		JSONParser parser = new JSONParser();
@@ -39,8 +38,8 @@ public class TransactionsViewModel extends AndroidViewModel {
 			JSONArray transactionsListJSON = (JSONArray) jsonObject.get("transactions");
 
 			Transaction[] txsArray = new GsonBuilder().create().fromJson(transactionsListJSON.toJSONString(), Transaction[].class);
-
-			return new ArrayList<>(Arrays.asList(txsArray));
+            ArrayList<Transaction> transactions = new ArrayList<>(Arrays.asList(txsArray));
+			return transactions;
 		} catch (IOException e) {
 			//TODO : Catch Exception properly
 			e.printStackTrace();
