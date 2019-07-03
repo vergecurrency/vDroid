@@ -71,9 +71,6 @@
 
     </style>
 
-    
-    
-    
     <!-- Different items -->
     <style name="activities_title_top">
         <item name="android:layout_width">fill_parent</item>
@@ -81,7 +78,6 @@
         <item name="android:textAlignment">center</item>
         <item name="android:paddingVertical">@dimen/title_regular_margin_top</item>
         <item name="android:textSize">@dimen/text_subtitle_size</item>
-
     </style>
 
 
@@ -128,6 +124,78 @@
     </style>
 
 
+    <!-- Splash & Unexpected close activity -->
+    <style name="splash_verge_logo">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/splash_logo_padding_lr</item>
+        <item name="android:paddingRight">@dimen/splash_logo_padding_lr</item>
+        <item name="android:paddingTop">@dimen/splash_logo_padding_top</item>
+        <item name="android:paddingBottom">@dimen/splash_logo_padding_bottom</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:src">@drawable/logo_verge_white</item>
+    </style>
+
+
+    <style name="splash_verge_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">?vg_whiteGeneral</item>
+        <item name="android:textSize">@dimen/text_title_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="splash_verge_subtitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">?vg_whiteGeneral</item>
+        <item name="android:padding">@dimen/splash_sub_padding</item>
+        <item name="android:textSize">@dimen/text_subtitle_size</item>
+    </style>
+
+    <style name="splash_verge_slogan">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:paddingBottom">60dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">?vg_whiteGeneral</item>
+        <item name="android:textSize">@dimen/text_title_2_size</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="splash_verge_alpha_notice">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">?vg_whiteGeneral</item>
+        <item name="android:textSize">@dimen/text_regular_size</item>
+    </style>
+
+    <style name="splash_verge_button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">fitCenter</item>
+
+    </style>
+
+    <style name="splash_verge_button.up">
+        <item name="android:backgroundTint">?vg_primaryLight</item>
+        <item name="android:textColor">?vg_whiteGeneral</item>
+    </style>
+
+    <style name="splash_verge_button.down">
+        <item name="android:backgroundTint">?vg_whiteGeneral</item>
+        <item name="android:textColor">?vg_primaryDark</item>
+    </style>
 
     <!-- Passphrase activity -->
     <style name="passphrase_check_layout">
@@ -173,7 +241,7 @@
         <item name="android:paddingRight">@dimen/activities_title_padding</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">?vg_primaryDark</item>
-        <item name="android:textSize">@dimen/text_title_size</item>
+        <item name="android:textSize">@dimen/text_title_2_size</item>
     </style>
 
     <style name="activities_settings_title.extended_top_padding">

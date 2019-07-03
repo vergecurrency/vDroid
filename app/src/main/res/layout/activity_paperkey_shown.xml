@@ -61,7 +61,7 @@
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="?vg_primaryDark"
-            android:textSize="@dimen/text_title_size"
+            android:textSize="@dimen/text_title_2_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
