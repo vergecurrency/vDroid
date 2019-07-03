@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.helpers.transaction;
+package vergecurrency.vergewallet.view.ui.components.transaction;
 
 import android.view.LayoutInflater;
 import android.view.View;

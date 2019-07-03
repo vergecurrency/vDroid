@@ -17,10 +17,10 @@ import java.util.Collections;
 import java.util.stream.Collectors;
 
 import vergecurrency.vergewallet.R;
-import vergecurrency.vergewallet.helpers.transaction.TransactionHeaderItem;
-import vergecurrency.vergewallet.helpers.transaction.TransactionItem;
-import vergecurrency.vergewallet.helpers.transaction.TransactionListItem;
-import vergecurrency.vergewallet.helpers.transaction.TransactionRowType;
+import vergecurrency.vergewallet.view.ui.components.transaction.TransactionHeaderItem;
+import vergecurrency.vergewallet.view.ui.components.transaction.TransactionItem;
+import vergecurrency.vergewallet.view.ui.components.transaction.TransactionListItem;
+import vergecurrency.vergewallet.view.ui.components.transaction.TransactionRowType;
 import vergecurrency.vergewallet.service.model.Transaction;
 import vergecurrency.vergewallet.service.model.TransactionFilterOption;
 

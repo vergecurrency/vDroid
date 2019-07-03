@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.helpers.transaction;
+package vergecurrency.vergewallet.view.ui.components.transaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +10,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.zxing.common.StringUtils;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import vergecurrency.vergewallet.R;

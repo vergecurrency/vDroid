@@ -1,13 +1,9 @@
-package vergecurrency.vergewallet.helpers.transaction;
+package vergecurrency.vergewallet.view.ui.components.transaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.google.android.material.snackbar.Snackbar;
-
-import org.w3c.dom.Text;
 
 import vergecurrency.vergewallet.R;
 

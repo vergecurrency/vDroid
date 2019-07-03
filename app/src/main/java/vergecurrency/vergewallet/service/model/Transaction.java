@@ -127,45 +127,10 @@ public class Transaction implements Comparable<Transaction> {
         return 0;
     }
 
-    public static Comparator<Transaction> TimeComparatorASC
-            = (Transaction tx1, Transaction tx2) -> {
-        Long tx1value = tx1.getTime();
-        Long tx2value = tx2.getTime();
-        return tx1value.compareTo(tx2value);
-    };
-
     public static Comparator<Transaction> TimeComparatorDESC
             = (Transaction tx1, Transaction tx2) -> {
         Date tx1value = new Date(tx1.getTime() * 1000);
         Date tx2value = new Date(tx2.getTime() * 1000);
-        return tx2value.compareTo(tx1value);
-    };
-
-    public static Comparator<Transaction> AmountComparatorASC
-            = (Transaction tx1, Transaction tx2) -> {
-        Double tx1value = tx1.getAmount();
-        Double tx2value = tx2.getAmount();
-        return tx1value.compareTo(tx2value);
-    };
-
-    public static Comparator<Transaction> AmountComparatorDESC
-            = (Transaction tx1, Transaction tx2) -> {
-        Double tx1value = tx1.getAmount();
-        Double tx2value = tx2.getAmount();
-        return tx2value.compareTo(tx1value);
-    };
-
-    public static Comparator<Transaction> AddressComparatorASC
-            = (Transaction tx1, Transaction tx2) -> {
-        String tx1value = tx1.getAddress();
-        String tx2value = tx2.getAddress();
-        return tx1value.compareTo(tx2value);
-    };
-
-    public static Comparator<Transaction> AddressComparatorDESC
-            = (Transaction tx1, Transaction tx2) -> {
-        String tx1value = tx1.getAddress();
-        String tx2value = tx2.getAddress();
         return tx2value.compareTo(tx1value);
     };
 }
