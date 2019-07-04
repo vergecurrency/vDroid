@@ -143,6 +143,13 @@
         <item name="android:background">@drawable/radio_right</item>
     </style>
 
+    <style name="pin_icon">
+        <item name="android:layout_width">@dimen/pin_size</item>
+        <item name="android:layout_height">@dimen/pin_size</item>
+        <item name="android:backgroundTint">?vg_primaryLight</item>
+        <item name="android:background">@drawable/icon_circle</item>
+    </style>
+
     <!-- Splash & Unexpected close activity -->
     <style name="splash_verge_logo">
         <item name="android:layout_width">match_parent</item>

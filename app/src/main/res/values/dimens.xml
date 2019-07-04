@@ -16,6 +16,10 @@
     <dimen name="text_smallest_size">12sp</dimen>
 
     <!--Element sizes-->
+
+    <!--Pin icon-->
+    <dimen name="pin_size">40dp</dimen>
+
     <!--all buttons-->
     <dimen name="button_regular_height">50dp</dimen>
     <dimen name="button_wider_height">70dp</dimen>

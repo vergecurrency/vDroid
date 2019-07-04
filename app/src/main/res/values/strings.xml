@@ -142,5 +142,6 @@
     <string name="fragment_transaction_received_filter">Received</string>
     <string name="fragment_transaction_sent_filter">Sent</string>
     <string name="fragment_transaction_all_filter">All</string>
+    <string name="set_wallet_pin_description">Your Wallet PIN will be used to open this app, and to send XVG with. If you forget it, you won\'t be able to access your wallet.</string>
 
 </resources>
