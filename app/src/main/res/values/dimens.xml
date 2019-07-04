@@ -7,7 +7,8 @@
 
     <!--Text sizes-->
     <dimen name="text_balance_size">42sp</dimen>
-    <dimen name="text_title_size">24sp</dimen>
+    <dimen name="text_title_2_size">24sp</dimen>
+    <dimen name="text_title_size">28sp</dimen>
     <dimen name="text_subtitle_size">20sp</dimen>
     <dimen name="text_regular_size">18sp</dimen>
     <dimen name="text_small_size">16sp</dimen>
@@ -17,9 +18,12 @@
     <!--Element sizes-->
     <!--all buttons-->
     <dimen name="button_regular_height">50dp</dimen>
+    <dimen name="button_wider_height">70dp</dimen>
     <dimen name="button_regular_margin">30dp</dimen>
+    <dimen name="button_tight_margin">10dp</dimen>
 
     <dimen name="title_regular_margin_top">10dp</dimen>
+
     <!--Standard activities-->
     <dimen name="activities_title_padding">40dp</dimen>
     <dimen name="activities_title_margin_top">20dp</dimen>
@@ -27,6 +31,13 @@
     <!-- Fragments -->
     <dimen name="fragment_title_height">40dp</dimen>
     <dimen name="fragment_title_paddingTop">7dp</dimen>
+
+    <!-- Slash & unexpected close activity -->
+    <dimen name="splash_logo_padding_lr">90dp</dimen>
+    <dimen name="splash_logo_padding_top">80dp</dimen>
+    <dimen name="splash_logo_padding_bottom">20dp</dimen>
+    <dimen name="splash_sub_padding">20dp</dimen>
+
     <!--Settings activities-->
     <dimen name="act_title_extended_padding_top">100dp</dimen>
     <dimen name="act_settings_img_height">190dp</dimen>

@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.jakewharton.processphoenix.ProcessPhoenix;
-
 import java.util.ArrayList;
 
 import vergecurrency.vergewallet.R;
