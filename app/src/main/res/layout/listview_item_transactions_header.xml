@@ -13,7 +13,7 @@
         android:backgroundTint="?attr/vg_backgroundBlue"
         android:textSize="@dimen/text_smaller_size"
         android:textColor="?attr/vg_primaryDark"
-        android:paddingBottom="5dp"
-        android:paddingLeft="5dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
         android:gravity="bottom"/>
 </LinearLayout>
