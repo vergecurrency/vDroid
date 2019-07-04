@@ -20,9 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
-                android:backgroundTint="?vg_backgroundBlue"
+                android:backgroundTint="?vg_backgroundWhite"
                 android:textSize="@dimen/text_smaller_size"
-                android:textColor="?vg_secondaryLight"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
 
@@ -31,9 +30,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:iconifiedByDefault="false"
-                android:backgroundTint="?vg_backgroundBlue"
-                android:queryBackground="?vg_backgroundBlue"
-                android:background="?vg_backgroundBlue"
+                android:backgroundTint="?vg_backgroundWhite"
+                android:queryBackground="?vg_backgroundWhite"
+                android:background="?vg_backgroundWhite"
                 android:visibility="visible"
                 tools:visibility="visible">
 
