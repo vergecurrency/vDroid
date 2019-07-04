@@ -140,5 +140,8 @@
     <string name="paperkey_view_done">Done</string>
     <string name="splash_alpha_notice">This wallet is in alpha version for development and testing purposes. Do not deposit any funds on it.</string>
     <string name="title_change_theme">Changer de thème</string>
+    <string name="fragment_transaction_all_filter">Tout</string>
+    <string name="fragment_transaction_received_filter">Reçu</string>
+    <string name="fragment_transaction_sent_filter">Envoyé</string>
 
 </resources>

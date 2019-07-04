@@ -18,7 +18,9 @@
     <!--Element sizes-->
     <!--all buttons-->
     <dimen name="button_regular_height">50dp</dimen>
+    <dimen name="button_wider_height">70dp</dimen>
     <dimen name="button_regular_margin">30dp</dimen>
+    <dimen name="button_tight_margin">10dp</dimen>
 
     <dimen name="title_regular_margin_top">10dp</dimen>
 

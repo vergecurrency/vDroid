@@ -65,11 +65,8 @@ dependencies {
     implementation project(':ThaliOnionProxyAndroid-release')
     //Gson
     implementation 'com.google.code.gson:gson:2.8.5'
-    //language switcher
-    implementation 'com.akexorcist:localizationactivity:1.2.2'
-    //easy app reboot
-    implementation 'com.jakewharton:process-phoenix:2.0.0'
-
+    //Nice Radio buttons
+    implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.testng:testng:6.9.6'

@@ -5,31 +5,35 @@
     android:layout_height="match_parent"
     android:background="?vg_backgroundGrey"
     android:orientation="vertical">
+
     <TextView
         android:id="@+id/wallet_transactions_title"
-        android:text="@string/title_transactions"
-        style="@style/fragment_title" />
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/fragment_title"
+        android:text="@string/title_transactions" />
+
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center_horizontal">
-        <SearchView
-            android:id="@+id/search"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:iconifiedByDefault="false"
-            android:visibility="visible"
-            tools:visibility="visible">
 
-            <requestFocus />
-        </SearchView>
+            <SearchView
+                android:id="@+id/search"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:visibility="visible"
+                tools:visibility="visible">
+
+                <requestFocus />
+            </SearchView>
         </LinearLayout>
 
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="50dp"
@@ -39,40 +43,35 @@
                 android:id="@+id/transaction_radio_group"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/view_below"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
 
                 <RadioButton
                     android:id="@+id/transactions_radio_all"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    style="@style/radio_button.left"
                     android:checked="true"
-                    android:text="All" />
+                    android:text="@string/fragment_transaction_all_filter" />
 
                 <RadioButton
                     android:id="@+id/transactions_radio_send"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Sent" />
+                    style="@style/radio_button.center"
+                    android:text="@string/fragment_transaction_sent_filter" />
 
                 <RadioButton
                     android:id="@+id/transactions_radio_receive"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Received" />
+                    style="@style/radio_button.right"
+                    android:text="@string/fragment_transaction_received_filter" />
             </RadioGroup>
         </LinearLayout>
-    <ListView
-        android:id="@+id/transactions_listview"
-        android:layout_marginTop="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?vg_backgroundGrey"
-        android:backgroundTint="?vg_backgroundGrey" />
+
+        <ListView
+            android:id="@+id/transactions_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:background="?vg_backgroundGrey"
+            android:backgroundTint="?vg_backgroundGrey" />
     </RelativeLayout>
 
 </LinearLayout>

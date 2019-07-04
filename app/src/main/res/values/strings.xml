@@ -93,8 +93,6 @@
     <string name="error_uncaught_exception">Verge Android Wallet Unexpected Error</string>
     <string name="error_uncaught_exception_show_report">Show error report</string>
 
-
-
     //Others
     <string name="statistics_pageview_header">Price Statistics</string>
     <string name="charts_pageview_header">History Chart</string>
@@ -141,5 +139,8 @@
     <string name="wallet_view_balance_label">XVG BALANCE</string>
     <string name="paperkey_view_next">Next</string>
     <string name="paperkey_view_done">Done</string>
+    <string name="fragment_transaction_received_filter">Received</string>
+    <string name="fragment_transaction_sent_filter">Sent</string>
+    <string name="fragment_transaction_all_filter">All</string>
 
 </resources>

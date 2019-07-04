@@ -25,11 +25,10 @@ import vergecurrency.vergewallet.service.model.Transaction;
 import vergecurrency.vergewallet.service.model.TransactionFilterOption;
 
 public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
-    Context context;
-    ArrayList<Transaction> transactions;
-    LayoutInflater inflater;
+    private ArrayList<Transaction> transactions;
+    private LayoutInflater inflater;
     private boolean appendListHeader;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
 
 
     /**
@@ -41,7 +40,6 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
     public TransactionsAdapter(@NonNull Context context, ArrayList<Transaction> txs, boolean appendListHeader) {
         super(context, R.layout.listview_item_transaction, new ArrayList<>());
         this.appendListHeader = appendListHeader;
-        this.context = context;
         this.transactions = txs;
         this.inflater = LayoutInflater.from(context);
         super.addAll(toTransactionItemList(txs));
@@ -66,7 +64,7 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
 
 
     private ArrayList<TransactionItem> toTransactionItemList(ArrayList<Transaction> txs) {
-        ArrayList<TransactionItem> transactionItems = new ArrayList();
+        ArrayList<TransactionItem> transactionItems = new ArrayList<>();
         Collections.sort(txs, Transaction.TimeComparatorDESC);
         txs.forEach(tx -> {
             //If tx isn't the last transaction
@@ -74,7 +72,7 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
                 Transaction nextTx = txs.get(txs.indexOf(tx) + 1);
                 //If current and next transaction having not the same date
                 if (txs.indexOf(tx) != txs.size() - 1 && nextTx != null && isSameDate(tx, nextTx) != 0) {
-                    transactionItems.add(new TransactionHeaderItem(this.convertToLocalDateViaMilisecond(tx.getTime() * 1000).format(formatter)));
+                    transactionItems.add(new TransactionHeaderItem(this.convertToLocalDateViaMillisecond(tx.getTime() * 1000).format(formatter)));
                 }
             }
             transactionItems.add(new TransactionListItem(tx));
@@ -84,7 +82,7 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
 
     public void filter(String charText, TransactionFilterOption filterOption) {
         clear();
-        ArrayList filteredTransactions = filterByOption(this.transactions, filterOption);
+        ArrayList<Transaction> filteredTransactions = filterByOption(this.transactions, filterOption);
         this.transactions.forEach(tx -> {
             if (!this.currentTextFilterMatch(tx, charText)) {
                 filteredTransactions.remove(tx);
@@ -95,27 +93,27 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
     }
 
     private boolean currentTextFilterMatch(Transaction tx, String charText) {
-        return tx.getAddress().toLowerCase().contains(charText.toLowerCase()) || new Double(tx.getAmount()).toString().toLowerCase().contains(charText.toLowerCase());
+        return tx.getAddress().toLowerCase().contains(charText.toLowerCase()) || Double.toString(tx.getAmount()).toLowerCase().contains(charText.toLowerCase());
     }
 
-    private LocalDate convertToLocalDateViaMilisecond(long time) {
+    private LocalDate convertToLocalDateViaMillisecond(long time) {
         return Instant.ofEpochMilli(time).atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     private ArrayList<Transaction> filterByOption(ArrayList<Transaction> txs, TransactionFilterOption filterOption) {
         switch (filterOption) {
             case RECEIVE:
-                return new ArrayList<Transaction>(txs.stream().filter(tx -> tx.isReceive()).collect(Collectors.toList()));
+                return txs.stream().filter(Transaction::isReceive).collect(Collectors.toCollection(ArrayList::new));
             case SEND:
-                return new ArrayList<Transaction>(txs.stream().filter(tx -> tx.isSend()).collect(Collectors.toList()));
+                return txs.stream().filter(Transaction::isSend).collect(Collectors.toCollection(ArrayList::new));
             default:
-                return new ArrayList<Transaction>(txs);
+                return new ArrayList<>(txs);
         }
     }
 
     private int isSameDate(Transaction tx1, Transaction tx2) {
-        LocalDate firstDate = this.convertToLocalDateViaMilisecond(tx1.getTime() * 1000);
-        LocalDate secondDate = this.convertToLocalDateViaMilisecond(tx2.getTime() * 1000);
+        LocalDate firstDate = this.convertToLocalDateViaMillisecond(tx1.getTime() * 1000);
+        LocalDate secondDate = this.convertToLocalDateViaMillisecond(tx2.getTime() * 1000);
         return firstDate.compareTo(secondDate);
     }
 }
