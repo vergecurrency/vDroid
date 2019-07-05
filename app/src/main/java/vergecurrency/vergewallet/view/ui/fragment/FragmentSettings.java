@@ -22,6 +22,7 @@ import vergecurrency.vergewallet.view.ui.activity.settings.ChooseThemeActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.DisconnectActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.DonateActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.PaperkeyActivity;
+import vergecurrency.vergewallet.view.ui.activity.settings.SetPinActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.TorSettingsActivity;
 
 public class FragmentSettings extends BaseFragment {
@@ -60,7 +61,7 @@ public class FragmentSettings extends BaseFragment {
 				new SettingsListViewData("Change Currency", R.drawable.icon_currency_exchange, v -> startActivity(new Intent(v.getContext(), ChooseCurrencyActivity.class))),
 				new SettingsListViewData("Change Language", R.drawable.icon_home, v -> startActivity(new Intent(v.getContext(), ChooseLanguageActivity.class))),
 				new SettingsListViewData("Change Theme", R.drawable.icon_theme, v -> startActivity(new Intent(v.getContext(), ChooseThemeActivity.class))),
-				new SettingsListViewData("Change wallet PIN", R.drawable.icon_lock, null),
+				new SettingsListViewData("Change wallet PIN", R.drawable.icon_lock, v -> startActivity(new Intent(v.getContext(), SetPinActivity.class))),
 				new SettingsListViewData("Use fingerprint", R.drawable.icon_fingerprint, null),
 				new SettingsListViewData("Tor connection", R.drawable.icon_onion, v -> startActivity(new Intent(v.getContext(), TorSettingsActivity.class)))
 		};

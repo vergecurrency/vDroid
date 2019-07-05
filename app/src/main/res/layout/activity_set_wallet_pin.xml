@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?vg_backgroundWhite">
+    android:background="?vg_backgroundGrey">
+
+        <ImageView
+            android:id="@+id/paperkey_shown_close_button"
+            style="@style/closebutton"
+            android:tint="?vg_primaryDark"/>
+
 
     <TextView
         android:id="@+id/pin_lock_title"
         style="@style/activities_title_top"
+        android:textColor="?vg_primaryDark"
+        android:textSize="@dimen/text_subtitle_size"
         android:text="@string/pinlock_title" />
 
     <TextView
@@ -21,19 +30,17 @@
         android:id="@+id/pin_digits_filled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:padding="60dp"
         android:layout_below="@id/pin_lock_description"
         android:columnCount="6"
-        android:paddingStart="50dp"
-        android:paddingTop="30dp"
-        android:paddingEnd="50dp"
-        android:paddingBottom="30dp"
         android:rowCount="1">
 
 
         <ImageView
             android:id="@+id/pin_one"
-            style="@style/pin_icon"
-            />
+            style="@style/pin_icon" />
 
         <ImageView
             android:id="@+id/pin_two"
@@ -57,22 +64,27 @@
 
     </GridLayout>
 
-
-
-    <GridLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:rowCount="4"
-        android:columnCount="3"
+        android:layout_height="match_parent"
         android:layout_below="@id/pin_digits_filled"
         android:layout_alignParentBottom="true"
-        android:layout_margin="30dp"
-        android:background="@drawable/form_rounded_rect"
-        >
+        android:layout_margin="40dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="?vg_backgroundWhite"
+        app:cardElevation="2dp">
 
+        <com.davidmiguel.numberkeyboard.NumberKeyboard
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/form_pin_rect"
+            android:elevation="10dp"
 
+            app:numberkeyboard_keyboardType="fingerprint"
+            app:numberkeyboard_numberKeyBackground="?vg_backgroundWhite"
+            app:numberkeyboard_numberKeyTextColor="?vg_primaryDark" />
 
-
-    </GridLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
