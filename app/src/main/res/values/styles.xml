@@ -148,6 +148,8 @@
         <item name="android:layout_height">@dimen/pin_size</item>
         <item name="android:backgroundTint">?vg_primaryLight</item>
         <item name="android:background">@drawable/icon_circle</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_columnWeight">1</item>
     </style>
 
     <!-- Splash & Unexpected close activity -->
