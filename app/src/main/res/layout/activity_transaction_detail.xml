@@ -1,17 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/listview_transaction_id"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="?vg_backgroundGrey"
-    android:orientation="horizontal">
+    android:background="?vg_backgroundGrey"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/transaction_detail_close_button"
+        style="@style/closebutton"
+        android:tint="?vg_primaryDark"/>
+
+    <TextView
+        android:id="@+id/pin_lock_title"
+        style="@style/activities_title_top"
+        android:textColor="?vg_primaryDark"
+        android:textSize="@dimen/text_subtitle_size"
+        android:text="Transaction Deatil" />
+
+    <TextView
+        android:id="@+id/transaction_time"
+        style="@style/activities_settings_title"
+        android:textColor="?vg_primaryDark"
+        android:text="18 June 2019 at 11:33"
+        android:textSize="10sp" />
+
+
+    <ImageView
+        android:id="@+id/tor_settings_header"
+        style="@style/activities_settings_image_header"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_below="@+id/tor_settings_title"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/icon_receive" />
 
     <LinearLayout
         android:id="@+id/listview_transaction_item"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:backgroundTint="?vg_backgroundGrey"
+        android:textColor="?vg_primaryDark"
         android:orientation="horizontal"
+        android:layout_marginTop="300dp"
         android:paddingTop="8dp">
 
         <ImageView
@@ -21,24 +51,25 @@
             android:adjustViewBounds="true"
             android:backgroundTint="?vg_backgroundGrey"
             android:padding="5dp"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            app:srcCompat="@android:drawable/presence_invisible" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
-            android:backgroundTint="?vg_backgroundGrey"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/listview_transaction_item_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:backgroundTint="?vg_backgroundGrey"
                 android:gravity="center_vertical"
                 android:textColor="?vg_primaryDark"
-                android:textSize="@dimen/text_smaller_size" />
+                android:textSize="@dimen/text_smaller_size"
+                android:textStyle="bold"
+                tools:text="Address" />
 
             <TextView
                 android:id="@+id/listview_transaction_item_datetime"
@@ -47,7 +78,8 @@
                 android:backgroundTint="?vg_backgroundGrey"
                 android:gravity="bottom"
                 android:textColor="?vg_primaryDark"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                tools:text="@string/donate_donation_address" />
 
         </LinearLayout>
 
@@ -61,9 +93,9 @@
             android:paddingRight="8dp"
             android:textAlignment="viewEnd"
             android:textColor="?vg_primaryDark"
-            android:textStyle="bold"
-            android:textSize="@dimen/text_smaller_size" />
+            android:textSize="@dimen/text_smaller_size"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

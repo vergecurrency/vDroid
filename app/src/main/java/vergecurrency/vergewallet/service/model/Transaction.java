@@ -1,9 +1,10 @@
 package vergecurrency.vergewallet.service.model;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Date;
 
-public class Transaction implements Comparable<Transaction> {
+public class Transaction implements Comparable<Transaction>, Serializable {
 
     private String txid;
     private String vout;
