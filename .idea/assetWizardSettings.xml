@@ -136,7 +136,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/home/cabrasm/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_color_lens_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/home/cabrasm/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_fiber_manual_record_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -146,7 +146,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="icon_theme" />
+                            <entry key="outputName" value="icon_circle" />
                             <entry key="sourceFile" value="$USER_HOME$" />
                           </map>
                         </option>

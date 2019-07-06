@@ -65,8 +65,8 @@ dependencies {
     implementation project(':ThaliOnionProxyAndroid-release')
     //Gson
     implementation 'com.google.code.gson:gson:2.8.5'
-    //Nice Radio buttons
-    implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
+    //keypad library
+    implementation 'com.github.davidmigloz:number-keyboard:3.0.0'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.testng:testng:6.9.6'
