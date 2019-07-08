@@ -21,10 +21,11 @@ import vergecurrency.vergewallet.service.model.Transaction;
 import vergecurrency.vergewallet.view.ui.activity.TransactionDetailActivity;
 import vergecurrency.vergewallet.view.ui.activity.error.ErrorRecoveryActivity;
 
+import static vergecurrency.vergewallet.helpers.utils.TransactionUtils.DATE_FORMATTER;
+import static vergecurrency.vergewallet.helpers.utils.TransactionUtils.EXTRA_TRANSACTION;
+import static vergecurrency.vergewallet.helpers.utils.TransactionUtils.TIME_FORMATTER;
+
 public class TransactionListItem implements TransactionItem, View.OnClickListener {
-    private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd LLLL yyyy");
-    private static final SimpleDateFormat TIME_FORMATTER = new SimpleDateFormat("HH:mm");
-    public static final String EXTRA_TRANSACTION = "transaction";
     private final Transaction tx;
 
     public TransactionListItem(Transaction transaction) {
