@@ -6,23 +6,25 @@
     android:layout_height="match_parent"
     android:background="?vg_backgroundGrey"
     android:orientation="vertical">
+
     <ImageView
         android:id="@+id/transaction_detail_close_button"
         style="@style/closebutton"
-        android:tint="?vg_primaryDark"/>
+        android:tint="?vg_primaryDark" />
 
     <TextView
         android:id="@+id/pin_lock_title"
         style="@style/activities_title_top"
+        android:text="Transaction Deatil"
         android:textColor="?vg_primaryDark"
-        android:textSize="@dimen/text_subtitle_size"
-        android:text="Transaction Deatil" />
+        android:textSize="@dimen/text_subtitle_size" />
 
     <TextView
         android:id="@+id/transaction_time"
         style="@style/activities_settings_title"
-        android:textColor="?vg_primaryDark"
+        android:layout_marginTop="50dp"
         android:text="18 June 2019 at 11:33"
+        android:textColor="?vg_primaryDark"
         android:textSize="10sp" />
 
 
@@ -30,19 +32,49 @@
         android:id="@+id/tor_settings_header"
         style="@style/activities_settings_image_header"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="60dp"
         android:layout_below="@+id/tor_settings_title"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
         android:src="@drawable/icon_receive" />
+
+    <TextView
+        android:id="@+id/transaction_address_short"
+        style="@style/activities_settings_title"
+        android:layout_marginTop="160dp"
+        android:text="MaMboNr1***"
+        android:textColor="?vg_primaryDark"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/transaction_amount"
+        style="@style/activities_settings_title"
+        android:layout_marginTop="190dp"
+        android:text="+ 200032, 567312 XVG"
+        android:textColor="?vg_primaryDark"
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/listview_header_title"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="280dp"
+        android:backgroundTint="?vg_backgroundBlue"
+        android:gravity="bottom"
+        android:paddingLeft="15dp"
+        android:paddingBottom="5dp"
+        android:text="Transaction Detail"
+        android:textColor="?vg_secondaryLight"
+        android:textSize="@dimen/text_smaller_size" />
 
     <LinearLayout
         android:id="@+id/listview_transaction_item"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:textColor="?vg_primaryDark"
-        android:orientation="horizontal"
         android:layout_marginTop="300dp"
-        android:paddingTop="8dp">
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:textColor="?vg_primaryDark">
 
         <ImageView
             android:id="@+id/listview_transaction_item_icon"
@@ -95,7 +127,204 @@
             android:textColor="?vg_primaryDark"
             android:textSize="@dimen/text_smaller_size"
             android:textStyle="bold" />
-
-
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/listview_transaction_item"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="345dp"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:textColor="?vg_primaryDark">
+
+        <ImageView
+            android:id="@+id/listview_transaction_item_icon"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:backgroundTint="?vg_backgroundGrey"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@android:drawable/presence_invisible" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/listview_transaction_item_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?vg_backgroundGrey"
+                android:gravity="center_vertical"
+                android:textColor="?vg_primaryDark"
+                android:textSize="@dimen/text_smaller_size"
+                android:textStyle="bold"
+                tools:text="Confirmations" />
+
+            <TextView
+                android:id="@+id/listview_transaction_item_datetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?vg_backgroundGrey"
+                android:gravity="bottom"
+                android:textColor="?vg_primaryDark"
+                android:textSize="12sp"
+                tools:text="77" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/listview_transaction_item_amount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:backgroundTint="?vg_backgroundGrey"
+            android:gravity="end"
+            android:paddingRight="8dp"
+            android:textAlignment="viewEnd"
+            android:textColor="?vg_primaryDark"
+            android:textSize="@dimen/text_smaller_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/listview_transaction_item"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="390dp"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:textColor="?vg_primaryDark">
+
+        <ImageView
+            android:id="@+id/listview_transaction_item_icon"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:backgroundTint="?vg_backgroundGrey"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@android:drawable/presence_invisible" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/listview_transaction_item_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?vg_backgroundGrey"
+                android:gravity="center_vertical"
+                android:textColor="?vg_primaryDark"
+                android:textSize="@dimen/text_smaller_size"
+                android:textStyle="bold"
+                tools:text="Transaction ID" />
+
+            <TextView
+                android:id="@+id/listview_transaction_item_datetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?vg_backgroundGrey"
+                android:gravity="bottom"
+                android:textColor="?vg_primaryDark"
+                android:textSize="12sp"
+                tools:text="MaMboNr1+qVDUDVWAU" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/listview_transaction_item_amount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:backgroundTint="?vg_backgroundGrey"
+            android:gravity="end"
+            android:paddingRight="8dp"
+            android:textAlignment="viewEnd"
+            android:textColor="?vg_primaryDark"
+            android:textSize="@dimen/text_smaller_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/listview_transaction_item"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="435dp"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:textColor="?vg_primaryDark">
+
+        <ImageView
+            android:id="@+id/listview_transaction_item_icon"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:backgroundTint="?vg_backgroundGrey"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@android:drawable/presence_invisible" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/listview_transaction_item_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?vg_backgroundGrey"
+                android:gravity="center_vertical"
+                android:textColor="?vg_primaryDark"
+                android:textSize="@dimen/text_smaller_size"
+                android:textStyle="bold"
+                tools:text="Message" />
+
+            <TextView
+                android:id="@+id/listview_transaction_item_datetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?vg_backgroundGrey"
+                android:gravity="bottom"
+                android:textColor="?vg_primaryDark"
+                android:textSize="12sp"
+                tools:text="Festival beer" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/listview_transaction_item_amount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:backgroundTint="?vg_backgroundGrey"
+            android:gravity="end"
+            android:paddingRight="8dp"
+            android:textAlignment="viewEnd"
+            android:textColor="?vg_primaryDark"
+            android:textSize="@dimen/text_smaller_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/listview_header_title"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="520dp"
+        android:backgroundTint="?vg_backgroundBlue"
+        android:gravity="bottom"
+        android:paddingLeft="15dp"
+        android:paddingBottom="5dp"
+        android:text="Transaction History"
+        android:textColor="?vg_secondaryLight"
+        android:textSize="@dimen/text_smaller_size" />
 </RelativeLayout>
