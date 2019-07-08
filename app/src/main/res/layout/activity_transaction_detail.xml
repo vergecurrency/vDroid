@@ -13,14 +13,14 @@
         android:tint="?vg_primaryDark" />
 
     <TextView
-        android:id="@+id/pin_lock_title"
+        android:id="@+id/transaction_detail_title"
         style="@style/activities_title_top"
         android:text="Transaction Deatil"
         android:textColor="?vg_primaryDark"
         android:textSize="@dimen/text_subtitle_size" />
 
     <TextView
-        android:id="@+id/transaction_time"
+        android:id="@+id/transaction_detail_time"
         style="@style/activities_settings_title"
         android:layout_marginTop="50dp"
         android:text="18 June 2019 at 11:33"
@@ -29,36 +29,36 @@
 
 
     <ImageView
-        android:id="@+id/tor_settings_header"
+        android:id="@+id/transaction_detail_icon"
         style="@style/activities_settings_image_header"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_below="@+id/tor_settings_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:src="@drawable/icon_receive" />
 
     <TextView
-        android:id="@+id/transaction_address_short"
+        android:id="@+id/transaction_detail_address_short"
         style="@style/activities_settings_title"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="140dp"
         android:text="MaMboNr1***"
         android:textColor="?vg_primaryDark"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/transaction_amount"
+        android:id="@+id/transaction_detail_amount"
         style="@style/activities_settings_title"
-        android:layout_marginTop="190dp"
-        android:text="+ 200032, 567312 XVG"
+        android:layout_marginTop="180dp"
+        android:text="+ 2000003121200,567312 XVG"
         android:textColor="?vg_primaryDark"
         android:textSize="28sp" />
 
     <TextView
-        android:id="@+id/listview_header_title"
+        android:id="@+id/transaction_detail_detail_title"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="280dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="330dp"
         android:backgroundTint="?vg_backgroundBlue"
         android:gravity="bottom"
         android:paddingLeft="15dp"
@@ -68,16 +68,16 @@
         android:textSize="@dimen/text_smaller_size" />
 
     <LinearLayout
-        android:id="@+id/listview_transaction_item"
+        android:id="@+id/transaction_detail_address_item"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="350dp"
         android:orientation="horizontal"
         android:paddingTop="8dp"
         android:textColor="?vg_primaryDark">
 
         <ImageView
-            android:id="@+id/listview_transaction_item_icon"
+            android:id="@+id/transaction_detail_address_item_icon"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -93,7 +93,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/listview_transaction_item_address"
+                android:id="@+id/transaction_detail_address_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?vg_backgroundGrey"
@@ -104,7 +104,7 @@
                 tools:text="Address" />
 
             <TextView
-                android:id="@+id/listview_transaction_item_datetime"
+                android:id="@+id/transaction_detail_address_item_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?vg_backgroundGrey"
@@ -116,7 +116,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/listview_transaction_item_amount"
+            android:id="@+id/transaction_detail_address_item_extra"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
@@ -130,16 +130,16 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/listview_transaction_item"
+        android:id="@+id/transaction_detail_confirmations_item"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="345dp"
+        android:layout_marginTop="395dp"
         android:orientation="horizontal"
         android:paddingTop="8dp"
         android:textColor="?vg_primaryDark">
 
         <ImageView
-            android:id="@+id/listview_transaction_item_icon"
+            android:id="@+id/transaction_detail_confirmations_item_icon"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -155,7 +155,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/listview_transaction_item_address"
+                android:id="@+id/transaction_detail_confirmations_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?vg_backgroundGrey"
@@ -166,7 +166,7 @@
                 tools:text="Confirmations" />
 
             <TextView
-                android:id="@+id/listview_transaction_item_datetime"
+                android:id="@+id/transaction_detail_confirmations_item_confirmations"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?vg_backgroundGrey"
@@ -178,7 +178,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/listview_transaction_item_amount"
+            android:id="@+id/transaction_detail_confirmations_item_extra"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
@@ -192,16 +192,16 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/listview_transaction_item"
+        android:id="@+id/transaction_detail_txid_item"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="440dp"
         android:orientation="horizontal"
         android:paddingTop="8dp"
         android:textColor="?vg_primaryDark">
 
         <ImageView
-            android:id="@+id/listview_transaction_item_icon"
+            android:id="@+id/transaction_detail_txid_item_icon"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -217,7 +217,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/listview_transaction_item_address"
+                android:id="@+id/transaction_detail_txid_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?vg_backgroundGrey"
@@ -228,7 +228,7 @@
                 tools:text="Transaction ID" />
 
             <TextView
-                android:id="@+id/listview_transaction_item_datetime"
+                android:id="@+id/transaction_detail_txid_item_txid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?vg_backgroundGrey"
@@ -240,7 +240,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/listview_transaction_item_amount"
+            android:id="@+id/transaction_detail_txid_item_extra"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
@@ -254,16 +254,16 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/listview_transaction_item"
+        android:id="@+id/transaction_detail_message_item"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="435dp"
+        android:layout_marginTop="485dp"
         android:orientation="horizontal"
         android:paddingTop="8dp"
         android:textColor="?vg_primaryDark">
 
         <ImageView
-            android:id="@+id/listview_transaction_item_icon"
+            android:id="@+id/transaction_detail_message_item_icon"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -279,7 +279,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/listview_transaction_item_address"
+                android:id="@+id/transaction_detail_message_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?vg_backgroundGrey"
@@ -290,7 +290,7 @@
                 tools:text="Message" />
 
             <TextView
-                android:id="@+id/listview_transaction_item_datetime"
+                android:id="@+id/transaction_detail_message_item_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?vg_backgroundGrey"
@@ -302,7 +302,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/listview_transaction_item_amount"
+            android:id="@+id/transaction_detail_message_item_extra"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
@@ -316,10 +316,10 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/listview_header_title"
+        android:id="@+id/transaction_detail_history_title"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="520dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="570dp"
         android:backgroundTint="?vg_backgroundBlue"
         android:gravity="bottom"
         android:paddingLeft="15dp"
