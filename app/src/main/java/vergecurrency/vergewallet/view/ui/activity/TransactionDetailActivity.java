@@ -1,5 +1,7 @@
 package vergecurrency.vergewallet.view.ui.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -37,6 +39,9 @@ public class TransactionDetailActivity extends BaseActivity implements View.OnCl
         TextView transactionId = findViewById(R.id.transaction_detail_txid_item_txid);
         TextView transactionConfirmations = findViewById(R.id.transaction_detail_confirmations_item_confirmations);
         View messageLayout = findViewById(R.id.transaction_detail_message_item);
+        ImageView transactionAddressExtra = findViewById(R.id.transaction_detail_address_item_extra);
+        ImageView transactionIdExtra = findViewById(R.id.transaction_detail_txid_item_extra);
+        ImageView icon = findViewById(R.id.transaction_detail_icon);
 
 
         transactionShort.setText(String.format("%s******", tx.getAddress().substring(0, 6)));
@@ -46,9 +51,11 @@ public class TransactionDetailActivity extends BaseActivity implements View.OnCl
         if (tx.isReceive()) {
             transactionAmount.setText(String.join(" ", "+", new Double(tx.getAmount()).toString(), "XVG"));
             transactionAmount.setTextColor(ContextCompat.getColor(this, R.color.material_green_500));
+            icon.setImageResource(R.drawable.icon_receive);
         } else {
             transactionAmount.setText(String.join(" ", "-", new Double(tx.getAmount()).toString(), "XVG"));
             transactionAmount.setTextColor(ContextCompat.getColor(this, R.color.material_red_500));
+            icon.setImageResource(R.drawable.icon_send);
         }
 
         transactionAddress.setText(tx.getAddress());
@@ -62,11 +69,41 @@ public class TransactionDetailActivity extends BaseActivity implements View.OnCl
 
         closeButton = findViewById(R.id.transaction_detail_close_button);
         closeButton.setOnClickListener(this);
+        transactionIdExtra.setOnClickListener(new TransactionIdClick());
+        transactionAddressExtra.setOnClickListener(new TransactionAddressClick());
     }
 
 
     @Override
     public void onClick(View v) {
         finish();
+    }
+
+    class TransactionIdClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            openTransactionIdBrowserIntent();
+        }
+    }
+
+    class TransactionAddressClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            openTransactionAddressBrowserIntent();
+        }
+    }
+
+    private void openTransactionIdBrowserIntent() {
+        String url = String.join("", "https://verge-blockchain.info/tx/", tx.getTxid());
+        Intent webIntent = new Intent(Intent.ACTION_VIEW);
+        webIntent.setData(Uri.parse(url));
+        startActivity(webIntent);
+    }
+
+    private void openTransactionAddressBrowserIntent() {
+        String url = String.join("", "https://verge-blockchain.info/address/", tx.getTxid());
+        Intent webIntent = new Intent(Intent.ACTION_VIEW);
+        webIntent.setData(Uri.parse(url));
+        startActivity(webIntent);
     }
 }

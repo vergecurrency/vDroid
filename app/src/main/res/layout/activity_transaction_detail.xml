@@ -33,8 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:src="@drawable/icon_receive" />
+        android:layout_marginTop="70dp"/>
 
     <TextView
         android:id="@+id/transaction_detail_address_short"
