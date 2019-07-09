@@ -53,7 +53,7 @@ public class TransactionDetailActivity extends BaseActivity implements View.OnCl
 
         transactionAddress.setText(tx.getAddress());
         transactionConfirmations.setText(Integer.toString(tx.getConfirmations()));
-        transactionId.setText(tx.getTxid());
+        transactionId.setText(String.join("", tx.getTxid().substring(0, 15), "...", tx.getTxid().substring(tx.getTxid().length() - 17, tx.getTxid().length())));
         transactionMessage.setText(tx.getAccount());
 
         if (tx.getAccount() == null || tx.getAccount().equals("")) {

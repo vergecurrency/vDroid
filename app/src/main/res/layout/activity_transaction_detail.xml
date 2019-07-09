@@ -23,7 +23,6 @@
         android:id="@+id/transaction_detail_time"
         style="@style/activities_settings_title"
         android:layout_marginTop="50dp"
-        android:text="18 June 2019 at 11:33"
         android:textColor="?vg_primaryDark"
         android:textSize="10sp" />
 
@@ -41,7 +40,6 @@
         android:id="@+id/transaction_detail_address_short"
         style="@style/activities_settings_title"
         android:layout_marginTop="140dp"
-        android:text="MaMboNr1***"
         android:textColor="?vg_primaryDark"
         android:textSize="18sp" />
 
@@ -49,7 +47,6 @@
         android:id="@+id/transaction_detail_amount"
         style="@style/activities_settings_title"
         android:layout_marginTop="180dp"
-        android:text="+ 2000003121200,567312 XVG"
         android:textColor="?vg_primaryDark"
         android:textSize="28sp" />
 
@@ -71,6 +68,7 @@
         android:layout_height="45dp"
         android:layout_marginTop="350dp"
         android:orientation="horizontal"
+        android:paddingLeft="15dp"
         android:paddingTop="8dp">
 
         <ImageView
@@ -111,7 +109,7 @@
 
         </LinearLayout>
 
-        <TextView
+        <ImageView
             android:id="@+id/transaction_detail_address_item_extra"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -120,9 +118,7 @@
             android:gravity="end"
             android:paddingRight="8dp"
             android:textAlignment="viewEnd"
-            android:textColor="?vg_primaryDark"
-            android:textSize="@dimen/text_smaller_size"
-            android:textStyle="bold" />
+            app:srcCompat="@android:drawable/ic_menu_info_details" />
     </LinearLayout>
 
     <LinearLayout
@@ -132,6 +128,7 @@
         android:layout_marginTop="395dp"
         android:orientation="horizontal"
         android:paddingTop="8dp"
+        android:paddingLeft="15dp"
         android:textColor="?vg_primaryDark">
 
         <ImageView
@@ -191,6 +188,7 @@
         android:layout_height="45dp"
         android:layout_marginTop="440dp"
         android:orientation="horizontal"
+        android:paddingLeft="15dp"
         android:paddingTop="8dp"
         android:textColor="?vg_primaryDark">
 
@@ -232,18 +230,16 @@
 
         </LinearLayout>
 
-        <TextView
+        <ImageView
             android:id="@+id/transaction_detail_txid_item_extra"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:backgroundTint="?vg_backgroundGrey"
             android:gravity="end"
+            app:srcCompat="@android:drawable/ic_menu_info_details"
             android:paddingRight="8dp"
-            android:textAlignment="viewEnd"
-            android:textColor="?vg_primaryDark"
-            android:textSize="@dimen/text_smaller_size"
-            android:textStyle="bold" />
+            android:textAlignment="viewEnd" />
     </LinearLayout>
 
     <LinearLayout
@@ -253,6 +249,7 @@
         android:layout_marginTop="485dp"
         android:orientation="horizontal"
         android:paddingTop="8dp"
+        android:paddingLeft="15dp"
         android:textColor="?vg_primaryDark">
 
         <ImageView
@@ -311,7 +308,7 @@
         android:id="@+id/transaction_detail_history_title"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_marginTop="570dp"
+        android:layout_marginTop="540dp"
         android:backgroundTint="?vg_backgroundBlue"
         android:gravity="bottom"
         android:paddingLeft="15dp"
