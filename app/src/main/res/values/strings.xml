@@ -93,6 +93,13 @@
     <string name="error_uncaught_exception">Verge Android Wallet Unexpected Error</string>
     <string name="error_uncaught_exception_show_report">Show error report</string>
 
+    //Transaction detail
+    <string name="transaction_detail_title">Transaction Detail</string>
+    <string name="transaction_detail_title_address">Address</string>
+    <string name="transaction_detail_title_transaction_id">Transaction Id</string>
+    <string name="transaction_detail_title_confirmations">Confirmations</string>
+    <string name="transaction_detail_title_message">Message</string>
+
     //Others
     <string name="statistics_pageview_header">Price Statistics</string>
     <string name="charts_pageview_header">History Chart</string>

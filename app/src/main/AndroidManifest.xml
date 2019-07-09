@@ -54,6 +54,7 @@
         <activity android:name=".view.ui.activity.firstlaunch.PassphraseCreationActivity" />
         <activity android:name=".view.ui.activity.error.ErrorRecoveryActivity" />
         <activity android:name=".view.ui.activity.QRCodeReaderActivity" />
+        <activity android:name=".view.ui.activity.TransactionDetailActivity" />
         <activity android:name=".view.ui.activity.settings.ChooseThemeActivity" />
         <activity android:name=".view.ui.activity.settings.SetPinActivity" />
 

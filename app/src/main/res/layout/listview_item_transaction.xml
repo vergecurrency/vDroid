@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:backgroundTint="?vg_backgroundGrey"
-            android:padding="10dp"
+            android:padding="5dp"
             android:scaleType="fitCenter" />
 
         <LinearLayout

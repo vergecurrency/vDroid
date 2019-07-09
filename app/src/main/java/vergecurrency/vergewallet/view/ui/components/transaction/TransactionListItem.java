@@ -1,5 +1,6 @@
 package vergecurrency.vergewallet.view.ui.components.transaction;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,15 @@ import java.util.Date;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.utils.MathUtils;
 import vergecurrency.vergewallet.service.model.Transaction;
+import vergecurrency.vergewallet.view.ui.activity.TransactionDetailActivity;
+import vergecurrency.vergewallet.view.ui.activity.error.ErrorRecoveryActivity;
+
+import static vergecurrency.vergewallet.helpers.utils.TransactionUtils.DATE_FORMATTER;
+import static vergecurrency.vergewallet.helpers.utils.TransactionUtils.EXTRA_TRANSACTION;
+import static vergecurrency.vergewallet.helpers.utils.TransactionUtils.TIME_FORMATTER;
+import static vergecurrency.vergewallet.helpers.utils.TransactionUtils.toFormattedDate;
 
 public class TransactionListItem implements TransactionItem, View.OnClickListener {
-    private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd LLLL yyyy");
-    private static final SimpleDateFormat TIME_FORMATTER = new SimpleDateFormat("HH:mm");
     private final Transaction tx;
 
     public TransactionListItem(Transaction transaction) {
@@ -33,21 +39,13 @@ public class TransactionListItem implements TransactionItem, View.OnClickListene
     }
 
 
-    /**
-     * OnClick listener to show up transaction details
-     * TODO: display a view with the details, for now just the address is shown up on a snackbar
-     * That said, isn't "Snackbar" class name funny? Why not "KinderBueno"? It's a snack, no?
-     *
-     * @param v the clicked view.
-     */
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.listview_transaction_id) {
-            Snackbar.make(v, "Release date " + tx.getAddress(), Snackbar.LENGTH_LONG)
-                    .setAction("No action", null).show();
-        }
+        Intent intent = new Intent(v.getContext(), TransactionDetailActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.putExtra(EXTRA_TRANSACTION, tx);
+        v.getContext().startActivity(intent);
     }
-
 
     @Override
     public View getView(LayoutInflater inflater, View convertView, ViewGroup parent, int position) {
@@ -60,7 +58,6 @@ public class TransactionListItem implements TransactionItem, View.OnClickListene
             vh.txAmount = convertView.findViewById(R.id.listview_transaction_item_amount);
             vh.txDateTime = convertView.findViewById(R.id.listview_transaction_item_datetime);
             vh.txIcon = convertView.findViewById(R.id.listview_transaction_item_icon);
-
             convertView.setTag(vh);
 
         } else {
@@ -80,12 +77,15 @@ public class TransactionListItem implements TransactionItem, View.OnClickListene
         }
 
         if (tx.getAccount() == null) {
-            vh.txAddress.setText(String.format("%s******", tx.getAddress().substring(0, 6)));
+            if (tx.isReceive()) {
+                vh.txAddress.setText("Received");
+            } else {
+                vh.txAddress.setText("Sent");
+            }
         } else {
             vh.txAddress.setText(tx.getAccount());
         }
-        Date date = new Date(tx.getTime() * 1000);
-        vh.txDateTime.setText(String.join(" ", DATE_FORMATTER.format(date), "at", TIME_FORMATTER.format(date)));
+        vh.txDateTime.setText(toFormattedDate(tx.getTime()));
 
         vh.txAddress.setOnClickListener(this);
         vh.txAddress.setTag(position);
