@@ -24,6 +24,7 @@ import vergecurrency.vergewallet.view.ui.activity.error.ErrorRecoveryActivity;
 import static vergecurrency.vergewallet.helpers.utils.TransactionUtils.DATE_FORMATTER;
 import static vergecurrency.vergewallet.helpers.utils.TransactionUtils.EXTRA_TRANSACTION;
 import static vergecurrency.vergewallet.helpers.utils.TransactionUtils.TIME_FORMATTER;
+import static vergecurrency.vergewallet.helpers.utils.TransactionUtils.toFormattedDate;
 
 public class TransactionListItem implements TransactionItem, View.OnClickListener {
     private final Transaction tx;
@@ -84,8 +85,7 @@ public class TransactionListItem implements TransactionItem, View.OnClickListene
         } else {
             vh.txAddress.setText(tx.getAccount());
         }
-        Date date = new Date(tx.getTime() * 1000);
-        vh.txDateTime.setText(String.join(" ", DATE_FORMATTER.format(date), "at", TIME_FORMATTER.format(date)));
+        vh.txDateTime.setText(toFormattedDate(tx.getTime()));
 
         vh.txAddress.setOnClickListener(this);
         vh.txAddress.setTag(position);

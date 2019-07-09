@@ -15,7 +15,7 @@
     <TextView
         android:id="@+id/transaction_detail_title"
         style="@style/activities_title_top"
-        android:text="Transaction Deatil"
+        android:text="@string/transaction_detail_title"
         android:textColor="?vg_primaryDark"
         android:textSize="@dimen/text_subtitle_size" />
 
@@ -33,7 +33,6 @@
         style="@style/activities_settings_image_header"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_below="@+id/tor_settings_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
         android:src="@drawable/icon_receive" />
@@ -62,7 +61,7 @@
         android:backgroundTint="?vg_backgroundBlue"
         android:paddingLeft="15dp"
         android:paddingBottom="5dp"
-        android:text="Transaction Detail"
+        android:text="@string/transaction_detail_title"
         android:textColor="?vg_secondaryLight"
         android:textSize="@dimen/text_smaller_size" />
 
@@ -80,9 +79,9 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:backgroundTint="?vg_backgroundGrey"
-            android:textColor="?vg_primaryDark"
             android:padding="5dp"
             android:scaleType="fitCenter"
+            android:textColor="?vg_primaryDark"
             app:srcCompat="@android:drawable/presence_invisible" />
 
         <LinearLayout
@@ -96,11 +95,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?vg_backgroundGrey"
-                android:textColor="?vg_primaryDark"
                 android:gravity="center_vertical"
+                android:text="@string/transaction_detail_title_address"
+                android:textColor="?vg_primaryDark"
                 android:textSize="@dimen/text_smaller_size"
-                android:textStyle="bold"
-                tools:text="Address" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/transaction_detail_address_item_address"
@@ -108,8 +107,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="?vg_backgroundGrey"
                 android:textColor="?vg_primaryDark"
-                android:textSize="12sp"
-                tools:text="@string/donate_donation_address" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -158,10 +156,10 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="?vg_backgroundGrey"
                 android:gravity="center_vertical"
+                android:text="@string/transaction_detail_title_confirmations"
                 android:textColor="?vg_primaryDark"
                 android:textSize="@dimen/text_smaller_size"
-                android:textStyle="bold"
-                tools:text="Confirmations" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/transaction_detail_confirmations_item_confirmations"
@@ -170,9 +168,7 @@
                 android:backgroundTint="?vg_backgroundGrey"
                 android:gravity="bottom"
                 android:textColor="?vg_primaryDark"
-                android:textSize="12sp"
-                tools:text="77" />
-
+                android:textSize="12sp" />
         </LinearLayout>
 
         <TextView
@@ -206,7 +202,7 @@
             android:backgroundTint="?vg_backgroundGrey"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@android:drawable/alert_dark_frame" />
+            app:srcCompat="@android:drawable/presence_invisible" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -220,10 +216,10 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="?vg_backgroundGrey"
                 android:gravity="center_vertical"
+                android:text="@string/transaction_detail_title_transaction_id"
                 android:textColor="?vg_primaryDark"
                 android:textSize="@dimen/text_smaller_size"
-                android:textStyle="bold"
-                tools:text="Transaction ID" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/transaction_detail_txid_item_txid"
@@ -232,8 +228,7 @@
                 android:backgroundTint="?vg_backgroundGrey"
                 android:gravity="bottom"
                 android:textColor="?vg_primaryDark"
-                android:textSize="12sp"
-                tools:text="MaMboNr1+qVDUDVWAU" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -282,10 +277,10 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="?vg_backgroundGrey"
                 android:gravity="center_vertical"
+                android:text="@string/transaction_detail_title_message"
                 android:textColor="?vg_primaryDark"
                 android:textSize="@dimen/text_smaller_size"
-                android:textStyle="bold"
-                tools:text="Message" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/transaction_detail_message_item_message"
@@ -294,8 +289,7 @@
                 android:backgroundTint="?vg_backgroundGrey"
                 android:gravity="bottom"
                 android:textColor="?vg_primaryDark"
-                android:textSize="12sp"
-                tools:text="Festival beer" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 
