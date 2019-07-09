@@ -29,11 +29,11 @@
 
     <ImageView
         android:id="@+id/transaction_detail_icon"
-        style="@style/activities_settings_image_header"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"/>
+        android:layout_marginTop="70dp"
+        android:backgroundTint="?vg_backgroundGrey" />
 
     <TextView
         android:id="@+id/transaction_detail_address_short"
@@ -126,8 +126,8 @@
         android:layout_height="45dp"
         android:layout_marginTop="395dp"
         android:orientation="horizontal"
-        android:paddingTop="8dp"
         android:paddingLeft="15dp"
+        android:paddingTop="8dp"
         android:textColor="?vg_primaryDark">
 
         <ImageView
@@ -166,19 +166,6 @@
                 android:textColor="?vg_primaryDark"
                 android:textSize="12sp" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/transaction_detail_confirmations_item_extra"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:backgroundTint="?vg_backgroundGrey"
-            android:gravity="end"
-            android:paddingRight="8dp"
-            android:textAlignment="viewEnd"
-            android:textColor="?vg_primaryDark"
-            android:textSize="@dimen/text_smaller_size"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -236,9 +223,9 @@
             android:layout_weight="0.5"
             android:backgroundTint="?vg_backgroundGrey"
             android:gravity="end"
-            app:srcCompat="@android:drawable/ic_menu_info_details"
             android:paddingRight="8dp"
-            android:textAlignment="viewEnd" />
+            android:textAlignment="viewEnd"
+            app:srcCompat="@android:drawable/ic_menu_info_details" />
     </LinearLayout>
 
     <LinearLayout
@@ -247,8 +234,8 @@
         android:layout_height="45dp"
         android:layout_marginTop="485dp"
         android:orientation="horizontal"
-        android:paddingTop="8dp"
         android:paddingLeft="15dp"
+        android:paddingTop="8dp"
         android:textColor="?vg_primaryDark">
 
         <ImageView
@@ -288,19 +275,6 @@
                 android:textSize="12sp" />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/transaction_detail_message_item_extra"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:backgroundTint="?vg_backgroundGrey"
-            android:gravity="end"
-            android:paddingRight="8dp"
-            android:textAlignment="viewEnd"
-            android:textColor="?vg_primaryDark"
-            android:textSize="@dimen/text_smaller_size"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
