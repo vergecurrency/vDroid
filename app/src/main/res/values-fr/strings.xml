@@ -144,5 +144,6 @@
     <string name="fragment_transaction_received_filter">Reçu</string>
     <string name="fragment_transaction_sent_filter">Envoyé</string>
     <string name="re_enter_pin_title">Re-enter the PIN</string>
+    <string name="set_wallet_pin_description">Ton PIN sera utilisé pour ouvrir l\'application, et envoyer des XVG. Si tu l\'oublies, tu ne pourras pas accéder à ton portemonnaie.</string>
 
 </resources>
