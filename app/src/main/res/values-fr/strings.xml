@@ -143,5 +143,6 @@
     <string name="fragment_transaction_all_filter">Tout</string>
     <string name="fragment_transaction_received_filter">Reçu</string>
     <string name="fragment_transaction_sent_filter">Envoyé</string>
+    <string name="re_enter_pin_title">Re-enter the PIN</string>
 
 </resources>

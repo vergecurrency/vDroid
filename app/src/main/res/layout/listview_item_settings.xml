@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="50dp"
     android:id="@+id/listview_layout"
-    android:backgroundTint="?attr/vg_backgroundBlue"
+    android:backgroundTint="?attr/vg_backgroundWhite"
 
     android:clickable="true"
     android:background="@drawable/selector_item"
@@ -19,8 +19,8 @@
         android:tint="?attr/vg_primaryLight"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
+        android:paddingStart="15dp"
         android:padding="5dp"
-        android:paddingLeft="15dp"
         />
 
     <TextView

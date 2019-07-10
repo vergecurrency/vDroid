@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import vergecurrency.vergewallet.R;
+import vergecurrency.vergewallet.helpers.utils.UIUtils;
 import vergecurrency.vergewallet.viewmodel.ChartsViewModel;
 
 public class FragmentChartsPageView extends Fragment {
@@ -51,7 +52,7 @@ public class FragmentChartsPageView extends Fragment {
 
 		initComponents();
 
-		createChart(6);
+		createChart(2);
 
 		return rootView;
 	}
@@ -78,10 +79,10 @@ public class FragmentChartsPageView extends Fragment {
 
 				View child = grid.getChildAt(i);
 				TextView tv2 = (TextView) child;
-				tv2.setTextColor(getResources().getColor(R.color.verge_colorAccent));
+				tv2.setTextColor(getColor(R.attr.vg_secondaryLight));
 			}
 
-			tv.setTextColor(getResources().getColor(R.color.verge_colorPrimary));
+			tv.setTextColor(getColor(R.attr.vg_primaryLight));
 			createChart(id);
 		};
 	}
@@ -104,8 +105,8 @@ public class FragmentChartsPageView extends Fragment {
 	private void setChartProperties() {
 		combinedChart.setClickable(false);
 		combinedChart.setBorderWidth(0f);
-		combinedChart.setBorderColor(Color.WHITE);
-		combinedChart.setBackgroundColor(Color.WHITE);
+		combinedChart.setBorderColor(getColor(R.attr.vg_backgroundWhite));
+		combinedChart.setBackgroundColor(getColor(R.attr.vg_backgroundWhite));
 		combinedChart.getDescription().setEnabled(false);
 		combinedChart.setDrawGridBackground(false);
 		combinedChart.setHighlightFullBarEnabled(false);
@@ -155,7 +156,7 @@ public class FragmentChartsPageView extends Fragment {
 
 		BarDataSet set = new BarDataSet(barEntry, "Bars");
 		set.setAxisDependency(YAxis.AxisDependency.LEFT);
-		set.setHighLightColor(R.color.verge_colorPrimary);
+		set.setHighLightColor(getColor(R.attr.vg_primaryLight));
 		barData.addDataSet(set);
 		barData.setBarWidth(0.2f);
 		return barData;
@@ -173,12 +174,16 @@ public class FragmentChartsPageView extends Fragment {
 		set.setDrawHorizontalHighlightIndicator(false);
 		set.setLineWidth(1.5f);
 		set.setHighlightLineWidth(1f);
-		set.setHighLightColor(R.color.verge_colorPrimary);
+		set.setHighLightColor(getColor(R.attr.vg_primaryLight));
 		set.setFillDrawable(ContextCompat.getDrawable(getContext(), R.drawable.fade_blue));
 		set.setAxisDependency(YAxis.AxisDependency.RIGHT);
 		lineData.addDataSet(set);
 
 		return lineData;
+	}
+
+	private int getColor(int attr) {
+		return ContextCompat.getColor(getContext(), UIUtils.resolveAttr(attr,getContext()));
 	}
 
 

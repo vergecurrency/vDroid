@@ -39,7 +39,7 @@ public class ShowPaperkeyActivity extends BaseActivity {
 
 	View.OnClickListener onCloseClickListener() {
 		return v -> {
-			finish();
+			//finish();
 			onBackPressed();
 		};
 	}

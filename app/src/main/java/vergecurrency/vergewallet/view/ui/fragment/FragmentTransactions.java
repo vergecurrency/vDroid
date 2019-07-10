@@ -40,14 +40,14 @@ public class FragmentTransactions extends BaseFragment implements SearchView.OnQ
             rootView = inflater.inflate(R.layout.fragment_transactions, container, false);
             ListView transactionList = rootView.findViewById(R.id.transactions_listview);
             transactionList.setDivider(null);
-            txa = new TransactionsAdapter(this.getContext(), mViewModel.getTransactionsList(), true);
+            txa = new TransactionsAdapter(getContext(), mViewModel.getTransactionsList(), true);
             transactionList.setAdapter(txa);
             SearchView transactionSearchView = rootView.findViewById(R.id.search);
             transactionSearchView.setOnQueryTextListener(this);
             RadioGroup radioGroup = rootView.findViewById(R.id.transaction_radio_group);
             radioGroup.setOnCheckedChangeListener(this);
         }
-        ;
+
         return rootView;
     }
 
