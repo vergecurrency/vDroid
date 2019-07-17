@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="?vg_backgroundWhite">
+    android:background="?vg_backgroundGrey">
 
     <ImageView
         android:id="@+id/paperkey_shown_close_button"

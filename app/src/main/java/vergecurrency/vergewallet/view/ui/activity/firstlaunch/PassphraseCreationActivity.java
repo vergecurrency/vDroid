@@ -16,6 +16,7 @@ import androidx.core.widget.ImageViewCompat;
 
 import com.omega_r.libs.OmegaCenterIconButton;
 
+import vergecurrency.vergewallet.helpers.utils.ValidationUtils;
 import vergecurrency.vergewallet.view.base.BaseActivity;
 import vergecurrency.vergewallet.R;
 
@@ -82,9 +83,9 @@ public class PassphraseCreationActivity extends BaseActivity {
     }
 
     private void validatePassphrase(String passphrase) {
-        boolean isEightChars = isPassphraseEightCharsLong(passphrase);
-        boolean isUpperLowerCase = hasPassphraseLowerCaseChar(passphrase) && hasPassphraseUpperCaseChar(passphrase);
-        boolean isSpecialChar = isPassphraseContainingSpecialChars(passphrase);
+        boolean isEightChars = ValidationUtils.isStringEightCharsLong(passphrase);
+        boolean isUpperLowerCase = ValidationUtils.hasStringLowercaseChar(passphrase) && ValidationUtils.hasStringUppercaseChar(passphrase);
+        boolean isSpecialChar = ValidationUtils.isStringContainingSpecialChars(passphrase);
 
         if (isEightChars) {
             ImageViewCompat.setImageTintList(eightCharsTickImageView, ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.material_green_500)));
@@ -119,22 +120,6 @@ public class PassphraseCreationActivity extends BaseActivity {
 
 
         this.passphrase = passphrase;
-    }
-
-    private boolean isPassphraseEightCharsLong(String s) {
-        return s.length() >= 8;
-    }
-
-    private boolean hasPassphraseUpperCaseChar(String s) {
-        return !s.equals(s.toLowerCase());
-    }
-
-    private boolean hasPassphraseLowerCaseChar(String s) {
-        return !s.equals(s.toUpperCase());
-    }
-
-    private boolean isPassphraseContainingSpecialChars(String s) {
-        return !s.matches("[A-Za-z0-9 ]*");
     }
 
     private View.OnClickListener onConfirmButtonClick() {

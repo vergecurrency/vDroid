@@ -3,6 +3,10 @@ package vergecurrency.vergewallet.helpers.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.util.TypedValue;
+
+import androidx.annotation.ColorInt;
 
 import vergecurrency.vergewallet.R;
 public final class UIUtils {
@@ -24,5 +28,14 @@ public final class UIUtils {
 				.getLaunchIntentForPackage( c.getPackageName() );
 		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		c.startActivity(i);
+	}
+
+	public static int resolveAttr(int attr, Context c) {
+		TypedValue typedValue = new TypedValue();
+		Resources.Theme theme = c.getTheme();
+		boolean ra = theme.resolveAttribute(attr, typedValue, true);
+
+		int color = typedValue.resourceId;
+		return color;
 	}
 }

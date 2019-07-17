@@ -5,6 +5,7 @@ import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 
 import vergecurrency.vergewallet.view.base.BaseActivity;
 import vergecurrency.vergewallet.R;
@@ -23,6 +24,7 @@ public class ChooseCurrencyActivity extends BaseActivity {
 
 		ListView currenciesList = findViewById(R.id.activity_select_currency_listview);
 		currenciesList.setAdapter(new CurrenciesAdapter(this, mViewModel.getCurrencies()));
+		//currenciesList.setDivider();
 
 	}
 }

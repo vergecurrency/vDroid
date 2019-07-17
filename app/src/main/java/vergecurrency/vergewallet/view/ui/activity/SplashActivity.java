@@ -36,7 +36,7 @@ public class SplashActivity extends BaseActivity {
 		setContentView(R.layout.activity_splash);
 
 		//Just to have the splash screen going briefly
-		new Handler().postDelayed(this::startApplication, 5000);
+		new Handler().postDelayed(this::startApplication, 2000);
 
 	}
 

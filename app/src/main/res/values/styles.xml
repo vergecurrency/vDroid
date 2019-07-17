@@ -37,7 +37,10 @@
         <item name="vg_vergeNoChange">@color/vergeNoChange_lt</item>
         <item name="vg_vergeUp">@color/vergeUp_lt</item>
         <item name="vg_vergeDown">@color/vergeDown_lt</item>
-        
+
+        <item name="vg_graphFadeTop">@color/graphFadeTop_lt</item>
+        <item name="vg_graphFadeBottom">@color/graphFadeBottom_lt</item>
+
     </style>
 
     <style name="MoonMode" parent="Theme.AppCompat.NoActionBar">
@@ -68,6 +71,9 @@
         <item name="vg_vergeNoChange">@color/vergeNoChange_dt</item>
         <item name="vg_vergeUp">@color/vergeUp_dt</item>
         <item name="vg_vergeDown">@color/vergeDown_dt</item>
+
+        <item name="vg_graphFadeTop">@color/graphFadeTop_dt</item>
+        <item name="vg_graphFadeBottom">@color/graphFadeBottom_dt</item>
 
     </style>
 

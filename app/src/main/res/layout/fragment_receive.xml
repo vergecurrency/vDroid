@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="175dp"
-            android:text="@string/receive_current_code"
+            android:text="@string/prog_placeholder"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="@dimen/text_smaller_size" />
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
-            android:text="@string/receive_current_code"
+            android:text="@string/prog_placeholder"
             android:textSize="@dimen/text_small_size" />
 
     </LinearLayout>

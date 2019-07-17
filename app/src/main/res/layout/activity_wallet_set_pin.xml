@@ -76,12 +76,13 @@
         app:cardElevation="2dp">
 
         <com.davidmiguel.numberkeyboard.NumberKeyboard
+            android:id="@+id/pin_number_pad"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/form_pin_rect"
             android:elevation="10dp"
 
-            app:numberkeyboard_keyboardType="fingerprint"
+            app:numberkeyboard_keyboardType="integer"
             app:numberkeyboard_numberKeyBackground="?vg_backgroundWhite"
             app:numberkeyboard_numberKeyTextColor="?vg_primaryDark" />
 

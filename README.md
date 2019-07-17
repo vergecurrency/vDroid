@@ -2,7 +2,9 @@
 <p align="center">
   <img src="https://img.shields.io/badge/status-pre--alpha-lightgrey.svg">
   <img src="https://img.shields.io/badge/license-MIT-blue.svg">
+  <img src="https://circleci.com/gh/vergecurrency/vDroid/tree/master.svg?style=svg">
 </p>
+
 
 #  VERGE Android Wallet
 

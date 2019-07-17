@@ -32,7 +32,7 @@
     <string name="receive_current_code">DSiXiwK9uZ1uAy6PuqQWYBVQUaoGENZZaZ</string>
     <string name="receive_xvg_main">Send only XVG to this deposit address. \n Sending any other coin or token to this address may result in the loss of your deposit.</string>
     //Settings fragment
-    <string name="settings_desc1">Disconnect your wallet from this device or write down your paper key</string>
+    <string name="settings_desc1">Manage your wallet with the options given</string>
 
     //Splash screen texts
     <string name="splash_title">Verge Android wallet</string>
@@ -150,5 +150,6 @@
     <string name="fragment_transaction_sent_filter">Sent</string>
     <string name="fragment_transaction_all_filter">All</string>
     <string name="set_wallet_pin_description">Your Wallet PIN will be used to open this app, and to send XVG with. If you forget it, you won\'t be able to access your wallet.</string>
+    <string name="re_enter_pin_title">Re-enter the PIN</string>
 
 </resources>

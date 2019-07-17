@@ -12,7 +12,8 @@
     <color name="verge_realWhite">#FFFFFF</color>
     <color name="default_gray">#bbbbbb</color>
 
-    <color name="verge_fadeBlueStart">#AABCF1FF</color>
+    <color name="verge_fadeBlueStart_lt">#AABCF1FF</color>
+
     <color name="verge_fadeBlueStop">#AAf8f7f7</color>
 
     <color name="verge_white">#F9F5F2</color>
@@ -37,6 +38,11 @@
     <color name="vergeUp_lt">#008570</color>
     <color name="vergeDown_lt">#FF5252</color>
 
+    <color name="graphFadeTop_lt">#AABCF1FF</color>
+    <color name="graphFadeBottom_lt">#AAf8f7f7</color>
+
+    <color name="confirmGreen_lt">#008570</color>
+
 
     <!--colors for dark theme -->
     <color name="primaryDark_dt">#dceffc</color>
@@ -58,5 +64,9 @@
     <color name="vergeUp_dt">#008570</color>
     <color name="vergeDown_dt">#FF5252</color>
 
+    <color name="graphFadeTop_dt">#AA37BDE2</color>
+    <color name="graphFadeBottom_dt">#AAf8f7f7</color>
+
+    <color name="confirmGreen_dt">#008570</color>
 
 </resources>

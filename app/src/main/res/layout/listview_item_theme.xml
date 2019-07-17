@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:backgroundTint="?attr/vg_backgroundBlue"
+    android:backgroundTint="?attr/vg_backgroundWhite"
 
     android:paddingStart="5dp"
     android:background="@drawable/selector_item"
@@ -24,9 +24,7 @@
         android:id="@+id/listview_theme_name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:backgroundTint="?attr/vg_backgroundBlue"
+        android:backgroundTint="?attr/vg_backgroundWhite"
         android:gravity="center_vertical"
         android:textColor="?attr/vg_primaryDark"
         android:textSize="@dimen/text_regular_size" />
