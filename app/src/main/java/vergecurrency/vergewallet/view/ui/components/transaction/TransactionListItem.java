@@ -53,7 +53,7 @@ public class TransactionListItem implements TransactionItem, View.OnClickListene
         if (convertView == null) {
             vh = new TransactionItemViewHolder();
             convertView = inflater.inflate(R.layout.listview_item_transaction, parent, false);
-
+            convertView.setOnClickListener(this);
             vh.txAddress = convertView.findViewById(R.id.listview_transaction_item_address);
             vh.txAmount = convertView.findViewById(R.id.listview_transaction_item_amount);
             vh.txDateTime = convertView.findViewById(R.id.listview_transaction_item_datetime);
@@ -86,8 +86,6 @@ public class TransactionListItem implements TransactionItem, View.OnClickListene
             vh.txAddress.setText(tx.getAccount());
         }
         vh.txDateTime.setText(toFormattedDate(tx.getTime()));
-
-        vh.txAddress.setOnClickListener(this);
         vh.txAddress.setTag(position);
         // Return the completed view to render on screen
         return convertView;
