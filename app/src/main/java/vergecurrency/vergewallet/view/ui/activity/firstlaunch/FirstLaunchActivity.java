@@ -40,7 +40,8 @@ public class FirstLaunchActivity extends BaseActivity {
 	private Button.OnClickListener newWalletOnClickListener() {
 		return v -> {
 			finish();
-			startActivity(new Intent(this, PaperkeyInstructionsActivity.class));
+			//startActivity(new Intent(this, PaperkeyInstructionsActivity.class));
+			startActivity(new Intent(this, PinSetActivity.class));
 		};
 	}
 

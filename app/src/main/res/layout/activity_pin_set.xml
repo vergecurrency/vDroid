@@ -5,18 +5,18 @@
     android:layout_height="match_parent"
     android:background="?vg_backgroundGrey">
 
-        <ImageView
-            android:id="@+id/paperkey_shown_close_button"
-            style="@style/closebutton"
-            android:tint="?vg_primaryDark"/>
+    <ImageView
+        android:id="@+id/paperkey_shown_close_button"
+        style="@style/closebutton"
+        android:tint="?vg_primaryDark" />
 
 
     <TextView
         android:id="@+id/pin_lock_title"
         style="@style/activities_title_top"
+        android:text="@string/pinlock_title"
         android:textColor="?vg_primaryDark"
-        android:textSize="@dimen/text_subtitle_size"
-        android:text="@string/pinlock_title" />
+        android:textSize="@dimen/text_subtitle_size" />
 
     <TextView
         android:id="@+id/pin_lock_description"
@@ -27,14 +27,14 @@
         android:text="@string/set_wallet_pin_description" />
 
     <GridLayout
-        android:id="@+id/pin_digits_filled"
+        android:id="@+id/pin_digits_prompt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="40dp"
-        android:paddingBottom="40dp"
-        android:padding="60dp"
         android:layout_below="@id/pin_lock_description"
         android:columnCount="6"
+        android:padding="60dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
         android:rowCount="1">
 
 
@@ -67,11 +67,12 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/pin_digits_filled"
+        android:layout_below="@id/pin_digits_prompt"
         android:layout_alignParentBottom="true"
-        android:layout_margin="40dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="?vg_backgroundWhite"
         app:cardElevation="2dp">
 

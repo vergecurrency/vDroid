@@ -50,7 +50,6 @@ public class PaperkeyVerificationActivity extends BaseActivity {
 
 	private void initComponents() {
 
-		//TODO : Move this shit to viewmodel
 		//set the caption for the first word according to its position
 		firstWordCaption = findViewById(R.id.label_first_word);
 		firstWordCaption.setText(String.format("Word #%d", verificationWords.second[0] + 1));

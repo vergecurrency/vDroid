@@ -144,5 +144,6 @@
     <string name="fragment_transaction_all_filter">All</string>
     <string name="set_wallet_pin_description">Your Wallet PIN will be used to open this app, and to send XVG with. If you forget it, you won\'t be able to access your wallet.</string>
     <string name="re_enter_pin_title">Re-enter the PIN</string>
+    <string name="pin_prompt_label">Please insert your pin to continue</string>
 
 </resources>
