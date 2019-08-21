@@ -18,6 +18,7 @@ import com.davidmiguel.numberkeyboard.NumberKeyboardListener;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.utils.UIUtils;
 import vergecurrency.vergewallet.view.base.BaseActivity;
+import vergecurrency.vergewallet.view.ui.activity.firstlaunch.PinSetActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.PaperkeyActivity;
 import vergecurrency.vergewallet.viewmodel.PinPromptedViewModel;
 
@@ -69,6 +70,7 @@ public class PinPromptActivity extends BaseActivity {
 			@Override
 			public void onNumberClicked(int i) {
 				pin = pin.concat(i + "");
+				changePinColors(pin.length());
 
 				if (pin.length() == 6) {
 					if (pin.equals(mViewModel.getPin())) {
@@ -77,10 +79,9 @@ public class PinPromptActivity extends BaseActivity {
 						Toast.makeText(getApplicationContext(), "The pin inserted was wrong. Start Over", Toast.LENGTH_SHORT).show();
 						pinLayout.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake));
 						pin = "";
-
+						changePinColors(pin.length());
 					}
 				}
-				changePinColors(pin.length());
 			}
 
 			private void redirectView() {
@@ -93,6 +94,11 @@ public class PinPromptActivity extends BaseActivity {
 						break;
 					case "wallet":
 						startActivity(new Intent(getApplicationContext(), WalletActivity.class));
+						break;
+					case "changePin":
+						Intent i = new Intent(getApplicationContext(), PinSetActivity.class);
+						i.putExtra("origin", "settings");
+						startActivity(i);
 				}
 			}
 

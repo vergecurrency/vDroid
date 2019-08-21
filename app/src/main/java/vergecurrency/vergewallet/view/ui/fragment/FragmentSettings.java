@@ -54,7 +54,7 @@ public class FragmentSettings extends BaseFragment {
 					Intent intent = new Intent(v.getContext(), PinPromptActivity.class);
 					intent.putExtra("nextView", "viewPassphrase");
 					startActivity(intent);
-				}),
+				})
 		};
 
 		fillRecyclerView(view, R.id.settings_list_wallet, new SettingsListViewHeader("WALLET"), itemsDataWallet);
@@ -67,7 +67,11 @@ public class FragmentSettings extends BaseFragment {
 				new SettingsListViewData("Change Currency", R.drawable.icon_currency_exchange, v -> startActivity(new Intent(v.getContext(), ChooseCurrencyActivity.class))),
 				new SettingsListViewData("Change Language", R.drawable.icon_home, v -> startActivity(new Intent(v.getContext(), ChooseLanguageActivity.class))),
 				new SettingsListViewData("Change Theme", R.drawable.icon_theme, v -> startActivity(new Intent(v.getContext(), ChooseThemeActivity.class))),
-				new SettingsListViewData("Change wallet PIN", R.drawable.icon_lock, v -> startActivity(new Intent(v.getContext(), PinSetActivity.class))),
+				new SettingsListViewData("Change wallet PIN", R.drawable.icon_lock,v -> {
+					Intent intent = new Intent(v.getContext(), PinPromptActivity.class);
+					intent.putExtra("nextView", "changePin");
+					startActivity(intent);
+				}),
 				new SettingsListViewData("Use fingerprint", R.drawable.icon_fingerprint, null),
 				new SettingsListViewData("Tor connection", R.drawable.icon_onion, v -> startActivity(new Intent(v.getContext(), TorSettingsActivity.class)))
 		};

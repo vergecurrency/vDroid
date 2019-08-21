@@ -23,11 +23,14 @@ public class PinSetActivity extends BaseActivity {
 	private ImageView[] pinIVs;
 
 	private String pin;
+	private String origin;
 
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		origin = getIntent().getStringExtra("origin");
 
 		setContentView(R.layout.activity_pin_set);
 		initComponents();
@@ -63,10 +66,11 @@ public class PinSetActivity extends BaseActivity {
 
 				//replace with preferences manager pinCount() once implemented feature
 				if (pin.length() == 6) {
-					//finish();
+					finish();
 					Intent intent = new Intent(getApplicationContext(), PinConfirmActivity.class);
 					intent.putExtra("pin",pin);
-					startActivity(intent);//go to next activity. will do tomorrow bitch.
+					intent.putExtra("origin", origin);
+					startActivity(intent);
 				}
 			}
 

@@ -25,6 +25,7 @@ public class PinConfirmActivity extends BaseActivity {
 
 	private String pinToValidate;
 	private String pin;
+	private String origin;
 	private ImageView[] pinIVs;
 	private PinVerificationViewModel mViewModel;
 	private Button buttonContinue;
@@ -41,9 +42,7 @@ public class PinConfirmActivity extends BaseActivity {
 		setContentView(R.layout.activity_pin_confirm);
 		initComponents();
 
-
-
-		//
+		origin = getIntent().getStringExtra("origin");
 	}
 
 	private void initComponents() {
@@ -103,7 +102,11 @@ public class PinConfirmActivity extends BaseActivity {
 	private View.OnClickListener confirmButtonListener() {
 		return view -> {
 			mViewModel.setPin(pin);
-			startActivity(new Intent(getApplicationContext(), PaperkeyInstructionsActivity.class));
+			if(origin.equals("firstLaunch")) {
+				startActivity(new Intent(getApplicationContext(), PaperkeyInstructionsActivity.class));
+			} else if (origin.equals("settings")) {
+				finish();
+			}
 		};
 	}
 
