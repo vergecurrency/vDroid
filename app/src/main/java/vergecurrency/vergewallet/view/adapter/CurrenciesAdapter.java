@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.service.model.Currency;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
+import vergecurrency.vergewallet.view.ui.activity.settings.ChooseCurrencyActivity;
 
 public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.OnClickListener {
 
@@ -39,6 +41,7 @@ public class CurrenciesAdapter extends ArrayAdapter<Currency> implements View.On
 			PreferencesManager.setSelectedCurrency(currency.getCurrencyAsJSON());
 		}
 
+		((ChooseCurrencyActivity)getContext()).finish();
 	}
 
 	@Override

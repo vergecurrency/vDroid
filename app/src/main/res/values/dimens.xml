@@ -4,6 +4,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="design_bottom_navigation_text_size" tools:override="true">9dp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">9dp</dimen>
+    <dimen name="item_padding_large_lr">40dp</dimen>
+    <dimen name="item_padding_medium_top">25dp</dimen>
+
 
     <!--Text sizes-->
     <dimen name="text_balance_size">42sp</dimen>

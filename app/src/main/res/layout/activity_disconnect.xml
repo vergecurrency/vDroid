@@ -17,13 +17,13 @@
         android:src="@drawable/header_disconnect" />
 
     <TextView
-        android:id="@+id/tor_settings_desc"
+        android:id="@+id/serviceurl_settings_desc"
         android:text="@string/disconnect_desc"
         android:layout_below="@+id/disconnect_header"
         style="@style/activities_settings_description" />
 
     <Button
-        android:id="@+id/button_disconnect"
+        android:id="@+id/service_url_button_save"
         style="@style/blue_button"
         android:text="@string/disconnect_button" />
 

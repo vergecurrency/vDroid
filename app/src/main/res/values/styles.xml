@@ -86,6 +86,16 @@
         <item name="android:textSize">@dimen/text_subtitle_size</item>
     </style>
 
+    <style name="text_field">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/item_padding_large_lr</item>
+        <item name="android:layout_marginRight">@dimen/item_padding_large_lr</item>
+        <item name="android:inputType">text</item>
+        <item name="android:paddingTop">@dimen/item_padding_medium_top</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
 
     <style name="graphtextview">
         <item name="android:textAlignment">center</item>

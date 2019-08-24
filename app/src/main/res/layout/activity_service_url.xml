@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?vg_backgroundGrey"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/serviceurl_title"
+        style="@style/activities_settings_title"
+        android:text="@string/service_url_title" />
+
+    <ImageView
+        android:id="@+id/disconnect_header"
+        style="@style/activities_settings_image_header"
+        android:layout_below="@+id/serviceurl_title"
+        android:src="@drawable/header_serviceurl" />
+
+    <TextView
+        android:id="@+id/setting_header"
+        style="@style/activities_settings_description"
+        android:layout_below="@id/disconnect_header"
+        android:text="@string/service_url_setting_header"
+        android:textAlignment="textStart" />
+
+    <EditText
+        style="@style/text_field"
+        android:id="@+id/serviceurl_field"
+        android:layout_below="@id/setting_header"/>
+
+    <TextView
+        android:id="@+id/serviceurl_settings_desc"
+        style="@style/activities_settings_description"
+        android:layout_below="@+id/serviceurl_field"
+        android:textAlignment="textStart"
+        android:text="@string/service_url_desc" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/service_url_button_save"
+        android:paddingBottom="10dp"
+        android:id="@+id/service_url_set_default"
+        android:textColor="?attr/vg_primaryLight"
+        android:textSize="@dimen/text_small_size"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:text="@string/use_default_url"/>
+
+    <Button
+        android:id="@+id/service_url_button_save"
+        style="@style/blue_button"
+        android:text="@string/save_button" />
+
+
+</RelativeLayout>
