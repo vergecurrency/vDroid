@@ -12,7 +12,7 @@ import vergecurrency.vergewallet.R;
 
 public class PaperkeyActivity extends BaseActivity {
 
-	Button showPaperkeyButton;
+	Button showPaperKeyButton;
 
 
 	@Override
@@ -20,12 +20,16 @@ public class PaperkeyActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_paperkey);
 
-		showPaperkeyButton = findViewById(R.id.activity_paperkey_button);
-		showPaperkeyButton.setOnClickListener(onShowPaperkeyListener());
+		showPaperKeyButton = findViewById(R.id.activity_paperkey_button);
+		showPaperKeyButton.setOnClickListener(onShowPaperKeyListener());
 	}
 
 
-	View.OnClickListener onShowPaperkeyListener() {
-		return v -> startActivity(new Intent(getApplicationContext(), ShowPaperkeyActivity.class));
+	View.OnClickListener onShowPaperKeyListener() {
+
+		return v -> {
+			finish();
+			startActivity(new Intent(getApplicationContext(), ShowPaperkeyActivity.class));
+		};
 	}
 }

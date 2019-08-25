@@ -34,16 +34,17 @@ public class ServiceURLActivity extends BaseActivity {
 		updateVwsValueField();
 
 		TextView defaultUrlView = findViewById(R.id.service_url_set_default);
-		Button setNewUrl = findViewById(R.id.service_url_button_save);
+		Button saveURLButton = findViewById(R.id.service_url_button_save);
 
 		defaultUrlView.setOnClickListener(setDefaultUrlListener());
-		setNewUrl.setOnClickListener(setNewUrlListener());
+		saveURLButton.setOnClickListener(saveURLButtonListener());
 	}
 
-	private View.OnClickListener setNewUrlListener() {
+	private View.OnClickListener saveURLButtonListener() {
 		return v -> {
 			mViewModel.setNewServiceURL(vwsValue.getText().toString());
 			Toast.makeText(this, "The Service URL has been updated successfully.", Toast.LENGTH_SHORT).show();
+			finish();
 		};
 	}
 
