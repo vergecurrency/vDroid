@@ -27,8 +27,7 @@ public class ShowPaperkeyActivity extends BaseActivity {
 		initComponents();
 	}
 
-	//TODO : require passphrase before showing seed, create function for toggling between
-	// qr and text views
+
 
 	private void initComponents() {
 		seedTextView = findViewById(R.id.paperkey_shown_pk);
@@ -38,10 +37,7 @@ public class ShowPaperkeyActivity extends BaseActivity {
 	}
 
 	View.OnClickListener onCloseClickListener() {
-		return v -> {
-			//finish();
-			onBackPressed();
-		};
+		return v -> finish();
 	}
 
 }

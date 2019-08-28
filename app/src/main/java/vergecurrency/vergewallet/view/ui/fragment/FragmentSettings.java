@@ -16,6 +16,7 @@ import vergecurrency.vergewallet.service.model.SettingsListViewData;
 import vergecurrency.vergewallet.service.model.SettingsListViewHeader;
 import vergecurrency.vergewallet.view.adapter.SettingsListsAdapter;
 import vergecurrency.vergewallet.view.base.BaseFragment;
+import vergecurrency.vergewallet.view.ui.activity.PinPromptActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.ChooseCurrencyActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.ChooseLanguageActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.ChooseThemeActivity;
@@ -23,7 +24,9 @@ import vergecurrency.vergewallet.view.ui.activity.settings.DisconnectActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.DonateActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.PaperkeyActivity;
 import vergecurrency.vergewallet.view.ui.activity.firstlaunch.PinSetActivity;
+import vergecurrency.vergewallet.view.ui.activity.settings.ServiceURLActivity;
 import vergecurrency.vergewallet.view.ui.activity.settings.TorSettingsActivity;
+import vergecurrency.vergewallet.viewmodel.PinPromptedViewModel;
 
 public class FragmentSettings extends BaseFragment {
 
@@ -47,8 +50,16 @@ public class FragmentSettings extends BaseFragment {
 
 	private void initWalletSettings(View view) {
 		SettingsListViewData[] itemsDataWallet = {
-				new SettingsListViewData("Disconnect this device", R.drawable.icon_disconnected, v -> startActivity(new Intent(v.getContext(), DisconnectActivity.class))),
-				new SettingsListViewData("Paperkey", R.drawable.icon_paperkey, v -> startActivity(new Intent(v.getContext(), PaperkeyActivity.class))),
+				new SettingsListViewData("Remove wallet", R.drawable.icon_disconnected, v -> startActivity(new Intent(v.getContext(), DisconnectActivity.class))),
+				new SettingsListViewData("Paperkey", R.drawable.icon_paperkey, v -> {
+					Intent intent = new Intent(v.getContext(), PinPromptActivity.class);
+					intent.putExtra("nextView", "viewPassphrase");
+					startActivity(intent);
+				}),
+				new SettingsListViewData("Addresses", R.drawable.icon_disconnected, null),
+				new SettingsListViewData("Transaction Proposals", R.drawable.icon_disconnected, null),
+				new SettingsListViewData("Service URL", R.drawable.icon_disconnected, v -> startActivity(new Intent(v.getContext(), ServiceURLActivity.class)))
+
 		};
 
 		fillRecyclerView(view, R.id.settings_list_wallet, new SettingsListViewHeader("WALLET"), itemsDataWallet);
@@ -58,10 +69,14 @@ public class FragmentSettings extends BaseFragment {
 
 	private void initGeneralSettings(View view) {
 		SettingsListViewData[] itemsDataSettings = {
-				new SettingsListViewData("Change Currency", R.drawable.icon_currency_exchange, v -> startActivity(new Intent(v.getContext(), ChooseCurrencyActivity.class))),
-				new SettingsListViewData("Change Language", R.drawable.icon_home, v -> startActivity(new Intent(v.getContext(), ChooseLanguageActivity.class))),
-				new SettingsListViewData("Change Theme", R.drawable.icon_theme, v -> startActivity(new Intent(v.getContext(), ChooseThemeActivity.class))),
-				new SettingsListViewData("Change wallet PIN", R.drawable.icon_lock, v -> startActivity(new Intent(v.getContext(), PinSetActivity.class))),
+				new SettingsListViewData("Fiat Currency", R.drawable.icon_currency_exchange, v -> startActivity(new Intent(v.getContext(), ChooseCurrencyActivity.class))),
+				new SettingsListViewData("Language", R.drawable.icon_home, v -> startActivity(new Intent(v.getContext(), ChooseLanguageActivity.class))),
+				new SettingsListViewData("Theme", R.drawable.icon_theme, v -> startActivity(new Intent(v.getContext(), ChooseThemeActivity.class))),
+				new SettingsListViewData("Change wallet PIN", R.drawable.icon_lock,v -> {
+					Intent intent = new Intent(v.getContext(), PinPromptActivity.class);
+					intent.putExtra("nextView", "changePin");
+					startActivity(intent);
+				}),
 				new SettingsListViewData("Use fingerprint", R.drawable.icon_fingerprint, null),
 				new SettingsListViewData("Tor connection", R.drawable.icon_onion, v -> startActivity(new Intent(v.getContext(), TorSettingsActivity.class)))
 		};

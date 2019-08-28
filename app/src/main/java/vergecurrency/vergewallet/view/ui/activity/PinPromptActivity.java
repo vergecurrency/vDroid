@@ -1,12 +1,11 @@
-package vergecurrency.vergewallet.view.ui.activity.firstlaunch;
+package vergecurrency.vergewallet.view.ui.activity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.view.animation.AnimationUtils;
+import android.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,55 +18,50 @@ import com.davidmiguel.numberkeyboard.NumberKeyboardListener;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.helpers.utils.UIUtils;
 import vergecurrency.vergewallet.view.base.BaseActivity;
-import vergecurrency.vergewallet.viewmodel.PinVerificationViewModel;
+import vergecurrency.vergewallet.view.ui.activity.firstlaunch.PinSetActivity;
+import vergecurrency.vergewallet.view.ui.activity.settings.PaperkeyActivity;
+import vergecurrency.vergewallet.viewmodel.PinPromptedViewModel;
 
-public class PinConfirmActivity extends BaseActivity {
+public class PinPromptActivity extends BaseActivity {
 
-	private String pinToValidate;
+	private String nextView;
 	private String pin;
-	private String origin;
 	private ImageView[] pinIVs;
-	private PinVerificationViewModel mViewModel;
-	private Button buttonContinue;
-	private RelativeLayout confirmLayout;
-	private NumberKeyboard numberKeyboard;
+	private PinPromptedViewModel mViewModel;
+	private GridLayout pinLayout;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		pinToValidate = getIntent().getStringExtra("pin");
-		mViewModel = ViewModelProviders.of(this).get(PinVerificationViewModel.class);
+		nextView = getIntent().getStringExtra("nextView");
+		mViewModel = ViewModelProviders.of(this).get(PinPromptedViewModel.class);
 
-		setContentView(R.layout.activity_pin_confirm);
+		setContentView(R.layout.activity_pin_prompt);
 		initComponents();
 
-		origin = getIntent().getStringExtra("origin");
 	}
 
 	private void initComponents() {
 		pin = "";
 
+		pinLayout = findViewById(R.id.pin_digits_prompt);
+
 		pinIVs = new ImageView[6];
 		//As a second priority, make this dynamic to allow for pin size change
-		pinIVs[0] = findViewById(R.id.pin_one_conf);
-		pinIVs[1] = findViewById(R.id.pin_two_conf);
-		pinIVs[2] = findViewById(R.id.pin_three_conf);
-		pinIVs[3] = findViewById(R.id.pin_four_conf);
-		pinIVs[4] = findViewById(R.id.pin_five_conf);
-		pinIVs[5] = findViewById(R.id.pin_six_conf);
+		pinIVs[0] = findViewById(R.id.pin_one_prompt);
+		pinIVs[1] = findViewById(R.id.pin_two_prompt);
+		pinIVs[2] = findViewById(R.id.pin_three_prompt);
+		pinIVs[3] = findViewById(R.id.pin_four_prompt);
+		pinIVs[4] = findViewById(R.id.pin_five_prompt);
+		pinIVs[5] = findViewById(R.id.pin_six_prompt);
 
-		numberKeyboard = findViewById(R.id.pin_number_pad);
+		NumberKeyboard numberKeyboard = findViewById(R.id.pin_number_pad);
 
 		numberKeyboard.setLeftAuxButtonIcon(R.drawable.icon_fingerprint);
 		numberKeyboard.setRightAuxButtonIcon(R.drawable.icon_backspace);
 
 		numberKeyboard.setListener(nkl());
-
-		buttonContinue = findViewById(R.id.pin_confirmed_button);
-		buttonContinue.setOnClickListener(confirmButtonListener());
-
-		confirmLayout = findViewById(R.id.pin_confirmed_layout);
 
 	}
 
@@ -78,11 +72,36 @@ public class PinConfirmActivity extends BaseActivity {
 				pin = pin.concat(i + "");
 				changePinColors(pin.length());
 
-				if (pin.length() == 6 && pin.equals(pinToValidate)) {
-					numberKeyboard.setVisibility(View.GONE);
-					confirmLayout.setVisibility(View.VISIBLE);
+				if (pin.length() == 6) {
+					if (pin.equals(mViewModel.getPin())) {
+						redirectView();
+					} else {
+						Toast.makeText(getApplicationContext(), "The pin inserted was wrong. Start Over", Toast.LENGTH_SHORT).show();
+						pinLayout.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake));
+						pin = "";
+						changePinColors(pin.length());
+					}
 				}
 			}
+
+			private void redirectView() {
+				finish();
+				switch (nextView) {
+					case "viewPassphrase":
+						startActivity(new Intent(getApplicationContext(), PaperkeyActivity.class));
+						break;
+					case "performTransaction":
+						break;
+					case "wallet":
+						startActivity(new Intent(getApplicationContext(), WalletActivity.class));
+						break;
+					case "changePin":
+						Intent i = new Intent(getApplicationContext(), PinSetActivity.class);
+						i.putExtra("origin", "settings");
+						startActivity(i);
+				}
+			}
+
 
 			@Override
 			public void onLeftAuxButtonClicked() {
@@ -95,17 +114,6 @@ public class PinConfirmActivity extends BaseActivity {
 					pin = pin.substring(0, pin.length() - 1);
 					changePinColors(pin.length());
 				}
-			}
-		};
-	}
-
-	private View.OnClickListener confirmButtonListener() {
-		return view -> {
-			mViewModel.setPin(pin);
-			if(origin.equals("firstLaunch")) {
-				startActivity(new Intent(getApplicationContext(), PaperkeyInstructionsActivity.class));
-			} else if (origin.equals("settings")) {
-				finish();
 			}
 		};
 	}

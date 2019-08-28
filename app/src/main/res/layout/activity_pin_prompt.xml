@@ -14,7 +14,7 @@
     <TextView
         android:id="@+id/pin_lock_title"
         style="@style/activities_title_top"
-        android:text="@string/re_enter_pin_title"
+        android:text="@string/txtEnterPin"
         android:textColor="?vg_primaryDark"
         android:textSize="@dimen/text_subtitle_size" />
 
@@ -24,10 +24,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/pin_lock_title"
-        android:text="@string/set_wallet_pin_description" />
+        android:text="@string/pin_prompt_label" />
 
     <GridLayout
-        android:id="@+id/pin_digits_filled"
+        android:id="@+id/pin_digits_prompt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/pin_lock_description"
@@ -39,27 +39,27 @@
 
 
         <ImageView
-            android:id="@+id/pin_one_conf"
+            android:id="@+id/pin_one_prompt"
             style="@style/pin_icon" />
 
         <ImageView
-            android:id="@+id/pin_two_conf"
+            android:id="@+id/pin_two_prompt"
             style="@style/pin_icon" />
 
         <ImageView
-            android:id="@+id/pin_three_conf"
+            android:id="@+id/pin_three_prompt"
             style="@style/pin_icon" />
 
         <ImageView
-            android:id="@+id/pin_four_conf"
+            android:id="@+id/pin_four_prompt"
             style="@style/pin_icon" />
 
         <ImageView
-            android:id="@+id/pin_five_conf"
+            android:id="@+id/pin_five_prompt"
             style="@style/pin_icon" />
 
         <ImageView
-            android:id="@+id/pin_six_conf"
+            android:id="@+id/pin_six_prompt"
             style="@style/pin_icon" />
 
     </GridLayout>
@@ -67,11 +67,12 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/pin_digits_filled"
+        android:layout_below="@id/pin_digits_prompt"
         android:layout_alignParentBottom="true"
-        android:layout_margin="40dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="?vg_backgroundWhite"
         app:cardElevation="2dp">
 
@@ -88,48 +89,48 @@
 
 
         <RelativeLayout
-            android:id="@+id/pin_confirmed"
+            android:id="@+id/pin_confirmed_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
             android:background="@drawable/form_pin_rect"
             android:elevation="10dp"
-            >
+            android:visibility="gone">
+
             <ImageView
                 android:id="@+id/pin_confirmed_logo"
-                android:paddingTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:paddingTop="20dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/icon_success"
-                android:tint="?vg_vergeUp"
-                />
+                android:tint="?vg_vergeUp" />
+
             <TextView
                 android:id="@+id/pin_confirmed_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/pin_confirmed_logo"
                 android:paddingTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textStyle="bold"
                 android:text="Awesome!"
+                android:textAlignment="center"
                 android:textColor="?attr/vg_primaryDark"
-                android:textSize="@dimen/text_title_size"/>
+                android:textSize="@dimen/text_title_size"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/pin_confirmed_subtitle"
-                android:layout_below="@id/pin_confirmed_title"
+                style="@style/activities_settings_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/activities_settings_description"
-                android:text="Your pin has now been set. \n Please don't forget it!"/>
+                android:layout_below="@id/pin_confirmed_title"
+                android:text="Your pin has now been set. \n Please don't forget it!" />
 
             <Button
                 android:id="@+id/pin_confirmed_button"
                 style="@style/blue_button"
-                android:text="Proceed"
-                android:backgroundTint="?vg_vergeUp"/>
+                android:backgroundTint="?vg_vergeUp"
+                android:text="Proceed" />
         </RelativeLayout>
-
 
 
     </androidx.cardview.widget.CardView>

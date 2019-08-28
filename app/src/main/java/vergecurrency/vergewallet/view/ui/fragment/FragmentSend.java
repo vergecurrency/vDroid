@@ -23,7 +23,6 @@ public class FragmentSend extends BaseFragment {
 	private TextView amountTextView;
 	private EditText amount;
 	private EditText address;
-	private SendFragmentViewModel mViewModel;
 	//External inputs
 	private double requestedAmount;
 
@@ -45,7 +44,7 @@ public class FragmentSend extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 
-		mViewModel = ViewModelProviders.of(this).get(SendFragmentViewModel.class);
+		SendFragmentViewModel mViewModel = ViewModelProviders.of(this).get(SendFragmentViewModel.class);
 
 		// Inflate the layout for this fragment
 

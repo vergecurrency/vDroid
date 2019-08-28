@@ -150,5 +150,9 @@
     <string name="fragment_transaction_sent_filter">Envoyé</string>
     <string name="re_enter_pin_title">Re-enter the PIN</string>
     <string name="set_wallet_pin_description">Ton PIN sera utilisé pour ouvrir l\'application, et envoyer des XVG. Si tu l\'oublies, tu ne pourras pas accéder à ton portemonnaie.</string>
+    <string name="service_url_title">Service URL</string>
+    <string name="save_button">Save</string>
+    <string name="service_url_setting_header">WALLET SERVICE URL</string>
+    <string name="service_url_desc">This application depends on Verge Wallet Service (VWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://vws.vergecurrency.com/vws/api (Verge\'s public VWS instance).</string>
 
 </resources>

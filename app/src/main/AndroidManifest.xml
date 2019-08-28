@@ -57,6 +57,9 @@
         <activity android:name=".view.ui.activity.TransactionDetailActivity" />
         <activity android:name=".view.ui.activity.settings.ChooseThemeActivity" />
         <activity android:name=".view.ui.activity.firstlaunch.PinSetActivity" />
+        <activity android:name=".view.ui.activity.firstlaunch.PinConfirmActivity" />
+        <activity android:name=".view.ui.activity.PinPromptActivity" />
+        <activity android:name=".view.ui.activity.settings.ServiceURLActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
