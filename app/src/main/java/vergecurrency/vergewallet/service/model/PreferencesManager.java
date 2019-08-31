@@ -34,6 +34,7 @@ public class PreferencesManager {
     private static final String DEVICE_TOKEN = "deviceToken";
     private static final String PREFERRED_THEME = "preferredTheme";
 
+
     private static PreferencesManager INSTANCE = null;
     private static SharedPreferences preferences;
     private static SharedPreferences encryptedPreferences;
