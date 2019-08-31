@@ -34,6 +34,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
     //QR Reader implementation included in play services
     implementation 'com.google.android.gms:play-services-vision:17.0.2'
+    implementation "androidx.security:security-crypto:1.0.0-alpha02"
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'org.slf4j:slf4j-android:1.7.7'
