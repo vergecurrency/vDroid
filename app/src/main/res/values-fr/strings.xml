@@ -21,7 +21,6 @@
     <string name="card_stats_title">Statistiques</string>
     <string name="cand_history_title">Graphique Historique</string>
 
-
     //Transaction fragment
     <string name="transaction_message_main">Aucune transaction reçue</string>
     <string name="transaction_message_sub">Open the bug XVG guide or receive XVG</string>
@@ -92,6 +91,12 @@
     <string name="charts_pageview_header">History Chart</string>
     <string name="twitter_pageview_header">Last tweets</string>
 
+    //Transaction detail
+    <string name="transaction_detail_title">Détail de la transaction</string>
+    <string name="transaction_detail_title_address">Adress</string>
+    <string name="transaction_detail_title_transaction_id">Transaction ID</string>
+    <string name="transaction_detail_title_confirmations">Les confirmations</string>
+    <string name="transaction_detail_title_message">Message</string>
 
 
     <string name="paperkey_write_seed">Write down each word in the correct order on your paper</string>

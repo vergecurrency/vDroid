@@ -93,7 +93,9 @@ public class TransactionsAdapter extends ArrayAdapter<TransactionItem> {
     }
 
     private boolean currentTextFilterMatch(Transaction tx, String charText) {
-        return tx.getAddress().toLowerCase().contains(charText.toLowerCase()) || Double.toString(tx.getAmount()).toLowerCase().contains(charText.toLowerCase());
+        return tx.getAccount().toLowerCase().contains(charText.toLowerCase()) ||
+                tx.getAddress().toLowerCase().contains(charText.toLowerCase()) ||
+                Double.toString(tx.getAmount()).toLowerCase().contains(charText.toLowerCase());
     }
 
     private LocalDate convertToLocalDateViaMillisecond(long time) {
