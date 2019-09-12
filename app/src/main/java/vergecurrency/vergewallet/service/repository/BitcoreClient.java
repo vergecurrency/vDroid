@@ -21,7 +21,7 @@ public class BitcoreClient {
 
 	/**
 	 *
-	 * @param walletName "
+	 * @param walletName
 	 * @param copayerName
 	 * @param m
 	 * @param n

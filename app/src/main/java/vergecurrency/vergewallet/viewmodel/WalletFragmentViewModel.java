@@ -9,12 +9,12 @@ import vergecurrency.vergewallet.wallet.WalletManager;
 public class WalletFragmentViewModel extends ViewModel {
     private Long balance;
     //TODO check if necessary
-    //private String currencyChange;
+    private String currencyChange;
 
     public WalletFragmentViewModel() {
         balance = WalletManager.getBalance().getValue();
         //TODO check if necessary
-        //currencyChange = PriceStatsDataReader.readPriceStatistics(getCurrencyCode()).get("XVG/USD");
+        currencyChange = PriceStatsDataReader.readPriceStatistics(getCurrencyCode()).get("XVG/USD");
     }
 
     public String getCurrencyCode() {
