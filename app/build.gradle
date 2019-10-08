@@ -47,7 +47,7 @@ dependencies {
     //Different shit
     implementation 'com.github.EdwardQuixote:Support_AppLocker:2.0.3'
     //TestFairy
-    implementation 'testfairy:testfairy-android-sdk:1.9.13@aar'
+    implementation 'testfairy:testfairy-android-sdk:1.+@aar'
     //Charts for history prices
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
     //Centered buttons
@@ -69,7 +69,7 @@ dependencies {
     //keypad library
     implementation 'com.github.davidmigloz:number-keyboard:3.0.0'
     //JS engine
-    implementation 'com.eclipsesource.j2v8:j2v8:4.5.0@aar'
+    implementation 'com.eclipsesource.j2v8:j2v8:5.0.103@aar'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'

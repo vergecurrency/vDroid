@@ -46,11 +46,11 @@ public class SJCL {
 
 		V8Array paramsArray = new V8Array(runtime).push(count).push(ks);
 
-		Object result = sjcl.executeJSFunction("encrypt",password,message,paramsArray);
+		Object result = sjcl.executeJSFunction("encrypt",password,message,new V8Array(runtime).push(paramsArray));
 
-		count.release();
-		ks.release();
-		paramsArray.release();
+		count.close();
+		ks.close();
+		paramsArray.close();
 
 
 		return result.toString();
@@ -58,7 +58,19 @@ public class SJCL {
 	}
 
 	public String decrypt(String password, String message) {
-	return "";
+
+		V8Object param1 = new V8Object(runtime).add("param1", password);
+		V8Object param2 = new V8Object(runtime).add("param2", message);
+
+		V8Array params = new V8Array(runtime).push(param1).push(param2);
+
+		Object result = sjcl.executeJSFunction("decrypt",params);
+
+		param1.close();
+		param2.close();
+		params.close();
+
+		return result.toString();
 	}
 
 	public String base64ToBits(String encryptingKey) {
