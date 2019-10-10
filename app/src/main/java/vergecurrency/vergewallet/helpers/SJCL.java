@@ -6,6 +6,9 @@ import com.eclipsesource.v8.V8;
 import com.eclipsesource.v8.V8Array;
 import com.eclipsesource.v8.V8Object;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.InputStream;
 
 import vergecurrency.vergewallet.Constants;
@@ -41,44 +44,26 @@ public class SJCL {
 
 	public String encrypt(String password, String message, int[] params) {
 
-		V8Object count = new V8Object(runtime).add("count", params[0]);
-		V8Object ks = new V8Object(runtime).add("ks",params[1]);
+		V8Object paramsObj = new V8Object(runtime).add("count", params[0]).add("ks", params[1]);
+		V8Array paramsArray = new V8Array(runtime).push(password).push(message).push(paramsObj);
+		String result = sjcl.executeStringFunction("encrypt", paramsArray);
 
-		V8Array paramsArray = new V8Array(runtime).push(count).push(ks);
-
-		Object result = sjcl.executeJSFunction("encrypt",password,message,new V8Array(runtime).push(paramsArray));
-
-		count.close();
-		ks.close();
+		paramsObj.close();
 		paramsArray.close();
 
-
-		return result.toString();
-
+		return result;
 	}
 
 	public String decrypt(String password, String message) {
-
-		V8Object param1 = new V8Object(runtime).add("param1", password);
-		V8Object param2 = new V8Object(runtime).add("param2", message);
-
-		V8Array params = new V8Array(runtime).push(param1).push(param2);
-
-		Object result = sjcl.executeJSFunction("decrypt",params);
-
-		param1.close();
-		param2.close();
-		params.close();
-
-		return result.toString();
+			return sjcl.executeJSFunction("decrypt",password,message.replace("\\","")).toString();
 	}
 
 	public String base64ToBits(String encryptingKey) {
 		V8Object base64 = sjcl.getObject("codec").getObject("base64");
 
-		Object result = base64.executeJSFunction("toBits",encryptingKey);
+		Object result = base64.executeJSFunction("toBits", encryptingKey);
 
-		base64.release();
+		base64.close();
 
 		return result.toString();
 	}
