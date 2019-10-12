@@ -7,6 +7,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import io.horizontalsystems.bitcoinkit.models.Address;
+import kotlin.NotImplementedError;
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.helpers.SJCL;
 import vergecurrency.vergewallet.service.model.vws.AddressInfo;
@@ -15,21 +16,16 @@ public class BitcoreClient {
 
 	private SJCL sjcl;
 
+	private String baseUrl;
+
 	public BitcoreClient(Context c){
 		sjcl = new SJCL(c);
+		baseUrl = "";
 
 	}
 
-	public void scanAddresses() {
-		postRequest("/v1/addresses/scan", null, null);
-	}
 
-	/**
-	 *
-	 */
-	public void createAddresses() {
-		postRequest("/v4/addresses", null, null);
-	}
+
 
 	/**
 	 *
@@ -45,6 +41,18 @@ public class BitcoreClient {
 
 		return "";
 	}
+
+	public void scanAddresses() {
+		postRequest("/v1/addresses/scan", null, null);
+	}
+
+	/**
+	 *
+	 */
+	public void createAddresses() {
+		postRequest("/v4/addresses", null, null);
+	}
+
 
 	public void getBalance() {
 		getRequest("/v1/balance",null,null);
@@ -66,6 +74,32 @@ public class BitcoreClient {
 		getRequest("/v1/sendmaxinfo",null,null);
 	}
 
+
+	//------------------------------------------------
+	// SJCL and various Helper methods
+	//------------------------------------------------
+
+	private String getSignature() {
+		return "";
+	}
+
+	private String signMessage() {
+		return "";
+	}
+
+	private String encryptMessage(String plaintext, String encryptingKey) {
+		String key = sjcl.base64ToBits(encryptingKey);
+		return sjcl.encrypt(key,plaintext,new int[]{128, 1});
+	}
+
+	public String decryptMessage(String cyphertext, String encryptingKey) {
+		String key = sjcl.base64ToBits(encryptingKey);
+		return sjcl.decrypt(key,cyphertext);
+	}
+
+	//------------------------------------------------
+	// HTTP Request helpers
+	//------------------------------------------------
 
 
 	public void postRequest(String url, String jsonArgs, String escape) {

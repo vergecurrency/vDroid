@@ -38,10 +38,10 @@ public class SJCL {
 			System.err.println("Can't do something..................................................");
 		}
 	}
-
+	// TODO : I JUST BROKE IT. NEED REPAIR, BUT I AM HUNGRY.
 	public String encrypt(String password, String message, int[] params) {
 
-		V8Object paramsObj = new V8Object(runtime).add("count", params[0]).add("ks", params[1]);
+		V8Object paramsObj = new V8Object(runtime).add("ks", params[0]).add("iter", params[1]);
 		V8Array paramsArray = new V8Array(runtime).push(password).push(message).push(paramsObj);
 		String result = sjcl.executeStringFunction("encrypt", paramsArray);
 

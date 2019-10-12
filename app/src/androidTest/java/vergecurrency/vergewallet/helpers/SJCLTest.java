@@ -24,7 +24,7 @@ public class SJCLTest {
 
 	@Test
 	public void encryptAndDecryptTest() {
-		String encoded = sjcl.encrypt("Happy", "Friday", new int[] {2048,256});
+		String encoded = sjcl.encrypt("Happy", "Friday", new int[] {128,1});
 		String decoded = sjcl.decrypt("Happy", encoded);
 
 		assertEquals("Friday",decoded);
