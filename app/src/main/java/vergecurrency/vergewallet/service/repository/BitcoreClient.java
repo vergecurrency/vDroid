@@ -99,26 +99,26 @@ public class BitcoreClient {
 		}
 	}
 
-	class invalidDeriver extends Exception {
-		public invalidDeriver(String value) {
+	class invalidDeriverException extends Exception {
+		public invalidDeriverException(String value) {
 			super(value);
 		}
 	}
 
-	class invalidMessageData extends Exception {
-		public invalidMessageData(String message) {
+	class invalidMessageDataException extends Exception {
+		public invalidMessageDataException(String message) {
 			super(message);
 		}
 	}
 
-	class invalidWidHex extends Exception{
-		public invalidWidHex(String id) {
+	class invalidWidHexException extends Exception{
+		public invalidWidHexException(String id) {
 			super(id);
 		}
 	}
 
-	class invalidAddressReceived extends Exception {
-		public invalidAddressReceived(AddressInfo addressInfo) {
+	class invalidAddressReceivedException extends Exception {
+		public invalidAddressReceivedException(AddressInfo addressInfo) {
 			super(addressInfo.getAddress());
 		}
 
