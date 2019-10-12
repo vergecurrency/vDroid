@@ -6,9 +6,6 @@ import com.eclipsesource.v8.V8;
 import com.eclipsesource.v8.V8Array;
 import com.eclipsesource.v8.V8Object;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.InputStream;
 
 import vergecurrency.vergewallet.Constants;
@@ -55,7 +52,7 @@ public class SJCL {
 	}
 
 	public String decrypt(String password, String message) {
-			return sjcl.executeJSFunction("decrypt",password,message.replace("\\","")).toString();
+		return sjcl.executeJSFunction("decrypt", password, message.replace("\\", "")).toString();
 	}
 
 	public String base64ToBits(String encryptingKey) {
@@ -67,4 +64,32 @@ public class SJCL {
 
 		return result.toString();
 	}
+
+	public int[] sha256Hash(String data) {
+		V8Object sha256 = sjcl.getObject("hash").getObject("sha256");
+		V8Array params = new V8Array(runtime).push(data);
+
+		int[] result =  sha256.executeArrayFunction("hash", params).getIntegers(0,8);
+
+		sha256.close();
+
+		return result;
+	}
+
+	public String hexFromBits(int[] hash){
+		V8Object hex = sjcl.getObject("codec").getObject("hex");
+		V8Array params = new V8Array(runtime);
+		for (int val: hash) {
+			params.push(val);
+		}
+
+		Object result = hex.executeJSFunction("fromBits", params);
+
+		hex.close();
+		params.close();
+
+		return result.toString();
+
+	}
+
 }
