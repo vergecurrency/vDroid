@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import io.horizontalsystems.bitcoinkit.models.Address;
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.helpers.SJCL;
+import vergecurrency.vergewallet.service.model.vws.AddressInfo;
 
 public class BitcoreClient {
 
@@ -117,6 +118,9 @@ public class BitcoreClient {
 	}
 
 	class invalidAddressReceived extends Exception {
-		public invalidAddressReceived(Address)
+		public invalidAddressReceived(AddressInfo addressInfo) {
+			super(addressInfo.getAddress());
+		}
+
 	}
 }
