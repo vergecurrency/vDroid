@@ -18,14 +18,15 @@ public class SJCLTest {
 
 	@Test
 	public void base64ToBitsTest() {
-		String result = sjcl.base64ToBits("dGVzdA==");
-		assertEquals("1952805748", result);
+		int[] result = sjcl.base64ToBits("dGVzdA==");
+		assertArrayEquals(new int[]{1952805748}, result);
 	}
 
 	@Test
 	public void encryptAndDecryptTest() {
-		String encoded = sjcl.encrypt("Happy", "Friday", new int[] {128,1});
-		String decoded = sjcl.decrypt("Happy", encoded);
+		int[] key = sjcl.base64ToBits("TXkgY3JpbWUgaXMgdGhhdCBvZiBjdXJpb3NpdHk=");
+		String encoded = sjcl.encrypt( key,"Friday", new int[] {128,1});
+		String decoded = sjcl.decrypt(key, encoded);
 
 		assertEquals("Friday",decoded);
 	}

@@ -38,31 +38,51 @@ public class SJCL {
 			System.err.println("Can't do something..................................................");
 		}
 	}
-	// TODO : I JUST BROKE IT. NEED REPAIR, BUT I AM HUNGRY.
-	public String encrypt(String password, String message, int[] params) {
+
+
+	public String encrypt(int[] key, String message, int[] params) {
+
+		V8Array keyObj = new V8Array(runtime);
+		for (int bitValue: key) {
+			keyObj.push(bitValue);
+		}
 
 		V8Object paramsObj = new V8Object(runtime).add("ks", params[0]).add("iter", params[1]);
-		V8Array paramsArray = new V8Array(runtime).push(password).push(message).push(paramsObj);
+
+		V8Array paramsArray = new V8Array(runtime).push(keyObj).push(message).push(paramsObj);
 		String result = sjcl.executeStringFunction("encrypt", paramsArray);
 
+		keyObj.close();
 		paramsObj.close();
 		paramsArray.close();
 
 		return result;
 	}
 
-	public String decrypt(String password, String message) {
-		return sjcl.executeJSFunction("decrypt", password, message.replace("\\", "")).toString();
+	public String decrypt(int[] key, String message) {
+
+		V8Array keyObj = new V8Array(runtime);
+		for (int bitValue: key) {
+			keyObj.push(bitValue);
+		}
+
+		String  result = sjcl.executeJSFunction("decrypt", keyObj, message.replace("\\", "")).toString();
+
+		keyObj.close();
+
+		return result;
 	}
 
-	public String base64ToBits(String encryptingKey) {
+	public int[] base64ToBits(String encryptingKey) {
 		V8Object base64 = sjcl.getObject("codec").getObject("base64");
 
-		Object result = base64.executeJSFunction("toBits", encryptingKey);
+		V8Array params = new V8Array(runtime).push(encryptingKey);
+		V8Array result = base64.executeArrayFunction("toBits", params);
 
 		base64.close();
+		params.close();
 
-		return result.toString();
+		return result.getIntegers(0,result.length());
 	}
 
 	public int[] sha256Hash(String data) {
@@ -72,6 +92,7 @@ public class SJCL {
 		int[] result =  sha256.executeArrayFunction("hash", params).getIntegers(0,8);
 
 		sha256.close();
+		params.close();
 
 		return result;
 	}
