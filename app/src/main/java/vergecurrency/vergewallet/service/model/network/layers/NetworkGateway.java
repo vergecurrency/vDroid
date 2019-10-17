@@ -18,7 +18,8 @@ public class NetworkGateway extends AsyncTask<String, Integer, String> {
 			TorLayerGateway tg = TorLayerGateway.getInstance();
 			result = tg.doInBackground(strings);
 		} else {
-			try {
+			/*try {
+				//TODO = fix this.
 				result = new ClearnetGateway().execute(strings).get();
 			} catch (ExecutionException e) {
 				e.printStackTrace();
@@ -26,7 +27,8 @@ public class NetworkGateway extends AsyncTask<String, Integer, String> {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 				result = "";
-			}
+			}*/
+			result = "";
 		}
 
 
