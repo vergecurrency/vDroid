@@ -18,8 +18,8 @@ public class SJCLTest {
 
 	@Test
 	public void base64ToBitsTest() {
-		int[] result = sjcl.base64ToBits("dGVzdA==");
-		assertArrayEquals(new int[]{1952805748}, result);
+		int[] result = sjcl.base64ToBits("TXkgY3JpbWUgaXMgdGhhdCBvZiBjdXJpb3NpdHk=");
+		assertArrayEquals(new int[]{1299783779,1919511909,543781664,1952997748,544171552,1668641385,1869834612,2030043136}, result);
 	}
 
 	@Test
