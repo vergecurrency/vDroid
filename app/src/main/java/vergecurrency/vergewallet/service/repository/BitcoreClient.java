@@ -88,12 +88,12 @@ public class BitcoreClient {
 	}
 
 	private String encryptMessage(String plaintext, String encryptingKey) {
-		String key = sjcl.base64ToBits(encryptingKey);
+		int[] key = sjcl.base64ToBits(encryptingKey);
 		return sjcl.encrypt(key,plaintext,new int[]{128, 1});
 	}
 
 	public String decryptMessage(String cyphertext, String encryptingKey) {
-		String key = sjcl.base64ToBits(encryptingKey);
+		int[] key = sjcl.base64ToBits(encryptingKey);
 		return sjcl.decrypt(key,cyphertext);
 	}
 
