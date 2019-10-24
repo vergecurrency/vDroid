@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-import vergecurrency.vergewallet.service.model.vws.InputOutput;
-import vergecurrency.vergewallet.service.model.vws.TxHistory;
+import vergecurrency.vergewallet.service.model.wallet.InputOutput;
+import vergecurrency.vergewallet.service.model.wallet.TxHistory;
 
 public class TransactionRepository  extends SQLiteOpenHelper {
 

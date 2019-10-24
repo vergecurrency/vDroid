@@ -34,7 +34,7 @@
             android:layout_marginTop="175dp"
             android:text="@string/prog_placeholder"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@color/verge_white"
             android:textSize="@dimen/text_smaller_size" />
 
         <ImageView

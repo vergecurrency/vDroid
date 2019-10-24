@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.service.model.vws;
+package vergecurrency.vergewallet.service.model.wallet;
 
 import vergecurrency.vergewallet.Constants;
 

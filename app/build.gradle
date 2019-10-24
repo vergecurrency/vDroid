@@ -37,9 +37,10 @@ dependencies {
     implementation 'androidx.media:media:1.1.0'
     implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
     //QR Reader implementation included in play services
-    implementation 'com.google.android.gms:play-services-vision:18.0.0'
-    implementation "androidx.security:security-crypto:1.0.0-alpha02"
+    implementation 'com.google.android.gms:play-services-vision:19.0.0'
+
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    //Logging
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'org.slf4j:slf4j-android:1.7.25'
     //QRCode library
@@ -51,7 +52,7 @@ dependencies {
     //Different shit
     implementation 'com.github.EdwardQuixote:Support_AppLocker:2.0.3'
     //TestFairy
-    implementation 'testfairy:testfairy-android-sdk:1.+@aar'
+    implementation 'testfairy:testfairy-android-sdk:1.9.16@aar'
     //Charts for history prices
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
     //Centered buttons
@@ -74,6 +75,9 @@ dependencies {
     implementation 'com.github.davidmigloz:number-keyboard:3.0.0'
     //JS engine
     implementation 'com.eclipsesource.j2v8:j2v8:5.0.103@aar'
+    //crypto libraries
+    implementation 'com.madgag.spongycastle:core:1.58.0.0'
+    implementation "androidx.security:security-crypto:1.0.0-alpha02"
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
