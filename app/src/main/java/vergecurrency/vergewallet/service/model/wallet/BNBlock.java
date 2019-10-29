@@ -24,7 +24,7 @@ public class BNBlock {
 
 
 	public static BNBlock decode(String JSON) {
-		return new Gson().fromJson(JSON,BNBlock.class);
+		return new Gson().fromJson(JSON, BNBlock.class);
 	}
 
 	public String get_id() {

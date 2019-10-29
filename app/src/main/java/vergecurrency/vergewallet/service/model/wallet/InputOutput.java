@@ -1,5 +1,7 @@
 package vergecurrency.vergewallet.service.model.wallet;
 
+import com.google.gson.Gson;
+
 import vergecurrency.vergewallet.Constants;
 
 public class InputOutput {
@@ -8,7 +10,11 @@ public class InputOutput {
 	private String address;
 	private boolean isMine;
 
-	float amountValue() {
+	public static InputOutput decode(String JSON) {
+		return new Gson().fromJson(JSON, InputOutput.class);
+	}
+
+	public float amountValue() {
 		return (float) (amount / Constants.SATOSHIS_DIVIDER);
 	}
 

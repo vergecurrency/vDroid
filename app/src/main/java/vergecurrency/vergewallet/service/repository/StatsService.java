@@ -7,19 +7,19 @@ import java.util.TimeZone;
 
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.service.model.network.layers.ClearnetGateway;
-import vergecurrency.vergewallet.service.model.GraphInfo;
+import vergecurrency.vergewallet.service.model.ChartInfo;
 
 public class StatsService {
 
 	private String filter;
 
-	public static GraphInfo readPriceStatistics(int filter) {
+	public static ChartInfo readPriceStatistics(int filter) {
 		String rawData;
-		GraphInfo result;
+		ChartInfo result;
 		try {
 			String request = String.format("%s%s", Constants.CHART_DATA_ENDPOINT, getUnixTimeframe(filter));
 			rawData = new ClearnetGateway().execute(request).get();
-			result = new Gson().fromJson(rawData, GraphInfo.class);
+			result = new Gson().fromJson(rawData, ChartInfo.class);
 		} catch (Exception e) {
 			result = null;
 		}

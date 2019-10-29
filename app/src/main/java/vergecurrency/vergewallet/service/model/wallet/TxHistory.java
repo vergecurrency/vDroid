@@ -1,5 +1,7 @@
 package vergecurrency.vergewallet.service.model.wallet;
 
+import com.google.gson.Gson;
+
 import java.util.Date;
 
 import vergecurrency.vergewallet.Constants;
@@ -20,6 +22,10 @@ public class TxHistory {
 	private long createdOn;
 	private String message;
 	private String addressTo;
+
+	public static TxHistory decode(String JSON) {
+		return new Gson().fromJson(JSON, TxHistory.class);
+	}
 
 	public String getTxid() {
 		return txid;

@@ -2,7 +2,7 @@ package vergecurrency.vergewallet.service.model;
 
 import java.util.Map;
 
-public class GraphInfo {
+public class ChartInfo {
 
 	public Map<String, String> getMarket_cap_by_available_supply() {
 		return market_cap_by_available_supply;

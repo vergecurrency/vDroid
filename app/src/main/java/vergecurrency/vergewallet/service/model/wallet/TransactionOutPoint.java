@@ -15,15 +15,15 @@ public class TransactionOutPoint {
 	}
 
 	public byte[] serialize() {
-		byte[]indexBA = BigInteger.valueOf(index).toByteArray();
-		byte[] result = new byte[indexBA.length+hash.length];
-		System.arraycopy(hash,0,result,0,hash.length);
-		System.arraycopy(indexBA,0,result,hash.length,indexBA.length);
+		byte[] indexBA = BigInteger.valueOf(index).toByteArray();
+		byte[] result = new byte[indexBA.length + hash.length];
+		System.arraycopy(hash, 0, result, 0, hash.length);
+		System.arraycopy(indexBA, 0, result, hash.length, indexBA.length);
 		return result;
 	}
 
 	public static TransactionOutPoint deserialize(byte[] data) {
-		return new TransactionOutPoint(Arrays.copyOfRange(data,0,31), ByteBuffer.wrap(Arrays.copyOfRange(data,32,35)).getInt());
+		return new TransactionOutPoint(Arrays.copyOfRange(data, 0, 31), ByteBuffer.wrap(Arrays.copyOfRange(data, 32, 35)).getInt());
 	}
 
 	public byte[] getHash() {
