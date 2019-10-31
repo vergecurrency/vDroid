@@ -55,5 +55,19 @@ public class FiatRateTicker {
 		NotificationCenter.postNotification(context, NotificationType.didReceiveFiatRatings, b);
 	}
 
+	public boolean isStarted() {
+		return started;
+	}
 
+	public void setStarted(boolean started) {
+		this.started = started;
+	}
+
+	public FiatRate getRateInfo() {
+		return rateInfo;
+	}
+
+	public void setRateInfo(FiatRate rateInfo) {
+		this.rateInfo = rateInfo;
+	}
 }
