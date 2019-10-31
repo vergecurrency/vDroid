@@ -10,12 +10,26 @@ import java.util.Objects;
 
 import vergecurrency.vergewallet.Constants;
 import vergecurrency.vergewallet.helpers.utils.MathUtils;
+import vergecurrency.vergewallet.service.model.FiatRate;
 import vergecurrency.vergewallet.service.model.network.layers.ClearnetGateway;
 
 public final class PriceStatsDataReader {
 
 	public PriceStatsDataReader() {
 
+	}
+
+	public static FiatRate infoBy(String currency) {
+
+		String rawData;
+		try {
+			rawData = new ClearnetGateway().execute(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, currency)).get();
+			return FiatRate.decode(rawData);
+
+		} catch (Exception e) {
+			rawData = "error";
+			return null;
+		}
 	}
 
 	public static Map<String, String> readPriceStatistics(String currency) {
