@@ -1,6 +1,8 @@
 package vergecurrency.vergewallet.wallet;
 
-public class TransactionFactory {
+import vergecurrency.vergewallet.service.model.FiatRate;
+
+public class WalletTransactionFactory {
 
     private float amount = 0f;
     private float fiatAmount = 0f;
@@ -8,7 +10,7 @@ public class TransactionFactory {
     private String memo = "";
     private FiatRateTicker ticker;
 
-    public TransactionFactory(FiatRateTicker ticker) {
+    public WalletTransactionFactory(FiatRateTicker ticker) {
         this.ticker = ticker;
     }
 
@@ -23,13 +25,11 @@ public class TransactionFactory {
     }
 
     private void update(String currency) {
-        String info = ticker.getRateInfo();
+        FiatRate info = ticker.getRateInfo();
         if (isXVG(currency)) {
-            //TODO Uncomment
-            // fiatAmount = (float) (amount * info.getPrice());
+             fiatAmount = (float) (amount * info.getPrice());
         } else {
-            //TODO Uncomment
-            // amount = (float) (fiatAmount / info.getPrice());
+            amount = (float) (fiatAmount / info.getPrice());
         }
 
     }

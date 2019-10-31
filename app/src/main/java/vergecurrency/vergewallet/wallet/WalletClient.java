@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.service.repository;
+package vergecurrency.vergewallet.wallet;
 
 import android.content.Context;
 

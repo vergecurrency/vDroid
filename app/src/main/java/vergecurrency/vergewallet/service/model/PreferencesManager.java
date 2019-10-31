@@ -235,7 +235,7 @@ public class PreferencesManager {
     }
 
     //---------First launch
-    public static boolean getFirstLaunch() {
+    public static boolean isFirstLaunch() {
         return preferences.getBoolean(FIRST_LAUNCH, true);
     }
 

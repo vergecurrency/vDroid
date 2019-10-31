@@ -1,20 +1,17 @@
 package vergecurrency.vergewallet.view.ui.activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 import vergecurrency.vergewallet.helpers.utils.LanguagesUtils;
-import vergecurrency.vergewallet.helpers.utils.UIUtils;
 import vergecurrency.vergewallet.view.base.BaseActivity;
 import vergecurrency.vergewallet.R;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
@@ -61,7 +58,7 @@ public class SplashActivity extends BaseActivity {
 
 	public void startApplication() {
 
-		if (PreferencesManager.getFirstLaunch()) {
+		if (PreferencesManager.isFirstLaunch()) {
 			startActivity(new Intent(getApplicationContext(), FirstLaunchActivity.class));
 			finish();
 		} else {

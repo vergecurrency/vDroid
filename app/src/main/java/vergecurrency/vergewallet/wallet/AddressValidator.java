@@ -5,6 +5,7 @@ package vergecurrency.vergewallet.wallet;
 import java.util.HashMap;
 
 import io.horizontalsystems.bitcoinkit.exceptions.AddressFormatException;
+import io.horizontalsystems.bitcoinkit.models.LegacyAddress;
 import io.horizontalsystems.bitcoinkit.network.MainNet;
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter;
 
@@ -18,6 +19,7 @@ public class AddressValidator {
 			System.err.println(e.getMessage());
 			return false;
 		}
+
 	}
 
 	public ValidationCompletion validate(String address) {

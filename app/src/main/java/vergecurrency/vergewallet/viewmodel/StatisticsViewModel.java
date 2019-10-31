@@ -6,7 +6,7 @@ import java.util.Map;
 
 import androidx.lifecycle.ViewModel;
 import vergecurrency.vergewallet.service.model.Currency;
-import vergecurrency.vergewallet.service.repository.PriceStatsDataReader;
+import vergecurrency.vergewallet.service.repository.RatesClient;
 
 import static vergecurrency.vergewallet.service.model.PreferencesManager.getPreferredCurrency;
 
@@ -17,7 +17,7 @@ public class StatisticsViewModel extends ViewModel {
 
 	public StatisticsViewModel() {
 		currencyCode = Currency.getCurrencyFromJson(getPreferredCurrency()).getCurrency();
-		statistics = new ArrayList<>(PriceStatsDataReader.readPriceStatistics(getCurrencyCode()).entrySet());
+		statistics = new ArrayList<>(RatesClient.readPriceStatistics(getCurrencyCode()).entrySet());
 	}
 
 	private String getCurrencyCode() {

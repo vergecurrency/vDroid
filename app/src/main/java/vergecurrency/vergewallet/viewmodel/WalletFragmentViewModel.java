@@ -3,7 +3,7 @@ package vergecurrency.vergewallet.viewmodel;
 import androidx.lifecycle.ViewModel;
 import vergecurrency.vergewallet.service.model.Currency;
 import vergecurrency.vergewallet.service.model.PreferencesManager;
-import vergecurrency.vergewallet.service.repository.PriceStatsDataReader;
+import vergecurrency.vergewallet.service.repository.RatesClient;
 import vergecurrency.vergewallet.wallet.WalletManager;
 
 public class WalletFragmentViewModel extends ViewModel {
@@ -14,7 +14,7 @@ public class WalletFragmentViewModel extends ViewModel {
     public WalletFragmentViewModel() {
         balance = WalletManager.getBalance().getValue();
         //TODO check if necessary
-        currencyChange = PriceStatsDataReader.readPriceStatistics(getCurrencyCode()).get("XVG/USD");
+        currencyChange = RatesClient.readPriceStatistics(getCurrencyCode()).get("XVG/USD");
     }
 
     public String getCurrencyCode() {

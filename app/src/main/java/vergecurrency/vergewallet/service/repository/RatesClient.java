@@ -13,9 +13,9 @@ import vergecurrency.vergewallet.helpers.utils.MathUtils;
 import vergecurrency.vergewallet.service.model.FiatRate;
 import vergecurrency.vergewallet.service.model.network.layers.ClearnetGateway;
 
-public final class PriceStatsDataReader {
+public final class RatesClient {
 
-	public PriceStatsDataReader() {
+	public RatesClient() {
 
 	}
 

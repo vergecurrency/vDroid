@@ -10,7 +10,7 @@ public class PaperkeyDistributionViewModel extends ViewModel {
     String[] seed;
 
     public PaperkeyDistributionViewModel() {
-        if(!PreferencesManager.getFirstLaunch()) {
+        if(!PreferencesManager.isFirstLaunch()) {
             seed = MnemonicManager.getMnemonicFromJSON(PreferencesManager.getMnemonic());
         }
 
