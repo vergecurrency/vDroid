@@ -7,37 +7,37 @@ class ValidationUtilsTest {
 
 	@Test
 	void isStringEightCharsLong() {
-		assertTrue(ValidationUtils.isStringEightCharsLong("12345678"));
-		assertTrue(ValidationUtils.isStringEightCharsLong("verylongstringbaiwanttotseesfsby,.-,%4352"));
-		assertFalse(ValidationUtils.isStringEightCharsLong("1234567"));
-		assertFalse(ValidationUtils.isStringEightCharsLong(""));
-		assertFalse(ValidationUtils.isStringEightCharsLong(null));
+		assertTrue(ValidationUtils.INSTANCE.isStringEightCharsLong("12345678"));
+		assertTrue(ValidationUtils.INSTANCE.isStringEightCharsLong("verylongstringbaiwanttotseesfsby,.-,%4352"));
+		assertFalse(ValidationUtils.INSTANCE.isStringEightCharsLong("1234567"));
+		assertFalse(ValidationUtils.INSTANCE.isStringEightCharsLong(""));
+		assertFalse(ValidationUtils.INSTANCE.isStringEightCharsLong(null));
 	}
 
 	@Test
 	void hasStringUppercaseChar() {
-		assertTrue(ValidationUtils.hasStringUppercaseChar("exAmple"));
-		assertTrue(ValidationUtils.hasStringUppercaseChar("EXAMPLE"));
-		assertFalse(ValidationUtils.hasStringUppercaseChar("example"));
-		assertFalse(ValidationUtils.hasStringUppercaseChar("1234.-,"));
-		assertFalse(ValidationUtils.hasStringUppercaseChar(""));
+		assertTrue(ValidationUtils.INSTANCE.hasStringUppercaseChar("exAmple"));
+		assertTrue(ValidationUtils.INSTANCE.hasStringUppercaseChar("EXAMPLE"));
+		assertFalse(ValidationUtils.INSTANCE.hasStringUppercaseChar("example"));
+		assertFalse(ValidationUtils.INSTANCE.hasStringUppercaseChar("1234.-,"));
+		assertFalse(ValidationUtils.INSTANCE.hasStringUppercaseChar(""));
 	}
 
 	@Test
 	void hasStringLowercaseChar() {
-		assertTrue(ValidationUtils.hasStringLowercaseChar("example"));
-		assertTrue(ValidationUtils.hasStringLowercaseChar("exAmple"));
-		assertFalse(ValidationUtils.hasStringLowercaseChar("EXAMPLE"));
-		assertFalse(ValidationUtils.hasStringLowercaseChar(""));
-		assertFalse(ValidationUtils.hasStringLowercaseChar("1234.-,"));
+		assertTrue(ValidationUtils.INSTANCE.hasStringLowercaseChar("example"));
+		assertTrue(ValidationUtils.INSTANCE.hasStringLowercaseChar("exAmple"));
+		assertFalse(ValidationUtils.INSTANCE.hasStringLowercaseChar("EXAMPLE"));
+		assertFalse(ValidationUtils.INSTANCE.hasStringLowercaseChar(""));
+		assertFalse(ValidationUtils.INSTANCE.hasStringLowercaseChar("1234.-,"));
 	}
 
 	@Test
 	void isStringContainingSpecialChars() {
-		assertTrue(ValidationUtils.isStringContainingSpecialChars("Hello%123"));
-		assertFalse(ValidationUtils.isStringContainingSpecialChars("Hello123"));
-		assertFalse(ValidationUtils.isStringContainingSpecialChars("123"));
-		assertFalse(ValidationUtils.isStringContainingSpecialChars(""));
-		assertFalse(ValidationUtils.isStringContainingSpecialChars(" "));
+		assertTrue(ValidationUtils.INSTANCE.isStringContainingSpecialChars("Hello%123"));
+		assertFalse(ValidationUtils.INSTANCE.isStringContainingSpecialChars("Hello123"));
+		assertFalse(ValidationUtils.INSTANCE.isStringContainingSpecialChars("123"));
+		assertFalse(ValidationUtils.INSTANCE.isStringContainingSpecialChars(""));
+		assertFalse(ValidationUtils.INSTANCE.isStringContainingSpecialChars(" "));
 	}
 }
