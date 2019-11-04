@@ -32,7 +32,7 @@ class TransactionListItem(private val tx: Transaction) : TransactionItem, View.O
         v.context.startActivity(intent)
     }
 
-    override fun getView(inflater: LayoutInflater, convertView: View, parent: ViewGroup, position: Int): View {
+    override fun getView(inflater: LayoutInflater, convertView: View?, parent: ViewGroup, position: Int): View {
         var convertView : View? = convertView
         val vh: TransactionItemViewHolder
         if (convertView == null) {

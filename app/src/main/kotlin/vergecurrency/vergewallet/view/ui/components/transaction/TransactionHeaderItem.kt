@@ -11,10 +11,10 @@ class TransactionHeaderItem(private val name: String) : TransactionItem {
     override val viewType: Int
         get() =TransactionRowType.HEADER_ITEM.ordinal
 
-    override fun getView(inflater: LayoutInflater, convertView: View, parent: ViewGroup, position: Int): View {
+    override fun getView(inflater: LayoutInflater, convertView: View?, parent: ViewGroup, position: Int): View {
         val view: View
-        var cView : View? = convertView
-        if (cView == null) {
+
+        if (convertView == null) {
             view = inflater.inflate(R.layout.listview_item_transactions_header, null)
         } else {
             view = convertView

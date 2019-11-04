@@ -24,7 +24,7 @@ class PinPromptActivity : BaseActivity() {
 
     private var nextView: String? = null
     private var pin: String? = null
-    lateinit var pinIVs: Array<ImageView>
+    lateinit var pinIVs: Array<ImageView?>
     private var mViewModel: PinPromptedViewModel? = null
     private var pinLayout: GridLayout? = null
 
@@ -44,7 +44,7 @@ class PinPromptActivity : BaseActivity() {
 
         pinLayout = findViewById(R.id.pin_digits_prompt)
 
-        pinIVs = emptyArray()
+        pinIVs = arrayOfNulls(6)
         //As a second priority, make this dynamic to allow for pin size change
         pinIVs[0] = findViewById(R.id.pin_one_prompt)
         pinIVs[1] = findViewById(R.id.pin_two_prompt)
@@ -112,9 +112,9 @@ class PinPromptActivity : BaseActivity() {
     private fun changePinColors(numbers: Int) {
         for (i in pinIVs.indices) {
             if (i < numbers) {
-                pinIVs[i].backgroundTintList = ColorStateList.valueOf(getColorFromAttribute(R.attr.vg_primaryDark))
+                pinIVs[i]!!.backgroundTintList = ColorStateList.valueOf(getColorFromAttribute(R.attr.vg_primaryDark))
             } else {
-                pinIVs[i].backgroundTintList = ColorStateList.valueOf(getColorFromAttribute(R.attr.vg_primaryLight))
+                pinIVs[i]!!.backgroundTintList = ColorStateList.valueOf(getColorFromAttribute(R.attr.vg_primaryLight))
             }
         }
     }

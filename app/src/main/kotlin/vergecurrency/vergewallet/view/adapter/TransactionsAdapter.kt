@@ -37,7 +37,7 @@ class TransactionsAdapter(context: Context, private val transactions: ArrayList<
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        return getItem(position)!!.getView(inflater, convertView!!, parent, position)
+        return getItem(position)!!.getView(inflater, convertView, parent, position)
     }
 
 

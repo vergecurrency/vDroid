@@ -14,10 +14,10 @@ class WalletAdapter(fm: FragmentManager, private val context: Context) : Fragmen
     override fun getItem(pos: Int): Fragment {
 
         when (pos) {
-            0 -> return FragmentTransactionsPageView.companion.newInstance()
+            0 -> return return Fragment.instantiate(context, FragmentTransactionsPageView::class.java.name)
             1 -> return Fragment.instantiate(context, FragmentStatisticsPageView::class.java.name)
             2 -> return Fragment.instantiate(context, FragmentChartsPageView::class.java.name)
-            else -> return Fragment.instantiate(context, FragmentTransactionsPageView::class.java.name)
+            else -> return Fragment.instantiate(context, FragmentChartsPageView::class.java.name)
         }
     }
 

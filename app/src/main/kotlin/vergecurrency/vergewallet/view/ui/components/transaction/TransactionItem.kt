@@ -6,5 +6,5 @@ import android.view.ViewGroup
 
 interface TransactionItem {
     val viewType: Int
-    fun getView(inflater: LayoutInflater, convertView: View, parent: ViewGroup, position: Int): View
+    fun getView(inflater: LayoutInflater, convertView: View?, parent: ViewGroup, position: Int): View
 }
