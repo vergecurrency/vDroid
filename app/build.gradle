@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
@@ -26,10 +28,21 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
+
+    //ugh, java
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -66,7 +79,7 @@ dependencies {
     //Json, not sure if used
     implementation files('src/main/libs/json-simple-1.1.1.jar')
     //I2P router library
-    implementation files('src/main/libs/i2p-router.jar')
+    //implementation files('src/main/libs/i2p-router.jar')
     //TOR library
     implementation project(':ThaliOnionProxyAndroid-release')
     //Gson
@@ -79,11 +92,16 @@ dependencies {
     implementation 'com.madgag.spongycastle:core:1.58.0.0'
     implementation "androidx.security:security-crypto:1.0.0-alpha02"
 
+
+    //test suites
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
     testImplementation 'org.testng:testng:6.9.6'
 
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    testImplementation "org.jetbrains.kotlin:kotlin-test"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit"
 
 }
