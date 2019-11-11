@@ -4,51 +4,62 @@ package vergecurrency.vergewallet.wallet
 import java.util.HashMap
 
 import io.horizontalsystems.bitcoinkit.exceptions.AddressFormatException
-import io.horizontalsystems.bitcoinkit.models.LegacyAddress
 import io.horizontalsystems.bitcoinkit.network.MainNet
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter
 
+typealias ValidationCompletion = ( valid : Boolean, address :String?, amount : Float?) -> Void
+
 class AddressValidator {
 
-    fun validate(address: String): ValidationCompletion {
-        val vc = ValidationCompletion(false, "", 0f)
-        if (AddressValidator.isValidAddress(address)) {
-            vc.isValid = true
-            vc.address = address
+    //implement fun override for barcode object
+
+    fun validate(string: String, completion: ValidationCompletion): Void {
+        var valid = false
+        var address : String? = null
+        var amount : Float? = null
+
+
+        if (isValidAddress(string)) {
+            valid = true
+            address = string
         }
 
-        val splittedRequest = address.replace("verge://", "").replace("verge:", "").split("\\?".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
-        val parameters = splittedRequest[splittedRequest.size - 1].split("&".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
-        if (AddressValidator.isValidAddress(splittedRequest[0])) {
-            vc.isValid = true
-            vc.address = splittedRequest[0]
+        val splitRequest = string.replace("verge://", "").replace("verge:", "").split("\\?".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+
+        val parametersString = splitRequest.last().split("&".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+
+        if (isValidAddress(splitRequest.first())) {
+            valid = true
+            address = splitRequest.first()
         } else {
-            return vc
+            return completion(valid,address,amount)
         }
 
-        val splittedParameters = parameters[parameters.size - 1].split("&".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val splitParameters = parametersString.last().split("&".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
-        val definitiveParameters = HashMap<String, String>()
+        val parameters = HashMap<String, String>()
 
-        for (param in splittedParameters) {
+        for (param in splitParameters) {
             val parameterPair = param.split("=".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            definitiveParameters[parameterPair[0]] = parameterPair[1]
+            parameters[parameterPair.first()] = parameterPair.last()
         }
-        val stringAmount = (definitiveParameters as Map<String, String>).getOrDefault("amount", "0f")
-        var amount = 0f
-        if(stringAmount != null) {
-            amount = java.lang.Float.parseFloat(stringAmount);
-        }
-        vc.amount = amount
+        val amountParam = parameters.get("amount")
 
-        return vc
+        if(amountParam != null) {
+            amount = java.lang.Float.parseFloat(amountParam);
+        }
+
+        return completion(valid,address,amount)
+
     }
 
 
     //inner struct
-    inner class ValidationCompletion(var isValid: Boolean, var address: String, var amount: Float?)
+    //inner class ValidationCompletion(var isValid: Boolean, var address: String, var amount: Float?)
+
+
 
     companion object {
 
@@ -60,6 +71,8 @@ class AddressValidator {
                 System.err.println(e.message)
                 return false
             }
+
+
 
         }
     }

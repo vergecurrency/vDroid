@@ -1,5 +1,7 @@
 package vergecurrency.vergewallet.service.model.wallet
 
+import android.provider.Telephony
+import com.google.gson.Gson
 import java.util.Date
 
 class AddressInfo {
@@ -19,6 +21,14 @@ class AddressInfo {
 
     fun createdOnDate(): Date {
         return Date(createdOn.toLong())
+    }
+
+
+    companion object {
+
+        fun decode(JSON: String): AddressInfo {
+            return Gson().fromJson(JSON, AddressInfo::class.java)
+        }
     }
 
 

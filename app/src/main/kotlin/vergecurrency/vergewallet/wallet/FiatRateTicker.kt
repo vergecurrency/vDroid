@@ -15,12 +15,8 @@ import vergecurrency.vergewallet.service.repository.RatesClient
 class FiatRateTicker(private val context: Context) {
 
     var isStarted = false
-    private val interval: Timer
+    private val interval: Timer = Timer()
     var rateInfo: FiatRate? = null
-
-    init {
-        interval = Timer()
-    }
 
     fun start() {
 
@@ -29,7 +25,9 @@ class FiatRateTicker(private val context: Context) {
         }
 
         isStarted = true
+
         fetch()
+
         interval.scheduleAtFixedRate(
                 object : java.util.TimerTask() {
                     override fun run() {

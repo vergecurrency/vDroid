@@ -1,59 +1,169 @@
 package vergecurrency.vergewallet.wallet
 
 import android.content.Context
-
 import com.google.crypto.tink.subtle.Hex
-
+import io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType
+import io.horizontalsystems.bitcoinkit.crypto.Base58
+import io.horizontalsystems.bitcoinkit.models.Address
+import io.horizontalsystems.bitcoinkit.utils.HashUtils
+import io.horizontalsystems.hdwalletkit.HDKey
+import org.json.JSONObject
+import vergecurrency.vergewallet.Constants
+import vergecurrency.vergewallet.helpers.SJCL
+import vergecurrency.vergewallet.helpers.utils.ValidationUtils
+import vergecurrency.vergewallet.service.model.PreferencesManager
+import vergecurrency.vergewallet.service.model.wallet.AddressInfo
+import vergecurrency.vergewallet.service.model.wallet.CreateAddressErrorResponse
+import vergecurrency.vergewallet.service.model.wallet.WalletId
+import vergecurrency.vergewallet.service.model.wallet.WalletOptions
 import java.net.URI
 import java.net.URISyntaxException
 import java.security.KeyFactory
 import java.security.Signature
 import java.security.spec.PKCS8EncodedKeySpec
 
-import io.horizontalsystems.bitcoinkit.crypto.Base58
-import io.horizontalsystems.bitcoinkit.models.Address
-import io.horizontalsystems.bitcoinkit.utils.HashUtils
-import io.horizontalsystems.hdwalletkit.HDKey
-import vergecurrency.vergewallet.Constants
-import vergecurrency.vergewallet.helpers.SJCL
-import vergecurrency.vergewallet.helpers.utils.ValidationUtils
-import vergecurrency.vergewallet.service.model.wallet.AddressInfo
 
-class WalletClient(c: Context) {
+typealias URLCompletion = (data: String?, response: Void?, error: Exception?) -> Unit
 
-    private val sjcl: SJCL
-
-    private val baseUrl: String
+class WalletClient {
 
 
-    //------------------------------------------------
-    // SJCL and various Helper methods
-    //------------------------------------------------
+    var sjcl: SJCL
+    val baseUrl = ""
+    var network: NetworkType = NetworkType.MainNet
+    var credentials: Credentials
+
+    constructor(c: Context, creds: Credentials) {
+        credentials = creds
+        sjcl = SJCL(c)
+
+    }
 
     private val signature: String
         get() = ""
 
-    init {
-        sjcl = SJCL(c)
-        baseUrl = ""
+    fun createWallet(walletName: String,
+                     copayerName: String,
+                     m: Int,
+                     n: Int,
+                     options: WalletOptions?,
+                     completion: (error: Exception?, secret: String?) -> Void) {
+
+        val encWalletName = encryptMessage(walletName, credentials.sharedEncryptingKey!!)
+
+        var args: JSONObject = JSONObject()
+        args.put("name", encWalletName)
+        //TODO : compare with Swen's lib
+        args.put("pubKey", credentials.walletPrivateKey.pubKeyHash.toString())
+        args.put("m", m)
+        args.put("n", n)
+        args.put("coin", "xvg")
+        args.put("network", "livenet")
+
+        postRequest("/v2/wallets", args) { data, _, exception ->
+            if (data != null) {
+                try {
+                    val walletId = WalletId.decode(data)
+
+                    PreferencesManager.walletId = walletId.identifier
+                    PreferencesManager.walletName = walletName
+                    PreferencesManager.walletSecret = buildSecret(walletId.identifier!!)
+
+                    completion(null, walletId.identifier)
+                } catch (e: Exception) {
+                    completion(e, null)
+                }
+            } else {
+                completion(exception, null)
+            }
+
+        }
 
     }
 
-    fun createWallet(walletName: String, copayerName: String, m: Int, n: Int, options: String): String {
-        postRequest("/v2/wallets", null, null)
+    fun joinWallet(
+            walletIdentifier: String,
+            completion: (exception: Exception?) -> Void
+    ) {
+        val xPubKey = credentials.publicKey.publicKey.contentToString()
+        val requestPubKey = credentials.requestPrivateKey.pubKey
 
-        return ""
+        val encCopayerName = encryptMessage("android-copayer", credentials.sharedEncryptingKey!!)
+        val copayerSignatureHash = sequenceOf(encCopayerName, xPubKey, requestPubKey).joinToString(separator = "|")
+        val customData = "{\"walletPrivKey\": \"${credentials.walletPrivateKey.privKeyBytes}\"}"
+
+        var args: JSONObject = JSONObject()
+
+        args.put("walletId", walletIdentifier)
+        args.put("coin", "xvg")
+        args.put("name", encCopayerName)
+        args.put("xPubKey", xPubKey)
+        args.put("requestPubKey", requestPubKey)
+        args.put("customData", encryptMessage(customData, credentials.personalEncryptingKey!!))
+        args.put("copayerSignature", signMessage(copayerSignatureHash, credentials.walletPrivateKey))
+
+        postRequest("/v2/wallets/$walletIdentifier/copayers/", args) { data, _, error ->
+            if (data == null) {
+                print(error!!)
+            }
+            try {
+               val jsonResponse = JSONObject(data)
+
+                if (jsonResponse.getString("code") == "WALLET_NOT_FOUND") {
+                    completion(Exception("Wallet not found - 404"))
+                }
+
+                if(jsonResponse.getString("code") == "COPAYER_REGISTERED"){
+                    openWallet{ error ->
+                        completion(error!!)
+                    }
+                }
+
+
+            } catch (e: Exception) {
+                print (error!!)
+            }
+
+
+        }
+
+
     }
 
-    fun scanAddresses() {
-        postRequest("/v1/addresses/scan", null, null)
+    fun openWallet(completion: (exception : Exception?) -> Void ) {
+        getRequest("/v2/wallets/?includeExtendedInfo=1"){data, _, error ->
+            if(data == null){
+                print(error!!)
+            }
+            try {
+                val jsonResponse = JSONObject(data)
+                completion(error!!)
+            } catch (e: Exception) {
+                print(error!!)
+            }
+
+        }
     }
 
-    /**
-     *
-     */
-    fun createAddresses() {
-        postRequest("/v4/addresses", null, null)
+    fun scanAddresses(completion : (error : Exception) -> Void) {
+        postRequest("/v1/addresses/scan", null) {_, _, error ->
+            completion(error!!)
+        }
+    }
+
+    fun createAddresses(completion : (error: Exception?, address : AddressInfo?, createAddressErrorResponse : CreateAddressErrorResponse?)-> Void) {
+        postRequest("/v4/addresses", null) {data, _, error ->
+            if(data == null) {
+                completion(error,null,null)
+            }
+
+            val addressInfo = try {AddressInfo.decode(data!!)} catch (e : Exception) {null}
+            val errorResponse = try {CreateAddressErrorResponse.decode(data!!)} catch (e : Exception) {null}
+
+            val addressByPath = try{
+                credentials.priva
+            } catch (e: Exception){null}
+        }
     }
 
 
@@ -130,7 +240,11 @@ class WalletClient(c: Context) {
 
     fun decryptMessage(cyphertext: String, encryptingKey: String): String {
         val key = sjcl.base64ToBits(encryptingKey)
+
+
+
         return sjcl.decrypt(key, cyphertext)
+
     }
 
     //------------------------------------------------
@@ -138,27 +252,37 @@ class WalletClient(c: Context) {
     //------------------------------------------------
 
 
-    fun postRequest(url: String, jsonArgs: String?, escape: String?) {
+    private fun getRequest(url: String,  completion: URLCompletion) {
         try {
             val uri = URI(String.format("%s%s", Constants.VWS_ENDPOINT, url))
             //...
 
         } catch (e: URISyntaxException) {
-            e.printStackTrace()
+            return completion(null, null, null)
         }
-
+        return completion(null, null, null)
     }
 
-    fun getRequest(url: String, jsonArgs: String?, escape: String?) {
+    private fun postRequest(url: String, jsonArgs: JSONObject?, completion: URLCompletion) {
         try {
-            val uri = URI(String.format("%s%s", Constants.VWS_ENDPOINT, url))
+            val uri = URI(String.format("\\%s\\%s", Constants.VWS_ENDPOINT, url))
+
+            try {
+
+            } catch (e: Exception) {
+
+            }
+
             //...
 
         } catch (e: URISyntaxException) {
-            e.printStackTrace()
-        }
 
+            return completion(null, null, null)
+        }
+        return completion(null, null, null)
     }
+
+
     // Thanks to the mad verbosity of Java I can not have an enum of exceptions so
     //INNER CLASSES BABY. HUNG ME SOMEWHERE.
 
