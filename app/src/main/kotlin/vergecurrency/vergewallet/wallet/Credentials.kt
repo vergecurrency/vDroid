@@ -1,33 +1,35 @@
 package vergecurrency.vergewallet.wallet
 
 
-import io.horizontalsystems.hdwalletkit.HDKey
-import io.horizontalsystems.hdwalletkit.HDKeychain
-import io.horizontalsystems.hdwalletkit.HDPublicKey
+import io.horizontalsystems.bitcoinkit.BitcoinKit
+import io.horizontalsystems.hdwalletkit.*
 import vergecurrency.vergewallet.service.model.MnemonicManager
 import vergecurrency.vergewallet.service.model.PreferencesManager
 import java.security.MessageDigest
+import java.security.PrivateKey
 import java.util.*
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
-class Credentials {
+class Credentials(mnemonic: Array<String>, passphrase: String, networkType: BitcoinKit.NetworkType = BitcoinKit.NetworkType.MainNet) {
 
-    private val hdKeychain: HDKeychain
+    var seed: ByteArray = Mnemonic().toSeed(mnemonic.toList(), passphrase)
+    var network: BitcoinKit.NetworkType = networkType
 
-    //TODO : Implement HDKeyDerivation
 
+    private val privateKey: HDKey
+    get() = HDKeyDerivation.createRootKey(seed)
 
     //hardened at 0
     val walletPrivateKey: HDKey
-        get() = hdKeychain.getKeyByPath("/0'")
+        get() = HDKeyDerivation.deriveChildKey(privateKey,0,true)
 
     val requestPrivateKey: HDKey
-        get() = hdKeychain.getKeyByPath("/1'/0")
+        get() = HDKeyDerivation.deriveChildKey(HDKeyDerivation.deriveChildKey(privateKey,1,true),0,false)
 
 
     val bip44PrivateKey: HDKey
-        get() = hdKeychain.getKeyByPath("m/44'/0'/0'")
+        get() = HDKeyDerivation.deriveChildKey(HDKeyDerivation.deriveChildKey(HDKeyDerivation.deriveChildKey(privateKey,44,true),0,true),0,true)
 
     val publicKey: HDPublicKey
         get() = HDPublicKey(0, false, bip44PrivateKey)
@@ -60,31 +62,20 @@ class Credentials {
 
         }
 
-    init {
-        hdKeychain = initHDKeyChain()
-    }
 
-    fun initHDKeyChain(): HDKeychain {
-        val mnemonic = MnemonicManager.getMnemonicFromJSON(PreferencesManager.mnemonic!!)!!
-        val passphrase = PreferencesManager.passphrase
-
-        val seed = io.horizontalsystems.hdwalletkit.Mnemonic().toSeed(listOf(*mnemonic), passphrase!!)
-        return HDKeychain(seed, true)
-    }
-
-    fun privateKeyBy(path: String, privateKey: HDKey): HDKey {
+    fun privateKeyBy(path: String, privateKey: HDKey) :ByteArray {
         var key = privateKey
-        var privateKey : HDKey
+
         for (deriver in path.replace("m/", "").split("/")) {
             try {
                 var deriverInt = Integer.parseInt(deriver)
-                //key = key.path.
+                key = HDKeyDerivation.deriveChildKey(key,deriverInt, false)
 
-                //todo : need a HDKeyDerivation Object
             } catch (e: NumberFormatException) {
                 throw Exception("Invalid deriver exception")
             }
-
         }
+        return key.privKeyBytes
     }
+
 }

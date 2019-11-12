@@ -168,23 +168,23 @@ class WalletClient {
 
 
     fun getBalance() {
-        getRequest("/v1/balance", null, null)
+        getRequest("/v1/balance",  null)
     }
 
     fun getMainAddresses() {
-        getRequest("/v1/addresses/", null, null)
+        getRequest("/v1/addresses/",  null)
     }
 
     fun getTxHistory() {
-        getRequest("/v1/txhistory/?includeExtendedInfo=1", null, null)
+        getRequest("/v1/txhistory/?includeExtendedInfo=1",  null)
     }
 
     fun getUnspentOutputs() {
-        getRequest("/v1/utxos/", null, null)
+        getRequest("/v1/utxos/",  null)
     }
 
     fun getSendMaxInfo() {
-        getRequest("/v1/sendmaxinfo", null, null)
+        getRequest("/v1/sendmaxinfo",  null)
     }
 
     @Throws(InvalidMessageDataException::class)
