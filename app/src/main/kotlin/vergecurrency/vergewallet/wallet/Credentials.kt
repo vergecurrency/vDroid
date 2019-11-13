@@ -63,7 +63,7 @@ class Credentials(mnemonic: Array<String>, passphrase: String, networkType: Bitc
         }
 
 
-    fun privateKeyBy(path: String, privateKey: HDKey) :ByteArray {
+    fun privateKeyBy(path: String, privateKey: HDKey) :HDKey {
         var key = privateKey
 
         for (deriver in path.replace("m/", "").split("/")) {
@@ -75,7 +75,7 @@ class Credentials(mnemonic: Array<String>, passphrase: String, networkType: Bitc
                 throw Exception("Invalid deriver exception")
             }
         }
-        return key.privKeyBytes
+        return key
     }
 
 }

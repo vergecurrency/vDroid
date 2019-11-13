@@ -2,11 +2,17 @@ package vergecurrency.vergewallet.wallet
 
 import android.content.Context
 import com.google.crypto.tink.subtle.Hex
+import io.horizontalsystems.bitcoinkit.BitcoinKit
 import io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType
 import io.horizontalsystems.bitcoinkit.crypto.Base58
 import io.horizontalsystems.bitcoinkit.models.Address
+import io.horizontalsystems.bitcoinkit.models.LegacyAddress
+import io.horizontalsystems.bitcoinkit.network.MainNet
+import io.horizontalsystems.bitcoinkit.network.Network
+import io.horizontalsystems.bitcoinkit.utils.AddressConverter
 import io.horizontalsystems.bitcoinkit.utils.HashUtils
 import io.horizontalsystems.hdwalletkit.HDKey
+import io.horizontalsystems.hdwalletkit.HDPublicKey
 import org.json.JSONObject
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.helpers.SJCL
@@ -160,12 +166,21 @@ class WalletClient {
             val addressInfo = try {AddressInfo.decode(data!!)} catch (e : Exception) {null}
             val errorResponse = try {CreateAddressErrorResponse.decode(data!!)} catch (e : Exception) {null}
 
-            val addressByPath = try{
-                credentials.priva
-            } catch (e: Exception){null}
+            val addressByPath = try{getLegacyAddr(HDPublicKey(0, false, credentials.privateKeyBy(addressInfo!!.path ?: "",credentials.bip44PrivateKey)).publicKey) } catch (e: Exception){null}
+
+            //verify that one pal
+            if (addressInfo!!.address != addressByPath!!.string){
+                completion(InvalidAddressReceivedException(addressInfo),null,null)
+            }
+
+            completion(null, addressInfo,errorResponse)
         }
     }
 
+
+    fun getLegacyAddr(address: ByteArray) : LegacyAddress{
+       return  AddressConverter(MainNet()).convert(address) as LegacyAddress
+    }
 
     fun getBalance() {
         getRequest("/v1/balance",  null)
