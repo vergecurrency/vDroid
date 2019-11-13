@@ -29,6 +29,10 @@ class AddressInfo {
         fun decode(JSON: String): AddressInfo {
             return Gson().fromJson(JSON, AddressInfo::class.java)
         }
+
+        fun decodeArray(JSON: String): Array<AddressInfo> {
+            return Gson().fromJson(JSON, Array<AddressInfo>::class.java)
+        }
     }
 
 

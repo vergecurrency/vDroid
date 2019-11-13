@@ -87,5 +87,10 @@ class TxHistory {
         fun decode(JSON: String): TxHistory {
             return Gson().fromJson(JSON, TxHistory::class.java)
         }
+
+
+        fun decodeArray(JSON: String): Array<TxHistory> {
+            return Gson().fromJson(JSON, Array<TxHistory>::class.java)
+        }
     }
 }

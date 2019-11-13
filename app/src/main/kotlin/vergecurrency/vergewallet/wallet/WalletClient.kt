@@ -2,13 +2,11 @@ package vergecurrency.vergewallet.wallet
 
 import android.content.Context
 import com.google.crypto.tink.subtle.Hex
-import io.horizontalsystems.bitcoinkit.BitcoinKit
 import io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType
 import io.horizontalsystems.bitcoinkit.crypto.Base58
 import io.horizontalsystems.bitcoinkit.models.Address
 import io.horizontalsystems.bitcoinkit.models.LegacyAddress
 import io.horizontalsystems.bitcoinkit.network.MainNet
-import io.horizontalsystems.bitcoinkit.network.Network
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter
 import io.horizontalsystems.bitcoinkit.utils.HashUtils
 import io.horizontalsystems.hdwalletkit.HDKey
@@ -18,10 +16,8 @@ import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.helpers.SJCL
 import vergecurrency.vergewallet.helpers.utils.ValidationUtils
 import vergecurrency.vergewallet.service.model.PreferencesManager
-import vergecurrency.vergewallet.service.model.wallet.AddressInfo
-import vergecurrency.vergewallet.service.model.wallet.CreateAddressErrorResponse
-import vergecurrency.vergewallet.service.model.wallet.WalletId
-import vergecurrency.vergewallet.service.model.wallet.WalletOptions
+import vergecurrency.vergewallet.service.model.WatchRequestCredentials
+import vergecurrency.vergewallet.service.model.wallet.*
 import java.net.URI
 import java.net.URISyntaxException
 import java.security.KeyFactory
@@ -98,7 +94,7 @@ class WalletClient {
         val copayerSignatureHash = sequenceOf(encCopayerName, xPubKey, requestPubKey).joinToString(separator = "|")
         val customData = "{\"walletPrivKey\": \"${credentials.walletPrivateKey.privKeyBytes}\"}"
 
-        var args: JSONObject = JSONObject()
+        var args = JSONObject()
 
         args.put("walletId", walletIdentifier)
         args.put("coin", "xvg")
@@ -113,94 +109,195 @@ class WalletClient {
                 print(error!!)
             }
             try {
-               val jsonResponse = JSONObject(data)
+                val jsonResponse = JSONObject(data)
 
                 if (jsonResponse.getString("code") == "WALLET_NOT_FOUND") {
                     completion(Exception("Wallet not found - 404"))
                 }
 
-                if(jsonResponse.getString("code") == "COPAYER_REGISTERED"){
-                    openWallet{ error ->
+                if (jsonResponse.getString("code") == "COPAYER_REGISTERED") {
+                    openWallet { error ->
                         completion(error!!)
                     }
                 }
-
-
             } catch (e: Exception) {
-                print (error!!)
+                print(error!!)
             }
-
-
         }
-
-
     }
 
-    fun openWallet(completion: (exception : Exception?) -> Void ) {
-        getRequest("/v2/wallets/?includeExtendedInfo=1"){data, _, error ->
-            if(data == null){
+    fun openWallet(completion: (exception: Exception?) -> Void) {
+        getRequest("/v2/wallets/?includeExtendedInfo=1") { data, _, error ->
+            if (data == null) {
                 print(error!!)
             }
             try {
-                val jsonResponse = JSONObject(data)
+                val jsonResponse = JSONObject(data!!)
                 completion(error!!)
             } catch (e: Exception) {
                 print(error!!)
             }
-
         }
     }
 
-    fun scanAddresses(completion : (error : Exception) -> Void) {
-        postRequest("/v1/addresses/scan", null) {_, _, error ->
+    fun scanAddresses(completion: (error: Exception) -> Void) {
+        postRequest("/v1/addresses/scan", null) { _, _, error ->
             completion(error!!)
         }
     }
 
-    fun createAddresses(completion : (error: Exception?, address : AddressInfo?, createAddressErrorResponse : CreateAddressErrorResponse?)-> Void) {
-        postRequest("/v4/addresses", null) {data, _, error ->
-            if(data == null) {
-                completion(error,null,null)
+    fun createAddresses(completion: (error: Exception?, address: AddressInfo?, createAddressErrorResponse: CreateAddressErrorResponse?) -> Void) {
+        postRequest("/v4/addresses", null) { data, _, error ->
+            if (data == null) {
+                completion(error, null, null)
             }
 
-            val addressInfo = try {AddressInfo.decode(data!!)} catch (e : Exception) {null}
-            val errorResponse = try {CreateAddressErrorResponse.decode(data!!)} catch (e : Exception) {null}
+            val addressInfo = try {
+                AddressInfo.decode(data!!)
+            } catch (e: Exception) {
+                null
+            }
+            val errorResponse = try {
+                CreateAddressErrorResponse.decode(data!!)
+            } catch (e: Exception) {
+                null
+            }
 
-            val addressByPath = try{getLegacyAddr(HDPublicKey(0, false, credentials.privateKeyBy(addressInfo!!.path ?: "",credentials.bip44PrivateKey)).publicKey) } catch (e: Exception){null}
+            val addressByPath = try {
+                getLegacyAddr(HDPublicKey(0, false, credentials.privateKeyBy(addressInfo!!.path
+                        ?: "", credentials.bip44PrivateKey)).publicKey)
+            } catch (e: Exception) {
+                null
+            }
 
             //verify that one pal
-            if (addressInfo!!.address != addressByPath!!.string){
-                completion(InvalidAddressReceivedException(addressInfo),null,null)
+            if (addressInfo!!.address != addressByPath!!.string) {
+                completion(InvalidAddressReceivedException(addressInfo), null, null)
             }
 
-            completion(null, addressInfo,errorResponse)
+            completion(null, addressInfo, errorResponse)
         }
     }
 
 
-    fun getLegacyAddr(address: ByteArray) : LegacyAddress{
-       return  AddressConverter(MainNet()).convert(address) as LegacyAddress
+    fun getLegacyAddr(address: ByteArray): LegacyAddress {
+        return AddressConverter(MainNet()).convert(address) as LegacyAddress
     }
 
-    fun getBalance() {
-        getRequest("/v1/balance",  null)
+    fun getMainAddresses(options: WalletAddressesOptions? = null, completion: (addresses: Array<AddressInfo>) -> Void) {
+        var args: ArrayList<String> = ArrayList()
+        var qs = ""
+
+        if (options!!.limit != null) {
+            args.add("limit=${options.limit}")
+        }
+
+        if (!options.isReverse) {
+            args.add("reverse=1")
+        }
+
+        if (args.size > 0) {
+            qs = "?${args.joinToString { "&" }}"
+        }
+
+        getRequest("v1/addresses/$qs") { data, _, error ->
+            if (data != null) {
+                try {
+                    completion(AddressInfo.decodeArray(data))
+                } catch (e: Exception) {
+                    completion(emptyArray())
+                }
+            }
+            completion(emptyArray())
+        }
     }
 
-    fun getMainAddresses() {
-        getRequest("/v1/addresses/",  null)
+    fun getBalance(completion: (error: Exception?, balanceInfo: WalletBalanceInfo?) -> Void) {
+        getRequest("/v1/balance") { data, _, error ->
+            if (data == null) {
+                completion(error!!, null)
+            }
+            try {
+                completion(error!!, WalletBalanceInfo.decode(data!!))
+            } catch (e: Exception) {
+                completion(error!!, null)
+            }
+
+
+        }
     }
 
-    fun getTxHistory() {
-        getRequest("/v1/txhistory/?includeExtendedInfo=1",  null)
+
+    fun getTxHistory(skip: Int? = null, limit: Int? = null, completion: (transactions: Array<TxHistory>) -> Void) {
+
+        var url = "/v1/txhistory/?includeExtendedInfo=1"
+        if (skip != null && limit != null) {
+            url = "$url&skip=$skip&limit=$limit"
+        }
+
+        getRequest(url) { data, _, error ->
+            if (data == null) {
+                completion(emptyArray())
+            }
+
+            try {
+                val transactions = TxHistory.decodeArray(data!!)
+                val transformedTransactions = Array(transactions.size) { TxHistory() }
+
+                for ((i, transaction) in transactions.withIndex()) {
+
+                    if (transaction.message != null) {
+                        transaction.message = decryptMessage(transaction.message!!, credentials.sharedEncryptingKey!!)
+                    }
+                    transformedTransactions[i] = transaction
+                }
+                completion(transformedTransactions)
+
+            } catch (e: Exception) {
+                completion(emptyArray())
+
+            }
+        }
     }
 
-    fun getUnspentOutputs() {
-        getRequest("/v1/utxos/",  null)
+    //TODO : But Not Today
+    fun getUnspentOutputs(address : String? = null,completion : (unspentOutputs : Array<UnspentOutput>)-> Void ) {
+        //  getRequest("/v1/utxos/",  null)
     }
 
-    fun getSendMaxInfo() {
-        getRequest("/v1/sendmaxinfo",  null)
+    fun getSendMaxInfo(completion : (sendMaxInfo : SendMaxInfo?)-> Void) {
+        getRequest("/v1/sendmaxinfo") {data, _ , _ ->
+            if (data != null){
+                completion(try{SendMaxInfo.decode(data)} catch (e: Exception){null})
+            }
+            completion(null)
+        }
     }
+
+    fun watchRequestCredentialsForMethodPath(path : String) : WatchRequestCredentials {
+        var result = WatchRequestCredentials(null,null,null)
+        //ToDo : add addUrlReference extension
+        val referencedUrl = path
+
+        val url = "$baseUrl$referencedUrl"
+        val copayerId = getCoPayerId()
+
+        if (referencedUrl.contains("/v1/balance")) {
+            var signature = try {getSignature(referencedUrl, method = "get")} catch (e: Exception){ null}
+
+            result.url = url
+            result.copayerId = copayerId
+            result.signature = signature
+
+        }
+        return result
+    }
+
+
+    fun getSignature(url : String, method : String, arguments : String = "{}") : String{
+        return ""
+    }
+
 
     @Throws(InvalidMessageDataException::class)
     private fun signMessage(message: String, privKey: HDKey): String {
@@ -267,7 +364,7 @@ class WalletClient {
     //------------------------------------------------
 
 
-    private fun getRequest(url: String,  completion: URLCompletion) {
+    private fun getRequest(url: String, completion: URLCompletion) {
         try {
             val uri = URI(String.format("%s%s", Constants.VWS_ENDPOINT, url))
             //...
@@ -297,6 +394,14 @@ class WalletClient {
         return completion(null, null, null)
     }
 
+
+    fun deleteRequest() {
+
+    }
+
+    fun getCoPayerId() : String {
+        return ""
+    }
 
     // Thanks to the mad verbosity of Java I can not have an enum of exceptions so
     //INNER CLASSES BABY. HUNG ME SOMEWHERE.
