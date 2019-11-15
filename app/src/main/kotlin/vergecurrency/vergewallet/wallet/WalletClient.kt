@@ -4,9 +4,13 @@ import android.content.Context
 import com.google.crypto.tink.subtle.Hex
 import io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType
 import io.horizontalsystems.bitcoinkit.crypto.Base58
-import io.horizontalsystems.bitcoinkit.models.Address
-import io.horizontalsystems.bitcoinkit.models.LegacyAddress
+import io.horizontalsystems.bitcoinkit.models.*
+import io.horizontalsystems.bitcoinkit.models.Transaction
 import io.horizontalsystems.bitcoinkit.network.MainNet
+import io.horizontalsystems.bitcoinkit.transactions.builder.InputSigner
+import io.horizontalsystems.bitcoinkit.transactions.builder.TransactionBuilder
+import io.horizontalsystems.bitcoinkit.transactions.scripts.Script
+import io.horizontalsystems.bitcoinkit.transactions.scripts.Sighash
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter
 import io.horizontalsystems.bitcoinkit.utils.HashUtils
 import io.horizontalsystems.hdwalletkit.HDKey
@@ -15,8 +19,7 @@ import org.json.JSONObject
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.helpers.SJCL
 import vergecurrency.vergewallet.helpers.utils.ValidationUtils
-import vergecurrency.vergewallet.service.model.PreferencesManager
-import vergecurrency.vergewallet.service.model.WatchRequestCredentials
+import vergecurrency.vergewallet.service.model.*
 import vergecurrency.vergewallet.service.model.wallet.*
 import java.net.URI
 import java.net.URISyntaxException
@@ -26,6 +29,7 @@ import java.security.spec.PKCS8EncodedKeySpec
 
 
 typealias URLCompletion = (data: String?, response: Void?, error: Exception?) -> Unit
+typealias TxProposalCompletion = (txp : TxProposalResponse, errorResponse : TxProposalErrorResponse, error : Exception ) -> Unit
 
 class WalletClient {
 
@@ -44,12 +48,55 @@ class WalletClient {
     private val signature: String
         get() = ""
 
-    fun createWallet(walletName: String,
-                     copayerName: String,
-                     m: Int,
-                     n: Int,
-                     options: WalletOptions?,
-                     completion: (error: Exception?, secret: String?) -> Void) {
+
+    fun resetServiceUrl(baseUrl: String) {
+
+    }
+
+    //Private Methods
+
+    private fun getRequest(url: String, completion: URLCompletion) {
+        try {
+            val uri = URI(String.format("%s%s", Constants.VWS_ENDPOINT, url))
+            //...
+
+        } catch (e: URISyntaxException) {
+            return completion(null, null, null)
+        }
+        return completion(null, null, null)
+    }
+
+    private fun postRequest(url: String, jsonArgs: JSONObject?, completion: URLCompletion) {
+        try {
+            val uri = URI(String.format("\\%s\\%s", Constants.VWS_ENDPOINT, url))
+
+            try {
+
+            } catch (e: Exception) {
+
+            }
+
+            //...
+
+        } catch (e: URISyntaxException) {
+
+            return completion(null, null, null)
+        }
+        return completion(null, null, null)
+    }
+
+
+    fun deleteRequest() {
+
+    }
+
+    fun getCoPayerId() : String {
+        return ""
+    }
+
+    //Interact with wallet
+
+    fun createWallet(walletName: String, copayerName: String, m: Int, n: Int, options: WalletOptions?, completion: (error: Exception?, secret: String?) -> Void) {
 
         val encWalletName = encryptMessage(walletName, credentials.sharedEncryptingKey!!)
 
@@ -83,10 +130,7 @@ class WalletClient {
 
     }
 
-    fun joinWallet(
-            walletIdentifier: String,
-            completion: (exception: Exception?) -> Void
-    ) {
+    fun joinWallet(walletIdentifier: String,completion: (exception: Exception?) -> Void) {
         val xPubKey = credentials.publicKey.publicKey.contentToString()
         val requestPubKey = credentials.requestPrivateKey.pubKey
 
@@ -140,6 +184,8 @@ class WalletClient {
         }
     }
 
+    //Interact with wallet addresses
+
     fun scanAddresses(completion: (error: Exception) -> Void) {
         postRequest("/v1/addresses/scan", null) { _, _, error ->
             completion(error!!)
@@ -179,11 +225,6 @@ class WalletClient {
         }
     }
 
-
-    fun getLegacyAddr(address: ByteArray): LegacyAddress {
-        return AddressConverter(MainNet()).convert(address) as LegacyAddress
-    }
-
     fun getMainAddresses(options: WalletAddressesOptions? = null, completion: (addresses: Array<AddressInfo>) -> Void) {
         var args: ArrayList<String> = ArrayList()
         var qs = ""
@@ -211,6 +252,12 @@ class WalletClient {
             completion(emptyArray())
         }
     }
+
+    fun getLegacyAddr(address: ByteArray): LegacyAddress {
+        return AddressConverter(MainNet()).convert(address) as LegacyAddress
+    }
+
+    //Wallet info methods
 
     fun getBalance(completion: (error: Exception?, balanceInfo: WalletBalanceInfo?) -> Void) {
         getRequest("/v1/balance") { data, _, error ->
@@ -293,6 +340,7 @@ class WalletClient {
         return result
     }
 
+    // Tx proposal methods
 
     fun getSignature(url : String, method : String, arguments : String = "{}") : String{
         return ""
@@ -324,6 +372,20 @@ class WalletClient {
         return result
     }
 
+    private fun encryptMessage(plaintext: String, encryptingKey: String): String {
+        val key = sjcl.base64ToBits(encryptingKey)
+        return sjcl.encrypt(key, plaintext, intArrayOf(128, 1))
+    }
+
+    fun decryptMessage(cyphertext: String, encryptingKey: String): String {
+        val key = sjcl.base64ToBits(encryptingKey)
+
+
+
+        return sjcl.decrypt(key, cyphertext)
+
+    }
+
     @Throws(InvalidWidHexException::class)
     private fun buildSecret(walletId: String): String {
         try {
@@ -345,65 +407,38 @@ class WalletClient {
         return ""
     }
 
-    private fun encryptMessage(plaintext: String, encryptingKey: String): String {
-        val key = sjcl.base64ToBits(encryptingKey)
-        return sjcl.encrypt(key, plaintext, intArrayOf(128, 1))
-    }
+   private fun signTx(unsignedTx: UnsignedTransaction, keys : Array<HDKey>) : Array<String> {
+       var inputsToSign = unsignedTx.tx.inputs
+       var transactionToSign = Transaction().apply {
+           version = unsignedTx.tx.version
+           timestamp = unsignedTx.tx.timestamp
+           inputs = inputsToSign
+           outputs = unsignedTx.tx.outputs
+           lockTime = unsignedTx.tx.lockTime
+       }
 
-    fun decryptMessage(cyphertext: String, encryptingKey: String): String {
-        val key = sjcl.base64ToBits(encryptingKey)
+       var hexes = ArrayList<String>()
 
+       for ((i, utxo) in unsignedTx.utxos.withIndex()) {
+           val pubkeyHash = utxo.output.lockingScript.slice(3..22).toByteArray()
 
+           val keysOfUtxo = keys.filter{ it.pubKeyHash!!.contentEquals(pubkeyHash) }
+           if (keysOfUtxo.isEmpty()) {
+               print("No keys")
+               continue
+           }
 
-        return sjcl.decrypt(key, cyphertext)
+           val sighash =
 
-    }
+       }
 
-    //------------------------------------------------
-    // HTTP Request helpers
-    //------------------------------------------------
-
-
-    private fun getRequest(url: String, completion: URLCompletion) {
-        try {
-            val uri = URI(String.format("%s%s", Constants.VWS_ENDPOINT, url))
-            //...
-
-        } catch (e: URISyntaxException) {
-            return completion(null, null, null)
-        }
-        return completion(null, null, null)
-    }
-
-    private fun postRequest(url: String, jsonArgs: JSONObject?, completion: URLCompletion) {
-        try {
-            val uri = URI(String.format("\\%s\\%s", Constants.VWS_ENDPOINT, url))
-
-            try {
-
-            } catch (e: Exception) {
-
-            }
-
-            //...
-
-        } catch (e: URISyntaxException) {
-
-            return completion(null, null, null)
-        }
-        return completion(null, null, null)
+       return emptyArray()
     }
 
 
-    fun deleteRequest() {
 
-    }
 
-    fun getCoPayerId() : String {
-        return ""
-    }
 
-    // Thanks to the mad verbosity of Java I can not have an enum of exceptions so
     //INNER CLASSES BABY. HUNG ME SOMEWHERE.
 
     internal inner class AddressToScriptException(address: Address) : Exception(address.string)
