@@ -18,11 +18,13 @@ import io.horizontalsystems.hdwalletkit.HDPublicKey
 import org.json.JSONObject
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.helpers.SJCL
+import vergecurrency.vergewallet.helpers.utils.TransactionUtils
 import vergecurrency.vergewallet.helpers.utils.ValidationUtils
 import vergecurrency.vergewallet.service.model.*
 import vergecurrency.vergewallet.service.model.wallet.*
 import java.net.URI
 import java.net.URISyntaxException
+import java.nio.charset.Charset
 import java.security.KeyFactory
 import java.security.Signature
 import java.security.spec.PKCS8EncodedKeySpec
@@ -400,11 +402,25 @@ class WalletClient {
 
     }
 
-    private fun getUnsignedTx(something: String): String {
-        //LegacyAddress add = new LegacyAddress()
+    private fun getUnsignedTx(txp : TxProposalResponse): UnsignedTransaction{
+        var output : TxOutput
+        if(txp.outputs != null && !txp.outputs!!.isEmpty()) {
+            throw NoOutputFoundException("")
+        } else {
+            output = txp.outputs!!.first()
+        }
 
+        val changeAddress =  LegacyAddress(txp.changeAddress!!.address!!, byteArrayOf(1),AddressType.P2PKH)
+        val toAddress = LegacyAddress(output.toAddress!!, byteArrayOf(1),AddressType.P2PKH)
 
-        return ""
+        val unspentOutputs = txp.inputs
+        val unspentTransactions :Array<UnspentTransaction> = unspentOutputs!!.map { output -> output.asUnspentTransaction() }.toTypedArray()
+
+        val amount = txp.amount
+        // Enough for today.
+        // val totalAmount :Long  = unspentTransactions.fold(0){a, b -> a+b.output.value}
+
+        throw Exception()
     }
 
    private fun signTx(unsignedTx: UnsignedTransaction, keys : Array<HDKey>) : Array<String> {
@@ -415,7 +431,9 @@ class WalletClient {
            inputs = inputsToSign
            outputs = unsignedTx.tx.outputs
            lockTime = unsignedTx.tx.lockTime
+
        }
+
 
        var hexes = ArrayList<String>()
 
@@ -428,11 +446,25 @@ class WalletClient {
                continue
            }
 
-           val sighash =
+           val sighash = transactionToSign.toSignatureByteArray(i,false);
+
+           var signature : String
+
+           try {
+               val sig = Signature.getInstance("SHA256withECDSA")
+               sig.initSign(KeyFactory.getInstance("EC").generatePrivate(PKCS8EncodedKeySpec(keysOfUtxo.first().privKeyBytes)))
+               sig.update(HashUtils.doubleSha256(sighash))
+               signature = sig.sign().toString(Charset.forName("UTF-8"))
+
+           } catch (e: Exception) {
+               e.printStackTrace()
+               signature = ""
+           }
+            hexes.add(signature)
 
        }
 
-       return emptyArray()
+       return hexes.toList().toTypedArray()
     }
 
 
@@ -444,6 +476,8 @@ class WalletClient {
     internal inner class AddressToScriptException(address: Address) : Exception(address.string)
 
     internal inner class InvalidDeriverException(value: String) : Exception(value)
+
+    internal inner class NoOutputFoundException(value: String) : Exception(value)
 
     internal inner class InvalidMessageDataException(message: String) : Exception(message)
 

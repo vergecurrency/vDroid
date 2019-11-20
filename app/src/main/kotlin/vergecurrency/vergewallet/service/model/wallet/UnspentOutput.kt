@@ -1,5 +1,9 @@
 package vergecurrency.vergewallet.service.model.wallet
 
+import com.google.crypto.tink.subtle.Hex
+import io.horizontalsystems.bitcoinkit.models.TransactionOutput
+import vergecurrency.vergewallet.helpers.utils.DataUtils
+
 class UnspentOutput {
 
     var address: String? = null
@@ -27,5 +31,34 @@ class UnspentOutput {
         locked
     }
 
+    //This can possibly be a big chunk of shit code. to test first priority.
+    @Throws(InvalidScriptPubKeyHexException::class, InvalidTxIdHexException::class)
+    fun asUnspentTransaction(): UnspentTransaction {
+        val lockingScript: ByteArray
+        val txid: ByteArray
+        try {
+            lockingScript = Hex.decode(scriptPubKey!!)
+        } catch (e: Exception) {
+            throw InvalidScriptPubKeyHexException(scriptPubKey!!)
+        }
 
+        try {
+            txid = Hex.decode(txID!!)
+        } catch (e: Exception) {
+            throw InvalidTxIdHexException(txID!!)
+        }
+
+        val transactionOutput = TransactionOutput()
+        transactionOutput.value = satoshis
+        transactionOutput.lockingScript = lockingScript
+        val txHash = DataUtils.reverse(txid)
+        val transactionOutPoint = TransactionOutPoint(txHash, vout)
+
+        return UnspentTransaction(transactionOutput, transactionOutPoint)
+    }
+
+
+    internal inner class InvalidScriptPubKeyHexException(hex: String) : Exception(hex)
+
+    internal inner class InvalidTxIdHexException(hex: String) : Exception(hex)
 }
