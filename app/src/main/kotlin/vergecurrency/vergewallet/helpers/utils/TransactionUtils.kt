@@ -1,11 +1,6 @@
 package vergecurrency.vergewallet.helpers.utils
 
 import android.annotation.SuppressLint
-import io.horizontalsystems.bitcoinkit.models.Transaction
-import io.horizontalsystems.bitcoinkit.models.TransactionInput
-import io.horizontalsystems.bitcoinkit.models.TransactionOutput
-import io.horizontalsystems.bitcoinkit.transactions.scripts.Script
-import io.horizontalsystems.bitcoinkit.transactions.scripts.Sighash
 import java.text.SimpleDateFormat
 import java.util.Date
 

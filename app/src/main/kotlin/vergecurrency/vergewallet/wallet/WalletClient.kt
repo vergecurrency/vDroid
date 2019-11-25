@@ -5,12 +5,8 @@ import com.google.crypto.tink.subtle.Hex
 import io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType
 import io.horizontalsystems.bitcoinkit.crypto.Base58
 import io.horizontalsystems.bitcoinkit.models.*
-import io.horizontalsystems.bitcoinkit.models.Transaction
 import io.horizontalsystems.bitcoinkit.network.MainNet
-import io.horizontalsystems.bitcoinkit.transactions.builder.InputSigner
-import io.horizontalsystems.bitcoinkit.transactions.builder.TransactionBuilder
 import io.horizontalsystems.bitcoinkit.transactions.scripts.Script
-import io.horizontalsystems.bitcoinkit.transactions.scripts.Sighash
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter
 import io.horizontalsystems.bitcoinkit.utils.HashUtils
 import io.horizontalsystems.hdwalletkit.HDKey
@@ -18,9 +14,9 @@ import io.horizontalsystems.hdwalletkit.HDPublicKey
 import org.json.JSONObject
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.helpers.SJCL
-import vergecurrency.vergewallet.helpers.utils.TransactionUtils
 import vergecurrency.vergewallet.helpers.utils.ValidationUtils
-import vergecurrency.vergewallet.service.model.*
+import vergecurrency.vergewallet.service.model.PreferencesManager
+import vergecurrency.vergewallet.service.model.WatchRequestCredentials
 import vergecurrency.vergewallet.service.model.wallet.*
 import java.net.URI
 import java.net.URISyntaxException
@@ -31,7 +27,7 @@ import java.security.spec.PKCS8EncodedKeySpec
 
 
 typealias URLCompletion = (data: String?, response: Void?, error: Exception?) -> Unit
-typealias TxProposalCompletion = (txp : TxProposalResponse, errorResponse : TxProposalErrorResponse, error : Exception ) -> Unit
+typealias TxProposalCompletion = (txp: TxProposalResponse, errorResponse: TxProposalErrorResponse, error: Exception) -> Unit
 
 class WalletClient {
 
@@ -92,7 +88,7 @@ class WalletClient {
 
     }
 
-    fun getCoPayerId() : String {
+    fun getCoPayerId(): String {
         return ""
     }
 
@@ -132,7 +128,7 @@ class WalletClient {
 
     }
 
-    fun joinWallet(walletIdentifier: String,completion: (exception: Exception?) -> Void) {
+    fun joinWallet(walletIdentifier: String, completion: (exception: Exception?) -> Void) {
         val xPubKey = credentials.publicKey.publicKey.contentToString()
         val requestPubKey = credentials.requestPrivateKey.pubKey
 
@@ -310,21 +306,25 @@ class WalletClient {
     }
 
     //TODO : But Not Today
-    fun getUnspentOutputs(address : String? = null,completion : (unspentOutputs : Array<UnspentOutput>)-> Void ) {
+    fun getUnspentOutputs(address: String? = null, completion: (unspentOutputs: Array<UnspentOutput>) -> Void) {
         //  getRequest("/v1/utxos/",  null)
     }
 
-    fun getSendMaxInfo(completion : (sendMaxInfo : SendMaxInfo?)-> Void) {
-        getRequest("/v1/sendmaxinfo") {data, _ , _ ->
-            if (data != null){
-                completion(try{SendMaxInfo.decode(data)} catch (e: Exception){null})
+    fun getSendMaxInfo(completion: (sendMaxInfo: SendMaxInfo?) -> Void) {
+        getRequest("/v1/sendmaxinfo") { data, _, _ ->
+            if (data != null) {
+                completion(try {
+                    SendMaxInfo.decode(data)
+                } catch (e: Exception) {
+                    null
+                })
             }
             completion(null)
         }
     }
 
-    fun watchRequestCredentialsForMethodPath(path : String) : WatchRequestCredentials {
-        var result = WatchRequestCredentials(null,null,null)
+    fun watchRequestCredentialsForMethodPath(path: String): WatchRequestCredentials {
+        var result = WatchRequestCredentials(null, null, null)
         //ToDo : add addUrlReference extension
         val referencedUrl = path
 
@@ -332,7 +332,11 @@ class WalletClient {
         val copayerId = getCoPayerId()
 
         if (referencedUrl.contains("/v1/balance")) {
-            var signature = try {getSignature(referencedUrl, method = "get")} catch (e: Exception){ null}
+            var signature = try {
+                getSignature(referencedUrl, method = "get")
+            } catch (e: Exception) {
+                null
+            }
 
             result.url = url
             result.copayerId = copayerId
@@ -344,7 +348,7 @@ class WalletClient {
 
     // Tx proposal methods
 
-    fun getSignature(url : String, method : String, arguments : String = "{}") : String{
+    fun getSignature(url: String, method: String, arguments: String = "{}"): String {
         return ""
     }
 
@@ -402,74 +406,105 @@ class WalletClient {
 
     }
 
-    private fun getUnsignedTx(txp : TxProposalResponse): UnsignedTransaction{
-        var output : TxOutput
-        if(txp.outputs != null && !txp.outputs!!.isEmpty()) {
+    private fun getUnsignedTx(txp: TxProposalResponse): UnsignedTransaction {
+        var output: TxOutput
+        if (txp.outputs != null && !txp.outputs!!.isEmpty()) {
             throw NoOutputFoundException("")
         } else {
             output = txp.outputs!!.first()
         }
 
-        val changeAddress =  LegacyAddress(txp.changeAddress!!.address!!, byteArrayOf(1),AddressType.P2PKH)
-        val toAddress = LegacyAddress(output.toAddress!!, byteArrayOf(1),AddressType.P2PKH)
+        val changeAddress = LegacyAddress(txp.changeAddress!!.address!!, byteArrayOf(1), AddressType.P2PKH)
+        val toAddress = LegacyAddress(output.toAddress!!, byteArrayOf(1), AddressType.P2PKH)
 
         val unspentOutputs = txp.inputs
-        val unspentTransactions :Array<UnspentTransaction> = unspentOutputs!!.map { output -> output.asUnspentTransaction() }.toTypedArray()
+        val unspentTransactions: Array<UnspentTransaction> = unspentOutputs!!.map { output -> output.asUnspentTransaction() }.toTypedArray()
 
         val amount = txp.amount
-        // Enough for today.
-        // val totalAmount :Long  = unspentTransactions.fold(0){a, b -> a+b.output.value}
+
+        //I LITERALLY SPENT ONE DAY ON THIS. DO YOU SEE THE PROBLEM? DO YOU? I DID FUCKING NOT.
+        //val totalAmount   = unspentTransactions.fold(0) {a , b -> a + b.output.value }
+        //val totalAmount   = unspentTransactions.fold(0L) {a , b -> a + b.output.value }
+        val totalAmount = unspentTransactions.fold(0L) { a, b -> a + b.output.value }
+        val change = totalAmount - amount - txp.fee
+
+
+        try {
+            val lockingScriptChange = Script(changeAddress.hash)
+            val lockingScriptTo = Script(toAddress.hash)
+
+            val changeOutput = TransactionOutput().apply {
+                value = change
+                lockingScript = getDataFromScript(lockingScriptChange)
+            }
+
+            val toOutput = TransactionOutput().apply {
+                value = amount
+                lockingScript = getDataFromScript(lockingScriptTo)
+            }
+
+            val unsignedInputs = unspentOutputs.map { output -> output.asInputTransaction() }
+
+            var outputs : ArrayList<TransactionOutput> = ArrayList()
+            outputs.add(toOutput)
+             //todo : finish this.
+
+
+        } catch (e: Exception) {
+            throw AddressToScriptException(changeAddress)
+        }
 
         throw Exception()
     }
 
-   private fun signTx(unsignedTx: UnsignedTransaction, keys : Array<HDKey>) : Array<String> {
-       var inputsToSign = unsignedTx.tx.inputs
-       var transactionToSign = Transaction().apply {
-           version = unsignedTx.tx.version
-           timestamp = unsignedTx.tx.timestamp
-           inputs = inputsToSign
-           outputs = unsignedTx.tx.outputs
-           lockTime = unsignedTx.tx.lockTime
+    private fun signTx(unsignedTx: UnsignedTransaction, keys: Array<HDKey>): Array<String> {
+        var inputsToSign = unsignedTx.tx.inputs
+        var transactionToSign = Transaction().apply {
+            version = unsignedTx.tx.version
+            timestamp = unsignedTx.tx.timestamp
+            inputs = inputsToSign
+            outputs = unsignedTx.tx.outputs
+            lockTime = unsignedTx.tx.lockTime
 
-       }
+        }
 
 
-       var hexes = ArrayList<String>()
+        var hexes = ArrayList<String>()
 
-       for ((i, utxo) in unsignedTx.utxos.withIndex()) {
-           val pubkeyHash = utxo.output.lockingScript.slice(3..22).toByteArray()
+        for ((i, utxo) in unsignedTx.utxos.withIndex()) {
+            val pubkeyHash = utxo.output.lockingScript.slice(3..22).toByteArray()
 
-           val keysOfUtxo = keys.filter{ it.pubKeyHash!!.contentEquals(pubkeyHash) }
-           if (keysOfUtxo.isEmpty()) {
-               print("No keys")
-               continue
-           }
+            val keysOfUtxo = keys.filter { it.pubKeyHash!!.contentEquals(pubkeyHash) }
+            if (keysOfUtxo.isEmpty()) {
+                print("No keys")
+                continue
+            }
 
-           val sighash = transactionToSign.toSignatureByteArray(i,false);
+            val sighash = transactionToSign.toSignatureByteArray(i, false)
 
-           var signature : String
+            var signature: String
 
-           try {
-               val sig = Signature.getInstance("SHA256withECDSA")
-               sig.initSign(KeyFactory.getInstance("EC").generatePrivate(PKCS8EncodedKeySpec(keysOfUtxo.first().privKeyBytes)))
-               sig.update(HashUtils.doubleSha256(sighash))
-               signature = sig.sign().toString(Charset.forName("UTF-8"))
+            try {
+                val sig = Signature.getInstance("SHA256withECDSA")
+                sig.initSign(KeyFactory.getInstance("EC").generatePrivate(PKCS8EncodedKeySpec(keysOfUtxo.first().privKeyBytes)))
+                sig.update(HashUtils.doubleSha256(sighash))
+                signature = sig.sign().toString(Charset.forName("UTF-8"))
 
-           } catch (e: Exception) {
-               e.printStackTrace()
-               signature = ""
-           }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                signature = ""
+            }
             hexes.add(signature)
 
-       }
+        }
 
-       return hexes.toList().toTypedArray()
+        return hexes.toList().toTypedArray()
     }
 
 
-
-
+    private fun getDataFromScript(address : Script) : ByteArray {
+        return address.chunks.fold(ByteArray(address.chunks.size)){a,b -> a+b.data!!}
+    }
 
     //INNER CLASSES BABY. HUNG ME SOMEWHERE.
 

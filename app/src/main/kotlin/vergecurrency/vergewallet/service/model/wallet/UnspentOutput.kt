@@ -1,6 +1,7 @@
 package vergecurrency.vergewallet.service.model.wallet
 
 import com.google.crypto.tink.subtle.Hex
+import io.horizontalsystems.bitcoinkit.models.TransactionInput
 import io.horizontalsystems.bitcoinkit.models.TransactionOutput
 import vergecurrency.vergewallet.helpers.utils.DataUtils
 
@@ -51,10 +52,30 @@ class UnspentOutput {
         val transactionOutput = TransactionOutput()
         transactionOutput.value = satoshis
         transactionOutput.lockingScript = lockingScript
+
         val txHash = DataUtils.reverse(txid)
         val transactionOutPoint = TransactionOutPoint(txHash, vout)
 
         return UnspentTransaction(transactionOutput, transactionOutPoint)
+    }
+
+    fun asInputTransaction() : TransactionInput {
+        val txid : ByteArray
+        try {
+            txid = Hex.decode(txID!!)
+        } catch (e: Exception) {
+            throw InvalidTxIdHexException(txID!!)
+        }
+
+        val txHash = DataUtils.reverse(txid)
+        val transactionOutPoint = TransactionOutPoint(txHash, vout)
+
+        return TransactionInput().apply {
+            //TODO : Not today
+            //previousOutput = transactionOutPoint
+            sigScript = ByteArray(0)
+            sequence = Long.MAX_VALUE
+        }
     }
 
 
