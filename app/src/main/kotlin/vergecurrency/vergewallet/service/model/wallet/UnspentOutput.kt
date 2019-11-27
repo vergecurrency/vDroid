@@ -2,6 +2,7 @@ package vergecurrency.vergewallet.service.model.wallet
 
 import com.google.crypto.tink.subtle.Hex
 import io.horizontalsystems.bitcoinkit.models.TransactionInput
+import io.horizontalsystems.bitcoinkit.models.TransactionOutPoint
 import io.horizontalsystems.bitcoinkit.models.TransactionOutput
 import vergecurrency.vergewallet.helpers.utils.DataUtils
 
@@ -72,7 +73,7 @@ class UnspentOutput {
 
         return TransactionInput().apply {
             //TODO : Not today
-            //previousOutput = transactionOutPoint
+            previousOutputOP = transactionOutPoint
             sigScript = ByteArray(0)
             sequence = Long.MAX_VALUE
         }

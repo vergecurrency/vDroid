@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import io.horizontalsystems.bitcoinkit.io.BitcoinInput
 import io.horizontalsystems.bitcoinkit.models.TransactionInput
 import io.horizontalsystems.bitcoinkit.models.TransactionOutput
+import io.horizontalsystems.bitcoinkit.models.TransactionOutPoint
 import vergecurrency.vergewallet.helpers.utils.DataUtils
 
 
