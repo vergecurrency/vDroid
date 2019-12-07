@@ -11,7 +11,7 @@ object ArrayUtils {
                 result.add(target.get(index))
             }
         }
-
+        return result
 
     }
 }
