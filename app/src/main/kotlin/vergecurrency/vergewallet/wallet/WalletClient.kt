@@ -10,10 +10,14 @@ import io.horizontalsystems.bitcoinkit.transactions.scripts.Script
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter
 import io.horizontalsystems.bitcoinkit.utils.HashUtils
 import io.horizontalsystems.hdwalletkit.HDKey
+import io.horizontalsystems.hdwalletkit.HDKeyDerivation
 import io.horizontalsystems.hdwalletkit.HDPublicKey
+import io.realm.Realm
+import io.realm.RealmList
 import org.json.JSONObject
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.helpers.SJCL
+import vergecurrency.vergewallet.helpers.utils.ArrayUtils
 import vergecurrency.vergewallet.helpers.utils.ValidationUtils
 import vergecurrency.vergewallet.service.model.PreferencesManager
 import vergecurrency.vergewallet.service.model.WatchRequestCredentials
@@ -22,6 +26,7 @@ import java.net.URI
 import java.net.URISyntaxException
 import java.nio.charset.Charset
 import java.security.KeyFactory
+import java.security.PrivateKey
 import java.security.Signature
 import java.security.spec.PKCS8EncodedKeySpec
 
@@ -445,16 +450,39 @@ class WalletClient {
 
             val unsignedInputs = unspentOutputs.map { output -> output.asInputTransaction() }
 
-            var outputs : ArrayList<TransactionOutput> = ArrayList()
-            outputs.add(toOutput)
-             //todo : finish this.
+            var tOutputs : ArrayList<TransactionOutput> = ArrayList()
+            tOutputs.add(toOutput)
 
 
+            //TODO : Add stealth support
+            /*if( output.isStealth) {
+                 val ephemeral =
+             }*/
+
+            if (change > 0) {
+                tOutputs.add(changeOutput)
+            }
+            tOutputs = ArrayUtils.filterByIndices(txp.outputOrder!!.map{it}, tOutputs)
+            val realm : Realm = Realm.getDefaultInstance()
+
+            val tx = Transaction().apply {
+                version = 1
+                timestamp = txp.createdOn.toLong()
+                lockTime = 0
+            }
+
+            //add realmlist object
+            realm.beginTransaction()
+            tx.inputs = RealmList<TransactionInput>()
+            tx.inputs.addAll(unsignedInputs)
+            tx.outputs = RealmList<TransactionOutput>()
+            tx.outputs.addAll(tOutputs)
+            realm.commitTransaction()
+
+            return UnsignedTransaction(tx, unspentTransactions)
         } catch (e: Exception) {
             throw AddressToScriptException(changeAddress)
         }
-
-        throw Exception()
     }
 
     private fun signTx(unsignedTx: UnsignedTransaction, keys: Array<HDKey>): Array<String> {

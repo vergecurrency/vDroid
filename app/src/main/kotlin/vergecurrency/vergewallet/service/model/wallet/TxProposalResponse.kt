@@ -24,7 +24,7 @@ class TxProposalResponse {
     var isExcludeUnconfirmedUtxos: Boolean = false
     var addressType: String? = null
     var requiredRejections: Long = 0
-    var outputOrder: LongArray? = null
+    var outputOrder: IntArray? = null
     var inputPaths: Array<String>? = null
 
     companion object {
