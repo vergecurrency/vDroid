@@ -1,5 +1,6 @@
 package vergecurrency.vergewallet.service.model.network.layers
 
+import android.net.ConnectivityManager
 import android.os.AsyncTask
 
 import cz.msebera.android.httpclient.HttpEntity
@@ -39,4 +40,6 @@ class ClearnetGateway : AsyncTask<String, Void, String>() {
         }
 
     }
+
+
 }

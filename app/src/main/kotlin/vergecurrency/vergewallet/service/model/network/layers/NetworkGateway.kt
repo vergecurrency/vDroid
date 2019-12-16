@@ -1,23 +1,27 @@
 package vergecurrency.vergewallet.service.model.network.layers
 
 
+import android.content.Context
 import android.os.AsyncTask
-
-import java.util.concurrent.ExecutionException
-
+import vergecurrency.vergewallet.helpers.utils.NetworkUtils
 import vergecurrency.vergewallet.service.model.PreferencesManager
 
 
-open class NetworkGateway : AsyncTask<String, Int, String>() {
+open class NetworkGateway(ct: Context)  {
 
-    override fun doInBackground(vararg strings: String): String {
-        val result: String
-        if (PreferencesManager.usingTor) {
-            //TODO : Redo tg class
-            val tg = TorLayerGateway.instance
-            result = tg.doInBackground(*strings)
-        } else {
-            /*try {
+    var context = ct
+
+     fun doRequest(request: String): String {
+        var result: String
+        if (NetworkUtils.checkNetworkState(context)) {
+
+
+            if (PreferencesManager.usingTor) {
+                //TODO : Redo tg class
+                val tg = TorLayerGateway.instance
+                result = tg.doInBackground(request)
+            } else {
+                /*try {
 				//TODO = fix this.
 				result = new ClearnetGateway().execute(strings).get();
 			} catch (ExecutionException e) {
@@ -27,10 +31,13 @@ open class NetworkGateway : AsyncTask<String, Int, String>() {
 				e.printStackTrace();
 				result = "";
 			}*/
+                result = ""
+            }
+
+        } else {
             result = ""
+
         }
-
-
         return result
     }
 }
