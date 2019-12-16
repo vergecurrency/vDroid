@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 
 import androidx.annotation.MainThread
+import com.testfairy.TestFairy
 
 import io.horizontalsystems.bitcoinkit.BitcoinKit
 import vergecurrency.vergewallet.exception.DefaultUncaughtExceptionHandler
@@ -22,15 +23,18 @@ class VergeWalletApplication : Application(), Application.ActivityLifecycleCallb
 
     // Called when the application is starting, before any other application objects have been created.
     override fun onCreate() {
+        //Init the wallet manager, bitcoinkit, testfairy
         super.onCreate()
         BitcoinKit.init(this)
         WalletManager.init()
+        TestFairy.begin(this, "a67a4df6e2a8a0c981638eb0f168297fd45aed73");
         initExceptionHandler()
         registerActivityLifecycleCallbacks(this)
         createNotificationChannel()
     }
 
     override fun attachBaseContext(base: Context) {
+        //init preferences manager and set theme
         PreferencesManager.init(base)
         val c = updateBaseContextLocale(base)
         UIUtils.setTheme(PreferencesManager.currentTheme!!, c, false)
@@ -38,6 +42,7 @@ class VergeWalletApplication : Application(), Application.ActivityLifecycleCallb
     }
 
     private fun updateBaseContextLocale(context: Context): Context {
+        //set language
         return LanguagesUtils.setLocale(context, PreferencesManager.currentLanguage!!)
     }
 

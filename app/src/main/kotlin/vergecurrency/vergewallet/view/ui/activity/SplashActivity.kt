@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
+import com.testfairy.TestFairy
 
 import java.io.IOException
 import java.security.GeneralSecurityException
@@ -24,14 +25,10 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //TestFairy token for getting info on beta testing
-        //TestFairy.begin(this, "a67a4df6e2a8a0c981638eb0f168297fd45aed73");
         //init db
         //dbOpenHelper = new DbOpenHelper(this,"verge.db",1);
         //Database db = dbOpenHelper.getWritableDb();
         //daoSession = new AbstractDaoMaster;
-
-        //gets the holy preferences
 
 
         try {
@@ -48,18 +45,14 @@ class SplashActivity : BaseActivity() {
         Handler().postDelayed({ this.startApplication() }, 2000)
     }
 
-    private fun updateBaseContextLocale(context: Context): Context {
-        return LanguagesUtils.setLocale(context, PreferencesManager.currentLanguage!!)
-    }
-
-
-    fun startApplication() {
+    private fun startApplication() {
 
         if (PreferencesManager.isFirstLaunch) {
             startActivity(Intent(applicationContext, FirstLaunchActivity::class.java))
             finish()
         } else {
             try {
+                //init took place in VergeWalletApplication
                 WalletManager.startWallet()
             } catch (e: Exception) {
                 Toast.makeText(applicationContext, "Something went wrong", Toast.LENGTH_SHORT).show()
