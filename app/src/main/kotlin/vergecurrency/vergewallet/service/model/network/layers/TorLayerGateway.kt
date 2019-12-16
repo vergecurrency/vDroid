@@ -2,24 +2,10 @@ package vergecurrency.vergewallet.service.model.network.layers
 
 import android.content.Context
 import android.os.AsyncTask
-
 import com.msopentech.thali.toronionproxy.OnionProxyManager
-
-import java.io.BufferedReader
-import java.io.InputStream
-import java.io.InputStreamReader
-import java.net.InetAddress
-import java.net.InetSocketAddress
-import java.net.URI
-import java.net.UnknownHostException
-import java.nio.charset.StandardCharsets
-
-import cz.msebera.android.httpclient.HttpEntity
-import cz.msebera.android.httpclient.HttpResponse
 import cz.msebera.android.httpclient.client.HttpClient
 import cz.msebera.android.httpclient.client.methods.HttpGet
 import cz.msebera.android.httpclient.client.protocol.HttpClientContext
-import cz.msebera.android.httpclient.config.Registry
 import cz.msebera.android.httpclient.config.RegistryBuilder
 import cz.msebera.android.httpclient.conn.DnsResolver
 import cz.msebera.android.httpclient.conn.socket.ConnectionSocketFactory
@@ -28,6 +14,13 @@ import cz.msebera.android.httpclient.impl.conn.PoolingHttpClientConnectionManage
 import cz.msebera.android.httpclient.ssl.SSLContexts
 import vergecurrency.vergewallet.service.model.network.sockets.ConnectionSocket
 import vergecurrency.vergewallet.service.model.network.sockets.SSLConnectionSocket
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.InetAddress
+import java.net.InetSocketAddress
+import java.net.URI
+import java.net.UnknownHostException
+import java.nio.charset.StandardCharsets
 
 
 class TorLayerGateway private constructor() : AsyncTask<String, Int, String>() {
@@ -106,7 +99,7 @@ class TorLayerGateway private constructor() : AsyncTask<String, Int, String>() {
 
             var line: String? = null
 
-            while ({line = httpResponseReader.readLine(); line}() != null) {
+            while ({ line = httpResponseReader.readLine(); line }() != null) {
                 result.append(line)
             }
             httpResponseStream.close()
