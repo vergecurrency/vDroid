@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.helpers.utils.NetworkUtils
 import vergecurrency.vergewallet.view.adapter.PriceStatisticsAdapter
 import vergecurrency.vergewallet.viewmodel.StatisticsViewModel
 
@@ -47,7 +48,9 @@ class FragmentStatisticsPageView : Fragment() {
 
 
     private fun fillStatisticsListView(lv: ListView?) {
-        statisticsListView!!.adapter = PriceStatisticsAdapter(this.context!!, mViewModel!!.statistics)
+        if(NetworkUtils.checkNetworkState(this.context!!)) {
+            statisticsListView!!.adapter = PriceStatisticsAdapter(this.context!!, mViewModel!!.statistics)
+        }
     }
 
     private fun pullRefreshListener(): SwipeRefreshLayout.OnRefreshListener {

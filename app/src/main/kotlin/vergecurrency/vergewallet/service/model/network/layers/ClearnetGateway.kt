@@ -1,11 +1,6 @@
 package vergecurrency.vergewallet.service.model.network.layers
 
-import android.net.ConnectivityManager
 import android.os.AsyncTask
-
-import cz.msebera.android.httpclient.HttpEntity
-import cz.msebera.android.httpclient.HttpResponse
-import cz.msebera.android.httpclient.client.HttpClient
 import cz.msebera.android.httpclient.client.methods.HttpGet
 import cz.msebera.android.httpclient.impl.client.HttpClientBuilder
 import cz.msebera.android.httpclient.util.EntityUtils
@@ -18,7 +13,6 @@ class ClearnetGateway : AsyncTask<String, Void, String>() {
         try {
 
 
-            //TODO : CHECK INTERNET CONNECTION YOU IDIOT
             val httppost = HttpGet(url[0])
             val httpClient = HttpClientBuilder.create().build()
             val response = httpClient.execute(httppost)
@@ -32,7 +26,7 @@ class ClearnetGateway : AsyncTask<String, Void, String>() {
 
                 return EntityUtils.toString(entity)
             } else
-                return "error"
+                return ""
 
         } catch (e: Exception) {
             e.printStackTrace()

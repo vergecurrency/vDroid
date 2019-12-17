@@ -14,7 +14,7 @@ import java.net.InetAddress
 import java.net.UnknownHostException
 import java.util.*
 
-class I2PLayerGateway : NetworkGateway() {
+class I2PLayerGateway {
     //private var r: Router? = null
 
     //Http client : registers a socket according to a given protocol
@@ -40,7 +40,7 @@ class I2PLayerGateway : NetworkGateway() {
         }
     }
 
-    override fun doInBackground(vararg strings: String): String {
+    fun doInBackground(vararg strings: String): String {
 
         val props = Properties()
         props.setProperty("i2p.dir.base", "baseDir")

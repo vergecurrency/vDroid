@@ -26,6 +26,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.helpers.utils.NetworkUtils
 import vergecurrency.vergewallet.helpers.utils.UIUtils
 import vergecurrency.vergewallet.viewmodel.ChartsViewModel
 
@@ -81,11 +82,12 @@ class FragmentChartsPageView : Fragment() {
     }
 
     private fun createChart(filter: Int) {
-
-        val data = createCombinedData(filter)
-        setChartProperties()
-        setAxisPropertiesAndData(data)
-        finalizeChart(data)
+        if(NetworkUtils.checkNetworkState(context!!)) {
+            val data = createCombinedData(filter)
+            setChartProperties()
+            setAxisPropertiesAndData(data)
+            finalizeChart(data)
+        }
     }
 
     private fun createCombinedData(filter: Int): CombinedData {

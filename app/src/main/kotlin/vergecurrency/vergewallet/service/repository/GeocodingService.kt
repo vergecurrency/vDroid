@@ -2,15 +2,16 @@ package vergecurrency.vergewallet.service.repository
 
 import org.json.JSONException
 import org.json.JSONObject
+import vergecurrency.vergewallet.Constants
+import vergecurrency.vergewallet.service.model.network.layers.NetworkGateway
 
-//TODO : Query should be done here
-//TODO : Make it a static class
 object GeocodingService {
 
-    fun readCoordinates(rawData: String?): String {
+    fun readCoordinates(ipAddress: String): String {
 
+        var rawData: String = NetworkGateway().doRequest(String.format(Constants.IP_DATA_ENDPOINT, ipAddress))
 
-        if (rawData != null && rawData != "") {
+        if (rawData != "") {
             val reader: JSONObject
             try {
                 reader = JSONObject(rawData)

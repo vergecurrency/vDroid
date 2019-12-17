@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.service.model.ChartInfo
 import vergecurrency.vergewallet.service.model.network.layers.ClearnetGateway
+import vergecurrency.vergewallet.service.model.network.layers.NetworkGateway
 import java.util.*
 
 object StatsService {
@@ -13,7 +14,7 @@ object StatsService {
         var result: ChartInfo?
         try {
             val request = String.format("%s%s", Constants.CHART_DATA_ENDPOINT, getUnixTimeframe(filter))
-            rawData = ClearnetGateway().execute(request).get()
+            rawData = NetworkGateway().doRequest(request)
             result = Gson().fromJson(rawData, ChartInfo::class.java)
         } catch (e: Exception) {
             result = null

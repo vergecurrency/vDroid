@@ -8,19 +8,13 @@ import vergecurrency.vergewallet.service.repository.GeocodingService
 
 class TorSettingsViewModel : ViewModel() {
 
-    //TODO : The services should handle the queries itself...
+    val ipAddress: String
+    val coordinates: String
 
-    //val ipAddress: String
-    //val coordinates: String
+    init {
+        val tlg = TorLayerGateway
 
-    //init {
-
-        //val adr = ApifyService()
-        //val idr = GeocodingService()
-        //This should not be there and will disappear SoonTM
-        //val tlg = TorLayerGateway
-
-        //ipAddress = adr.readIP(tlg.retrieveDataFromService(Constants.IP_RETRIEVAL_ENDPOINT))
-        //coordinates = idr.readCoordinates(tlg.retrieveDataFromService(String.format(Constants.IP_DATA_ENDPOINT, ipAddress)))
-    //}
+        ipAddress = ApifyService.requestIP()
+        coordinates = GeocodingService.readCoordinates(ipAddress)
+    }
 }

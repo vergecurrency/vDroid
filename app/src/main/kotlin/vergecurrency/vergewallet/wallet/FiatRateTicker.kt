@@ -44,7 +44,7 @@ class FiatRateTicker(private val context: Context) {
     }
 
     private fun fetch() {
-        rateInfo = RatesClient.infoBy(PreferencesManager.preferredCurrency!!)
+        rateInfo = RatesClient.infoBy(PreferencesManager.preferredCurrency!!, context)
         val b = Bundle()
         b.putSerializable("rateInfo", rateInfo)
         NotificationCenter.postNotification(context, NotificationType.didReceiveFiatRatings, b)
