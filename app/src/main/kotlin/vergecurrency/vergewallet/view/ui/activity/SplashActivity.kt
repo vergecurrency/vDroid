@@ -37,6 +37,8 @@ class SplashActivity : BaseActivity() {
             //also time to start tor
             if (PreferencesManager.usingTor) {
                 TorManager.startTor(this)
+                //TODO : USE ONLY FOR TESTS
+                PreferencesManager.usingTor = false
             }
 
         } catch (e: Exception) {

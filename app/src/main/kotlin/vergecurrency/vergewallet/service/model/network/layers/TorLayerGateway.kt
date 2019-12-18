@@ -14,7 +14,7 @@ class TorLayerGateway : AsyncTask<String, Int, String>() {
 
     public override fun doInBackground(vararg strings: String): String {
 
-        if (!TorManager.isConnected || !TorManager.initError) {
+        if (TorManager.initError) {
             //return ClearnetGateway().execute(strings[0]).get()
             return ""
         }

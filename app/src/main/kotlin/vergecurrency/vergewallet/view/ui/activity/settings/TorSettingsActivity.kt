@@ -50,7 +50,7 @@ class TorSettingsActivity : BaseActivity() {
             }
             PreferencesManager.usingTor = isChecked
 
-            ip.text = mViewModel.ipAddress
+            ip.text = mViewModel.updateAndReturnIpAddress()
             initMap()
 
         }
@@ -77,7 +77,7 @@ class TorSettingsActivity : BaseActivity() {
     }
 
     private fun createGeoPoint(): GeoPoint {
-        val latlong = mViewModel.coordinates
+        val latlong = mViewModel.updateAndReturnCoordinates()
         //If everything is okay
         if (latlong != "error") {
             val latlongArray = latlong.split(";".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
