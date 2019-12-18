@@ -64,7 +64,7 @@ class TorSettingsActivity : BaseActivity() {
     private fun initMap() {
         //Create the map
         map = tor_settings_map
-        map.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE)
+        map.setTileSource(TileSourceFactory.MAPNIK)
 
         //Don't want ugly zoom buttons
         map.setBuiltInZoomControls(false)
@@ -81,7 +81,7 @@ class TorSettingsActivity : BaseActivity() {
         //If everything is okay
         if (latlong != "error") {
             val latlongArray = latlong.split(";".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
-            return GeoPoint(java.lang.Double.parseDouble(latlongArray[0]), java.lang.Double.parseDouble(latlongArray[0]))
+            return GeoPoint(java.lang.Double.parseDouble(latlongArray[0]), java.lang.Double.parseDouble(latlongArray[1]))
 
         } else
             return GeoPoint(0.0, 0.0)//Otherwise just point to Null Island. See here : https://en.wikipedia.org/wiki/Null_Island

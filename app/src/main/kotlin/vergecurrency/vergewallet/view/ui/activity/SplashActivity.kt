@@ -4,18 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
-
-import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.service.model.PreferencesManager
 import vergecurrency.vergewallet.service.model.network.layers.TorManager
+import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.view.ui.activity.firstlaunch.FirstLaunchActivity
 import vergecurrency.vergewallet.wallet.WalletManager
 
 class SplashActivity : BaseActivity() {
     //DbOpenHelper dbOpenHelper;
     //private AbstractDaoSession daoSession;
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +33,10 @@ class SplashActivity : BaseActivity() {
         try {
             PreferencesManager.initEncryptedPreferences(this)
             //also time to start tor
+            PreferencesManager.usingTor = false
             if (PreferencesManager.usingTor) {
                 TorManager.startTor(this)
                 //TODO : USE ONLY FOR TESTS
-                PreferencesManager.usingTor = false
             }
 
         } catch (e: Exception) {
@@ -61,8 +59,5 @@ class SplashActivity : BaseActivity() {
             finish()
         }
     }
-
-
     override fun onBackPressed() {}
-
 }

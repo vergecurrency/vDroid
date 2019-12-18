@@ -49,10 +49,11 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.media:media:1.1.0'
     implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
     //QR Reader implementation included in play services
     implementation 'com.google.android.gms:play-services-vision:19.0.0'
 
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     //Logging
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'org.slf4j:slf4j-android:1.7.25'
@@ -61,15 +62,15 @@ dependencies {
     //HTTP Client library : Sorry but OkHttp is complete bullshit.
     implementation 'cz.msebera.android:httpclient:4.4.1.2'
     //MapBox
-    implementation 'org.osmdroid:osmdroid-android:6.0.2'
+    implementation 'org.osmdroid:osmdroid-android:6.1.5'
     //Different shit
     implementation 'com.github.EdwardQuixote:Support_AppLocker:2.0.3'
     //TestFairy
     implementation 'testfairy:testfairy-android-sdk:1.9.16@aar'
     //Charts for history prices
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     //Centered buttons
-    implementation 'com.github.Omega-R:OmegaCenterIconButton:0.0.3@aar'
+    implementation 'com.github.Omega-R:OmegaCenterIconButton:0.0.5@aar'
     //BitcoinKit
     implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.2.6'
     //HD Wallet Kit
@@ -80,11 +81,6 @@ dependencies {
     implementation files('src/main/libs/json-simple-1.1.1.jar')
     //I2P router library
     //implementation files('src/main/libs/i2p-router.jar')
-
-    //TOR library
-    //implementation project(':ThaliOnionProxyAndroid-release')
-
-    //implementation 'org.torproject:tor-android-binary:0.4.1.5'
 
     implementation 'com.github.Samourai-Wallet:Tor-Onion-Proxy-Library:0.0.7'
 
@@ -98,8 +94,6 @@ dependencies {
     implementation 'com.madgag.spongycastle:core:1.58.0.0'
     implementation "androidx.security:security-crypto:1.0.0-alpha02"
 
-    //Because Fuck AsyncTasks
-    implementation "org.jetbrains.anko:anko-commons:0.10.4"
 
     //test suites
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'

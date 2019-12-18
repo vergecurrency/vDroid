@@ -25,6 +25,8 @@ import java.util.ArrayList
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.github.mikephil.charting.components.AxisBase
+import com.github.mikephil.charting.formatter.ValueFormatter
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.NetworkUtils
 import vergecurrency.vergewallet.helpers.utils.UIUtils
@@ -129,7 +131,7 @@ class FragmentChartsPageView : Fragment() {
         xAxis.granularity = 1f
         xAxis.setDrawGridLines(false)
         xAxis.setDrawLabels(false)
-        xAxis.setValueFormatter { value, _ -> DecimalFormat("########0.0").format(value.toDouble()) }
+        xAxis.setValueFormatter(vf)
 
         rightAxis.axisMaximum = data.lineData.yMax * 1.1f
         leftAxis.axisMaximum = data.barData.yMax * 1.1f
@@ -182,5 +184,13 @@ class FragmentChartsPageView : Fragment() {
         return ContextCompat.getColor(context!!, UIUtils.resolveAttr(attr, context!!))
     }
 
+    var vf  = object: ValueFormatter() {
+
+        var df = DecimalFormat("########0.0")
+
+        override fun getFormattedValue(value: Float, axis: AxisBase?): String {
+            return df.format(value)
+        }
+    }
 
 }
