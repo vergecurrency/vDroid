@@ -16,31 +16,31 @@ class PriceStatisticsAdapter(context: Context, entryList: List<Map.Entry<String,
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var convertView = convertView
+        var cView = convertView
 
         val vh: StatisticsItemViewHolder
 
 
-        if (convertView == null) {
+        if (cView == null) {
 
             vh = StatisticsItemViewHolder()
 
             val inflater = LayoutInflater.from(context)
-            convertView = inflater.inflate(R.layout.listview_item_stat, parent, false)
+            cView = inflater.inflate(R.layout.listview_item_stat, parent, false)
 
-            vh.statLabel = convertView!!.findViewById(R.id.listview_item_stat_label)
-            vh.statValue = convertView.findViewById(R.id.listview_item_stat_value)
+            vh.statLabel = cView!!.findViewById(R.id.listview_item_stat_label)
+            vh.statValue = cView.findViewById(R.id.listview_item_stat_value)
 
-            convertView.tag = vh
+            cView.tag = vh
         } else {
-            vh = convertView.tag as StatisticsItemViewHolder
+            vh = cView.tag as StatisticsItemViewHolder
         }
 
         val currentEntry = this.getItem(position)
 
         formatView(vh, currentEntry!!)
 
-        return convertView
+        return cView
     }
 
     private fun formatView(vh: StatisticsItemViewHolder, currentEntry: Map.Entry<String, String>) {

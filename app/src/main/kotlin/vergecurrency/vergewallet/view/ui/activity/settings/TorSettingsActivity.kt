@@ -3,27 +3,27 @@ package vergecurrency.vergewallet.view.ui.activity.settings
 import android.os.Bundle
 import android.os.Handler
 import android.widget.TextView
-
+import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.ViewModelProviders
-
-import org.osmdroid.api.IMapController
+import kotlinx.android.synthetic.main.activity_tor_settings.*
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
-
-import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.service.model.PreferencesManager
+import vergecurrency.vergewallet.service.model.network.layers.TorManager
+import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.viewmodel.TorSettingsViewModel
 
 class TorSettingsActivity : BaseActivity() {
 
     internal lateinit var map: MapView
     internal lateinit var ip: TextView
+    internal lateinit var switch: SwitchCompat
 
     internal lateinit var mViewModel: TorSettingsViewModel
 
-    //TODO : Oh boy you don't know all the things you have to do here!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,14 +40,30 @@ class TorSettingsActivity : BaseActivity() {
 
 
     private fun initComponents() {
-        ip = findViewById(R.id.tor_settings_ip_address)
-        //ip.setText(mViewModel.getIPAddress())
+
+        switch = tor_settings_obfuscate
+        switch.isChecked = PreferencesManager.usingTor
+
+        switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                TorManager.startTor(this)
+            }
+            PreferencesManager.usingTor = isChecked
+
+            ip.text = mViewModel.ipAddress
+            initMap()
+
+        }
+
+        ip = tor_settings_ip_address
+        ip.text = mViewModel.ipAddress
+
         initMap()
     }
 
     private fun initMap() {
         //Create the map
-        map = findViewById(R.id.tor_settings_map)
+        map = tor_settings_map
         map.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE)
 
         //Don't want ugly zoom buttons
@@ -55,14 +71,13 @@ class TorSettingsActivity : BaseActivity() {
         //I feel ok with multitouch tho
         map.setMultiTouchControls(true)
 
-        val startPoint = createGeoPoint()
 
-        initStartPoint(startPoint)
+
+        initStartPoint()
     }
 
     private fun createGeoPoint(): GeoPoint {
-        //val latlong = mViewModel.getCoordinates()
-        val latlong = "error"
+        val latlong = mViewModel.coordinates
         //If everything is okay
         if (latlong != "error") {
             val latlongArray = latlong.split(";".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
@@ -74,7 +89,8 @@ class TorSettingsActivity : BaseActivity() {
 
     }
 
-    private fun initStartPoint(startPoint: GeoPoint) {
+    private fun initStartPoint() {
+        val startPoint = createGeoPoint()
         val mapController = map.controller
         mapController.setZoom(9.0)
         val startMarker = Marker(map)

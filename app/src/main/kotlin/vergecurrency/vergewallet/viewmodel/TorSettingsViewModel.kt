@@ -12,8 +12,6 @@ class TorSettingsViewModel : ViewModel() {
     val coordinates: String
 
     init {
-        val tlg = TorLayerGateway
-
         ipAddress = ApifyService.requestIP()
         coordinates = GeocodingService.readCoordinates(ipAddress)
     }

@@ -41,7 +41,7 @@ class WalletManager private constructor() : Listener {
 
     }
 
-    override fun onTransactionsUpdate(bitcoinKit: BitcoinKit, list: List<TransactionInfo>, list1: List<TransactionInfo>) {
+    override fun onTransactionsUpdate(bitcoinKit: BitcoinKit, inserted: List<TransactionInfo>, updated: List<TransactionInfo>) {
 
     }
 

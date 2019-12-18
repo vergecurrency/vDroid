@@ -1,23 +1,25 @@
 package vergecurrency.vergewallet.viewmodel
 
 
-import com.github.mikephil.charting.data.Entry
-
-import java.util.ArrayList
-
 import androidx.lifecycle.ViewModel
+import com.github.mikephil.charting.data.Entry
+import vergecurrency.vergewallet.service.model.ChartInfo
 import vergecurrency.vergewallet.service.repository.StatsService
+import java.util.*
 
 class ChartsViewModel : ViewModel() {
 
+    var gi: ChartInfo? = null
 
-    fun getVolumeData(filter: Int): List<Entry> {
-        val gi = StatsService.readPriceStatistics(filter)
+    fun retrieveData(filter: Int) {
+        gi = StatsService.readPriceStatistics(filter)
+    }
+
+    fun getVolumeData(): List<Entry> {
         return createEntryList(gi!!.volume_usd!!.entries)
     }
 
-    fun getPriceData(filter: Int): List<Entry> {
-        val gi = StatsService.readPriceStatistics(filter)
+    fun getPriceData(): List<Entry> {
         return createEntryList(gi!!.price_usd!!.entries)
     }
 

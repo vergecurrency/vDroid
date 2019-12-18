@@ -49,7 +49,7 @@ class FragmentStatisticsPageView : Fragment() {
 
     private fun fillStatisticsListView(lv: ListView?) {
         if(NetworkUtils.checkNetworkState(this.context!!)) {
-            statisticsListView!!.adapter = PriceStatisticsAdapter(this.context!!, mViewModel!!.statistics)
+            lv!!.adapter = PriceStatisticsAdapter(this.context!!, mViewModel!!.statistics)
         }
     }
 

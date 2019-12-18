@@ -17,6 +17,6 @@ class WalletFragmentViewModel : ViewModel() {
     init {
         balance = WalletManager.getBalance().value
         //TODO check if necessary
-        currencyChange = RatesClient.readPriceStatistics(currencyCode)["XVG/USD"]
+        currencyChange = RatesClient.infoBy(currencyCode)!!.price.toString()
     }
 }

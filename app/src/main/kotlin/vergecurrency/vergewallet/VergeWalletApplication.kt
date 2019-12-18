@@ -5,13 +5,10 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
-
 import androidx.annotation.MainThread
 import com.testfairy.TestFairy
-
 import io.horizontalsystems.bitcoinkit.BitcoinKit
 import vergecurrency.vergewallet.exception.DefaultUncaughtExceptionHandler
 import vergecurrency.vergewallet.helpers.utils.LanguagesUtils
@@ -27,7 +24,7 @@ class VergeWalletApplication : Application(), Application.ActivityLifecycleCallb
         super.onCreate()
         BitcoinKit.init(this)
         WalletManager.init()
-        TestFairy.begin(this, "a67a4df6e2a8a0c981638eb0f168297fd45aed73");
+        TestFairy.begin(this, "a67a4df6e2a8a0c981638eb0f168297fd45aed73")
         initExceptionHandler()
         registerActivityLifecycleCallbacks(this)
         createNotificationChannel()
@@ -38,6 +35,7 @@ class VergeWalletApplication : Application(), Application.ActivityLifecycleCallb
         PreferencesManager.init(base)
         val c = updateBaseContextLocale(base)
         UIUtils.setTheme(PreferencesManager.currentTheme!!, c, false)
+
         super.attachBaseContext(c)
     }
 
@@ -49,12 +47,6 @@ class VergeWalletApplication : Application(), Application.ActivityLifecycleCallb
     override fun onTerminate() {
         super.onTerminate()
         unregisterActivityLifecycleCallbacks(this)
-    }
-
-    // Called by the system when the device configuration changes while your component is running.
-    // Overriding this method is totally optional!
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
     }
 
 

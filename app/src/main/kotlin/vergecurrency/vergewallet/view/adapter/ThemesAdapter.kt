@@ -38,22 +38,22 @@ class ThemesAdapter
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var convertView = convertView
+        var cView = convertView
 
         val theme = getItem(position)
         val vh: ThemeItemViewHolder
 
-        if (convertView == null) {
+        if (cView == null) {
             vh = ThemeItemViewHolder()
             val inflater = LayoutInflater.from(context)
-            convertView = inflater.inflate(R.layout.listview_item_theme, parent, false)
-            vh.themeName = convertView!!.findViewById(R.id.listview_theme_name)
-            vh.themeId = convertView.findViewById(R.id.listview_theme_item)
+            cView = inflater.inflate(R.layout.listview_item_theme, parent, false)
+            vh.themeName = cView!!.findViewById(R.id.listview_theme_name)
+            vh.themeId = cView.findViewById(R.id.listview_theme_item)
 
-            convertView.tag = vh
+            cView.tag = vh
 
         } else {
-            vh = convertView.tag as ThemeItemViewHolder
+            vh = cView.tag as ThemeItemViewHolder
         }
 
         vh.themeName!!.text = theme
@@ -61,7 +61,7 @@ class ThemesAdapter
         vh.themeId!!.setOnClickListener(this)
         vh.themeId!!.tag = position
         // Return the completed view to render on screen
-        return convertView
+        return cView
     }
 
     private class ThemeItemViewHolder {

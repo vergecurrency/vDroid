@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -39,23 +38,23 @@ class CurrenciesAdapter
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var convertView = convertView
+        var cView = convertView
 
         val cur = getItem(position)
         val vh: CurrencyItemViewHolder
 
-        if (convertView == null) {
+        if (cView == null) {
             vh = CurrencyItemViewHolder()
             val inflater = LayoutInflater.from(context)
-            convertView = inflater.inflate(R.layout.listview_item_currency, parent, false)
-            vh.currencyId = convertView!!.findViewById(R.id.listview_currency_item)
-            vh.currencyCurrency = convertView.findViewById(R.id.listview_currency_currency)
-            vh.currencyName = convertView.findViewById(R.id.listview_currency_name)
+            cView = inflater.inflate(R.layout.listview_item_currency, parent, false)
+            vh.currencyId = cView!!.findViewById(R.id.listview_currency_item)
+            vh.currencyCurrency = cView.findViewById(R.id.listview_currency_currency)
+            vh.currencyName = cView.findViewById(R.id.listview_currency_name)
 
-            convertView.tag = vh
+            cView.tag = vh
 
         } else {
-            vh = convertView.tag as CurrencyItemViewHolder
+            vh = cView.tag as CurrencyItemViewHolder
         }
 
         vh.currencyCurrency!!.text = cur!!.currency
@@ -64,7 +63,7 @@ class CurrenciesAdapter
         vh.currencyId!!.setOnClickListener(this)
         vh.currencyId!!.tag = position
         // Return the completed view to render on screen
-        return convertView
+        return cView
     }
 
     private class CurrencyItemViewHolder {

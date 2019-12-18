@@ -12,10 +12,8 @@ class ClearnetGateway : AsyncTask<String, Void, String>() {
     override fun doInBackground(vararg url: String): String? {
         try {
 
-
-            val httppost = HttpGet(url[0])
             val httpClient = HttpClientBuilder.create().build()
-            val response = httpClient.execute(httppost)
+            val response = httpClient.execute(HttpGet(url[0]))
 
             // StatusLine stat = response.getStatusLine();
             val status = response.statusLine.statusCode

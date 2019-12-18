@@ -92,8 +92,9 @@ class FragmentChartsPageView : Fragment() {
 
     private fun createCombinedData(filter: Int): CombinedData {
         val data = CombinedData()
-        data.setData(generateBarData(mViewModel!!.getVolumeData(filter)))
-        data.setData(generateLineData(mViewModel!!.getPriceData(filter)))
+        mViewModel!!.retrieveData(filter)
+        data.setData(generateBarData(mViewModel!!.getVolumeData()))
+        data.setData(generateLineData(mViewModel!!.getPriceData()))
         return data
     }
 

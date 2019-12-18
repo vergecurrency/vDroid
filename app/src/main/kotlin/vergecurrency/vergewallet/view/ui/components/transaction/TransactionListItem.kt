@@ -16,7 +16,6 @@ import vergecurrency.vergewallet.helpers.utils.TransactionUtils
 import vergecurrency.vergewallet.service.model.Transaction
 import vergecurrency.vergewallet.view.ui.activity.TransactionDetailActivity
 
-import vergecurrency.vergewallet.helpers.utils.TransactionUtils.EXTRA_TRANSACTION
 import vergecurrency.vergewallet.helpers.utils.TransactionUtils.toFormattedDate
 
 class TransactionListItem(private val tx: Transaction) : TransactionItem, View.OnClickListener {
@@ -33,32 +32,32 @@ class TransactionListItem(private val tx: Transaction) : TransactionItem, View.O
     }
 
     override fun getView(inflater: LayoutInflater, convertView: View?, parent: ViewGroup, position: Int): View {
-        var convertView : View? = convertView
+        var cView : View? = convertView
         val vh: TransactionItemViewHolder
-        if (convertView == null) {
+        if (cView == null) {
             vh = TransactionItemViewHolder()
-            convertView = inflater.inflate(R.layout.listview_item_transaction, parent, false)
-            convertView.setOnClickListener(this)
-            vh.txAddress = convertView.findViewById(R.id.listview_transaction_item_address)
-            vh.txAmount = convertView.findViewById(R.id.listview_transaction_item_amount)
-            vh.txDateTime = convertView.findViewById(R.id.listview_transaction_item_datetime)
-            vh.txIcon = convertView.findViewById(R.id.listview_transaction_item_icon)
-            convertView.tag = vh
+            cView = inflater.inflate(R.layout.listview_item_transaction, parent, false)
+            cView.setOnClickListener(this)
+            vh.txAddress = cView.findViewById(R.id.listview_transaction_item_address)
+            vh.txAmount = cView.findViewById(R.id.listview_transaction_item_amount)
+            vh.txDateTime = cView.findViewById(R.id.listview_transaction_item_datetime)
+            vh.txIcon = cView.findViewById(R.id.listview_transaction_item_icon)
+            cView.tag = vh
 
         } else {
-            vh = convertView.tag as TransactionItemViewHolder
+            vh = cView.tag as TransactionItemViewHolder
         }
 
         if (tx.isSend) {
             vh.txAmount!!.text = String.format("- %s XVG", MathUtils.round(tx.amount, 2))
-            vh.txAmount!!.setTextColor(ContextCompat.getColor(convertView!!.context, R.color.material_red_500))
+            vh.txAmount!!.setTextColor(ContextCompat.getColor(cView!!.context, R.color.material_red_500))
             vh.txIcon!!.setImageResource(R.drawable.icon_arrow_up)
-            DrawableCompat.setTint(vh.txIcon!!.drawable, ContextCompat.getColor(convertView.context, R.color.material_red_500))
+            DrawableCompat.setTint(vh.txIcon!!.drawable, ContextCompat.getColor(cView.context, R.color.material_red_500))
         } else if (tx.isReceive) {
             vh.txAmount!!.text = String.format("+ %s XVG", MathUtils.round(tx.amount, 2))
-            vh.txAmount!!.setTextColor(ContextCompat.getColor(convertView!!.context, R.color.material_green_500))
+            vh.txAmount!!.setTextColor(ContextCompat.getColor(cView!!.context, R.color.material_green_500))
             vh.txIcon!!.setImageResource(R.drawable.icon_arrow_down)
-            DrawableCompat.setTint(vh.txIcon!!.drawable, ContextCompat.getColor(convertView.context, R.color.material_green_500))
+            DrawableCompat.setTint(vh.txIcon!!.drawable, ContextCompat.getColor(cView.context, R.color.material_green_500))
         }
 
         if (tx.account == null) {
@@ -73,7 +72,7 @@ class TransactionListItem(private val tx: Transaction) : TransactionItem, View.O
         vh.txDateTime!!.setText(toFormattedDate(tx.time))
         vh.txAddress!!.tag = position
         // Return the completed view to render on screen
-        return convertView!!
+        return cView!!
     }
 
     /**

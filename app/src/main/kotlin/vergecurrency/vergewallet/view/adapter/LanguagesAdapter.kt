@@ -41,22 +41,22 @@ class LanguagesAdapter
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var convertView = convertView
+        var cView = convertView
 
         val lang = getItem(position)
         val vh: LanguageItemViewHolder
 
-        if (convertView == null) {
+        if (cView == null) {
             vh = LanguageItemViewHolder()
             val inflater = LayoutInflater.from(context)
-            convertView = inflater.inflate(R.layout.listview_item_language, parent, false)
-            vh.languageName = convertView!!.findViewById(R.id.listview_language_name)
-            vh.languageId = convertView.findViewById(R.id.listview_language_item)
+            cView = inflater.inflate(R.layout.listview_item_language, parent, false)
+            vh.languageName = cView!!.findViewById(R.id.listview_language_name)
+            vh.languageId = cView.findViewById(R.id.listview_language_item)
 
-            convertView.tag = vh
+            cView.tag = vh
 
         } else {
-            vh = convertView.tag as LanguageItemViewHolder
+            vh = cView.tag as LanguageItemViewHolder
         }
 
         vh.languageName!!.text = lang!!.name
@@ -64,7 +64,7 @@ class LanguagesAdapter
         vh.languageId!!.setOnClickListener(this)
         vh.languageId!!.tag = position
         // Return the completed view to render on screen
-        return convertView
+        return cView
     }
 
     private class LanguageItemViewHolder {

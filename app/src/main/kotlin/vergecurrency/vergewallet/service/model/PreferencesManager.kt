@@ -115,22 +115,22 @@ class PreferencesManager private constructor(context: Context) {
         var amount: Float
             get() = encryptedPreferences!!.getFloat(AMOUNT, 0f)
             set(amount) {
-                var amount = amount
-                if (amount < 0f) {
-                    amount = 0f
+                var wAmount = amount
+                if (wAmount < 0f) {
+                    wAmount = 0f
                 }
-                encryptedPreferences!!.edit().putFloat(AMOUNT, amount).apply()
+                encryptedPreferences!!.edit().putFloat(AMOUNT, wAmount).apply()
             }
 
         //--------walletsecret
         var walletSecret: String?
             get() = encryptedPreferences!!.getString(WALLET_SECRET, null)
             set(secret) {
-                var secret = secret
-                if (secret == null) {
-                    secret = ""
+                var wSecret = secret
+                if (wSecret == null) {
+                    wSecret = ""
                 }
-                encryptedPreferences!!.edit().putString(WALLET_SECRET, secret).apply()
+                encryptedPreferences!!.edit().putString(WALLET_SECRET, wSecret).apply()
             }
 
         //--------walletsecret
@@ -152,22 +152,22 @@ class PreferencesManager private constructor(context: Context) {
         var walletId: String?
             get() = encryptedPreferences!!.getString(WALLET_ID, null)
             set(id) {
-                var id = id
-                if (id == null) {
-                    id = ""
+                var wId = id
+                if (wId == null) {
+                    wId = ""
                 }
-                encryptedPreferences!!.edit().putString(WALLET_ID, id).apply()
+                encryptedPreferences!!.edit().putString(WALLET_ID, wId).apply()
             }
 
         //--------walletname
         var walletName: String?
             get() = encryptedPreferences!!.getString(WALLET_NAME, null)
             set(name) {
-                var name = name
-                if (name == null) {
-                    name = ""
+                var wName = name
+                if (wName == null) {
+                    wName = ""
                 }
-                encryptedPreferences!!.edit().putString(WALLET_NAME, name).apply()
+                encryptedPreferences!!.edit().putString(WALLET_NAME, wName).apply()
             }
 
 

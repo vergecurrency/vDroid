@@ -41,7 +41,6 @@ class I2PLayerGateway {
     }
 
     fun doInBackground(vararg strings: String): String {
-
         val props = Properties()
         props.setProperty("i2p.dir.base", "baseDir")
         props.setProperty("i2p.dir.config", "configDir")

@@ -18,7 +18,7 @@ object Constants {
 
     //Secondary Service Urls
     const val PRICE_DATA_ENDPOINT = "https://api.vergecurrency.network/price/api/v1/price/"
-    const val CHART_DATA_ENDPOINT = "https://graphs2.coinmarketcap.com/currencies/verge/"
+    const val CHART_DATA_ENDPOINT = "https://api.vergecurrency.network/price/api/v1/chart/"
     const val IP_DATA_ENDPOINT = "http://api.ipstack.com/%s?access_key=7ad464757507e0b58ce0beee4810c1ab"
     const val IP_RETRIEVAL_ENDPOINT = "https://api.ipify.org?format=json"
 

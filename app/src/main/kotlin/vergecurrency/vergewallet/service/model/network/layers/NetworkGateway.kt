@@ -1,17 +1,15 @@
 package vergecurrency.vergewallet.service.model.network.layers
 
-
 import vergecurrency.vergewallet.service.model.PreferencesManager
-
 
 open class NetworkGateway {
 
 
     fun doRequest(request: String): String {
-        var result: String
+        var result = ""
         if (PreferencesManager.usingTor) {
-            val tg = TorLayerGateway.instance
-            result = tg.doInBackground(request)
+
+            result = TorLayerGateway().execute(request).get()
         } else {
             result = ClearnetGateway().execute(request).get()
         }
