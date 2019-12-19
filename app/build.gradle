@@ -82,7 +82,7 @@ dependencies {
     //I2P router library
     //implementation files('src/main/libs/i2p-router.jar')
 
-    implementation 'com.github.Samourai-Wallet:Tor-Onion-Proxy-Library:0.0.7'
+    implementation 'com.github.Samourai-Wallet:Tor-Onion-Proxy-Library:0.0.5'
 
     //Gson
     implementation 'com.google.code.gson:gson:2.8.5'

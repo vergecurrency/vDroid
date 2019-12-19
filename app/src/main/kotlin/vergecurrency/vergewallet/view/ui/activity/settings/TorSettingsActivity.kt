@@ -6,8 +6,10 @@ import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_tor_settings.*
+import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.CustomZoomButtonsController
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 import vergecurrency.vergewallet.R
@@ -29,13 +31,15 @@ class TorSettingsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tor_settings)
 
+        Configuration.getInstance().load(applicationContext, PreferencesManager.preferences);
+
         mViewModel = ViewModelProviders.of(this).get(TorSettingsViewModel::class.java)
 
         //Get a handler to execute stuff only after setting the content view
         val handler = Handler()
 
-        //Handler that waits to view to be displayed before starting tor.
-        handler.postDelayed({ this.initComponents() }, 500)
+
+        handler.postDelayed({ this.initComponents() }, 100)
     }
 
 
@@ -64,16 +68,27 @@ class TorSettingsActivity : BaseActivity() {
     private fun initMap() {
         //Create the map
         map = tor_settings_map
-        map.setTileSource(TileSourceFactory.MAPNIK)
+        map.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE)
 
         //Don't want ugly zoom buttons
-        map.setBuiltInZoomControls(false)
+        map.zoomController.setVisibility(CustomZoomButtonsController.Visibility.NEVER)
         //I feel ok with multitouch tho
         map.setMultiTouchControls(true)
 
-
-
         initStartPoint()
+    }
+
+    private fun initStartPoint() {
+        val startPoint = createGeoPoint()
+        val mapController = map.controller
+        mapController.setZoom(19.0)
+        val startMarker = Marker(map)
+        //Marker
+        startMarker.position = startPoint
+        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        map.overlays.add(startMarker)
+        //Show me where I am baby :)
+        mapController.setCenter(startPoint)
     }
 
     private fun createGeoPoint(): GeoPoint {
@@ -89,18 +104,7 @@ class TorSettingsActivity : BaseActivity() {
 
     }
 
-    private fun initStartPoint() {
-        val startPoint = createGeoPoint()
-        val mapController = map.controller
-        mapController.setZoom(9.0)
-        val startMarker = Marker(map)
-        //Marker
-        startMarker.position = startPoint
-        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-        map.overlays.add(startMarker)
-        //Show me where I am baby :)
-        mapController.setCenter(startPoint)
-    }
+
 
 
 }

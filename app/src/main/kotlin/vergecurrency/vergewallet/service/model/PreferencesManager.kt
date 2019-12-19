@@ -42,7 +42,7 @@ class PreferencesManager private constructor(context: Context) {
 
 
         private var INSTANCE: PreferencesManager? = null
-        lateinit private var preferences: SharedPreferences
+        lateinit var preferences: SharedPreferences
         private var encryptedPreferences: SharedPreferences? = null
 
         //--------Singleton methods

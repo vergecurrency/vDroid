@@ -32,11 +32,14 @@ class SplashActivity : BaseActivity() {
 
         try {
             PreferencesManager.initEncryptedPreferences(this)
-            //also time to start tor
+
+
+            //TESTING only
             PreferencesManager.usingTor = false
+
             if (PreferencesManager.usingTor) {
                 TorManager.startTor(this)
-                //TODO : USE ONLY FOR TESTS
+
             }
 
         } catch (e: Exception) {
