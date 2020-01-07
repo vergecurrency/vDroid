@@ -48,7 +48,7 @@ class TorSettingsActivity : BaseActivity() {
         switch = tor_settings_obfuscate
         switch.isChecked = PreferencesManager.usingTor
 
-        switch.setOnCheckedChangeListener { buttonView, isChecked ->
+        switch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 TorManager.startTor(this)
             }

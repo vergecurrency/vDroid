@@ -356,7 +356,7 @@
         <item name="android:paddingLeft">@dimen/act_paper_key_desc_padding</item>
         <item name="android:paddingRight">@dimen/act_paper_key_desc_padding</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:textColor">?vg_backgroundBlue</item>
+        <item name="android:textColor">?vg_whiteGeneral</item>
         <item name="android:textSize">@dimen/text_regular_size</item>
     </style>
 

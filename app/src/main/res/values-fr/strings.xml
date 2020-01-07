@@ -157,5 +157,10 @@
     <string name="use_default_url">Utiliser l\'URL par défaut</string>
     <string name="pin_prompt_label">Saisis ton pin pour continuer</string>
     <string name="txtEnterPin">Enter your PIN</string>
+	<string name="authorizations_activity_desc">To make sure Verge Wallet can work flawlessly, you need to allow the app to access the network and external storage to let data to be stored.</string>
+    <string name="wallet_give_permissions">Next</string>
+	<string name="permissions_activity_title">Permissions</string>
+	<string name="activity_permissions_storage">Allow use of storage</string>
+    <string name="activity_permissions_gps">Allow use of geolocation services</string>
 
 </resources>

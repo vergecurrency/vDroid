@@ -61,7 +61,12 @@ class WalletClient {
     private fun getRequest(url: String, completion: URLCompletion) {
         try {
             val uri = URI(String.format("%s%s", Constants.VWS_ENDPOINT, url))
-            //...
+
+            val copayerId = getCoPayerId()
+            var signature = try {  getSignature(url, "get")          } catch(e: Exception) { return completion(null, null, null) }
+
+
+
 
         } catch (e: URISyntaxException) {
             return completion(null, null, null)

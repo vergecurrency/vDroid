@@ -1,6 +1,7 @@
 package vergecurrency.vergewallet.service.model.network.layers
 
 import android.content.Context
+import android.os.AsyncTask
 import com.msopentech.thali.toronionproxy.OnionProxyManager
 import cz.msebera.android.httpclient.client.HttpClient
 import cz.msebera.android.httpclient.config.RegistryBuilder
@@ -42,33 +43,42 @@ object TorManager {
 
     fun startTor(context: Context) {
 
-        if (isConnected) {
-            return
-        }
+        object: AsyncTask<String, Int, Void?>() {
+            override fun doInBackground(vararg params: String?): Void? {
 
-        val fileStorageLocation = "torfiles"
+                if (isConnected) {
+                    return null
+                }
 
-        //Get the proxy manager
-        onionProxyManager = com.msopentech.thali.android.toronionproxy.AndroidOnionProxyManager(context, fileStorageLocation)
-        val totalSecondsPerTorStartup = 4 * 10
-        val totalTriesPerTorStartup = 2
+                val fileStorageLocation = "torfiles"
 
-        val ok = try {
-            onionProxyManager!!.startWithRepeat(totalSecondsPerTorStartup, totalTriesPerTorStartup)
-        } catch (e: InterruptedException) {
-            false
-        }
-        if (!ok) {
-            initError = true
-            println("Couldn't start tor")
-        } else {
-            isConnected = true
-        }
-        while (!onionProxyManager!!.isRunning) {
-            //Puts the thread to sleep while tor isn't running
-            Thread.sleep(90)
-        }
-        println("Tor initialized on port " + onionProxyManager!!.iPv4LocalHostSocksPort)
+                //Get the proxy manager
+                onionProxyManager = com.msopentech.thali.android.toronionproxy.AndroidOnionProxyManager(context, fileStorageLocation)
+                val totalSecondsPerTorStartup = 4 * 10
+                val totalTriesPerTorStartup = 2
+
+                val ok = try {
+                    onionProxyManager!!.startWithRepeat(totalSecondsPerTorStartup, totalTriesPerTorStartup)
+                } catch (e: InterruptedException) {
+                    false
+                }
+                if (!ok) {
+                    initError = true
+                    println("Couldn't start tor")
+                } else {
+                    isConnected = true
+                }
+                while (!onionProxyManager!!.isRunning) {
+                    //Puts the thread to sleep while tor isn't running
+                    Thread.sleep(90)
+                }
+                println("Tor initialized on port " + onionProxyManager!!.iPv4LocalHostSocksPort)
+                return null
+            }
+        }.execute("")
+
+
+
 
     }
 

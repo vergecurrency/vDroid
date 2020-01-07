@@ -99,7 +99,11 @@ class WalletManager private constructor() : Listener {
         }
 
         fun getBalance(): MutableLiveData<Long> {
-            balance!!.setValue(wallet!!.balance)
+            try {
+                balance!!.setValue(wallet!!.balance)
+            } catch (e: java.lang.Exception){
+                balance!!.setValue(0L)
+            }
             return balance as MutableLiveData<Long>
         }
     }
