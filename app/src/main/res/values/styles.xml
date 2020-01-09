@@ -320,6 +320,16 @@
         <item name="android:textColor">?vg_primaryDark</item>
     </style>
 
+
+    <style name="activities_settings_switchcompats">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:checked">false</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textColor">?vg_primaryDark</item>
+    </style>
+
     <!-- Paperkey Setup -->
 
     <style name="activities_paper_key_setup_title">

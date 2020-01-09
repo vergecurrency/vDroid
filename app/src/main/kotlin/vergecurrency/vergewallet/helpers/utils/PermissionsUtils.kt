@@ -1,10 +1,12 @@
 package vergecurrency.vergewallet.helpers.utils
 
-import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
+import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 
 object PermissionsUtils {
 
@@ -29,4 +31,10 @@ object PermissionsUtils {
             ActivityCompat.requestPermissions(activity, arrayOf(permission), PERMISSION_CODE)
         }
     }
+
+    fun isPermissionGranted(permission: String, context: Context): Boolean {
+        return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
+    }
+
 }
+

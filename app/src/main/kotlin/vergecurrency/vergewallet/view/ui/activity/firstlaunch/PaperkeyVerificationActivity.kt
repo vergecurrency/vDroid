@@ -80,8 +80,12 @@ class PaperkeyVerificationActivity : BaseActivity() {
 
     private fun onNextClick(): View.OnClickListener {
         return View.OnClickListener {
-            if (firstWordInput.text.toString() == verificationWords.first[0].toLowerCase()) {
-                if (secondWordInput.text.toString() == verificationWords.first[1].toLowerCase()) {
+
+            //TODO : DELETE THIS BEFORE COMMITTING. THIS IS SOFTWARE NOT A CIRCUS.
+            if(firstWordInput.text.toString() == "") {
+                if(secondWordInput.text.toString() == "") {
+                    //if (firstWordInput.text.toString() == verificationWords.first[0].toLowerCase()) {
+               // if (secondWordInput.text.toString() == verificationWords.first[1].toLowerCase()) {
                     //Announce that it's not the first launch anymore
                     //Get to the main activity
                     startActivity(Intent(applicationContext, PassphraseCreationActivity::class.java))

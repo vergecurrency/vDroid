@@ -24,6 +24,7 @@ class SplashActivity : BaseActivity() {
         //daoSession = new AbstractDaoMaster;
         setContentView(R.layout.activity_splash)
 
+
         //Just to have the splash screen going briefly
         Handler().postDelayed({ this.startApplication() }, 500)
     }
@@ -33,6 +34,9 @@ class SplashActivity : BaseActivity() {
         try {
             PreferencesManager.initEncryptedPreferences(this)
 
+
+            //JUST FOR TODAY
+            PreferencesManager.isFirstLaunch = true
 
             //TESTING only
             PreferencesManager.usingTor = false
