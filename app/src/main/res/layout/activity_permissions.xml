@@ -34,7 +34,7 @@
         android:layout_below="@id/permission_instructions">
 
         <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/permissions_storage_switch"
+        android:id="@+id/permissions_read_storage_switch"
         android:checked="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,6 +42,16 @@
         android:padding="15dp"
         android:text="@string/activity_permissions_storage"
         android:textColor="?vg_primaryDark" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/permissions_write_storage_switch"
+            android:checked="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="15dp"
+            android:text="@string/activity_permissions_storage"
+            android:textColor="?vg_primaryDark" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/permissions_location_switch"

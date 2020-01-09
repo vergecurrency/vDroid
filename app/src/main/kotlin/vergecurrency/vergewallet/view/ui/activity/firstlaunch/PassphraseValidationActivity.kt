@@ -72,7 +72,7 @@ class PassphraseValidationActivity : BaseActivity() {
             mViewModel!!.setFirstLaunch(false)
             mViewModel!!.setPassphrase(passphraseToValidate!!)
             finish()
-            startActivity(Intent(applicationContext, EndSetupActivity::class.java))
+            startActivity(Intent(applicationContext, PermissionsActivity::class.java))
         }
     }
 }

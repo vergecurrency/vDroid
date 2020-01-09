@@ -61,8 +61,9 @@
         <activity android:name=".view.ui.activity.firstlaunch.PinConfirmActivity" />
         <activity android:name=".view.ui.activity.PinPromptActivity" />
         <activity android:name=".view.ui.activity.settings.ServiceURLActivity" />
+		<activity android:name=".view.ui.activity.firstlaunch.PermissionsActivity" />
 
-        <provider
+		<provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="@file/file_provider_authority"
             android:exported="false"
