@@ -98,16 +98,16 @@ class FragmentReceive : BaseFragment() {
     private fun shareOnClickListener(): OnClickListener {
         return OnClickListener {
             // Here, thisActivity is the current activity
-            val a = this.activity
-            if (ContextCompat.checkSelfPermission(a!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            //val a = this.activity
+            //if (ContextCompat.checkSelfPermission(a!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-                val needExplanation = ActivityCompat.shouldShowRequestPermissionRationale(a, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                if (!needExplanation) {
-                    ActivityCompat.requestPermissions(this.activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE)
-                }
-            } else {
+                //val needExplanation = ActivityCompat.shouldShowRequestPermissionRationale(a, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                //if (!needExplanation) {
+                  //  ActivityCompat.requestPermissions(this.activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE)
+                //}
+            //} else {
                 shareImage()
-            }
+            //}
         }
     }
 

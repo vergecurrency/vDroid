@@ -34,10 +34,6 @@ class SplashActivity : BaseActivity() {
         try {
             PreferencesManager.initEncryptedPreferences(this)
 
-
-            //JUST FOR TODAY
-            PreferencesManager.isFirstLaunch = true
-
             //TESTING only
             PreferencesManager.usingTor = false
 

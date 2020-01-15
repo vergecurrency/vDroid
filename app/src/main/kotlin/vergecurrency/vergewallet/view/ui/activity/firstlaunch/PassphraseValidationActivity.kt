@@ -69,7 +69,6 @@ class PassphraseValidationActivity : BaseActivity() {
 
     internal fun onValidateClick(): View.OnClickListener {
         return View.OnClickListener {
-            mViewModel!!.setFirstLaunch(false)
             mViewModel!!.setPassphrase(passphraseToValidate!!)
             finish()
             startActivity(Intent(applicationContext, PermissionsActivity::class.java))

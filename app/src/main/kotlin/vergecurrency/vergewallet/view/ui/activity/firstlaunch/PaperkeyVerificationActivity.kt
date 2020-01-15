@@ -30,7 +30,7 @@ class PaperkeyVerificationActivity : BaseActivity() {
     //TODO : Def move this shit to viewmodel
     private val twoRandomWordsFromSeed: Pair<Array<String>, IntArray>
         get() {
-            val words = Array(2){""}
+            val words = Array(2) { "" }
             val positions = IntArray(2)
             positions[0] = MathUtils.getRandomNumber(Constants.SEED_SIZE)
             var second = MathUtils.getRandomNumber(Constants.SEED_SIZE)
@@ -81,13 +81,9 @@ class PaperkeyVerificationActivity : BaseActivity() {
     private fun onNextClick(): View.OnClickListener {
         return View.OnClickListener {
 
-            //TODO : DELETE THIS BEFORE COMMITTING. THIS IS SOFTWARE NOT A CIRCUS.
-            if(firstWordInput.text.toString() == "") {
-                if(secondWordInput.text.toString() == "") {
-                    //if (firstWordInput.text.toString() == verificationWords.first[0].toLowerCase()) {
-               // if (secondWordInput.text.toString() == verificationWords.first[1].toLowerCase()) {
-                    //Announce that it's not the first launch anymore
-                    //Get to the main activity
+            if (firstWordInput.text.toString() == verificationWords.first[0].toLowerCase()) {
+                if (secondWordInput.text.toString() == verificationWords.first[1].toLowerCase()) {
+
                     startActivity(Intent(applicationContext, PassphraseCreationActivity::class.java))
 
 

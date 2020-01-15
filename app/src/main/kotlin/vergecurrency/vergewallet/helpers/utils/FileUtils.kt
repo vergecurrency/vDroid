@@ -20,6 +20,8 @@ import vergecurrency.vergewallet.R
 
 object FileUtils {
 
+
+    //TODO : Figure out why it isn't working anymore since java -> kotlin
     fun saveBitmapToFile(c : Context, bmp: Bitmap) {
         val root = c.externalCacheDirs
         val myDir = File("$root/saved_images")
