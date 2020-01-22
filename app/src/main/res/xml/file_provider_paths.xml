@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
-    <external-path
-        name="external_files" path="." />
-    <external-path
-        name="external_files_images" path="/storage/emulated/0/saved_images/" />
+    <files-path
+        name="my_images" path="/images" />
 
 </paths>

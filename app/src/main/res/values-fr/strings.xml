@@ -161,6 +161,7 @@
     <string name="wallet_give_permissions">Next</string>
 	<string name="permissions_activity_title">Permissions</string>
 	<string name="activity_permissions_storage">Allow use of storage</string>
-    <string name="activity_permissions_gps">Allow use of geolocation services</string>
+    <string name="activity_permissions_gps">Permettre l\'utilisation du gps</string>
+	<string name="activity_permissions_camera">Permettre l\'utilisation de la caméra</string>
 
 </resources>

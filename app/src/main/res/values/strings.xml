@@ -163,5 +163,6 @@
 	<string name="permissions_activity_title">Permissions</string>
 	<string name="activity_permissions_storage">Allow use of storage</string>
     <string name="activity_permissions_gps">Allow use of geolocation services</string>
+	<string name="activity_permissions_camera">Allow use of camera</string>
 
 </resources>

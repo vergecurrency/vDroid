@@ -3,34 +3,30 @@ package vergecurrency.vergewallet.helpers.utils
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
-import android.os.Environment
-import androidx.core.content.FileProvider
-import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.Toast
-
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStream
-import java.io.InputStreamReader
-
+import androidx.core.content.FileProvider
 import vergecurrency.vergewallet.R
+import java.io.*
 
 object FileUtils {
 
+    fun saveImage(c: Context, bmp: Bitmap) {
 
-    //TODO : Figure out why it isn't working anymore since java -> kotlin
-    fun saveBitmapToFile(c : Context, bmp: Bitmap) {
-        val root = c.externalCacheDirs
-        val myDir = File("$root/saved_images")
-        Log.i("Directory", "==$myDir")
+
+        //c.filesDir = the folder of the app.
+        val myDir = File(c.filesDir,"images")
+
         myDir.mkdirs()
 
-        val fname = "Image-test" + ".jpg"
-        val file = File(myDir, fname)
-        if (file.exists()) file.delete()
+        val addressFileName = "Verge_Generated" + ".jpg"
+
+
+        val file = File(myDir, addressFileName)
+
+        if (file.exists()) {
+            file.delete()
+        }
         try {
             val out = FileOutputStream(file)
             bmp.compress(Bitmap.CompressFormat.JPEG, 90, out)
@@ -46,7 +42,12 @@ object FileUtils {
 
     fun share(c: Context) {
         try {
-            val myFile = File("/storage/emulated/0/saved_images/Image-test.jpg")
+
+            val myDir = File(c.filesDir,"images")
+            val addressFileName = "Verge_Generated" + ".jpg"
+
+            val myFile =  File(myDir, addressFileName)
+
             val mime = MimeTypeMap.getSingleton()
             val ext = myFile.name.substring(myFile.name.lastIndexOf(".") + 1)
             val type = mime.getMimeTypeFromExtension(ext)

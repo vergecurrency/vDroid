@@ -1,12 +1,8 @@
 package vergecurrency.vergewallet.view.ui.fragment
 
-import android.Manifest
-import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
@@ -23,8 +19,6 @@ import android.widget.TextView
 import android.widget.Toast
 
 import androidx.appcompat.widget.SwitchCompat
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 
 import com.google.zxing.EncodeHintType
@@ -143,7 +137,7 @@ class FragmentReceive : BaseFragment() {
         //get the card from the RelativeLayout
         val card = ImageUtils.convertLayoutToBitmap(cardLayout!!)
 
-        FileUtils.saveBitmapToFile(context!!,card)
+        FileUtils.saveImage(context!!,card)
         FileUtils.share(context!!)
     }
 

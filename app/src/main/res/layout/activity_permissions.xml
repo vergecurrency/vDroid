@@ -34,16 +34,6 @@
 		android:layout_below="@id/permission_instructions">
 
 		<androidx.appcompat.widget.SwitchCompat
-			android:id="@+id/permissions_read_storage_switch"
-			style="@style/activities_settings_switchcompats"
-			android:text="@string/activity_permissions_storage" />
-
-		<androidx.appcompat.widget.SwitchCompat
-			android:id="@+id/permissions_write_storage_switch"
-			style="@style/activities_settings_switchcompats"
-			android:text="@string/activity_permissions_storage" />
-
-		<androidx.appcompat.widget.SwitchCompat
 			android:id="@+id/permissions_location_switch"
 			style="@style/activities_settings_switchcompats"
 			android:text="@string/activity_permissions_gps" />
@@ -51,7 +41,7 @@
 		<androidx.appcompat.widget.SwitchCompat
 			android:id="@+id/permissions_camera_switch"
 			style="@style/activities_settings_switchcompats"
-			android:text="@string/activity_permissions_gps" />
+			android:text="@string/activity_permissions_camera" />
 
 	</LinearLayout>
 

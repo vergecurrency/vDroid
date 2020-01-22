@@ -18,8 +18,6 @@ import vergecurrency.vergewallet.viewmodel.PermissionsViewModel
 class PermissionsActivity : BaseActivity() {
 
     private lateinit var nextButton: Button
-    private lateinit var readStorageSwitch: SwitchCompat
-    private lateinit var writeStorageSwitch: SwitchCompat
     private lateinit var locationSwitch: SwitchCompat
     private lateinit var cameraSwitch: SwitchCompat
 
@@ -41,10 +39,8 @@ class PermissionsActivity : BaseActivity() {
 
         val permsArray: ArrayList<PermissionConstruct> = ArrayList()
 
-        permsArray.add(PermissionConstruct(Manifest.permission.READ_EXTERNAL_STORAGE, 1, "This permission is needed in order to read data related to the wallet and securely stored on the phone storage", readStorageSwitch))
-        permsArray.add(PermissionConstruct(Manifest.permission.WRITE_EXTERNAL_STORAGE, 2, "This permission is needed in order to write data related to the wallet and securely stored on the phone storage", writeStorageSwitch))
-        permsArray.add(PermissionConstruct(Manifest.permission.ACCESS_COARSE_LOCATION, 3, "This permission is needed in order to access geolocation data to display your location when using Tor", locationSwitch))
-        permsArray.add(PermissionConstruct(Manifest.permission.CAMERA, 4, "This permission is needed in order to scan a QR Code containing a Verge Address or a QR-Encoded paper key", cameraSwitch))
+        permsArray.add(PermissionConstruct(Manifest.permission.ACCESS_COARSE_LOCATION, 1, "This permission is needed in order to access geolocation data to display your location when using Tor", locationSwitch))
+        permsArray.add(PermissionConstruct(Manifest.permission.CAMERA, 2, "This permission is needed in order to scan a QR Code containing a Verge Address or a QR-Encoded paper key", cameraSwitch))
 
         return permsArray
     }
@@ -53,8 +49,6 @@ class PermissionsActivity : BaseActivity() {
     //TODO : Next stream - test all this.
     private fun initComponents() {
 
-        readStorageSwitch = permissions_read_storage_switch
-        writeStorageSwitch = permissions_write_storage_switch
         locationSwitch = permissions_location_switch
         cameraSwitch = permissions_camera_switch
 
@@ -103,8 +97,6 @@ class PermissionsActivity : BaseActivity() {
             //this should be 1
             permissionsArray.get(0).permissionCode -> permissionsArray.get(0).component.isChecked = PermissionsUtils.isPermissionGranted(permissionsArray.get(0).permission, this)
             permissionsArray.get(1).permissionCode -> permissionsArray.get(1).component.isChecked = PermissionsUtils.isPermissionGranted(permissionsArray.get(1).permission, this)
-            permissionsArray.get(2).permissionCode -> permissionsArray.get(2).component.isChecked = PermissionsUtils.isPermissionGranted(permissionsArray.get(2).permission, this)
-            permissionsArray.get(3).permissionCode -> permissionsArray.get(3).component.isChecked = PermissionsUtils.isPermissionGranted(permissionsArray.get(3).permission, this)
         }
 
     }
