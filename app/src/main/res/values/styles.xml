@@ -26,14 +26,14 @@
         <item name="vg_backgroundGrey">@color/backgroundGrey_lt</item>
         <item name="vg_backgroundWhite">@color/backgroundWhite_lt</item>
         <item name="vg_whiteGeneral">@color/verge_white</item>
-        
+
         <item name="vg_separatorColor">@color/separatorColor_lt</item>
         <item name="vg_placeholderColor">@color/placeholderColor_lt</item>
         <item name="vg_backgroundTopColor">@color/backgroundTopColor_lt</item>
         <item name="vg_backgroundBottomColor">@color/backgroundBottomColor_lt</item>
         <item name="vg_qrCodeColor">@color/qrCodeColor_lt</item>
         <item name="vg_priceChartColor">@color/priceChartColor_lt</item>
-        
+
         <item name="vg_vergeNoChange">@color/vergeNoChange_lt</item>
         <item name="vg_vergeUp">@color/vergeUp_lt</item>
         <item name="vg_vergeDown">@color/vergeDown_lt</item>
@@ -140,24 +140,22 @@
     </style>
 
     <style name="radio_button">
-        <item name="android:layout_width">120dp</item>
+        <item name="android:background">@drawable/radio_button</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:gravity">start</item>
+        <item name="android:textSize">@dimen/text_smallest_size</item>
+        <item name="android:button">@android:color/transparent</item>
+        <item name="android:textAlignment">textStart</item>
         <item name="android:buttonTint">#00000000</item>
-        <item name="android:padding">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
     </style>
 
-    <style name="radio_button.left">
-        <item name="android:background">@drawable/radio_left</item>
-    </style>
-
-    <style name="radio_button.center">
-        <item name="android:background">@drawable/radio_center</item>
-    </style>
-
-    <style name="radio_button.right">
-        <item name="android:background">@drawable/radio_right</item>
-    </style>
 
     <style name="pin_icon">
         <item name="android:layout_width">@dimen/pin_size</item>

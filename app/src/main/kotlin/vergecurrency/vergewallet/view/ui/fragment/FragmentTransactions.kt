@@ -1,10 +1,12 @@
 package vergecurrency.vergewallet.view.ui.fragment
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.SearchView
 
@@ -41,6 +43,7 @@ class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, Rad
             transactionSearchView.setOnQueryTextListener(this)
             val radioGroup = rootView.findViewById<RadioGroup>(R.id.transaction_radio_group)
             radioGroup.setOnCheckedChangeListener(this)
+            setRadioTextBold(radioGroup);
         }
 
         return rootView
@@ -62,15 +65,38 @@ class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, Rad
             R.id.transactions_radio_all -> {
                 option = TransactionFilterOption.ALL
                 txa!!.filter(currentText, option)
+                setRadioTextBold(group)
             }
             R.id.transactions_radio_send -> {
                 option = TransactionFilterOption.SEND
                 txa!!.filter(currentText, option)
+                setRadioTextBold(group)
             }
             R.id.transactions_radio_receive -> {
                 option = TransactionFilterOption.RECEIVE
                 txa!!.filter(currentText, option)
+                setRadioTextBold(group)
             }
+        }
+    }
+
+    private fun setRadioTextBold(group: RadioGroup) {
+        val radioAll: RadioButton = group.findViewById(R.id.transactions_radio_all)
+        val radioSend: RadioButton = group.findViewById(R.id.transactions_radio_send)
+        val radioReceive: RadioButton = group.findViewById(R.id.transactions_radio_receive)
+
+        radioAll.setTypeface(null, Typeface.NORMAL);
+        radioSend.setTypeface(null, Typeface.NORMAL);
+        radioReceive.setTypeface(null, Typeface.NORMAL);
+
+        if (radioReceive.isChecked) {
+            radioReceive.setTypeface(null, Typeface.BOLD)
+        }
+        if (radioSend.isChecked) {
+            radioSend.setTypeface(null, Typeface.BOLD)
+        }
+        if (radioAll.isChecked) {
+            radioAll.setTypeface(null, Typeface.BOLD)
         }
     }
 }
