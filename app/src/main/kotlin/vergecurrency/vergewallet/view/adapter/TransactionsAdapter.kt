@@ -54,7 +54,7 @@ class TransactionsAdapter(context: Context, private val transactions: ArrayList<
     private fun toTransactionItemList(txs: ArrayList<Transaction>): ArrayList<TransactionItem> {
         val transactionItems = ArrayList<TransactionItem>()
         txs.sort()
-        //Collections.sort(txs, Transaction.Companion.getTimeComparatorDESC());
+        Collections.sort(txs, Transaction.Companion.TimeComparatorDESC);
         txs.forEach { tx ->
             //If tx isn't the last transaction
             if (txs.indexOf(tx) != txs.size - 1 && appendListHeader) {
