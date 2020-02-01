@@ -49,6 +49,7 @@
             android:layout_marginTop="78dp"
             android:background="@color/rc_card_gray_light">
             <HorizontalScrollView
+                android:scrollbars="none"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginLeft="25dp"
@@ -67,51 +68,21 @@
                             android:id="@+id/transactions_radio_all"
                             android:checked="true"
                             android:text="@string/fragment_transaction_all_filter" />
-
                         <RadioButton
                             style="@style/radio_button"
                             android:id="@+id/transactions_radio_send"
                             android:text="@string/fragment_transaction_sent_filter" />
-
                         <RadioButton
                             style="@style/radio_button"
                             android:id="@+id/transactions_radio_receive"
                             android:text="@string/fragment_transaction_received_filter" />
                     </RadioGroup>
             </HorizontalScrollView>
-            <!--<ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <RadioGroup
-                    android:id="@+id/transaction_radio_group"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingTop="2dp">
-
-                    <RadioButton
-                        android:id="@+id/transactions_radio_all"
-                        style="@style/radio_button.left"
-                        android:checked="true"
-                        android:text="@string/fragment_transaction_all_filter" />
-
-                    <RadioButton
-                        android:id="@+id/transactions_radio_send"
-                        style="@style/radio_button.center"
-                        android:text="@string/fragment_transaction_sent_filter" />
-
-                    <RadioButton
-                        android:id="@+id/transactions_radio_receive"
-                        style="@style/radio_button.right"
-                        android:text="@string/fragment_transaction_received_filter" />
-                </RadioGroup>
-            </ScrollView>-->
-
         </LinearLayout>
         <TextView
             android:layout_marginTop="160dp"
             android:id="@+id/wallet_transactions_title"
-            style="@style/fragment_title"
+            style="@style/transaction_fragment_title"
             android:text="@string/title_transactions" />
         <ListView
             android:id="@+id/transactions_listview"

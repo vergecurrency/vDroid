@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.SearchView
+import android.widget.*
 
 import androidx.lifecycle.ViewModelProviders
 
@@ -22,6 +19,7 @@ class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, Rad
     private var txa: TransactionsAdapter? = null
     private var option = TransactionFilterOption.ALL
     private var currentText = ""
+    private lateinit var title: TextView;
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
@@ -35,15 +33,17 @@ class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, Rad
             rootView = inflater.inflate(R.layout.fragment_notransactions, container, false)
         else {
             rootView = inflater.inflate(R.layout.fragment_transactions, container, false)
+            title = rootView.findViewById(R.id.wallet_transactions_title);
             val transactionList = rootView.findViewById<ListView>(R.id.transactions_listview)
             transactionList.divider = null
-            txa = TransactionsAdapter(context!!, mViewModel.transactionsList!!, true)
+            txa = TransactionsAdapter(inflater.context, mViewModel.transactionsList!!, true)
             transactionList.adapter = txa
             val transactionSearchView = rootView.findViewById<SearchView>(R.id.search)
             transactionSearchView.setOnQueryTextListener(this)
             val radioGroup = rootView.findViewById<RadioGroup>(R.id.transaction_radio_group)
             radioGroup.setOnCheckedChangeListener(this)
             setRadioTextBold(radioGroup);
+            setTitle(txa!!.count);
         }
 
         return rootView
@@ -56,6 +56,7 @@ class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, Rad
     override fun onQueryTextChange(newText: String): Boolean {
         currentText = newText
         txa!!.filter(currentText, option)
+        setTitle(txa!!.count);
         return false
     }
 
@@ -66,17 +67,28 @@ class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, Rad
                 option = TransactionFilterOption.ALL
                 txa!!.filter(currentText, option)
                 setRadioTextBold(group)
+                setTitle(txa!!.count);
             }
             R.id.transactions_radio_send -> {
                 option = TransactionFilterOption.SEND
                 txa!!.filter(currentText, option)
                 setRadioTextBold(group)
+                setTitle(txa!!.count);
             }
             R.id.transactions_radio_receive -> {
                 option = TransactionFilterOption.RECEIVE
                 txa!!.filter(currentText, option)
                 setRadioTextBold(group)
+                setTitle(txa!!.count);
             }
+        }
+    }
+
+    private fun setTitle(count: Int) {
+        if (count == 1) {
+            title.text = "$count Transaction";
+        } else {
+            title.text = "$count Transactions";
         }
     }
 

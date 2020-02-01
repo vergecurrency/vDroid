@@ -134,8 +134,17 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">@dimen/fragment_title_height</item>
         <item name="android:paddingTop">@dimen/fragment_title_paddingTop</item>
-        <item name="android:textAlignment">center</item>
         <item name="android:textSize">@dimen/text_subtitle_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="transaction_fragment_title">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/fragment_title_height</item>
+        <item name="android:paddingTop">@dimen/fragment_title_paddingTop</item>
+        <item name="android:textSize">@dimen/text_subtitle_size</item>
+        <item name="android:layout_marginLeft">30dp</item>
         <item name="android:textStyle">bold</item>
     </style>
 

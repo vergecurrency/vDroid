@@ -30,6 +30,7 @@ import java.util.stream.Collectors
 class TransactionsAdapter(context: Context, private val transactions: ArrayList<Transaction>, private val appendListHeader: Boolean) : ArrayAdapter<TransactionItem>(context, R.layout.listview_item_transaction, ArrayList()) {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private val formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy")
+    private var transactionCount: Int = 0;
 
 
     init {
@@ -50,19 +51,24 @@ class TransactionsAdapter(context: Context, private val transactions: ArrayList<
         return getItem(position)!!.viewType
     }
 
+    override fun getCount(): Int {
+        return transactionCount
+    }
+
 
     private fun toTransactionItemList(txs: ArrayList<Transaction>): ArrayList<TransactionItem> {
         val transactionItems = ArrayList<TransactionItem>()
         txs.sort()
         Collections.sort(txs, Transaction.Companion.TimeComparatorDESC);
+        transactionCount = txs.count();
         txs.forEach { tx ->
-            //If tx isn't the last transaction
-            if (txs.indexOf(tx) != txs.size - 1 && appendListHeader) {
+            if (txs.indexOf(tx) != txs.lastIndex) {
                 val nextTx = txs[txs.indexOf(tx) + 1]
-                //If current and next transaction having not the same date
-                if (txs.indexOf(tx) != txs.size - 1 && isSameDate(tx, nextTx) != 0) {
+                if (isSameDate(tx, nextTx) != 0 && appendListHeader) {
                     transactionItems.add(TransactionHeaderItem(this.convertToLocalDateViaMillisecond(tx.time * 1000).format(formatter)))
                 }
+            } else if (txs.count() > 1 && isSameDate(tx, txs[txs.indexOf(tx) - 1]) != 0) {
+                transactionItems.add(TransactionHeaderItem(this.convertToLocalDateViaMillisecond(tx.time * 1000).format(formatter)))
             }
             transactionItems.add(TransactionListItem(tx))
         }
@@ -92,12 +98,12 @@ class TransactionsAdapter(context: Context, private val transactions: ArrayList<
         return Instant.ofEpochMilli(time).atZone(ZoneId.systemDefault()).toLocalDate()
     }
 
-    private fun filterByOption(txs: ArrayList<Transaction>, filterOption: TransactionFilterOption) :ArrayList<Transaction> {
+    private fun filterByOption(txs: ArrayList<Transaction>, filterOption: TransactionFilterOption): ArrayList<Transaction> {
         return when (filterOption) {
 
 
-            TransactionFilterOption.RECEIVE -> ArrayList(txs.filter{ it.isReceive })
-            TransactionFilterOption.SEND ->ArrayList(txs.filter{ it.isSend })
+            TransactionFilterOption.RECEIVE -> ArrayList(txs.filter { it.isReceive })
+            TransactionFilterOption.SEND -> ArrayList(txs.filter { it.isSend })
             else -> ArrayList(txs)
         }
     }
