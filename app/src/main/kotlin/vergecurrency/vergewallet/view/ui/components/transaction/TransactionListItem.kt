@@ -9,7 +9,6 @@ import android.widget.TextView
 
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.recyclerview.widget.RecyclerView
 
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.MathUtils
@@ -69,20 +68,20 @@ class TransactionListItem(private val tx: Transaction) : TransactionItem, View.O
         if (tx.isSend) {
             vh.txAmount!!.text = String.format("- %s XVG", MathUtils.round(tx.amount, 2))
             vh.txAmount!!.setTextColor(ContextCompat.getColor(view.context, R.color.material_red_500))
-            vh.txIcon!!.setImageResource(R.drawable.icon_arrow_up)
+            vh.txIcon!!.setImageResource(R.drawable.icon_tx_sent)
             DrawableCompat.setTint(vh.txIcon!!.drawable, ContextCompat.getColor(view.context, R.color.material_red_500))
         } else if (tx.isReceive) {
             vh.txAmount!!.text = String.format("+ %s XVG", MathUtils.round(tx.amount, 2))
             vh.txAmount!!.setTextColor(ContextCompat.getColor(view.context, R.color.material_green_500))
-            vh.txIcon!!.setImageResource(R.drawable.icon_arrow_down)
+            vh.txIcon!!.setImageResource(R.drawable.icon_tx_received)
             DrawableCompat.setTint(vh.txIcon!!.drawable, ContextCompat.getColor(view.context, R.color.material_green_500))
         }
 
         if (tx.account == null) {
             if (tx.isReceive) {
-                vh.txAddress!!.text = "Received"
+                vh.txAddress!!.text = view.resources.getString(R.string.fragment_transaction_received_filter)
             } else {
-                vh.txAddress!!.text = "Sent"
+                vh.txAddress!!.text = view.resources.getString(R.string.fragment_transaction_sent_filter)
             }
         } else {
             vh.txAddress!!.text = tx.account

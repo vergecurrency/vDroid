@@ -22,6 +22,8 @@
     <string name="cand_history_title">Graphique Historique</string>
 
     //Transaction fragment
+    <string name="transaction_title">Transactions</string>
+    <string name="transaction_title_singular">Transaction</string>
     <string name="transaction_message_main">Aucune transaction reçue</string>
     <string name="transaction_message_sub">Open the bug XVG guide or receive XVG</string>
     //Send fragment

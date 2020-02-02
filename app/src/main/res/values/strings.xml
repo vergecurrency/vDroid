@@ -23,6 +23,8 @@
 
 
     //Transaction fragment
+    <string name="transaction_title">Transactions</string>
+    <string name="transaction_title_singular">Transaction</string>
     <string name="transaction_message_main">No transactions received yet</string>
     <string name="transaction_message_sub">Open the bug XVG guide or receive XVG</string>
     //Send fragment
