@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 
 import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.service.model.Currency
+import vergecurrency.vergewallet.service.model.PreferencesManager
 import vergecurrency.vergewallet.view.adapter.CurrenciesAdapter
 import vergecurrency.vergewallet.viewmodel.SelectCurrencyViewModel
 

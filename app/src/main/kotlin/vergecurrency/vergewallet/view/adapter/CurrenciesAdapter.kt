@@ -1,6 +1,7 @@
 package vergecurrency.vergewallet.view.adapter
 
 import android.content.Context
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.google.zxing.common.StringUtils
 
 import java.util.ArrayList
 
@@ -24,6 +26,8 @@ class CurrenciesAdapter
  * @param curs    the currencies list we need to display
  */
 (context: Context, curs: ArrayList<Currency>) : ArrayAdapter<Currency>(context, R.layout.listview_item_currency, curs), View.OnClickListener {
+    private val currentlySelectedCurrency: Currency = Currency.getCurrencyFromJson(PreferencesManager.preferredCurrency.toString())
+
 
     override fun onClick(v: View) {
         val position = v.tag as Int
@@ -31,7 +35,7 @@ class CurrenciesAdapter
 
         if (v.id == R.id.listview_currency_item) {
             Toast.makeText(v.context, "Currency chosen : " + currency!!.name!!, Toast.LENGTH_SHORT).show()
-            PreferencesManager.setSelectedCurrency(currency.currencyAsJSON)
+            PreferencesManager.setPreferredCurrency(currency.currencyAsJSON)
 
         }
 
@@ -51,18 +55,22 @@ class CurrenciesAdapter
             vh.currencyId = cView!!.findViewById(R.id.listview_currency_item)
             vh.currencyCurrency = cView.findViewById(R.id.listview_currency_currency)
             vh.currencyName = cView.findViewById(R.id.listview_currency_name)
-
             cView.tag = vh
-
+            if (cur!!.name.equals(currentlySelectedCurrency.name) && cur.currency.equals(currentlySelectedCurrency.currency)) {
+                vh.currencyCurrency!!.setTypeface(null, Typeface.BOLD)
+                vh.currencyName!!.setTypeface(null, Typeface.BOLD)
+            }
         } else {
             vh = cView.tag as CurrencyItemViewHolder
         }
+
 
         vh.currencyCurrency!!.text = cur!!.currency
         vh.currencyName!!.text = cur.name
 
         vh.currencyId!!.setOnClickListener(this)
         vh.currencyId!!.tag = position
+
         // Return the completed view to render on screen
         return cView
     }

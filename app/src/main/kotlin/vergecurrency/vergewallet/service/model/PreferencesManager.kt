@@ -101,7 +101,7 @@ class PreferencesManager private constructor(context: Context) {
         val preferredCurrency: String?
             get() = encryptedPreferences!!.getString(PREFERRED_CURRENCY, Currency("United States Dollar", "USD").currencyAsJSON)
 
-        fun setSelectedCurrency(preferredCurrency: String) {
+        fun setPreferredCurrency(preferredCurrency: String) {
             encryptedPreferences!!.edit().putString(PREFERRED_CURRENCY, preferredCurrency).apply()
         }
 
