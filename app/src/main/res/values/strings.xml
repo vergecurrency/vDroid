@@ -87,7 +87,7 @@
     <string name="wallet_ready">Your wallet is ready! \n Congratulations</string>
 
     //Fiat Currency activity
-    <string name="title_fiat_currency">Fiat language</string>
+    <string name="title_fiat_currency">Fiat currency</string>
 
     //Error report activity
     <string name="error_report_copy_button">&lt;b>&lt;big>Copy error report to clipboard&lt;/big>&lt;/b></string>
