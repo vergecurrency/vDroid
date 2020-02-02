@@ -6,10 +6,8 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.FragmentManager
-
-import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.view.ui.fragment.FragmentSend
 
 class DonateActivity : BaseActivity() {

@@ -5,9 +5,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProviders
-
-import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.viewmodel.ShowPaperkeyViewModel
 
 class ShowPaperkeyActivity : BaseActivity() {

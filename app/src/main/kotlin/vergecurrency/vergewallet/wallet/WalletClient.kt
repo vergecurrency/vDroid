@@ -10,7 +10,6 @@ import io.horizontalsystems.bitcoinkit.transactions.scripts.Script
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter
 import io.horizontalsystems.bitcoinkit.utils.HashUtils
 import io.horizontalsystems.hdwalletkit.HDKey
-import io.horizontalsystems.hdwalletkit.HDKeyDerivation
 import io.horizontalsystems.hdwalletkit.HDPublicKey
 import io.realm.Realm
 import io.realm.RealmList
@@ -19,14 +18,13 @@ import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.helpers.SJCL
 import vergecurrency.vergewallet.helpers.utils.ArrayUtils
 import vergecurrency.vergewallet.helpers.utils.ValidationUtils
-import vergecurrency.vergewallet.service.model.PreferencesManager
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.WatchRequestCredentials
 import vergecurrency.vergewallet.service.model.wallet.*
 import java.net.URI
 import java.net.URISyntaxException
 import java.nio.charset.Charset
 import java.security.KeyFactory
-import java.security.PrivateKey
 import java.security.Signature
 import java.security.spec.PKCS8EncodedKeySpec
 
@@ -122,9 +120,9 @@ class WalletClient {
                 try {
                     val walletId = WalletId.decode(data)
 
-                    PreferencesManager.walletId = walletId.identifier
-                    PreferencesManager.walletName = walletName
-                    PreferencesManager.walletSecret = buildSecret(walletId.identifier!!)
+                    EncryptedPreferencesManager.walletId = walletId.identifier
+                    EncryptedPreferencesManager.walletName = walletName
+                    EncryptedPreferencesManager.walletSecret = buildSecret(walletId.identifier!!)
 
                     completion(null, walletId.identifier)
                 } catch (e: Exception) {

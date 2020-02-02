@@ -6,17 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
-
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.MathUtils
 import vergecurrency.vergewallet.helpers.utils.TransactionUtils
+import vergecurrency.vergewallet.helpers.utils.TransactionUtils.toFormattedDate
 import vergecurrency.vergewallet.service.model.Transaction
 import vergecurrency.vergewallet.view.ui.activity.TransactionDetailActivity
-
-import vergecurrency.vergewallet.helpers.utils.TransactionUtils.toFormattedDate
 
 class TransactionListItem(private val tx: Transaction) : TransactionItem, View.OnClickListener {
 

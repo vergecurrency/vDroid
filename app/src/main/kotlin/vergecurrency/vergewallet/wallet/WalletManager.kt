@@ -1,19 +1,14 @@
 package vergecurrency.vergewallet.wallet
 
 import androidx.lifecycle.MutableLiveData
-
-import java.util.Arrays
-
 import io.horizontalsystems.bitcoinkit.BitcoinKit
+import io.horizontalsystems.bitcoinkit.BitcoinKit.*
 import io.horizontalsystems.bitcoinkit.models.BlockInfo
 import io.horizontalsystems.bitcoinkit.models.TransactionInfo
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager.Companion.mnemonic
 import vergecurrency.vergewallet.service.model.MnemonicManager
-import vergecurrency.vergewallet.service.model.PreferencesManager
-
-import io.horizontalsystems.bitcoinkit.BitcoinKit.KitState
-import io.horizontalsystems.bitcoinkit.BitcoinKit.Listener
-import io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType
-import vergecurrency.vergewallet.service.model.PreferencesManager.Companion.mnemonic
+import java.util.*
 
 class WalletManager private constructor() : Listener {
 
@@ -71,7 +66,7 @@ class WalletManager private constructor() : Listener {
             val netType = NetworkType.MainNet
             val mnemonic = MnemonicManager.getMnemonicFromJSON(mnemonic!!)
             if (mnemonic != null) {
-                wallet = BitcoinKit(Arrays.asList(*mnemonic), PreferencesManager.passphrase!!, netType, "wallet", 10, true, 1)
+                wallet = BitcoinKit(Arrays.asList(*mnemonic), EncryptedPreferencesManager.passphrase!!, netType, "wallet", 10, true, 1)
                 wallet!!.listener = INSTANCE
                 //val networkName = netType.name
 

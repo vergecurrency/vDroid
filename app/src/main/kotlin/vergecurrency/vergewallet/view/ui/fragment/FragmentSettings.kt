@@ -6,27 +6,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.service.model.SettingsListViewData
 import vergecurrency.vergewallet.service.model.SettingsListViewHeader
 import vergecurrency.vergewallet.view.adapter.SettingsListsAdapter
 import vergecurrency.vergewallet.view.base.BaseFragment
 import vergecurrency.vergewallet.view.ui.activity.PinPromptActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.ChooseCurrencyActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.ChooseLanguageActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.ChooseThemeActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.DisconnectActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.DonateActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.PaperkeyActivity
-import vergecurrency.vergewallet.view.ui.activity.firstlaunch.PinSetActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.ServiceURLActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.TorSettingsActivity
-import vergecurrency.vergewallet.viewmodel.PinPromptedViewModel
+import vergecurrency.vergewallet.view.ui.activity.settings.*
 
 
 class FragmentSettings : BaseFragment() {

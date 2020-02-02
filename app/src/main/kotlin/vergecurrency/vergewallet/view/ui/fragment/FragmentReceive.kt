@@ -11,21 +11,13 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.View.OnLongClickListener
 import android.view.ViewGroup
+import android.widget.*
 import android.widget.CompoundButton.OnCheckedChangeListener
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
-
 import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.ViewModelProviders
-
 import com.google.zxing.EncodeHintType
 import com.omega_r.libs.OmegaCenterIconButton
-
 import net.glxn.qrgen.android.QRCode
-
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.AnimationUtils
 import vergecurrency.vergewallet.helpers.utils.FileUtils

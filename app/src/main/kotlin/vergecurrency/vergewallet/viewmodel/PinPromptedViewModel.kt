@@ -1,12 +1,11 @@
 package vergecurrency.vergewallet.viewmodel
 
 import androidx.lifecycle.ViewModel
-
-import vergecurrency.vergewallet.service.model.PreferencesManager
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 
 class PinPromptedViewModel : ViewModel() {
 
 
     val pin: String
-        get() = PreferencesManager.pin!!
+        get() = EncryptedPreferencesManager.pin!!
 }

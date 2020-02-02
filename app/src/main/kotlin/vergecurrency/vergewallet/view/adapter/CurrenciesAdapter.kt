@@ -9,14 +9,11 @@ import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import com.google.zxing.common.StringUtils
-
-import java.util.ArrayList
-
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.service.model.Currency
-import vergecurrency.vergewallet.service.model.PreferencesManager
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.view.ui.activity.settings.ChooseCurrencyActivity
+import java.util.*
 
 class CurrenciesAdapter
 /**
@@ -26,7 +23,7 @@ class CurrenciesAdapter
  * @param curs    the currencies list we need to display
  */
 (context: Context, curs: ArrayList<Currency>) : ArrayAdapter<Currency>(context, R.layout.listview_item_currency, curs), View.OnClickListener {
-    private val currentlySelectedCurrency: Currency = Currency.getCurrencyFromJson(PreferencesManager.preferredCurrency.toString())
+    private val currentlySelectedCurrency: Currency = Currency.getCurrencyFromJson(EncryptedPreferencesManager.preferredCurrency.toString())
 
 
     override fun onClick(v: View) {
@@ -35,7 +32,7 @@ class CurrenciesAdapter
 
         if (v.id == R.id.listview_currency_item) {
             Toast.makeText(v.context, "Currency chosen : " + currency!!.name!!, Toast.LENGTH_SHORT).show()
-            PreferencesManager.setPreferredCurrency(currency.currencyAsJSON)
+            EncryptedPreferencesManager.preferredCurrency = currency.currencyAsJSON
 
         }
 

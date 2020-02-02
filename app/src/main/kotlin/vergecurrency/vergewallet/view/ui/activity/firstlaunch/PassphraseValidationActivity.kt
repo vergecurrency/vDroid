@@ -9,11 +9,9 @@ import android.view.View
 import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
-
 import com.omega_r.libs.OmegaCenterIconButton
-
-import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.viewmodel.PassphraseVerificationViewModel
 
 

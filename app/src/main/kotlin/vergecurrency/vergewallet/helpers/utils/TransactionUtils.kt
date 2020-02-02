@@ -2,7 +2,7 @@ package vergecurrency.vergewallet.helpers.utils
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 
 object TransactionUtils {
 

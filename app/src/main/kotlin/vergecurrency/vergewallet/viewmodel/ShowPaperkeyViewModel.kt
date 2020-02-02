@@ -1,10 +1,8 @@
 package vergecurrency.vergewallet.viewmodel
 
 import androidx.lifecycle.ViewModel
-
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager.Companion.mnemonic
 import vergecurrency.vergewallet.service.model.MnemonicManager
-
-import vergecurrency.vergewallet.service.model.PreferencesManager.Companion.mnemonic
 
 class ShowPaperkeyViewModel : ViewModel() {
     var seed: Array<String>

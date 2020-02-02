@@ -2,12 +2,10 @@ package vergecurrency.vergewallet.view.ui.activity.settings
 
 import android.os.Bundle
 import android.widget.ListView
-
 import androidx.lifecycle.ViewModelProviders
-
-import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.view.adapter.LanguagesAdapter
+import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.viewmodel.LanguagesViewModel
 
 class ChooseLanguageActivity : BaseActivity() {

@@ -1,7 +1,5 @@
 package vergecurrency.vergewallet.wallet
 
-import vergecurrency.vergewallet.service.model.FiatRate
-
 class WalletTransactionFactory(private val ticker: FiatRateTicker) {
 
     private var amount = 0f

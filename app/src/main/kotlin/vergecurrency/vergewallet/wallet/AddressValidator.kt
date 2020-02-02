@@ -1,11 +1,10 @@
 package vergecurrency.vergewallet.wallet
 
 
-import java.util.HashMap
-
 import io.horizontalsystems.bitcoinkit.exceptions.AddressFormatException
 import io.horizontalsystems.bitcoinkit.network.MainNet
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter
+import java.util.*
 
 typealias ValidationCompletion = ( valid : Boolean, address :String?, amount : Float?) -> Void
 

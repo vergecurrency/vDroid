@@ -2,11 +2,11 @@ package vergecurrency.vergewallet.wallet
 
 
 import io.horizontalsystems.bitcoinkit.BitcoinKit
-import io.horizontalsystems.hdwalletkit.*
-import vergecurrency.vergewallet.service.model.MnemonicManager
-import vergecurrency.vergewallet.service.model.PreferencesManager
+import io.horizontalsystems.hdwalletkit.HDKey
+import io.horizontalsystems.hdwalletkit.HDKeyDerivation
+import io.horizontalsystems.hdwalletkit.HDPublicKey
+import io.horizontalsystems.hdwalletkit.Mnemonic
 import java.security.MessageDigest
-import java.security.PrivateKey
 import java.util.*
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec

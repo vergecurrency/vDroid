@@ -1,13 +1,13 @@
 package vergecurrency.vergewallet.service.model.network.layers
 
-import vergecurrency.vergewallet.service.model.PreferencesManager
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 
 open class NetworkGateway {
 
 
     fun doRequest(request: String): String {
         var result = ""
-        if (PreferencesManager.usingTor) {
+        if (EncryptedPreferencesManager.usingTor) {
 
             result = TorLayerGateway().execute(request).get()
         } else {

@@ -1,13 +1,11 @@
 package vergecurrency.vergewallet.viewmodel
 
 
-import java.util.ArrayList
-
 import androidx.lifecycle.ViewModel
 import vergecurrency.vergewallet.service.model.Currency
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager.Companion.preferredCurrency
 import vergecurrency.vergewallet.service.repository.RatesClient
-
-import vergecurrency.vergewallet.service.model.PreferencesManager.Companion.preferredCurrency
+import java.util.*
 
 class StatisticsViewModel : ViewModel() {
 

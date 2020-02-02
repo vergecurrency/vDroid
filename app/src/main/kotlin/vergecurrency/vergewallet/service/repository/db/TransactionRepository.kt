@@ -2,14 +2,10 @@ package vergecurrency.vergewallet.service.repository.db
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-
-import java.util.ArrayList
-
-import vergecurrency.vergewallet.service.model.wallet.InputOutput
 import vergecurrency.vergewallet.service.model.wallet.TxHistory
+import java.util.*
 
 class TransactionRepository(context: Context, name: String, factory: SQLiteDatabase.CursorFactory, version: Int) : SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
 

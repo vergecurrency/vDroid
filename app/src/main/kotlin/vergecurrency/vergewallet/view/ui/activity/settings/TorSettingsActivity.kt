@@ -13,6 +13,7 @@ import org.osmdroid.views.CustomZoomButtonsController
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.PreferencesManager
 import vergecurrency.vergewallet.service.model.network.layers.TorManager
 import vergecurrency.vergewallet.view.base.BaseActivity
@@ -46,13 +47,13 @@ class TorSettingsActivity : BaseActivity() {
     private fun initComponents() {
 
         switch = tor_settings_obfuscate
-        switch.isChecked = PreferencesManager.usingTor
+        switch.isChecked = EncryptedPreferencesManager.usingTor
 
         switch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 TorManager.startTor(this)
             }
-            PreferencesManager.usingTor = isChecked
+            EncryptedPreferencesManager.usingTor = isChecked
 
             ip.text = mViewModel.updateAndReturnIpAddress()
             initMap()

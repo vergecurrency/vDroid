@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.VergeWalletApplication
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.PreferencesManager
 import vergecurrency.vergewallet.service.model.network.layers.TorManager
 import vergecurrency.vergewallet.view.base.BaseActivity
@@ -23,27 +25,21 @@ class SplashActivity : BaseActivity() {
         //Database db = dbOpenHelper.getWritableDb();
         //daoSession = new AbstractDaoMaster;
         setContentView(R.layout.activity_splash)
-
-
         //Just to have the splash screen going briefly
         Handler().postDelayed({ this.startApplication() }, 500)
     }
 
     private fun startApplication() {
-
         try {
-            PreferencesManager.initEncryptedPreferences(this)
+            //TODO TESTING only
+            EncryptedPreferencesManager.usingTor = false
 
-            //TESTING only
-            PreferencesManager.usingTor = false
-
-            if (PreferencesManager.usingTor) {
+            if (EncryptedPreferencesManager.usingTor) {
                 TorManager.startTor(this)
 
             }
-
-        } catch (e: Exception) {
-            e.printStackTrace()
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace();
         }
 
 
@@ -62,5 +58,6 @@ class SplashActivity : BaseActivity() {
             finish()
         }
     }
+
     override fun onBackPressed() {}
 }
