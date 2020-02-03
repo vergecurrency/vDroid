@@ -48,13 +48,13 @@ class FragmentStatisticsPageView : Fragment() {
 
 
     private fun fillStatisticsListView(lv: ListView?) {
-        if(NetworkUtils.checkNetworkState(this.context!!)) {
+        if (NetworkUtils.checkNetworkState(this.context!!)) {
             lv!!.adapter = PriceStatisticsAdapter(this.context!!, mViewModel!!.statistics)
         }
     }
 
     private fun pullRefreshListener(): SwipeRefreshLayout.OnRefreshListener {
-        return SwipeRefreshLayout.OnRefreshListener  {
+        return SwipeRefreshLayout.OnRefreshListener {
             fillStatisticsListView(statisticsListView)
             pullRefreshView!!.isRefreshing = false
         }

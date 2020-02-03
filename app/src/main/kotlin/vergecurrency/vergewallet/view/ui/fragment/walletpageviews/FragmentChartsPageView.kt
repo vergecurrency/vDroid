@@ -59,7 +59,7 @@ class FragmentChartsPageView : Fragment() {
 
 
     private fun onFilterClick(id: Int): View.OnClickListener {
-        return View.OnClickListener{
+        return View.OnClickListener {
             val tv = it as TextView
 
             for (i in 0 until grid!!.childCount) {
@@ -75,7 +75,7 @@ class FragmentChartsPageView : Fragment() {
     }
 
     private fun createChart(filter: Int) {
-        if(NetworkUtils.checkNetworkState(context!!)) {
+        if (NetworkUtils.checkNetworkState(context!!)) {
             val data = createCombinedData(filter)
             setChartProperties()
             setAxisPropertiesAndData(data)
@@ -175,7 +175,7 @@ class FragmentChartsPageView : Fragment() {
         return ContextCompat.getColor(context!!, UIUtils.resolveAttr(attr, context!!))
     }
 
-    var vf  = object: ValueFormatter() {
+    var vf = object : ValueFormatter() {
 
         var df = DecimalFormat("########0.0")
 

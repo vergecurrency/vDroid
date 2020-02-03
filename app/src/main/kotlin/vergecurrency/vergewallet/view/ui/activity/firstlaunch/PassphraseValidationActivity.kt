@@ -53,9 +53,9 @@ class PassphraseValidationActivity : BaseActivity() {
                 val isAllOk = s.toString() == passphraseToValidate
                 validateButton!!.isEnabled = isAllOk
                 if (isAllOk) {
-                    validateButton!!.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(applicationContext,R.color.verge_colorPrimary))
+                    validateButton!!.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(applicationContext, R.color.verge_colorPrimary))
                 } else {
-                    validateButton!!.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(applicationContext,R.color.verge_colorAccent))
+                    validateButton!!.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(applicationContext, R.color.verge_colorAccent))
                 }
             }
 

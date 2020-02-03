@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import vergecurrency.vergewallet.R
-import vergecurrency.vergewallet.VergeWalletApplication
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.PreferencesManager
 import vergecurrency.vergewallet.service.model.network.layers.TorManager

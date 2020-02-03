@@ -8,14 +8,14 @@ import androidx.security.crypto.MasterKeys
 class EncryptedPreferencesManager private constructor(context: Context) {
 
     init {
-            val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
-            encryptedPreferences = EncryptedSharedPreferences.create(
-                    "com.vergecurrency.vergewallet.secrets",
-                    masterKeyAlias,
-                    context,
-                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-            )
+        val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+        encryptedPreferences = EncryptedSharedPreferences.create(
+                "com.vergecurrency.vergewallet.secrets",
+                masterKeyAlias,
+                context,
+                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
     }
 
     companion object {

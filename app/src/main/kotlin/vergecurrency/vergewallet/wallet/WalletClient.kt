@@ -61,9 +61,11 @@ class WalletClient {
             val uri = URI(String.format("%s%s", Constants.VWS_ENDPOINT, url))
 
             val copayerId = getCoPayerId()
-            var signature = try {  getSignature(url, "get")          } catch(e: Exception) { return completion(null, null, null) }
-
-
+            var signature = try {
+                getSignature(url, "get")
+            } catch (e: Exception) {
+                return completion(null, null, null)
+            }
 
 
         } catch (e: URISyntaxException) {
@@ -453,7 +455,7 @@ class WalletClient {
 
             val unsignedInputs = unspentOutputs.map { output -> output.asInputTransaction() }
 
-            var tOutputs : ArrayList<TransactionOutput> = ArrayList()
+            var tOutputs: ArrayList<TransactionOutput> = ArrayList()
             tOutputs.add(toOutput)
 
 
@@ -465,8 +467,8 @@ class WalletClient {
             if (change > 0) {
                 tOutputs.add(changeOutput)
             }
-            tOutputs = ArrayUtils.filterByIndices(txp.outputOrder!!.map{it}, tOutputs)
-            val realm : Realm = Realm.getDefaultInstance()
+            tOutputs = ArrayUtils.filterByIndices(txp.outputOrder!!.map { it }, tOutputs)
+            val realm: Realm = Realm.getDefaultInstance()
 
             val tx = Transaction().apply {
                 version = 1
@@ -533,8 +535,8 @@ class WalletClient {
     }
 
 
-    private fun getDataFromScript(address : Script) : ByteArray {
-        return address.chunks.fold(ByteArray(address.chunks.size)){a,b -> a+b.data!!}
+    private fun getDataFromScript(address: Script): ByteArray {
+        return address.chunks.fold(ByteArray(address.chunks.size)) { a, b -> a + b.data!! }
     }
 
     //INNER CLASSES BABY. HUNG ME SOMEWHERE.

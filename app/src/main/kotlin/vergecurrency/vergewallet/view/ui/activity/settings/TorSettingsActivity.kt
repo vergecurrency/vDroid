@@ -106,7 +106,5 @@ class TorSettingsActivity : BaseActivity() {
     }
 
 
-
-
 }
 

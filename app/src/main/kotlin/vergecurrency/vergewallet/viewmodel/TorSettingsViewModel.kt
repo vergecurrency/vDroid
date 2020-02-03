@@ -14,12 +14,12 @@ class TorSettingsViewModel : ViewModel() {
         coordinates = GeocodingService.readCoordinates(ipAddress)
     }
 
-    fun updateAndReturnIpAddress() :String  {
+    fun updateAndReturnIpAddress(): String {
         ipAddress = ApifyService.requestIP()
         return ipAddress
     }
 
-    fun updateAndReturnCoordinates() : String {
+    fun updateAndReturnCoordinates(): String {
         coordinates = GeocodingService.readCoordinates(ipAddress)
         return coordinates
     }

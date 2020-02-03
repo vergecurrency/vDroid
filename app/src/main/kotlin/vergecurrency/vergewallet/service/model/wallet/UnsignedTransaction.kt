@@ -2,7 +2,7 @@ package vergecurrency.vergewallet.service.model.wallet
 
 import io.horizontalsystems.bitcoinkit.models.Transaction
 
-data class UnsignedTransaction(val tx : Transaction, val utxos : Array<UnspentTransaction>) {
+data class UnsignedTransaction(val tx: Transaction, val utxos: Array<UnspentTransaction>) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

@@ -32,7 +32,7 @@ class ShowPaperkeyActivity : BaseActivity() {
     }
 
     internal fun onCloseClickListener(): View.OnClickListener {
-        return View.OnClickListener {  finish() }
+        return View.OnClickListener { finish() }
     }
 
 }

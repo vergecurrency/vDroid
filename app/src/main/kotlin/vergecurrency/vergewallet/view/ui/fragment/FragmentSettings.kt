@@ -35,13 +35,14 @@ class FragmentSettings : BaseFragment() {
 
     private fun initWalletSettings(view: View) {
         val itemsDataWallet = arrayOf(
-            SettingsListViewData("Remove wallet", R.drawable.icon_disconnected, View.OnClickListener { startActivity(Intent(it.context, DisconnectActivity::class.java)) }),
-            SettingsListViewData("Paperkey", R.drawable.icon_paperkey,View.OnClickListener {
-                val intent = Intent(it.context, PinPromptActivity::class.java)
-                intent.putExtra("nextView", "viewPassphrase")
-                startActivity(intent) }),
-            SettingsListViewData("Addresses", R.drawable.icon_disconnected, null), SettingsListViewData("Transaction Proposals", R.drawable.icon_disconnected, null),
-            SettingsListViewData("Service URL", R.drawable.icon_disconnected,  View.OnClickListener { startActivity(Intent(it.context, ServiceURLActivity::class.java)) }))
+                SettingsListViewData("Remove wallet", R.drawable.icon_disconnected, View.OnClickListener { startActivity(Intent(it.context, DisconnectActivity::class.java)) }),
+                SettingsListViewData("Paperkey", R.drawable.icon_paperkey, View.OnClickListener {
+                    val intent = Intent(it.context, PinPromptActivity::class.java)
+                    intent.putExtra("nextView", "viewPassphrase")
+                    startActivity(intent)
+                }),
+                SettingsListViewData("Addresses", R.drawable.icon_disconnected, null), SettingsListViewData("Transaction Proposals", R.drawable.icon_disconnected, null),
+                SettingsListViewData("Service URL", R.drawable.icon_disconnected, View.OnClickListener { startActivity(Intent(it.context, ServiceURLActivity::class.java)) }))
 
         fillRecyclerView(view, R.id.settings_list_wallet, SettingsListViewHeader("WALLET"), itemsDataWallet)
 
@@ -50,14 +51,15 @@ class FragmentSettings : BaseFragment() {
 
     private fun initGeneralSettings(view: View) {
         val itemsDataSettings = arrayOf(
-            SettingsListViewData("Fiat Currency", R.drawable.icon_currency_exchange,  View.OnClickListener { startActivity(Intent(it.context, ChooseCurrencyActivity::class.java)) }),
-            SettingsListViewData("Language", R.drawable.icon_home, View.OnClickListener {  startActivity(Intent(it.context, ChooseLanguageActivity::class.java)) }),
-            SettingsListViewData("Theme", R.drawable.icon_theme,  View.OnClickListener {  startActivity(Intent(it.context, ChooseThemeActivity::class.java)) }),
-            SettingsListViewData("Change wallet PIN", R.drawable.icon_lock,  View.OnClickListener {
-                val intent = Intent(it.context, PinPromptActivity::class.java)
-                intent.putExtra("nextView", "changePin")
-                startActivity(intent)}),
-            SettingsListViewData("Use fingerprint", R.drawable.icon_fingerprint, null),
+                SettingsListViewData("Fiat Currency", R.drawable.icon_currency_exchange, View.OnClickListener { startActivity(Intent(it.context, ChooseCurrencyActivity::class.java)) }),
+                SettingsListViewData("Language", R.drawable.icon_home, View.OnClickListener { startActivity(Intent(it.context, ChooseLanguageActivity::class.java)) }),
+                SettingsListViewData("Theme", R.drawable.icon_theme, View.OnClickListener { startActivity(Intent(it.context, ChooseThemeActivity::class.java)) }),
+                SettingsListViewData("Change wallet PIN", R.drawable.icon_lock, View.OnClickListener {
+                    val intent = Intent(it.context, PinPromptActivity::class.java)
+                    intent.putExtra("nextView", "changePin")
+                    startActivity(intent)
+                }),
+                SettingsListViewData("Use fingerprint", R.drawable.icon_fingerprint, null),
                 SettingsListViewData("Tor connection", R.drawable.icon_onion, View.OnClickListener { startActivity(Intent(it.getContext(), TorSettingsActivity::class.java)) }))
 
         fillRecyclerView(view, R.id.settings_list_settings, SettingsListViewHeader("SETTINGS"), itemsDataSettings)
@@ -71,13 +73,14 @@ class FragmentSettings : BaseFragment() {
                 SettingsListViewData("Rate app", R.drawable.icon_star, null),
                 SettingsListViewData("Website", R.drawable.icon_web, View.OnClickListener {
                     val intent = Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.vergecurrency.com"))
-                    startActivity(intent)}),
+                            Uri.parse("https://www.vergecurrency.com"))
+                    startActivity(intent)
+                }),
                 SettingsListViewData("Contribute", R.drawable.icon_github, View.OnClickListener {
                     val intent = Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.github.com/vergecurrency/vDroid"))
+                            Uri.parse("https://www.github.com/vergecurrency/vDroid"))
                     startActivity(intent)
-        }))
+                }))
 
         fillRecyclerView(view, R.id.settings_list_other, SettingsListViewHeader("OTHER"), itemsDataOther)
     }

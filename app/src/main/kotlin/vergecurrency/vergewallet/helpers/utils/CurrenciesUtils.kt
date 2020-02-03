@@ -15,33 +15,32 @@ import java.util.*
 object CurrenciesUtils {
 
 
-
-        fun loadCurrenciesFromFile(c: Context): ArrayList<Currency>? {
-            val parser = JSONParser()
-            var currencies: ArrayList<Currency>?
-            try {
-                val `is` = c.assets.open(Constants.CURRENCIES_FILE_PATH)
-                val isr = InputStreamReader(`is`)
-                val jsonObject = parser.parse(isr) as JSONObject
-                val currenciesJSON = jsonObject["currencies"] as JSONArray?
-
-
-                val currenciesArray: Array<Currency>
-                currenciesArray = GsonBuilder().create().fromJson(currenciesJSON!!.toJSONString(), Array<Currency>::class.java)
-                currencies = ArrayList(Arrays.asList(*currenciesArray))
+    fun loadCurrenciesFromFile(c: Context): ArrayList<Currency>? {
+        val parser = JSONParser()
+        var currencies: ArrayList<Currency>?
+        try {
+            val `is` = c.assets.open(Constants.CURRENCIES_FILE_PATH)
+            val isr = InputStreamReader(`is`)
+            val jsonObject = parser.parse(isr) as JSONObject
+            val currenciesJSON = jsonObject["currencies"] as JSONArray?
 
 
-            } catch (e: IOException) {
-                currencies = null
-                e.printStackTrace()
-            } catch (e: ParseException) {
-                e.printStackTrace()
-                currencies = null
-            }
+            val currenciesArray: Array<Currency>
+            currenciesArray = GsonBuilder().create().fromJson(currenciesJSON!!.toJSONString(), Array<Currency>::class.java)
+            currencies = ArrayList(Arrays.asList(*currenciesArray))
 
-            return currencies
+
+        } catch (e: IOException) {
+            currencies = null
+            e.printStackTrace()
+        } catch (e: ParseException) {
+            e.printStackTrace()
+            currencies = null
         }
+
+        return currencies
     }
+}
 
 
 

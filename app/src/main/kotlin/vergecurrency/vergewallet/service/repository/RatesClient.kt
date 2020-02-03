@@ -32,7 +32,7 @@ object RatesClient {
             rawData = "error"
         }
 
-        val stringStringMap = object : TypeToken<Map<String, String>>() { }.type
+        val stringStringMap = object : TypeToken<Map<String, String>>() {}.type
         val valuesMap = Gson().fromJson<MutableMap<String, String>>(rawData, stringStringMap)
 
 

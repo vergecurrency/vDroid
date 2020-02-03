@@ -15,7 +15,7 @@ object FileUtils {
 
 
         //c.filesDir = the folder of the app.
-        val myDir = File(c.filesDir,"images")
+        val myDir = File(c.filesDir, "images")
 
         myDir.mkdirs()
 
@@ -43,10 +43,10 @@ object FileUtils {
     fun share(c: Context) {
         try {
 
-            val myDir = File(c.filesDir,"images")
+            val myDir = File(c.filesDir, "images")
             val addressFileName = "Verge_Generated" + ".jpg"
 
-            val myFile =  File(myDir, addressFileName)
+            val myFile = File(myDir, addressFileName)
 
             val mime = MimeTypeMap.getSingleton()
             val ext = myFile.name.substring(myFile.name.lastIndexOf(".") + 1)

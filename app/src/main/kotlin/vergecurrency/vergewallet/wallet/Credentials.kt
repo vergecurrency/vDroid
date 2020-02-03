@@ -18,18 +18,18 @@ class Credentials(mnemonic: Array<String>, passphrase: String, networkType: Bitc
 
 
     private val privateKey: HDKey
-    get() = HDKeyDerivation.createRootKey(seed)
+        get() = HDKeyDerivation.createRootKey(seed)
 
     //hardened at 0
     val walletPrivateKey: HDKey
-        get() = HDKeyDerivation.deriveChildKey(privateKey,0,true)
+        get() = HDKeyDerivation.deriveChildKey(privateKey, 0, true)
 
     val requestPrivateKey: HDKey
-        get() = HDKeyDerivation.deriveChildKey(HDKeyDerivation.deriveChildKey(privateKey,1,true),0,false)
+        get() = HDKeyDerivation.deriveChildKey(HDKeyDerivation.deriveChildKey(privateKey, 1, true), 0, false)
 
 
     val bip44PrivateKey: HDKey
-        get() = HDKeyDerivation.deriveChildKey(HDKeyDerivation.deriveChildKey(HDKeyDerivation.deriveChildKey(privateKey,44,true),0,true),0,true)
+        get() = HDKeyDerivation.deriveChildKey(HDKeyDerivation.deriveChildKey(HDKeyDerivation.deriveChildKey(privateKey, 44, true), 0, true), 0, true)
 
     val publicKey: HDPublicKey
         get() = HDPublicKey(0, false, bip44PrivateKey)
@@ -63,13 +63,13 @@ class Credentials(mnemonic: Array<String>, passphrase: String, networkType: Bitc
         }
 
 
-    fun privateKeyBy(path: String, privateKey: HDKey) :HDKey {
+    fun privateKeyBy(path: String, privateKey: HDKey): HDKey {
         var key = privateKey
 
         for (deriver in path.replace("m/", "").split("/")) {
             try {
                 var deriverInt = Integer.parseInt(deriver)
-                key = HDKeyDerivation.deriveChildKey(key,deriverInt, false)
+                key = HDKeyDerivation.deriveChildKey(key, deriverInt, false)
 
             } catch (e: NumberFormatException) {
                 throw Exception("Invalid deriver exception")

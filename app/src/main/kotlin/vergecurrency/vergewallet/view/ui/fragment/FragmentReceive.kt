@@ -87,12 +87,12 @@ class FragmentReceive : BaseFragment() {
             //val a = this.activity
             //if (ContextCompat.checkSelfPermission(a!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-                //val needExplanation = ActivityCompat.shouldShowRequestPermissionRationale(a, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                //if (!needExplanation) {
-                  //  ActivityCompat.requestPermissions(this.activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE)
-                //}
+            //val needExplanation = ActivityCompat.shouldShowRequestPermissionRationale(a, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            //if (!needExplanation) {
+            //  ActivityCompat.requestPermissions(this.activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE)
+            //}
             //} else {
-                shareImage()
+            shareImage()
             //}
         }
     }
@@ -129,7 +129,7 @@ class FragmentReceive : BaseFragment() {
         //get the card from the RelativeLayout
         val card = ImageUtils.convertLayoutToBitmap(cardLayout!!)
 
-        FileUtils.saveImage(context!!,card)
+        FileUtils.saveImage(context!!, card)
         FileUtils.share(context!!)
     }
 

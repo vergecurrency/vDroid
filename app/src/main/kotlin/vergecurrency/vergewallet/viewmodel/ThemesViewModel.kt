@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import vergecurrency.vergewallet.service.model.Language
 import java.util.*
 
-class ThemesViewModel(application: Application): AndroidViewModel(application) {
+class ThemesViewModel(application: Application) : AndroidViewModel(application) {
     private val languages: ArrayList<Language>? = null
 
 

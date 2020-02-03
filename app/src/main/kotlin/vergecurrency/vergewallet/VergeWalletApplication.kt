@@ -15,12 +15,11 @@ import vergecurrency.vergewallet.helpers.utils.LanguagesUtils
 import vergecurrency.vergewallet.helpers.utils.UIUtils
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.PreferencesManager
-import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.view.ui.activity.SplashActivity
 import vergecurrency.vergewallet.wallet.WalletManager
 
 class VergeWalletApplication : Application(), Application.ActivityLifecycleCallbacks {
-    private var alreadyInitialized : Boolean = false
+    private var alreadyInitialized: Boolean = false
 
     // Called when the application is starting, before any other application objects have been created.
     override fun onCreate() {
@@ -58,8 +57,8 @@ class VergeWalletApplication : Application(), Application.ActivityLifecycleCallb
     }
 
     override fun onActivityStarted(activity: Activity) {
-        if(activity is SplashActivity && activity is BaseActivity){
-            if(!alreadyInitialized){
+        if (activity is SplashActivity) {
+            if (!alreadyInitialized) {
                 EncryptedPreferencesManager.init(applicationContext)
                 alreadyInitialized = true;
             }

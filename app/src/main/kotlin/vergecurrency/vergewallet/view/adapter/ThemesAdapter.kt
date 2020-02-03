@@ -12,7 +12,6 @@ import android.widget.Toast
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.UIUtils
 import vergecurrency.vergewallet.service.model.PreferencesManager
-import vergecurrency.vergewallet.service.model.Theme
 import java.util.*
 
 class ThemesAdapter
@@ -51,7 +50,7 @@ class ThemesAdapter
             vh.themeName = cView!!.findViewById(R.id.listview_theme_name)
             vh.themeId = cView.findViewById(R.id.listview_theme_item)
 
-            if(theme != null && theme.equals(currentlySelectedTheme)) {
+            if (theme != null && theme.equals(currentlySelectedTheme)) {
                 vh.themeName!!.setTypeface(null, Typeface.BOLD)
             }
 

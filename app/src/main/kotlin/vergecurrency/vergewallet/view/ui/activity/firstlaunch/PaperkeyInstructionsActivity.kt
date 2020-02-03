@@ -24,7 +24,7 @@ class PaperkeyInstructionsActivity : BaseActivity() {
 
     private fun nextButtonListener(): View.OnClickListener {
         return View.OnClickListener {
-        finish()
+            finish()
             startActivity(Intent(applicationContext, PaperkeyDistributionActivity::class.java))
         }
     }

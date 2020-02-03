@@ -44,7 +44,7 @@ class FirstLaunchActivity : BaseActivity() {
         }
     }
 
-    private fun restoreWalletOnClickListener():View.OnClickListener {
+    private fun restoreWalletOnClickListener(): View.OnClickListener {
         return View.OnClickListener {
             //HERE TOO YOU ASSHOLE OF A DEV
         }

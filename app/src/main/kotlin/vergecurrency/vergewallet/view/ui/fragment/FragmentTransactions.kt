@@ -23,7 +23,7 @@ class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, Rad
     private var currentText = ""
     private lateinit var titleTextView: TextView;
     private lateinit var titleText: String
-    private lateinit var titleTextSingular : String
+    private lateinit var titleTextSingular: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)

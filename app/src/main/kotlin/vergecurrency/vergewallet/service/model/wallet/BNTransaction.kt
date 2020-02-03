@@ -32,7 +32,6 @@ class BNTransaction {
     }
 
 
-
     //This can possibly be a big chunk of shit code. to test first priority.
     @Throws(InvalidScriptPubKeyHexException::class, InvalidTxIdHexException::class)
     fun asUnspentTransaction(): UnspentTransaction {
