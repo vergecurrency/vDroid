@@ -305,6 +305,7 @@
         <item name="android:paddingLeft">@dimen/act_settings_desc_padding_lr</item>
         <item name="android:paddingRight">@dimen/act_settings_desc_padding_lr</item>
         <item name="android:textAlignment">center</item>
+        <item name="android:textColor">?vg_secondaryLight</item>
         <item name="android:textSize">@dimen/text_small_size</item>
     </style>
 
@@ -325,9 +326,10 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">15dp</item>
+        <item name="android:textColor">?vg_secondaryLight</item>
         <item name="android:checked">false</item>
         <item name="android:padding">12dp</item>
-        <item name="android:textColor">?vg_primaryDark</item>
+        <!--<item name="android:textColor">?vg_primaryDark</item>-->
     </style>
 
     <!-- Paperkey Setup -->

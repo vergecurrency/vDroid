@@ -11,19 +11,19 @@
         android:text="@string/disconnect_title" />
 
     <ImageView
-        android:id="@+id/disconnect_header"
+        android:id="@+id/use_biometrics_header"
         style="@style/activities_settings_image_header"
         android:layout_below="@+id/disconnect_title"
         android:src="@drawable/header_disconnect" />
 
     <TextView
-        android:id="@+id/serviceurl_settings_desc"
+        android:id="@+id/use_biometrics_desc"
         android:text="@string/disconnect_desc"
-        android:layout_below="@+id/disconnect_header"
+        android:layout_below="@+id/use_biometrics_header"
         style="@style/activities_settings_description" />
 
     <Button
-        android:id="@+id/service_url_button_save"
+        android:id="@+id/use_biometrics_button_save"
         style="@style/blue_button"
         android:text="@string/disconnect_button" />
 

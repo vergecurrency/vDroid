@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?vg_backgroundGrey"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/use_biometrics_title"
+        style="@style/activities_settings_title"
+        android:text="@string/biometrics_title" />
+
+    <ImageView
+        android:id="@+id/use_biometrics_header"
+        style="@style/activities_settings_image_header"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/use_biometrics_title"
+        android:tint="?vg_primaryLight"
+        android:src="@drawable/icon_fingerprint" />
+
+      <TextView
+        android:id="@+id/use_biometrics_desc"
+        style="@style/activities_settings_description"
+        android:layout_below="@+id/use_biometrics_header"
+        android:textAlignment="textStart"
+        android:text="@string/biometrics_description" />
+
+    <LinearLayout
+        style="@style/activities_paper_key_layout"
+        android:layout_below="@id/use_biometrics_desc">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/use_biometrics_switch"
+            style="@style/activities_settings_switchcompats"
+            android:text="@string/activity_biometrics_switch"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/use_biometrics_button_save"
+        style="@style/blue_button"
+        android:text="@string/save_button" />
+
+
+</RelativeLayout>

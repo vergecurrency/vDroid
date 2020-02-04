@@ -17,15 +17,8 @@ import vergecurrency.vergewallet.service.model.SettingsListViewHeader
 import vergecurrency.vergewallet.view.adapter.SettingsListsAdapter
 import vergecurrency.vergewallet.view.base.BaseFragment
 import vergecurrency.vergewallet.view.ui.activity.PinPromptActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.ChooseCurrencyActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.ChooseLanguageActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.ChooseThemeActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.DisconnectActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.DonateActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.PaperkeyActivity
 import vergecurrency.vergewallet.view.ui.activity.firstlaunch.PinSetActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.ServiceURLActivity
-import vergecurrency.vergewallet.view.ui.activity.settings.TorSettingsActivity
+import vergecurrency.vergewallet.view.ui.activity.settings.*
 import vergecurrency.vergewallet.viewmodel.PinPromptedViewModel
 
 
@@ -68,7 +61,7 @@ class FragmentSettings : BaseFragment() {
                 val intent = Intent(it.context, PinPromptActivity::class.java)
                 intent.putExtra("nextView", "changePin")
                 startActivity(intent)}),
-            SettingsListViewData("Use fingerprint", R.drawable.icon_fingerprint, null),
+            SettingsListViewData("Use fingerprint", R.drawable.icon_fingerprint, View.OnClickListener { startActivity(Intent(it.getContext(), BiometricsSettings::class.java)) }),
                 SettingsListViewData("Tor connection", R.drawable.icon_onion, View.OnClickListener { startActivity(Intent(it.getContext(), TorSettingsActivity::class.java)) }))
 
         fillRecyclerView(view, R.id.settings_list_settings, SettingsListViewHeader("SETTINGS"), itemsDataSettings)

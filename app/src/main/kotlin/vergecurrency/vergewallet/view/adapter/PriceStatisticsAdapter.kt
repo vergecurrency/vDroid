@@ -51,11 +51,11 @@ class PriceStatisticsAdapter(context: Context, entryList: List<Map.Entry<String,
 
         when (key) {
             "24h Change %" -> if (value.contains("-"))
-                vh.statValue!!.setTextColor(ContextCompat.getColor(context,R.color.material_green_500))
+                vh.statValue!!.setTextColor(ContextCompat.getColor(context,R.color.material_red_500))
             else
                 vh.statValue!!.setTextColor(ContextCompat.getColor(context,R.color.material_green_500))
             "24h High" -> vh.statValue!!.setTextColor(ContextCompat.getColor(context,R.color.material_green_500))
-            "24h Low" -> vh.statValue!!.setTextColor(ContextCompat.getColor(context,R.color.material_green_500))
+            "24h Low" -> vh.statValue!!.setTextColor(ContextCompat.getColor(context,R.color.material_red_500))
         }
 
         vh.statLabel!!.text = key
