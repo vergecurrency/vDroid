@@ -6,20 +6,20 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/serviceurl_title"
+        android:id="@+id/use_biometrics_title"
         style="@style/activities_settings_title"
         android:text="@string/service_url_title" />
 
     <ImageView
-        android:id="@+id/disconnect_header"
+        android:id="@+id/use_biometrics_header"
         style="@style/activities_settings_image_header"
-        android:layout_below="@+id/serviceurl_title"
+        android:layout_below="@+id/use_biometrics_title"
         android:src="@drawable/header_serviceurl" />
 
     <TextView
         android:id="@+id/setting_header"
         style="@style/activities_settings_description"
-        android:layout_below="@id/disconnect_header"
+        android:layout_below="@id/use_biometrics_header"
         android:text="@string/service_url_setting_header"
         android:textAlignment="textStart" />
 
@@ -29,7 +29,7 @@
         android:layout_below="@id/setting_header"/>
 
     <TextView
-        android:id="@+id/serviceurl_settings_desc"
+        android:id="@+id/use_biometrics_desc"
         style="@style/activities_settings_description"
         android:layout_below="@+id/serviceurl_field"
         android:textAlignment="textStart"
@@ -38,7 +38,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/service_url_button_save"
+        android:layout_above="@id/use_biometrics_button_save"
         android:paddingBottom="10dp"
         android:id="@+id/service_url_set_default"
         android:textColor="?attr/vg_primaryLight"
@@ -48,7 +48,7 @@
         android:text="@string/use_default_url"/>
 
     <Button
-        android:id="@+id/service_url_button_save"
+        android:id="@+id/use_biometrics_button_save"
         style="@style/blue_button"
         android:text="@string/save_button" />
 

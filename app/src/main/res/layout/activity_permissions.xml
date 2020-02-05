@@ -34,7 +34,7 @@
 		android:layout_below="@id/permission_instructions">
 
 		<androidx.appcompat.widget.SwitchCompat
-			android:id="@+id/permissions_location_switch"
+			android:id="@+id/use_biometrics_switch"
 			style="@style/activities_settings_switchcompats"
 			android:text="@string/activity_permissions_gps" />
 

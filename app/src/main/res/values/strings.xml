@@ -166,5 +166,8 @@
 	<string name="activity_permissions_storage">Allow use of storage</string>
     <string name="activity_permissions_gps">Allow use of geolocation services</string>
 	<string name="activity_permissions_camera">Allow use of camera</string>
+	<string name="biometrics_title">Use Biometrics</string>
+	<string name="biometrics_description">Verge Wallet lets you use your biometric data such as the fingerprint or face recognition to access your funds without having to type the PIN everytime you want to access your wallet. Verge Wallet doesn\'t store your biometric data, it just delegates the job to Android.</string>
+	<string name="activity_biometrics_switch">Use fingerprint</string>
 
 </resources>

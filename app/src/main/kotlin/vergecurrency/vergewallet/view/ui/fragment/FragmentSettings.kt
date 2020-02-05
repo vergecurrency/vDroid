@@ -15,7 +15,9 @@ import vergecurrency.vergewallet.service.model.SettingsListViewHeader
 import vergecurrency.vergewallet.view.adapter.SettingsListsAdapter
 import vergecurrency.vergewallet.view.base.BaseFragment
 import vergecurrency.vergewallet.view.ui.activity.PinPromptActivity
+import vergecurrency.vergewallet.view.ui.activity.firstlaunch.PinSetActivity
 import vergecurrency.vergewallet.view.ui.activity.settings.*
+import vergecurrency.vergewallet.viewmodel.PinPromptedViewModel
 
 
 class FragmentSettings : BaseFragment() {
@@ -51,15 +53,14 @@ class FragmentSettings : BaseFragment() {
 
     private fun initGeneralSettings(view: View) {
         val itemsDataSettings = arrayOf(
-                SettingsListViewData("Fiat Currency", R.drawable.icon_currency_exchange, View.OnClickListener { startActivity(Intent(it.context, ChooseCurrencyActivity::class.java)) }),
-                SettingsListViewData("Language", R.drawable.icon_home, View.OnClickListener { startActivity(Intent(it.context, ChooseLanguageActivity::class.java)) }),
-                SettingsListViewData("Theme", R.drawable.icon_theme, View.OnClickListener { startActivity(Intent(it.context, ChooseThemeActivity::class.java)) }),
-                SettingsListViewData("Change wallet PIN", R.drawable.icon_lock, View.OnClickListener {
-                    val intent = Intent(it.context, PinPromptActivity::class.java)
-                    intent.putExtra("nextView", "changePin")
-                    startActivity(intent)
-                }),
-                SettingsListViewData("Use fingerprint", R.drawable.icon_fingerprint, null),
+            SettingsListViewData("Fiat Currency", R.drawable.icon_currency_exchange,  View.OnClickListener { startActivity(Intent(it.context, ChooseCurrencyActivity::class.java)) }),
+            SettingsListViewData("Language", R.drawable.icon_home, View.OnClickListener {  startActivity(Intent(it.context, ChooseLanguageActivity::class.java)) }),
+            SettingsListViewData("Theme", R.drawable.icon_theme,  View.OnClickListener {  startActivity(Intent(it.context, ChooseThemeActivity::class.java)) }),
+            SettingsListViewData("Change wallet PIN", R.drawable.icon_lock,  View.OnClickListener {
+                val intent = Intent(it.context, PinPromptActivity::class.java)
+                intent.putExtra("nextView", "changePin")
+                startActivity(intent)}),
+            SettingsListViewData("Use fingerprint", R.drawable.icon_fingerprint, View.OnClickListener { startActivity(Intent(it.getContext(), BiometricsSettings::class.java)) }),
                 SettingsListViewData("Tor connection", R.drawable.icon_onion, View.OnClickListener { startActivity(Intent(it.getContext(), TorSettingsActivity::class.java)) }))
 
         fillRecyclerView(view, R.id.settings_list_settings, SettingsListViewHeader("SETTINGS"), itemsDataSettings)

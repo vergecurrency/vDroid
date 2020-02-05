@@ -31,7 +31,7 @@ class ServiceURLActivity : BaseActivity() {
         updateVwsValueField()
 
         val defaultUrlView = findViewById<TextView>(R.id.service_url_set_default)
-        val saveURLButton = findViewById<Button>(R.id.service_url_button_save)
+        val saveURLButton = findViewById<Button>(R.id.use_biometrics_button_save)
 
         defaultUrlView.setOnClickListener(setDefaultUrlListener())
         saveURLButton.setOnClickListener(saveURLButtonListener())

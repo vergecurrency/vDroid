@@ -49,7 +49,7 @@ class PermissionsActivity : BaseActivity() {
     //TODO : Next stream - test all this.
     private fun initComponents() {
 
-        locationSwitch = permissions_location_switch
+        locationSwitch = use_biometrics_switch
         cameraSwitch = permissions_camera_switch
 
         permissionsArray = initPermissionConstructs()
