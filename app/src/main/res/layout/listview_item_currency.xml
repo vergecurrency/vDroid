@@ -38,9 +38,12 @@
 
     </LinearLayout>
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="match_parent"
-        android:layout_weight="0.2"/>
-
+        android:id="@+id/list_view_settings_currency_checked"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:backgroundTint="?vg_backgroundGrey"
+        android:padding="10dp"
+        android:scaleType="fitCenter" />
 
 </LinearLayout>

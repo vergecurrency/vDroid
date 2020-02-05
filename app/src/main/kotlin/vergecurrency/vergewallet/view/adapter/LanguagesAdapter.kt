@@ -5,10 +5,9 @@ import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.LanguagesUtils
 import vergecurrency.vergewallet.helpers.utils.UIUtils
@@ -57,6 +56,9 @@ class LanguagesAdapter
             cView.tag = vh
 
             if (lang!!.name.equals(currentlySelectedLanguage.name)) {
+                val imgView = cView.findViewById<ImageView>(R.id.list_view_settings_language_checked);
+                imgView!!.setImageResource(R.drawable.icon_checked)
+                DrawableCompat.setTint(imgView.drawable, ContextCompat.getColor(cView.context, UIUtils.resolveAttr(R.attr.vg_primaryLight, cView.context)))
                 vh.languageName!!.setTypeface(null, Typeface.BOLD)
             }
 

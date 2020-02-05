@@ -5,11 +5,11 @@ import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.helpers.utils.UIUtils
 import vergecurrency.vergewallet.service.model.Currency
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.view.ui.activity.settings.ChooseCurrencyActivity
@@ -54,6 +54,9 @@ class CurrenciesAdapter
             vh.currencyName = cView.findViewById(R.id.listview_currency_name)
             cView.tag = vh
             if (cur!!.name.equals(currentlySelectedCurrency.name) && cur.currency.equals(currentlySelectedCurrency.currency)) {
+                val imgView = cView.findViewById<ImageView>(R.id.list_view_settings_currency_checked);
+                imgView!!.setImageResource(R.drawable.icon_checked)
+                DrawableCompat.setTint(imgView.drawable, ContextCompat.getColor(cView.context, UIUtils.resolveAttr(R.attr.vg_primaryLight, cView.context)))
                 vh.currencyCurrency!!.setTypeface(null, Typeface.BOLD)
                 vh.currencyName!!.setTypeface(null, Typeface.BOLD)
             }

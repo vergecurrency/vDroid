@@ -5,10 +5,9 @@ import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.UIUtils
 import vergecurrency.vergewallet.service.model.PreferencesManager
@@ -51,6 +50,9 @@ class ThemesAdapter
             vh.themeId = cView.findViewById(R.id.listview_theme_item)
 
             if (theme != null && theme.equals(currentlySelectedTheme)) {
+                val imgView = cView.findViewById<ImageView>(R.id.list_view_settings_theme_checked);
+                imgView!!.setImageResource(R.drawable.icon_checked)
+                DrawableCompat.setTint(imgView.drawable, ContextCompat.getColor(cView.context, UIUtils.resolveAttr(R.attr.vg_primaryLight, cView.context)))
                 vh.themeName!!.setTypeface(null, Typeface.BOLD)
             }
 
