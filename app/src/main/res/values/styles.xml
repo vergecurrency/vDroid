@@ -189,7 +189,7 @@
         <item name="android:paddingTop">@dimen/splash_logo_padding_top</item>
         <item name="android:paddingBottom">@dimen/splash_logo_padding_bottom</item>
         <item name="android:scaleType">fitCenter</item>
-        <item name="android:src">@drawable/logo_verge_white</item>
+        <item name="android:src">@drawable/verge_color_white_logo</item>
     </style>
 
 
