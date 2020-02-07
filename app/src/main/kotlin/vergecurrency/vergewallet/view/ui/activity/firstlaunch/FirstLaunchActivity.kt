@@ -27,8 +27,6 @@ class FirstLaunchActivity : BaseActivity() {
         //create "Create new wallet" button and its and listener
         bottomButton = findViewById(R.id.button_create_wallet)
         bottomButton.setText(HtmlCompat.fromHtml(resources.getString(R.string.first_launch_new_wallet_button), HtmlCompat.FROM_HTML_MODE_LEGACY), TextView.BufferType.SPANNABLE)
-
-
         bottomButton.setOnClickListener(newWalletOnClickListener())
 
         //create "Restore wallet"  button and its and listener.

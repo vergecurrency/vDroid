@@ -32,9 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/pin_lock_description"
         android:columnCount="6"
-        android:padding="60dp"
+        android:paddingLeft="60dp"
         android:paddingTop="40dp"
-        android:paddingBottom="40dp"
+        android:paddingRight="60dp"
         android:rowCount="1">
 
 
@@ -69,10 +69,10 @@
         android:layout_height="match_parent"
         android:layout_below="@id/pin_digits_prompt"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="@dimen/pin_num_pad_margin"
+        android:layout_marginTop="@dimen/pin_num_pad_margin"
+        android:layout_marginRight="@dimen/pin_num_pad_margin"
+        android:layout_marginBottom="@dimen/pin_num_pad_margin"
         android:backgroundTint="?vg_backgroundWhite"
         app:cardElevation="2dp">
 
