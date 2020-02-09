@@ -10,7 +10,6 @@ import io.horizontalsystems.bitcoinkit.transactions.scripts.Script
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter
 import io.horizontalsystems.bitcoinkit.utils.HashUtils
 import io.horizontalsystems.hdwalletkit.HDKey
-import io.horizontalsystems.hdwalletkit.HDKeyDerivation
 import io.horizontalsystems.hdwalletkit.HDPublicKey
 import io.realm.Realm
 import io.realm.RealmList
@@ -19,14 +18,13 @@ import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.helpers.SJCL
 import vergecurrency.vergewallet.helpers.utils.ArrayUtils
 import vergecurrency.vergewallet.helpers.utils.ValidationUtils
-import vergecurrency.vergewallet.service.model.PreferencesManager
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.WatchRequestCredentials
 import vergecurrency.vergewallet.service.model.wallet.*
 import java.net.URI
 import java.net.URISyntaxException
 import java.nio.charset.Charset
 import java.security.KeyFactory
-import java.security.PrivateKey
 import java.security.Signature
 import java.security.spec.PKCS8EncodedKeySpec
 
@@ -63,9 +61,11 @@ class WalletClient {
             val uri = URI(String.format("%s%s", Constants.VWS_ENDPOINT, url))
 
             val copayerId = getCoPayerId()
-            var signature = try {  getSignature(url, "get")          } catch(e: Exception) { return completion(null, null, null) }
-
-
+            var signature = try {
+                getSignature(url, "get")
+            } catch (e: Exception) {
+                return completion(null, null, null)
+            }
 
 
         } catch (e: URISyntaxException) {
@@ -122,9 +122,9 @@ class WalletClient {
                 try {
                     val walletId = WalletId.decode(data)
 
-                    PreferencesManager.walletId = walletId.identifier
-                    PreferencesManager.walletName = walletName
-                    PreferencesManager.walletSecret = buildSecret(walletId.identifier!!)
+                    EncryptedPreferencesManager.walletId = walletId.identifier
+                    EncryptedPreferencesManager.walletName = walletName
+                    EncryptedPreferencesManager.walletSecret = buildSecret(walletId.identifier!!)
 
                     completion(null, walletId.identifier)
                 } catch (e: Exception) {
@@ -455,7 +455,7 @@ class WalletClient {
 
             val unsignedInputs = unspentOutputs.map { output -> output.asInputTransaction() }
 
-            var tOutputs : ArrayList<TransactionOutput> = ArrayList()
+            var tOutputs: ArrayList<TransactionOutput> = ArrayList()
             tOutputs.add(toOutput)
 
 
@@ -467,8 +467,8 @@ class WalletClient {
             if (change > 0) {
                 tOutputs.add(changeOutput)
             }
-            tOutputs = ArrayUtils.filterByIndices(txp.outputOrder!!.map{it}, tOutputs)
-            val realm : Realm = Realm.getDefaultInstance()
+            tOutputs = ArrayUtils.filterByIndices(txp.outputOrder!!.map { it }, tOutputs)
+            val realm: Realm = Realm.getDefaultInstance()
 
             val tx = Transaction().apply {
                 version = 1
@@ -535,8 +535,8 @@ class WalletClient {
     }
 
 
-    private fun getDataFromScript(address : Script) : ByteArray {
-        return address.chunks.fold(ByteArray(address.chunks.size)){a,b -> a+b.data!!}
+    private fun getDataFromScript(address: Script): ByteArray {
+        return address.chunks.fold(ByteArray(address.chunks.size)) { a, b -> a + b.data!! }
     }
 
     //INNER CLASSES BABY. HUNG ME SOMEWHERE.

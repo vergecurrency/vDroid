@@ -4,9 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-
-import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.view.base.BaseActivity
 
 class PaperkeyInstructionsActivity : BaseActivity() {
 
@@ -25,7 +24,7 @@ class PaperkeyInstructionsActivity : BaseActivity() {
 
     private fun nextButtonListener(): View.OnClickListener {
         return View.OnClickListener {
-        finish()
+            finish()
             startActivity(Intent(applicationContext, PaperkeyDistributionActivity::class.java))
         }
     }

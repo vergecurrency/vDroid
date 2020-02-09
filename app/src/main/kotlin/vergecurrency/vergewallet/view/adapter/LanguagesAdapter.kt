@@ -1,21 +1,19 @@
 package vergecurrency.vergewallet.view.adapter
 
 import android.content.Context
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
-
-import java.util.ArrayList
-
+import android.widget.*
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.LanguagesUtils
 import vergecurrency.vergewallet.helpers.utils.UIUtils
 import vergecurrency.vergewallet.service.model.Language
 import vergecurrency.vergewallet.service.model.PreferencesManager
+import java.util.*
 
 class LanguagesAdapter
 /**
@@ -25,6 +23,8 @@ class LanguagesAdapter
  * @param langs   the languages list we need to display
  */
 (context: Context, langs: ArrayList<Language>) : ArrayAdapter<Language>(context, R.layout.listview_item_language, langs), View.OnClickListener {
+    private val currentlySelectedLanguage: Language = Language.getLanguageFromJson(PreferencesManager.currentLanguage.toString())
+
 
     override fun onClick(v: View) {
         val position = v.tag as Int
@@ -54,6 +54,13 @@ class LanguagesAdapter
             vh.languageId = cView.findViewById(R.id.listview_language_item)
 
             cView.tag = vh
+
+            if (lang!!.name.equals(currentlySelectedLanguage.name)) {
+                val imgView = cView.findViewById<ImageView>(R.id.list_view_settings_language_checked);
+                imgView!!.setImageResource(R.drawable.icon_checked)
+                DrawableCompat.setTint(imgView.drawable, ContextCompat.getColor(cView.context, UIUtils.resolveAttr(R.attr.vg_primaryLight, cView.context)))
+                vh.languageName!!.setTypeface(null, Typeface.BOLD)
+            }
 
         } else {
             vh = cView.tag as LanguageItemViewHolder

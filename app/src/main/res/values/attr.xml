@@ -21,6 +21,8 @@
         <attr name="vg_vergeUp" format="color|reference" />
         <attr name="vg_vergeDown" format="color|reference" />
 
+        <attr name="vg_radio_checked_text_color" format="color|reference"/>
+
         <attr name="vg_graphFadeTop" format="color|reference" />
         <attr name="vg_graphFadeBottom" format="color|reference" />
 

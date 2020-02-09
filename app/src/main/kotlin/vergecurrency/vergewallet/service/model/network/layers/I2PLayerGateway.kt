@@ -63,8 +63,8 @@ class I2PLayerGateway {
 
     //Because I'm not savage LOL
     private fun killGently() {
-       // if (r != null)
-       //     r!!.shutdownGracefully()
+        // if (r != null)
+        //     r!!.shutdownGracefully()
     }
 
 }

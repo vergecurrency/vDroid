@@ -3,7 +3,6 @@ package vergecurrency.vergewallet.service.repository
 import com.google.gson.Gson
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.service.model.ChartInfo
-import vergecurrency.vergewallet.service.model.network.layers.ClearnetGateway
 import vergecurrency.vergewallet.service.model.network.layers.NetworkGateway
 import java.util.*
 

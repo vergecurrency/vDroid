@@ -1,8 +1,10 @@
 package vergecurrency.vergewallet.service.model
 
 import java.io.Serializable
-import java.util.Comparator
-import java.util.Date
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.*
 
 class Transaction : Comparable<Transaction>, Serializable {
 
@@ -19,7 +21,7 @@ class Transaction : Comparable<Transaction>, Serializable {
     var time: Long = 0
     var timereceived: Long = 0
 
-     val isSend: Boolean
+    val isSend: Boolean
         get() = category == "send"
 
     val isReceive: Boolean
@@ -31,10 +33,16 @@ class Transaction : Comparable<Transaction>, Serializable {
 
     companion object {
 
-        val TimeComparatorDESC : (Transaction, Transaction) -> Int = { tx1: Transaction, tx2: Transaction ->
+        val TimeComparatorDESC: (Transaction, Transaction) -> Int = { tx1: Transaction, tx2: Transaction ->
             val tx1value = Date(tx1.time * 1000)
             val tx2value = Date(tx2.time * 1000)
             tx2value.compareTo(tx1value)
         }
+
+        fun convertToLocalDateViaMillisecond(time: Long): LocalDate {
+            return Instant.ofEpochMilli(time).atZone(ZoneId.systemDefault()).toLocalDate()
+        }
     }
+
+
 }

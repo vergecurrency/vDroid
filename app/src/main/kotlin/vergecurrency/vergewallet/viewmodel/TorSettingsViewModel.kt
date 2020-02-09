@@ -1,8 +1,6 @@
 package vergecurrency.vergewallet.viewmodel
 
 import androidx.lifecycle.ViewModel
-import vergecurrency.vergewallet.Constants
-import vergecurrency.vergewallet.service.model.network.layers.TorLayerGateway
 import vergecurrency.vergewallet.service.repository.ApifyService
 import vergecurrency.vergewallet.service.repository.GeocodingService
 
@@ -16,12 +14,12 @@ class TorSettingsViewModel : ViewModel() {
         coordinates = GeocodingService.readCoordinates(ipAddress)
     }
 
-    fun updateAndReturnIpAddress() :String  {
+    fun updateAndReturnIpAddress(): String {
         ipAddress = ApifyService.requestIP()
         return ipAddress
     }
 
-    fun updateAndReturnCoordinates() : String {
+    fun updateAndReturnCoordinates(): String {
         coordinates = GeocodingService.readCoordinates(ipAddress)
         return coordinates
     }

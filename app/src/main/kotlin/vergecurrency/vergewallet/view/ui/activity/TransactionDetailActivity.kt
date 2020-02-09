@@ -47,11 +47,11 @@ class TransactionDetailActivity : BaseActivity(), View.OnClickListener {
         if (tx!!.isReceive) {
             transactionAmount.text = arrayOf("+", java.lang.Double.valueOf(tx!!.amount).toString(), "XVG").joinToString(" ")
             transactionAmount.setTextColor(ContextCompat.getColor(this, R.color.material_green_500))
-            icon.setImageResource(R.drawable.icon_receive)
+            icon.setImageResource(R.drawable.icon_tx_received)
         } else {
             transactionAmount.text = arrayOf("-", java.lang.Double.valueOf(tx!!.amount).toString(), "XVG").joinToString(" ")
             transactionAmount.setTextColor(ContextCompat.getColor(this, R.color.material_red_500))
-            icon.setImageResource(R.drawable.icon_send)
+            icon.setImageResource(R.drawable.icon_tx_sent)
         }
 
         transactionAddress.text = tx!!.address

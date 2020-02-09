@@ -38,7 +38,7 @@ class ServiceURLActivity : BaseActivity() {
     }
 
     private fun saveURLButtonListener(): View.OnClickListener {
-        return View.OnClickListener{
+        return View.OnClickListener {
             mViewModel!!.setNewServiceURL(vwsValue!!.text.toString())
             Toast.makeText(this, "The Service URL has been updated successfully.", Toast.LENGTH_SHORT).show()
             finish()

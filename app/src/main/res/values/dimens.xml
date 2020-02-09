@@ -37,7 +37,7 @@
 
     <!-- Fragments -->
     <dimen name="fragment_title_height">40dp</dimen>
-    <dimen name="fragment_title_paddingTop">7dp</dimen>
+    <dimen name="fragment_title_paddingTop">10dp</dimen>
 
     <!-- Slash & unexpected close activity -->
     <dimen name="splash_logo_padding_lr">90dp</dimen>

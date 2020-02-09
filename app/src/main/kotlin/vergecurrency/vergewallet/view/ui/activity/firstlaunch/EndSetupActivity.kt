@@ -5,9 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-
-import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.view.ui.activity.WalletActivity
 import vergecurrency.vergewallet.wallet.WalletManager
 

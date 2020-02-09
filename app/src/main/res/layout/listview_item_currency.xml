@@ -12,7 +12,7 @@
 
         android:id="@+id/listview_currency_item"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="52dp"
         android:orientation="vertical"
 
         android:focusable="true"
@@ -38,9 +38,12 @@
 
     </LinearLayout>
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="match_parent"
-        android:layout_weight="0.2"/>
-
+        android:id="@+id/list_view_settings_currency_checked"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:backgroundTint="?vg_backgroundGrey"
+        android:padding="10dp"
+        android:scaleType="fitCenter" />
 
 </LinearLayout>

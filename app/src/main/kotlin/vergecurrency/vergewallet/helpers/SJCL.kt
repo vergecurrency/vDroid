@@ -1,13 +1,9 @@
 package vergecurrency.vergewallet.helpers
 
 import android.content.Context
-
 import com.eclipsesource.v8.V8
 import com.eclipsesource.v8.V8Array
 import com.eclipsesource.v8.V8Object
-
-import java.io.InputStream
-
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.helpers.utils.FileUtils
 

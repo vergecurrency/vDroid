@@ -94,7 +94,7 @@ class PinConfirmActivity : BaseActivity() {
     }
 
     private fun confirmButtonListener(): View.OnClickListener {
-        return View.OnClickListener{
+        return View.OnClickListener {
             mViewModel!!.setPin(pin!!)
             if (origin == "firstLaunch") {
                 startActivity(Intent(applicationContext, PaperkeyInstructionsActivity::class.java))

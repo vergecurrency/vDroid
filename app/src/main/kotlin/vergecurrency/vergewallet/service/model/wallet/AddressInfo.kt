@@ -1,8 +1,7 @@
 package vergecurrency.vergewallet.service.model.wallet
 
-import android.provider.Telephony
 import com.google.gson.Gson
-import java.util.Date
+import java.util.*
 
 class AddressInfo {
 

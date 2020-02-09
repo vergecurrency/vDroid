@@ -2,15 +2,14 @@ package vergecurrency.vergewallet.wallet
 
 import android.content.Context
 import android.os.Bundle
-
-import java.util.Timer
-
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.helpers.notification.NotificationCenter
 import vergecurrency.vergewallet.helpers.notification.NotificationType
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.FiatRate
 import vergecurrency.vergewallet.service.model.PreferencesManager
 import vergecurrency.vergewallet.service.repository.RatesClient
+import java.util.*
 
 class FiatRateTicker(private val context: Context) {
 
@@ -44,7 +43,7 @@ class FiatRateTicker(private val context: Context) {
     }
 
     private fun fetch() {
-        rateInfo = RatesClient.infoBy(PreferencesManager.preferredCurrency!!)
+        rateInfo = RatesClient.infoBy(EncryptedPreferencesManager.preferredCurrency!!)
         val b = Bundle()
         b.putSerializable("rateInfo", rateInfo)
         NotificationCenter.postNotification(context, NotificationType.didReceiveFiatRatings, b)

@@ -1,16 +1,14 @@
 package vergecurrency.vergewallet.service.model.network.sockets
 
-import java.io.IOException
-import java.net.InetSocketAddress
-import java.net.Proxy
-import java.net.Socket
-
-import javax.net.ssl.SSLContext
-
 
 import cz.msebera.android.httpclient.HttpHost
 import cz.msebera.android.httpclient.conn.ssl.SSLConnectionSocketFactory
 import cz.msebera.android.httpclient.protocol.HttpContext
+import java.io.IOException
+import java.net.InetSocketAddress
+import java.net.Proxy
+import java.net.Socket
+import javax.net.ssl.SSLContext
 
 
 class SSLConnectionSocket(sslContext: SSLContext) : SSLConnectionSocketFactory(sslContext) {
