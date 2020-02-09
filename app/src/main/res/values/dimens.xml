@@ -35,9 +35,11 @@
     <dimen name="activities_title_padding">40dp</dimen>
     <dimen name="activities_title_margin_top">20dp</dimen>
 
+    <dimen name="pin_num_pad_margin">40dp</dimen>
+
     <!-- Fragments -->
     <dimen name="fragment_title_height">40dp</dimen>
-    <dimen name="fragment_title_paddingTop">10dp</dimen>
+    <dimen name="fragment_title_paddingTop">7dp</dimen>
 
     <!-- Slash & unexpected close activity -->
     <dimen name="splash_logo_padding_lr">90dp</dimen>
@@ -62,3 +64,4 @@
     <dimen name="act_paper_key_desc_padding">40dp</dimen>
     <dimen name="act_paper_key_layout_padding">40dp</dimen>
 </resources>
+
