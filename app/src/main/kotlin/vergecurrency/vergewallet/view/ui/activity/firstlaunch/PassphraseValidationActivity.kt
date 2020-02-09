@@ -9,11 +9,9 @@ import android.view.View
 import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
-
 import com.omega_r.libs.OmegaCenterIconButton
-
-import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.viewmodel.PassphraseVerificationViewModel
 
 
@@ -55,9 +53,9 @@ class PassphraseValidationActivity : BaseActivity() {
                 val isAllOk = s.toString() == passphraseToValidate
                 validateButton!!.isEnabled = isAllOk
                 if (isAllOk) {
-                    validateButton!!.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(applicationContext,R.color.verge_colorPrimary))
+                    validateButton!!.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(applicationContext, R.color.verge_colorPrimary))
                 } else {
-                    validateButton!!.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(applicationContext,R.color.verge_colorAccent))
+                    validateButton!!.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(applicationContext, R.color.verge_colorAccent))
                 }
             }
 

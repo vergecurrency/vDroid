@@ -30,4 +30,12 @@
         android:textSize="@dimen/text_regular_size" />
 
     </LinearLayout>
+    <ImageView
+        android:id="@+id/list_view_settings_theme_checked"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:backgroundTint="?vg_backgroundGrey"
+        android:padding="13dp"
+        android:scaleType="fitCenter" />
 </LinearLayout>

@@ -60,8 +60,8 @@ class UnspentOutput {
         return UnspentTransaction(transactionOutput, transactionOutPoint)
     }
 
-    fun asInputTransaction() : TransactionInput {
-        val txid : ByteArray
+    fun asInputTransaction(): TransactionInput {
+        val txid: ByteArray
         try {
             txid = Hex.decode(txID!!)
         } catch (e: Exception) {

@@ -7,18 +7,21 @@
     android:background="?vg_backgroundGrey"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/wallet_transactions_title"
-        style="@style/fragment_title"
-        android:text="@string/title_transactions" />
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:paddingRight="20dp"
+            android:background="@color/rc_card_gray_light"
+            android:gravity="center">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:backgroundTint="?vg_backgroundWhite"
             android:textSize="@dimen/text_smaller_size"
@@ -39,44 +42,55 @@
                 <requestFocus />
             </SearchView>
         </androidx.cardview.widget.CardView>
-
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="60dp"
-            android:gravity="center">
+            android:layout_height="68dp"
+            android:layout_marginTop="78dp"
+            android:background="@color/rc_card_gray_light">
+            <HorizontalScrollView
+                android:scrollbars="none"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:id="@+id/horizontalScrollView">
 
-            <RadioGroup
-                android:id="@+id/transaction_radio_group"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingTop="10dp">
+                    <RadioGroup
+                        android:id="@+id/transaction_radio_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:paddingTop="2dp">
 
-                <RadioButton
-                    android:id="@+id/transactions_radio_all"
-                    style="@style/radio_button.left"
-                    android:checked="true"
-                    android:text="@string/fragment_transaction_all_filter" />
-
-                <RadioButton
-                    android:id="@+id/transactions_radio_send"
-                    style="@style/radio_button.center"
-                    android:text="@string/fragment_transaction_sent_filter" />
-
-                <RadioButton
-                    android:id="@+id/transactions_radio_receive"
-                    style="@style/radio_button.right"
-                    android:text="@string/fragment_transaction_received_filter" />
-            </RadioGroup>
+                        <RadioButton
+                            style="@style/radio_button"
+                            android:id="@+id/transactions_radio_all"
+                            android:checked="true"
+                            android:text="@string/fragment_transaction_all_filter" />
+                        <RadioButton
+                            style="@style/radio_button"
+                            android:id="@+id/transactions_radio_send"
+                            android:text="@string/fragment_transaction_sent_filter" />
+                        <RadioButton
+                            style="@style/radio_button"
+                            android:id="@+id/transactions_radio_receive"
+                            android:text="@string/fragment_transaction_received_filter" />
+                    </RadioGroup>
+            </HorizontalScrollView>
         </LinearLayout>
-
+        <TextView
+            android:layout_marginTop="160dp"
+            android:id="@+id/wallet_transactions_title"
+            style="@style/transaction_fragment_title"
+            android:text="@string/title_transactions" />
         <ListView
             android:id="@+id/transactions_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="210dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:background="?vg_backgroundGrey"
             android:backgroundTint="?vg_backgroundGrey" />
     </RelativeLayout>

@@ -1,7 +1,7 @@
 package vergecurrency.vergewallet.viewmodel
 
 import androidx.lifecycle.ViewModel
-import vergecurrency.vergewallet.service.model.PreferencesManager
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 
 
 class PassphraseVerificationViewModel : ViewModel() {
@@ -11,6 +11,6 @@ class PassphraseVerificationViewModel : ViewModel() {
     }*/
 
     fun setPassphrase(passphrase: String) {
-        PreferencesManager.passphrase = passphrase
+        EncryptedPreferencesManager.passphrase = passphrase
     }
 }

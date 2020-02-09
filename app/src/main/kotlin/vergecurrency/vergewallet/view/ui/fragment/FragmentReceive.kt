@@ -11,21 +11,13 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.View.OnLongClickListener
 import android.view.ViewGroup
+import android.widget.*
 import android.widget.CompoundButton.OnCheckedChangeListener
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
-
 import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.ViewModelProviders
-
 import com.google.zxing.EncodeHintType
 import com.omega_r.libs.OmegaCenterIconButton
-
 import net.glxn.qrgen.android.QRCode
-
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.AnimationUtils
 import vergecurrency.vergewallet.helpers.utils.FileUtils
@@ -95,12 +87,12 @@ class FragmentReceive : BaseFragment() {
             //val a = this.activity
             //if (ContextCompat.checkSelfPermission(a!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-                //val needExplanation = ActivityCompat.shouldShowRequestPermissionRationale(a, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                //if (!needExplanation) {
-                  //  ActivityCompat.requestPermissions(this.activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE)
-                //}
+            //val needExplanation = ActivityCompat.shouldShowRequestPermissionRationale(a, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            //if (!needExplanation) {
+            //  ActivityCompat.requestPermissions(this.activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE)
+            //}
             //} else {
-                shareImage()
+            shareImage()
             //}
         }
     }
@@ -137,7 +129,7 @@ class FragmentReceive : BaseFragment() {
         //get the card from the RelativeLayout
         val card = ImageUtils.convertLayoutToBitmap(cardLayout!!)
 
-        FileUtils.saveImage(context!!,card)
+        FileUtils.saveImage(context!!, card)
         FileUtils.share(context!!)
     }
 

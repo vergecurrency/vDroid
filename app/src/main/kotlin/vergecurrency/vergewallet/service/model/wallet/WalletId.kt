@@ -1,7 +1,6 @@
 package vergecurrency.vergewallet.service.model.wallet
 
 import com.google.gson.Gson
-import io.horizontalsystems.bitcoinkit.core.Wallet
 
 class WalletId {
 

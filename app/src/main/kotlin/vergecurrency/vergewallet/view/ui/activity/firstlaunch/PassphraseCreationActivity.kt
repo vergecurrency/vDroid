@@ -11,12 +11,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
-
 import com.omega_r.libs.OmegaCenterIconButton
-
+import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.ValidationUtils
 import vergecurrency.vergewallet.view.base.BaseActivity
-import vergecurrency.vergewallet.R
 
 class PassphraseCreationActivity : BaseActivity() {
 

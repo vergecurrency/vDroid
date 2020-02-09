@@ -1,10 +1,8 @@
 package vergecurrency.vergewallet.service.model.wallet
 
 import com.google.gson.Gson
-
-import java.util.Date
-
 import vergecurrency.vergewallet.Constants
+import java.util.*
 
 class TxHistory {
 

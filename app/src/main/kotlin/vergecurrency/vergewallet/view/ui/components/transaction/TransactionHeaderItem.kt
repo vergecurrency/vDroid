@@ -9,7 +9,7 @@ import vergecurrency.vergewallet.R
 
 class TransactionHeaderItem(private val name: String) : TransactionItem {
     override val viewType: Int
-        get() =TransactionRowType.HEADER_ITEM.ordinal
+        get() = TransactionRowType.HEADER_ITEM.ordinal
 
     override fun getView(inflater: LayoutInflater, convertView: View?, parent: ViewGroup, position: Int): View {
         val view: View

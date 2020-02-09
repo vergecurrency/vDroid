@@ -13,7 +13,6 @@
         android:layout_weight="1"
         android:layout_height="match_parent"
         android:clickable="true">
-
         <TextView
             android:id="@+id/listview_language_name"
             android:layout_width="match_parent"
@@ -22,8 +21,15 @@
             android:textColor="?attr/vg_primaryDark"
             android:textSize="@dimen/text_regular_size"  />
 
-
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/list_view_settings_language_checked"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:backgroundTint="?vg_backgroundGrey"
+        android:padding="13dp"
+        android:scaleType="fitCenter" />
 
 </LinearLayout>

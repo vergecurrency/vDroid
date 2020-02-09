@@ -15,7 +15,7 @@ import vergecurrency.vergewallet.viewmodel.TransactionsViewModel
 class FragmentTransactionsPageView : Fragment() {
 
     object companion {
-        fun newInstance() : FragmentTransactionsPageView{
+        fun newInstance(): FragmentTransactionsPageView {
             return FragmentTransactionsPageView()
         }
     }

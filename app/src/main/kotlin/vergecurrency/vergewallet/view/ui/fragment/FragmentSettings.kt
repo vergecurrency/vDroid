@@ -6,11 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.service.model.SettingsListViewData
 import vergecurrency.vergewallet.service.model.SettingsListViewHeader
@@ -39,13 +37,14 @@ class FragmentSettings : BaseFragment() {
 
     private fun initWalletSettings(view: View) {
         val itemsDataWallet = arrayOf(
-            SettingsListViewData("Remove wallet", R.drawable.icon_disconnected, View.OnClickListener { startActivity(Intent(it.context, DisconnectActivity::class.java)) }),
-            SettingsListViewData("Paperkey", R.drawable.icon_paperkey,View.OnClickListener {
-                val intent = Intent(it.context, PinPromptActivity::class.java)
-                intent.putExtra("nextView", "viewPassphrase")
-                startActivity(intent) }),
-            SettingsListViewData("Addresses", R.drawable.icon_disconnected, null), SettingsListViewData("Transaction Proposals", R.drawable.icon_disconnected, null),
-            SettingsListViewData("Service URL", R.drawable.icon_disconnected,  View.OnClickListener { startActivity(Intent(it.context, ServiceURLActivity::class.java)) }))
+                SettingsListViewData("Remove wallet", R.drawable.icon_disconnected, View.OnClickListener { startActivity(Intent(it.context, DisconnectActivity::class.java)) }),
+                SettingsListViewData("Paperkey", R.drawable.icon_paperkey, View.OnClickListener {
+                    val intent = Intent(it.context, PinPromptActivity::class.java)
+                    intent.putExtra("nextView", "viewPassphrase")
+                    startActivity(intent)
+                }),
+                SettingsListViewData("Addresses", R.drawable.icon_disconnected, null), SettingsListViewData("Transaction Proposals", R.drawable.icon_disconnected, null),
+                SettingsListViewData("Service URL", R.drawable.icon_disconnected, View.OnClickListener { startActivity(Intent(it.context, ServiceURLActivity::class.java)) }))
 
         fillRecyclerView(view, R.id.settings_list_wallet, SettingsListViewHeader("WALLET"), itemsDataWallet)
 
@@ -75,13 +74,14 @@ class FragmentSettings : BaseFragment() {
                 SettingsListViewData("Rate app", R.drawable.icon_star, null),
                 SettingsListViewData("Website", R.drawable.icon_web, View.OnClickListener {
                     val intent = Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.vergecurrency.com"))
-                    startActivity(intent)}),
+                            Uri.parse("https://www.vergecurrency.com"))
+                    startActivity(intent)
+                }),
                 SettingsListViewData("Contribute", R.drawable.icon_github, View.OnClickListener {
                     val intent = Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.github.com/vergecurrency/vDroid"))
+                            Uri.parse("https://www.github.com/vergecurrency/vDroid"))
                     startActivity(intent)
-        }))
+                }))
 
         fillRecyclerView(view, R.id.settings_list_other, SettingsListViewHeader("OTHER"), itemsDataOther)
     }

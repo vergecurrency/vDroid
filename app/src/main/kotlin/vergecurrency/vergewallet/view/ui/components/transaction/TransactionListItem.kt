@@ -6,17 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
-
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.MathUtils
 import vergecurrency.vergewallet.helpers.utils.TransactionUtils
+import vergecurrency.vergewallet.helpers.utils.TransactionUtils.toFormattedDate
 import vergecurrency.vergewallet.service.model.Transaction
 import vergecurrency.vergewallet.view.ui.activity.TransactionDetailActivity
-
-import vergecurrency.vergewallet.helpers.utils.TransactionUtils.toFormattedDate
 
 class TransactionListItem(private val tx: Transaction) : TransactionItem, View.OnClickListener {
 
@@ -32,47 +29,21 @@ class TransactionListItem(private val tx: Transaction) : TransactionItem, View.O
     }
 
     override fun getView(inflater: LayoutInflater, convertView: View?, parent: ViewGroup, position: Int): View {
-        var cView : View? = convertView
-        val vh: TransactionItemViewHolder
-        if (cView == null) {
-            vh = TransactionItemViewHolder()
-            cView = inflater.inflate(R.layout.listview_item_transaction, parent, false)
-            cView.setOnClickListener(this)
-            vh.txAddress = cView.findViewById(R.id.listview_transaction_item_address)
-            vh.txAmount = cView.findViewById(R.id.listview_transaction_item_amount)
-            vh.txDateTime = cView.findViewById(R.id.listview_transaction_item_datetime)
-            vh.txIcon = cView.findViewById(R.id.listview_transaction_item_icon)
-            cView.tag = vh
-
+        var view: View
+        var vh: TransactionItemViewHolder
+        if (convertView == null) {
+            view = inflater.inflate(R.layout.listview_item_transaction, parent, false)
+            vh = prepareViewHolder(TransactionItemViewHolder(), view);
         } else {
-            vh = cView.tag as TransactionItemViewHolder
+            view = convertView;
+            vh = prepareViewHolder(convertView.tag as TransactionItemViewHolder, view);
         }
-
-        if (tx.isSend) {
-            vh.txAmount!!.text = String.format("- %s XVG", MathUtils.round(tx.amount, 2))
-            vh.txAmount!!.setTextColor(ContextCompat.getColor(cView!!.context, R.color.material_red_500))
-            vh.txIcon!!.setImageResource(R.drawable.icon_arrow_up)
-            DrawableCompat.setTint(vh.txIcon!!.drawable, ContextCompat.getColor(cView.context, R.color.material_red_500))
-        } else if (tx.isReceive) {
-            vh.txAmount!!.text = String.format("+ %s XVG", MathUtils.round(tx.amount, 2))
-            vh.txAmount!!.setTextColor(ContextCompat.getColor(cView!!.context, R.color.material_green_500))
-            vh.txIcon!!.setImageResource(R.drawable.icon_arrow_down)
-            DrawableCompat.setTint(vh.txIcon!!.drawable, ContextCompat.getColor(cView.context, R.color.material_green_500))
-        }
-
-        if (tx.account == null) {
-            if (tx.isReceive) {
-                vh.txAddress!!.text = "Received"
-            } else {
-                vh.txAddress!!.text = "Sent"
-            }
-        } else {
-            vh.txAddress!!.text = tx.account
-        }
-        vh.txDateTime!!.setText(toFormattedDate(tx.time))
         vh.txAddress!!.tag = position
+        view.tag = vh;
+        view.setOnClickListener(this);
+
         // Return the completed view to render on screen
-        return cView!!
+        return view
     }
 
     /**
@@ -83,6 +54,37 @@ class TransactionListItem(private val tx: Transaction) : TransactionItem, View.O
         internal var txAddress: TextView? = null
         internal var txDateTime: TextView? = null
         internal var txAmount: TextView? = null
+    }
+
+    private fun prepareViewHolder(vh: TransactionItemViewHolder, view: View): TransactionItemViewHolder {
+        vh.txAddress = view.findViewById(R.id.listview_transaction_item_address)
+        vh.txAmount = view.findViewById(R.id.listview_transaction_item_amount)
+        vh.txDateTime = view.findViewById(R.id.listview_transaction_item_datetime)
+        vh.txIcon = view.findViewById(R.id.listview_transaction_item_icon)
+
+        if (tx.isSend) {
+            vh.txAmount!!.text = String.format("- %s XVG", MathUtils.round(tx.amount, 2))
+            vh.txAmount!!.setTextColor(ContextCompat.getColor(view.context, R.color.material_red_500))
+            vh.txIcon!!.setImageResource(R.drawable.icon_tx_sent)
+            DrawableCompat.setTint(vh.txIcon!!.drawable, ContextCompat.getColor(view.context, R.color.material_red_500))
+        } else if (tx.isReceive) {
+            vh.txAmount!!.text = String.format("+ %s XVG", MathUtils.round(tx.amount, 2))
+            vh.txAmount!!.setTextColor(ContextCompat.getColor(view.context, R.color.material_green_500))
+            vh.txIcon!!.setImageResource(R.drawable.icon_tx_received)
+            DrawableCompat.setTint(vh.txIcon!!.drawable, ContextCompat.getColor(view.context, R.color.material_green_500))
+        }
+
+        if (tx.account == null) {
+            if (tx.isReceive) {
+                vh.txAddress!!.text = view.resources.getString(R.string.fragment_transaction_received_filter)
+            } else {
+                vh.txAddress!!.text = view.resources.getString(R.string.fragment_transaction_sent_filter)
+            }
+        } else {
+            vh.txAddress!!.text = tx.account
+        }
+        vh.txDateTime!!.setText(toFormattedDate(tx.time))
+        return vh;
     }
 
 }

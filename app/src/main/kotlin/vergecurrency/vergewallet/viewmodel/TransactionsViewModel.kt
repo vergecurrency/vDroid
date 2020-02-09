@@ -2,22 +2,16 @@ package vergecurrency.vergewallet.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-
 import com.google.gson.GsonBuilder
-
 import org.json.simple.JSONArray
 import org.json.simple.JSONObject
 import org.json.simple.parser.JSONParser
 import org.json.simple.parser.ParseException
-
-import java.io.IOException
-import java.io.InputStream
-import java.io.InputStreamReader
-import java.util.ArrayList
-import java.util.Arrays
-
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.service.model.Transaction
+import java.io.IOException
+import java.io.InputStreamReader
+import java.util.*
 
 class TransactionsViewModel(application: Application) : AndroidViewModel(application) {
 

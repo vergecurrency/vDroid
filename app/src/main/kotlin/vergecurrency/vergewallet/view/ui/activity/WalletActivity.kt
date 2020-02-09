@@ -1,22 +1,13 @@
 package vergecurrency.vergewallet.view.ui.activity
 
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.WindowManager
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
-
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.view.base.BaseActivity
-import vergecurrency.vergewallet.view.ui.fragment.FragmentReceive
-import vergecurrency.vergewallet.view.ui.fragment.FragmentSend
-import vergecurrency.vergewallet.view.ui.fragment.FragmentSettings
-import vergecurrency.vergewallet.view.ui.fragment.FragmentTransactions
-import vergecurrency.vergewallet.view.ui.fragment.FragmentWallet
+import vergecurrency.vergewallet.view.ui.fragment.*
 
 class WalletActivity : BaseActivity() {
 

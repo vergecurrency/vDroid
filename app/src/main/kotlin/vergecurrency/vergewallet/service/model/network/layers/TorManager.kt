@@ -43,7 +43,7 @@ object TorManager {
 
     fun startTor(context: Context) {
 
-        object: AsyncTask<String, Int, Void?>() {
+        object : AsyncTask<String, Int, Void?>() {
             override fun doInBackground(vararg params: String?): Void? {
 
                 if (isConnected) {
@@ -76,8 +76,6 @@ object TorManager {
                 return null
             }
         }.execute("")
-
-
 
 
     }

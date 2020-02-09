@@ -6,19 +6,16 @@ import android.app.Activity
 import android.app.PendingIntent
 import android.content.Intent
 import android.os.Build
-
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-
+import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.VergeWalletApplication.Companion.UNCAUGHT_EXCEPTION_CHANNEL_ID
+import vergecurrency.vergewallet.view.ui.activity.error.ErrorRecoveryActivity
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.logging.Level
 import java.util.logging.Logger
-
-import vergecurrency.vergewallet.R
-import vergecurrency.vergewallet.VergeWalletApplication.Companion.UNCAUGHT_EXCEPTION_CHANNEL_ID
-import vergecurrency.vergewallet.view.ui.activity.error.ErrorRecoveryActivity
 
 
 class DefaultUncaughtExceptionHandler private constructor() : Thread.UncaughtExceptionHandler {
