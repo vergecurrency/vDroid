@@ -6,13 +6,13 @@ import io.horizontalsystems.bitcoinkit.network.MainNet
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter
 import java.util.*
 
-typealias ValidationCompletion = (valid: Boolean, address: String?, amount: Float?) -> Void
+typealias ValidationCompletion = (valid: Boolean, address: String?, amount: Float?) -> Unit
 
 class AddressValidator {
 
     //implement fun override for barcode object
 
-    fun validate(string: String, completion: ValidationCompletion): Void {
+    fun validate(string: String, completion: ValidationCompletion) {
         var valid = false
         var address: String? = null
         var amount: Float? = null
@@ -64,7 +64,7 @@ class AddressValidator {
             try {
                 AddressConverter(MainNet()).convert(address)
                 return true
-            } catch (e: AddressFormatException) {
+            } catch (e: Exception) {
                 System.err.println(e.message)
                 return false
             }
