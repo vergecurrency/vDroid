@@ -234,6 +234,10 @@ class WalletClient : WalletClientInterface {
         }
     }
 
+    override fun createTxProposal(proposal: TxProposal, completion : TxProposalCompletion) {
+        super.createTxProposal(proposal, completion)
+    }
+
     override fun getMainAddresses(options: WalletAddressesOptions?, completion: (addresses: Array<AddressInfo>) -> Void) {
         var args: ArrayList<String> = ArrayList()
         var qs = ""
@@ -490,6 +494,8 @@ class WalletClient : WalletClientInterface {
             throw AddressToScriptException(changeAddress)
         }
     }
+
+
 
     private fun signTx(unsignedTx: UnsignedTransaction, keys: Array<HDKey>): Array<String> {
         var inputsToSign = unsignedTx.tx.inputs
