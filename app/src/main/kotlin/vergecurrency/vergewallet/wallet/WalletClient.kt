@@ -31,7 +31,7 @@ import java.security.spec.PKCS8EncodedKeySpec
 
 
 typealias URLCompletion = (data: String?, response: Void?, error: Exception?) -> Unit
-typealias TxProposalCompletion = (txp: TxProposalResponse, errorResponse: TxProposalErrorResponse, error: Exception) -> Unit
+public typealias TxProposalCompletion = (txp: TxProposalResponse, errorResponse: TxProposalErrorResponse, error: Exception) -> Unit
 
 class WalletClient : WalletClientInterface {
 

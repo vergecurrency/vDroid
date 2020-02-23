@@ -29,13 +29,13 @@ typealias CompletionType = (txp: TxProposalResponse?, errorResponse: TxProposalE
         this.completion = completion
 
         // Publish the tx proposal and start the sequence.
-        wClient.publishTxProposal( txp, completionHandler(null,null,null))
+        wClient.publishTxProposal( txp, completionHandler)
     }
 
     private fun progress(txp: TxProposalResponse) {
         previousTxp = txp
         when (step) {
-            Step.sign ->return  wClient.signTxProposal( txp, completionHandler())
+            Step.sign ->return  wClient.signTxProposal( txp, completionHandler(null, null,null ))
             Step.broadcast ->return wClient.broadcastTxProposal(txp, completionHandler())
             else -> completionHandler(null, null, Exception("whoops"))
         }
