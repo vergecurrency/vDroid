@@ -9,7 +9,10 @@ import vergecurrency.vergewallet.wallet.int.WalletClientInterface
 internal class TxTransponderTest {
 
 
-
+    fun testCreateATransactionProposal() {
+        val walletClient = TxTransponderTest1WalletClient()
+        val TxTransponder = TxTransponder(walletClient)
+    }
 
 
 
@@ -19,7 +22,7 @@ internal class TxTransponderTest {
 
 
     open class TxTransponderTest1WalletClient: WalletClientMock() {
-        override fun createTxProposal(proposal: TxProposal, completion: (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Void) {
+        override fun createTxProposal(proposal: TxProposal, completion: (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Unit) {
             var responseJson = "{\"walletM\":1,\"outputs\":[{\"message\":null,\"toAddress\":\"DMTtEgS4JecxRhdTABPsgDJizPMAuTZFeU\"," +
             "\"stealth\":false,\"amount\":10000000}],\"fee\":100000,\"coin\":\"xvg\",\"actions\":[],\"walletId\":\"fbd0c3d0-465c-4f4e-a890-d0e4bdb606e0\"," +
                     "\"id\":\"b0aa5392-2e16-4dd6-a83a-80bff0dae927\",\"payProUrl\":null,\"feeLevel\":\"normal\",\"version\":3,\"message\":null,\"walletN\":1," +

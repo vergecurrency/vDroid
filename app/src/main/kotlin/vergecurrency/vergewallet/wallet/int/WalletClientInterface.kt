@@ -13,10 +13,10 @@ interface WalletClientInterface {
     fun  getTxHistory(skip: Int? = null, limit: Int? = null, completion:  (_txs : Array<TxHistory>) -> Void) {}
     fun  getUnspentOutputs(address: String? = null, completion:  (_addresses : Array<UnspentOutput>) -> Void) {}
     fun  getSendMaxInfo(completion:  (SendMaxInfo?) -> Void) {}
-    fun  createTxProposal(proposal: TxProposal, completion:  (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Void) {}
-    fun  publishTxProposal(txp: TxProposalResponse, completion:  (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Void) {}
-    fun  signTxProposal(txp: TxProposalResponse, completion:  (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Void) {}
-    fun  broadcastTxProposal(txp: TxProposalResponse, completion:  (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Void) {}
+    fun  createTxProposal(proposal: TxProposal, completion:  (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Unit) {}
+    fun  publishTxProposal(txp: TxProposalResponse, completion:  (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Unit) {}
+    fun  signTxProposal(txp: TxProposalResponse, completion:  (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Unit) {}
+    fun  broadcastTxProposal(txp: TxProposalResponse, completion:  (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Unit) {}
     fun  rejectTxProposal(txp: TxProposalResponse, completion:  (Exception?) -> Void) {}
     fun  deleteTxProposal(txp: TxProposalResponse, completion:  (Exception?) -> Void) {}
     fun  getTxProposals(completion:  (_response : Array<TxProposalResponse>, Exception?) -> Void) {}
