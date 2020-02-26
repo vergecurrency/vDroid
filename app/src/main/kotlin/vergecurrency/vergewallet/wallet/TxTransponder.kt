@@ -13,7 +13,6 @@ typealias CompletionType = (txp: TxProposalResponse?, errorResponse: TxProposalE
         publish(0),
         sign(1),
         broadcast(2)
-
     }
 
     private var wClient = walletClient
@@ -29,14 +28,14 @@ typealias CompletionType = (txp: TxProposalResponse?, errorResponse: TxProposalE
         this.completion = completion
 
         // Publish the tx proposal and start the sequence.
-        wClient.publishTxProposal( txp, completionHandler)
+        wClient.publishTxProposal( txp, ::completionHandler)
     }
 
     private fun progress(txp: TxProposalResponse) {
         previousTxp = txp
         when (step) {
-            Step.sign ->return  wClient.signTxProposal( txp, completionHandler(null, null,null ))
-            Step.broadcast ->return wClient.broadcastTxProposal(txp, completionHandler())
+            Step.sign ->return  wClient.signTxProposal( txp, ::completionHandler)
+            Step.broadcast ->return wClient.broadcastTxProposal(txp, ::completionHandler)
             else -> completionHandler(null, null, Exception("whoops"))
         }
     }
@@ -49,7 +48,7 @@ typealias CompletionType = (txp: TxProposalResponse?, errorResponse: TxProposalE
         }
     }
 
-    private fun completionHandler(txp: TxProposalResponse?,errorResponse: TxProposalErrorResponse?,error: Exception?) {
+    private fun completionHandler(txp: TxProposalResponse?,errorResponse: TxProposalErrorResponse?,error: Exception?)  {
         (errorResponse as? TxProposalErrorResponse)?.let { errorResponse ->
             completion(previousTxp,errorResponse,error)
             return

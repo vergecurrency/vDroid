@@ -42,7 +42,7 @@ internal class TxTransponderTest {
     }
 
     class TxTransponderTest2WalletClient: WalletClientMock() {
-        override fun createTxProposal(proposal: TxProposal, completion: (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Void) {
+        override fun createTxProposal(proposal: TxProposal, completion:  TxProposalCompletion) {
             var responseJson = "{\"message\":\"Invalid address\",\"code\":\"INVALID_ADDRESS\"}"
             var response = TxProposalErrorResponse.decode(responseJson)
 
@@ -51,7 +51,7 @@ internal class TxTransponderTest {
     }
 
     class TxTransponderTest3WalletClient: TxTransponderTest1WalletClient() {
-        override fun publishTxProposal(txp: TxProposalResponse, completion: (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Void) {
+        override fun publishTxProposal(txp: TxProposalResponse, completion: TxProposalCompletion) {
             var responseJson = "{\"walletM\":1,\"version\":3,\"fee\":100000,\"requiredRejections\":1,\"" +
             "creatorName\":\"{\\\"iv\\\":\\\"eB2o+MVCryZtGlx5DuXY9A==\\\",\\\"v\\\":1,\\\"iter\\\":1,\\\"ks\\\":128,\\\"ts\\\":64,\\\"mode\\\":\\\"ccm\\\",\\\"adata\\\":\\\"\\\",\\\"cipher\\\":\\\"aes\\\",\\\"ct\\\":\\\"1P2zc0PomM9GfWQDkZ4Aleyn4Q==\\\"}\"," +
                     "\"walletN\":1,\"id\":\"b7b96d6d-e5ef-4026-9397-68cac55307fe\",\"changeAddress\":{\"path\":\"m\\/1\\/3\",\"version\":\"1.0.0\",\"coin\":\"xvg\"," +
@@ -73,7 +73,7 @@ internal class TxTransponderTest {
                 completion(response, null, null)
             }
 
-        override fun signTxProposal(txp: TxProposalResponse, completion: (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Void) {
+        override fun signTxProposal(txp: TxProposalResponse, completion: TxProposalCompletion) {
             var responseJson = "{\"payProUrl\":null,\"requiredRejections\":1,\"coin\":\"xvg\",\"excludeUnconfirmedUtxos\":false," +
             "\"creatorId\":\"8830a04d48c0dcded327806fc903b0f9b5ada46d9a12e0796da40b80e5a2b72c\",\"id\":\"e72711ed-4ada-4ee3-9d60-deb2ed052f39\"," +
                     "\"inputs\":[{\"publicKeys\":[\"031a661e0ee71dc72abcfe37d069bcf41b88448f6955ac75fdc4c6c9ea44480098\"],\"satoshis\":10100000," +
@@ -99,7 +99,7 @@ internal class TxTransponderTest {
                 completion(response, null, null)
             }
 
-        override fun broadcastTxProposal(txp: TxProposalResponse, completion: (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Void) {
+        override fun broadcastTxProposal(txp: TxProposalResponse, completion: TxProposalCompletion) {
             var responseJson = "{\"outputOrder\":[0,1],\"excludeUnconfirmedUtxos\":false,\"creatorName\":\"{\\\"iv\\\":\\\"eB2o+MVCryZtGlx5DuXY9A==\\\",\\\"v\\\":1,\\\"iter\\\":1,\\\"ks\\\":128,\\\"ts\\\":64,\\\"mode\\\":\\\"ccm\\\",\\\"adata\\\":\\\"\\\",\\\"cipher\\\":\\\"aes\\\",\\\"ct\\\":\\\"1P2zc0PomM9GfWQDkZ4Aleyn4Q==\\\"}\"," +
             "\"derivationStrategy\":\"BIP44\",\"requiredSignatures\":1,\"outputs\":[{\"amount\":10000000,\"toAddress\":\"D5L9sbg1RMPS8yuVpw6jA3Cc1CpYH1shgk\"," +
                     "\"message\":null,\"stealth\":false}],\"status\":\"broadcasted\",\"inputs\":[{\"publicKeys\":[\"031a661e0ee71dc72abcfe37d069bcf41b88448f6955ac75fdc4c6c9ea44480098\"]," +
@@ -142,10 +142,10 @@ internal class TxTransponderTest {
         override fun  getTxHistory(skip: Int?, limit: Int?, completion:  (_txs : Array<TxHistory>) -> Void) {}
         override fun  getUnspentOutputs(address: String?, completion:  (_addresses : Array<UnspentOutput>) -> Void) {}
         override fun  getSendMaxInfo(completion:  (SendMaxInfo?) -> Void) {}
-        override fun  createTxProposal(proposal: TxProposal, completion:  (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Void) {}
-        override fun  publishTxProposal(txp: TxProposalResponse, completion:  (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Void) {}
-        override fun  signTxProposal(txp: TxProposalResponse, completion:  (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Void) {}
-        override fun  broadcastTxProposal(txp: TxProposalResponse, completion:  (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Void) {}
+        override fun  createTxProposal(proposal: TxProposal, completion: TxProposalCompletion) {}
+        override fun  publishTxProposal(txp: TxProposalResponse, completion: TxProposalCompletion) {}
+        override fun  signTxProposal(txp: TxProposalResponse, completion: TxProposalCompletion) {}
+        override fun  broadcastTxProposal(txp: TxProposalResponse, completion: TxProposalCompletion) {}
         override fun  rejectTxProposal(txp: TxProposalResponse, completion:  (Exception?) -> Void) {}
         override fun  deleteTxProposal(txp: TxProposalResponse, completion:  (Exception?) -> Void) {}
         override fun  getTxProposals(completion:  (_response : Array<TxProposalResponse>, Exception?) -> Void) {}
