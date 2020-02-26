@@ -29,6 +29,7 @@ typealias CompletionType = (txp: TxProposalResponse?, errorResponse: TxProposalE
 
         // Publish the tx proposal and start the sequence.
         wClient.publishTxProposal( txp, ::completionHandler)
+
     }
 
     private fun progress(txp: TxProposalResponse) {
