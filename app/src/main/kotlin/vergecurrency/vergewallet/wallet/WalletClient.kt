@@ -10,6 +10,7 @@ import io.horizontalsystems.bitcoinkit.transactions.scripts.Script
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter
 import io.horizontalsystems.bitcoinkit.utils.HashUtils
 import io.horizontalsystems.hdwalletkit.HDKey
+import io.horizontalsystems.hdwalletkit.HDKeyDerivation
 import io.horizontalsystems.hdwalletkit.HDPublicKey
 import io.realm.Realm
 import io.realm.RealmList
@@ -21,6 +22,7 @@ import vergecurrency.vergewallet.helpers.utils.ValidationUtils
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.WatchRequestCredentials
 import vergecurrency.vergewallet.service.model.wallet.*
+import vergecurrency.vergewallet.wallet.int.WalletClientInterface
 import java.net.URI
 import java.net.URISyntaxException
 import java.nio.charset.Charset
@@ -30,9 +32,9 @@ import java.security.spec.PKCS8EncodedKeySpec
 
 
 typealias URLCompletion = (data: String?, response: Void?, error: Exception?) -> Unit
-typealias TxProposalCompletion = (txp: TxProposalResponse, errorResponse: TxProposalErrorResponse, error: Exception) -> Unit
+public typealias TxProposalCompletion = (txp: TxProposalResponse?, errorResponse: TxProposalErrorResponse?, error: Exception?) -> Unit
 
-class WalletClient {
+class WalletClient : WalletClientInterface {
 
 
     var sjcl: SJCL
@@ -50,7 +52,7 @@ class WalletClient {
         get() = ""
 
 
-    fun resetServiceUrl(baseUrl: String) {
+    override fun resetServiceUrl(baseUrl: String) {
 
     }
 
@@ -104,7 +106,7 @@ class WalletClient {
 
     //Interact with wallet
 
-    fun createWallet(walletName: String, copayerName: String, m: Int, n: Int, options: WalletOptions?, completion: (error: Exception?, secret: String?) -> Void) {
+    override fun createWallet(walletName: String, copayerName: String, m: Int, n: Int, options: WalletOptions?, completion: (error: Exception?, secret: String?) -> Void) {
 
         val encWalletName = encryptMessage(walletName, credentials.sharedEncryptingKey!!)
 
@@ -138,7 +140,7 @@ class WalletClient {
 
     }
 
-    fun joinWallet(walletIdentifier: String, completion: (exception: Exception?) -> Void) {
+    override fun joinWallet(walletIdentifier: String, completion: (exception: Exception?) -> Void) {
         val xPubKey = credentials.publicKey.publicKey.contentToString()
         val requestPubKey = credentials.requestPrivateKey.pubKey
 
@@ -178,7 +180,7 @@ class WalletClient {
         }
     }
 
-    fun openWallet(completion: (exception: Exception?) -> Void) {
+    override fun openWallet(completion: (exception: Exception?) -> Void) {
         getRequest("/v2/wallets/?includeExtendedInfo=1") { data, _, error ->
             if (data == null) {
                 print(error!!)
@@ -194,13 +196,13 @@ class WalletClient {
 
     //Interact with wallet addresses
 
-    fun scanAddresses(completion: (error: Exception) -> Void) {
+    override fun scanAddresses(completion: (error: Exception?) -> Void) {
         postRequest("/v1/addresses/scan", null) { _, _, error ->
             completion(error!!)
         }
     }
 
-    fun createAddresses(completion: (error: Exception?, address: AddressInfo?, createAddressErrorResponse: CreateAddressErrorResponse?) -> Void) {
+    override fun createAddress(completion: (error: Exception?, address: AddressInfo?, createAddressErrorResponse: CreateAddressErrorResponse?) -> Void) {
         postRequest("/v4/addresses", null) { data, _, error ->
             if (data == null) {
                 completion(error, null, null)
@@ -233,7 +235,11 @@ class WalletClient {
         }
     }
 
-    fun getMainAddresses(options: WalletAddressesOptions? = null, completion: (addresses: Array<AddressInfo>) -> Void) {
+    override fun createTxProposal(proposal: TxProposal, completion : TxProposalCompletion) {
+        super.createTxProposal(proposal, completion)
+    }
+
+    override fun getMainAddresses(options: WalletAddressesOptions?, completion: (addresses: Array<AddressInfo>) -> Void) {
         var args: ArrayList<String> = ArrayList()
         var qs = ""
 
@@ -267,7 +273,7 @@ class WalletClient {
 
     //Wallet info methods
 
-    fun getBalance(completion: (error: Exception?, balanceInfo: WalletBalanceInfo?) -> Void) {
+    override fun getBalance(completion: (error: Exception?, balanceInfo: WalletBalanceInfo?) -> Void) {
         getRequest("/v1/balance") { data, _, error ->
             if (data == null) {
                 completion(error!!, null)
@@ -283,7 +289,7 @@ class WalletClient {
     }
 
 
-    fun getTxHistory(skip: Int? = null, limit: Int? = null, completion: (transactions: Array<TxHistory>) -> Void) {
+    override fun getTxHistory(skip: Int?, limit: Int? , completion: (transactions: Array<TxHistory>) -> Void) {
 
         var url = "/v1/txhistory/?includeExtendedInfo=1"
         if (skip != null && limit != null) {
@@ -316,11 +322,11 @@ class WalletClient {
     }
 
     //TODO : But Not Today
-    fun getUnspentOutputs(address: String? = null, completion: (unspentOutputs: Array<UnspentOutput>) -> Void) {
+    override fun getUnspentOutputs(address: String?, completion: (unspentOutputs: Array<UnspentOutput>) -> Void) {
         //  getRequest("/v1/utxos/",  null)
     }
 
-    fun getSendMaxInfo(completion: (sendMaxInfo: SendMaxInfo?) -> Void) {
+    override fun getSendMaxInfo(completion: (sendMaxInfo: SendMaxInfo?) -> Void) {
         getRequest("/v1/sendmaxinfo") { data, _, _ ->
             if (data != null) {
                 completion(try {
@@ -489,6 +495,8 @@ class WalletClient {
             throw AddressToScriptException(changeAddress)
         }
     }
+
+
 
     private fun signTx(unsignedTx: UnsignedTransaction, keys: Array<HDKey>): Array<String> {
         var inputsToSign = unsignedTx.tx.inputs
