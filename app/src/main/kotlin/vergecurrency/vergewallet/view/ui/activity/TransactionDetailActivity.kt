@@ -41,7 +41,7 @@ class TransactionDetailActivity : BaseActivity(), View.OnClickListener {
 
 
         transactionShort.text = String.format("%s******", tx!!.address!!.substring(0, 6))
-        transactionTime.text = TransactionUtils.toFormattedDate(tx!!.time)
+        transactionTime.text = TransactionUtils.toFormattedDate(tx!!.time, applicationContext)
 
         //Green or red amount +/-
         if (tx!!.isReceive) {
