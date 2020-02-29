@@ -4,14 +4,14 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
-    ndkVersion "21.0.6113669"
+    ndkVersion '21.0.6113669'
     defaultConfig {
-        applicationId "vergecurrency.vergewallet"
+        applicationId 'vergecurrency.vergewallet'
         minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionName '1.0'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
         release {
@@ -39,9 +39,9 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    implementation "org.jetbrains.kotlin:kotlin-reflect"
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
 
     //ugh, java
     implementation 'com.google.android.material:material:1.1.0'
@@ -93,7 +93,7 @@ dependencies {
     implementation 'com.eclipsesource.j2v8:j2v8:6.0.0@aar'
     //crypto libraries
     implementation 'com.madgag.spongycastle:core:1.58.0.0'
-    implementation "androidx.security:security-crypto:1.0.0-alpha02"
+    implementation 'androidx.security:security-crypto:1.0.0-alpha02'
 
     //biometric
     implementation 'androidx.biometric:biometric:1.0.1'
@@ -107,7 +107,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    testImplementation "org.jetbrains.kotlin:kotlin-test"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit"
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
 
 }
