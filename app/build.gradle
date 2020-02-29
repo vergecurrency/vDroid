@@ -43,20 +43,20 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect"
 
     //ugh, java
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.media:media:1.1.0'
-    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     //QR Reader implementation included in play services
     implementation 'com.google.android.gms:play-services-vision:19.0.0'
 
     //Logging
-    implementation 'org.slf4j:slf4j-api:1.7.25'
-    implementation 'org.slf4j:slf4j-android:1.7.25'
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+    implementation 'org.slf4j:slf4j-android:1.7.30'
     //QRCode library
     implementation  'com.github.kenglxn.QRGen:android:2.5.0'
     //HTTP Client library : Sorry but OkHttp is complete bullshit.
@@ -85,11 +85,11 @@ dependencies {
     implementation 'com.github.Samourai-Wallet:Tor-Onion-Proxy-Library:0.0.5'
 
     //Gson
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.code.gson:gson:2.8.6'
     //keypad library
     implementation 'com.github.davidmigloz:number-keyboard:3.0.0'
     //JS engine
-    implementation 'com.eclipsesource.j2v8:j2v8:5.0.103@aar'
+    implementation 'com.eclipsesource.j2v8:j2v8:6.0.0@aar'
     //crypto libraries
     implementation 'com.madgag.spongycastle:core:1.58.0.0'
     implementation "androidx.security:security-crypto:1.0.0-alpha02"
@@ -98,8 +98,8 @@ dependencies {
     implementation 'androidx.biometric:biometric:1.0.1'
 
     //test suites
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
     testImplementation 'org.testng:testng:6.9.6'
 
 
