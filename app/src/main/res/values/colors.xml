@@ -19,12 +19,12 @@
     <color name="verge_white">#F9F5F2</color>
 
     <!--colors for light theme -->
-    <color name="primaryDark_lt">#112034</color>
-    <color name="primaryLight_lt">#37BCE1</color>
-    <color name="secondaryDark_lt">#183C54</color>
-    <color name="secondaryLight_lt">#637885</color>
-    <color name="backgroundBlue_lt">#DCEFFC</color>
-    <color name="backgroundGrey_lt">#F8F7F7</color>
+    <color name="primaryDark_lt">#112134</color>
+    <color name="primaryLight_lt">#37BDE2</color>
+    <color name="secondaryDark_lt">#193D55</color>
+    <color name="secondaryLight_lt">#647886</color>
+    <color name="backgroundBlue_lt">#DCF0FD</color>
+    <color name="backgroundGrey_lt">#f8f7f7</color>
     <color name="backgroundWhite_lt">#FFF</color>
 
     <color name="separatorColor_lt">#FFD8D8E5</color>
@@ -46,7 +46,7 @@
 
     <!--colors for dark theme -->
     <color name="primaryDark_dt">#dceffc</color>
-    <color name="primaryLight_dt">#37bce1</color>
+    <color name="primaryLight_dt">#37BDE2</color>
     <color name="secondaryDark_dt">#f8f7f7</color>
     <color name="secondaryLight_dt">#738fa0</color>
     <color name="backgroundBlue_dt">#113354</color>
