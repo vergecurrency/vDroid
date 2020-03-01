@@ -1,6 +1,7 @@
 package vergecurrency.vergewallet.wallet
 
 
+import io.horizontalsystems.bitcoinkit.exceptions.AddressFormatException
 import io.horizontalsystems.bitcoinkit.network.MainNet
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter
 import java.util.*
@@ -63,7 +64,7 @@ class AddressValidator {
             try {
                 AddressConverter(MainNet()).convert(address)
                 return true
-            } catch (e: Exception) {
+            } catch (e: AddressFormatException) {
                 System.err.println(e.message)
                 return false
             }

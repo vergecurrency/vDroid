@@ -2,15 +2,12 @@ package vergecurrency.vergewallet.view.ui.activity.firstlaunch
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Spanned
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.text.HtmlCompat
-
-import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.view.base.BaseActivity
 
 class FirstLaunchActivity : BaseActivity() {
 
@@ -45,7 +42,7 @@ class FirstLaunchActivity : BaseActivity() {
         }
     }
 
-    private fun restoreWalletOnClickListener():View.OnClickListener {
+    private fun restoreWalletOnClickListener(): View.OnClickListener {
         return View.OnClickListener {
             //HERE TOO YOU ASSHOLE OF A DEV
         }

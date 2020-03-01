@@ -83,7 +83,7 @@ class TransactionListItem(private val tx: Transaction) : TransactionItem, View.O
         } else {
             vh.txAddress!!.text = tx.account
         }
-        vh.txDateTime!!.setText(toFormattedDate(tx.time))
+        vh.txDateTime!!.setText(toFormattedDate(tx.time, view.context))
         return vh;
     }
 

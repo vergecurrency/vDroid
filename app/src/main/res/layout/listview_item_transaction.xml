@@ -16,8 +16,9 @@
 
         <ImageView
             android:id="@+id/listview_transaction_item_icon"
-            android:layout_width="40dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.2"
             android:adjustViewBounds="true"
             android:backgroundTint="?vg_backgroundGrey"
             android:padding="5dp"
@@ -25,8 +26,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
             android:backgroundTint="?vg_backgroundGrey"
             android:orientation="vertical">
 
@@ -34,11 +35,11 @@
                 android:id="@+id/listview_transaction_item_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:backgroundTint="?vg_backgroundGrey"
                 android:gravity="center_vertical"
                 android:textColor="?vg_primaryDark"
-                android:textSize="@dimen/text_smaller_size" />
+                android:textSize="@dimen/text_smaller_size"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/listview_transaction_item_datetime"
@@ -47,23 +48,21 @@
                 android:backgroundTint="?vg_backgroundGrey"
                 android:gravity="bottom"
                 android:textColor="?vg_primaryDark"
-                android:textSize="12sp" />
+                android:textSize="@dimen/text_smallest_size" />
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/listview_transaction_item_amount"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.7"
             android:backgroundTint="?vg_backgroundGrey"
             android:gravity="end"
             android:paddingRight="8dp"
             android:textAlignment="viewEnd"
             android:textColor="?vg_primaryDark"
-            android:textStyle="bold"
             android:textSize="@dimen/text_smaller_size" />
-
-
     </LinearLayout>
 </LinearLayout>
