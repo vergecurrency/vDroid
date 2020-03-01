@@ -78,4 +78,3 @@ typealias CompletionType = (txp: TxProposalResponse?, errorResponse: TxProposalE
     }
 }
 
-}
