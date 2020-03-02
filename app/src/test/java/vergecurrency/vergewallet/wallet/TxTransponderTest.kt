@@ -5,21 +5,134 @@ import org.junit.jupiter.api.Assertions.*
 import vergecurrency.vergewallet.service.model.WatchRequestCredentials
 import vergecurrency.vergewallet.service.model.wallet.*
 import vergecurrency.vergewallet.wallet.int.WalletClientInterface
+import kotlin.system.exitProcess
 
 internal class TxTransponderTest {
 
 
     fun testCreateATransactionProposal() {
-        val walletClient = TxTransponderTest1WalletClient()
-        val TxTransponder = TxTransponder(walletClient)
+        var walletClient = TxTransponderTest1WalletClient()
+        var transponder = TxTransponder(walletClient)
+
+        var proposal = TxProposal().apply {
+            address = "DMTtEgS4JecxRhdTABPsgDJizPMAuTZFeU"
+            amount = 10.0
+            message = "OH BOY WHERE'S SWEN?"
+        }
+
+        transponder.create(proposal) { txp, txerror, error ->
+            assertNotNull(txp)
+
+            if (txp == null) {
+                exitProcess(-1)
+            }
+
+            assertEquals(txp.network, "livenet")
+            assertEquals(txp.coin, "xvg")
+            assertEquals(txp.fee, 100000)
+            assertEquals(txp.amount, 10000000)
+            assertEquals(txp.outputs!!.first(). isStealth, false)
+            assertEquals(txp.outputs!!.first(). amount, 10000000)
+            assertEquals(txp.outputs!!.first(). toAddress, "DMTtEgS4JecxRhdTABPsgDJizPMAuTZFeU")
+            assertEquals(txp.inputs!!.first(). satoshis, 10100000)
+            assertEquals(txp.inputs!!.first(). address, "DAjo2HJRR2kSi3yvxQyhLTrFWobfnJnbxc")
+            assertEquals(txp.inputs!!.first(). path, "m/0/8")
+            assertEquals(txp.inputs!!.first(). confirmations, 78174)
+        }
     }
 
 
+    fun testCreatingATransactionProposalWithAInvalidAddress() {
+        var walletClient = TxTransponderTest2WalletClient()
+        var transponder = TxTransponder(walletClient)
+
+        var proposal = TxProposal().apply{
+            address = "sdokdsoijdsoijsd"
+            amount = 10.0
+            message=  "SWEN YOU'RE AMAZING"
+        }
+
+        transponder.create(proposal) { txp, txerror, error ->
+            assertNull(txp)
+            assertNotNull(txerror)
+
+            assertEquals(txerror!!.message, "Invalid address")
+            assertEquals(txerror!!.code, "INVALID_ADDRESS")
+        }
+    }
 
 
+    fun testSendingATransactionProposal() {
+        var walletClient = TxTransponderTest3WalletClient()
+        var transponder = TxTransponder(walletClient)
 
+        var proposal = TxProposal().apply {
+            address = "DMTtEgS4JecxRhdTABPsgDJizPMAuTZFeU"
+            amount = 10.0
+            message = "Swen, you're a beauty!"
+        }
 
+        var didPublishTxEventFired = false
+        var didSignTxEventFired = false
+        var didBroadTxEventFired = false
 
+        /*NotificationCenter.default.addObserver(forName: .didPublishTx, object: nil, queue: .main) { notification in
+                didPublishTxEventFired = true
+        }*/
+
+        /*NotificationCenter.default.addObserver(forName: .didSignTx, object: nil, queue: .main) { notification in
+                didSignTxEventFired = true
+        }*/
+
+        /*NotificationCenter.default.addObserver(forName: .didBroadcastTx, object: nil, queue: .main) { notification in
+                didBroadTxEventFired = true
+        }*/
+
+        transponder.create(proposal) { txp, txerror, error ->
+            assertNotNull(txp)
+
+            if(txp == null) {
+                exitProcess(-1)
+            }
+
+            assertEquals(txp.network, "livenet")
+            assertEquals(txp.coin, "xvg")
+            assertEquals(txp.fee, 100000)
+            assertEquals(txp.amount, 10000000)
+            assertEquals(txp.outputs!!.first().isStealth, false)
+            assertEquals(txp.outputs!!.first().amount, 10000000)
+            assertEquals(txp.outputs!!.first().toAddress, "DMTtEgS4JecxRhdTABPsgDJizPMAuTZFeU")
+            assertEquals(txp.inputs!!.first().satoshis, 10100000)
+            assertEquals(txp.inputs!!.first().address, "DAjo2HJRR2kSi3yvxQyhLTrFWobfnJnbxc")
+            assertEquals(txp.inputs!!.first().path, "m/0/8")
+            assertEquals(txp.inputs!!.first().confirmations, 78174)
+
+            transponder.send( txp) { response, response2, error ->
+                assertNull(response2)
+                assertNull(error)
+                assertTrue(didPublishTxEventFired)
+                assertTrue(didSignTxEventFired)
+                assertTrue(didBroadTxEventFired)
+                assertNotNull(response)
+
+               if(response == null) {
+                    exitProcess(-1)
+                }
+
+                assertEquals(response.network, "livenet")
+                assertEquals(response.coin, "xvg")
+                assertEquals(response.fee, 100000)
+                assertEquals(response.amount, 10000000)
+                assertEquals(response.outputs!!.first().isStealth, false)
+                assertEquals(response.outputs!!.first().amount, 10000000)
+                assertEquals(response.outputs!!.first().toAddress, "D5L9sbg1RMPS8yuVpw6jA3Cc1CpYH1shgk")
+                assertEquals(response.inputs!!.first().satoshis, 10100000)
+                assertEquals(response.inputs!!.first().address, "DQ8TVJGrVPQEYQiGMwnUvP15MdTFP8yBXJ")
+                assertEquals(response.inputs!!.first().path, "m/0/0")
+                assertEquals(response.inputs!!.first().confirmations, 28)
+            }
+        }
+    }
 
     open class TxTransponderTest1WalletClient: WalletClientMock() {
         override fun createTxProposal(proposal: TxProposal, completion: (TxProposalResponse?, TxProposalErrorResponse?, Exception?) -> Unit) {
