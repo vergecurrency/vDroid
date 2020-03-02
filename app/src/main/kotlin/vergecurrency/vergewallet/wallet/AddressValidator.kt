@@ -67,9 +67,10 @@ class AddressValidator {
             } catch (e: AddressFormatException) {
                 System.err.println(e.message)
                 return false
+            } catch(e: IllegalArgumentException) {
+                System.err.println(e.message)
+                return false
             }
-
-
         }
     }
 }
