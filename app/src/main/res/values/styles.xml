@@ -43,6 +43,8 @@
         <item name="vg_graphFadeTop">@color/graphFadeTop_lt</item>
         <item name="vg_graphFadeBottom">@color/graphFadeBottom_lt</item>
 
+        <item name="vg_receiveCard">@drawable/bg_card_receive</item>
+
     </style>
 
     <style name="MoonMode" parent="Theme.AppCompat.NoActionBar">
@@ -78,6 +80,8 @@
 
         <item name="vg_graphFadeTop">@color/graphFadeTop_dt</item>
         <item name="vg_graphFadeBottom">@color/graphFadeBottom_dt</item>
+
+        <item name="vg_receiveCard">@drawable/bg_card_receive_moon</item>
 
     </style>
 

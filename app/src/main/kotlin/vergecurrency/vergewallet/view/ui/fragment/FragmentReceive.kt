@@ -116,7 +116,14 @@ class FragmentReceive : BaseFragment() {
 
         try {
             //I will burn in hell. But fuck it it's just a bitmap
-            vQRCode.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.invertColors(ImageUtils.makeTransparent(QRCode.from(walletAddress).withHint(EncodeHintType.MARGIN, "0").withSize(175, 175).bitmap(), Color.WHITE)), 10))
+            vQRCode.setImageBitmap(
+                    ImageUtils.getRoundedCornerBitmap(
+                                    ImageUtils.makeTransparent(
+                                            QRCode.from(walletAddress).withHint(EncodeHintType.MARGIN, "0").withSize(192, 192).bitmap(), Color.BLACK
+                                    )
+                            , 10
+                    )
+            )
         } catch (ex: Exception) {
             //TODO : catch exception properly.
             println(ex.message)

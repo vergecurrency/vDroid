@@ -27,5 +27,7 @@
         <attr name="vg_graphFadeBottom" format="color|reference" />
 
         <attr name="vg_confirmGreen" format="color|reference" />
+
+        <attr name="vg_receiveCard" format="reference" />
     </declare-styleable>
 </resources>

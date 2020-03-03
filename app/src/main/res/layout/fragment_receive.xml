@@ -20,18 +20,18 @@
         <ImageView
             android:id="@+id/wallet_card_background_receive"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:adjustViewBounds="true"
             android:padding="15dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/bg_card_receive" />
+            android:src="?vg_receiveCard" />
 
         <TextView
             android:id="@+id/receive_address_card"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="175dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="150dp"
             android:text="@string/prog_placeholder"
             android:textAlignment="center"
             android:textColor="@color/verge_white"
@@ -39,14 +39,14 @@
 
         <ImageView
             android:id="@+id/qr_code_receive"
-            android:layout_width="175dp"
-            android:layout_height="175dp"
+            android:layout_width="192dp"
+            android:layout_height="192dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="58dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="50dp"
             android:adjustViewBounds="true"
-            android:background="@drawable/form_rounded_rect_white_bord"
-            android:scaleType="fitCenter" />
+
+             />
 
     </RelativeLayout>
 
@@ -55,6 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/wallet_receive_card_layout"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:orientation="horizontal">
@@ -62,6 +63,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:tint="?vg_primaryDark"
             android:src="@drawable/icon_sync" />
 
         <EditText
@@ -87,6 +89,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:tint="?vg_primaryDark"
             android:src="@drawable/icon_currency_exchange" />
 
         <EditText
@@ -112,6 +115,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:tint="?vg_primaryDark"
             android:src="@drawable/icon_stealth" />
 
         <androidx.appcompat.widget.SwitchCompat
