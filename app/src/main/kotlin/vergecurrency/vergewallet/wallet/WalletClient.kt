@@ -1,6 +1,7 @@
 package vergecurrency.vergewallet.wallet
 
 import android.content.Context
+import android.net.NetworkRequest
 import com.google.crypto.tink.subtle.Hex
 import io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType
 import io.horizontalsystems.bitcoinkit.crypto.Base58
@@ -21,6 +22,7 @@ import vergecurrency.vergewallet.helpers.utils.ArrayUtils
 import vergecurrency.vergewallet.helpers.utils.ValidationUtils
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.WatchRequestCredentials
+import vergecurrency.vergewallet.service.model.network.layers.NetworkGateway
 import vergecurrency.vergewallet.service.model.wallet.*
 import vergecurrency.vergewallet.wallet.int.WalletClientInterface
 import java.net.URI
@@ -69,6 +71,8 @@ class WalletClient : WalletClientInterface {
                 return completion(null, null, null)
             }
 
+            //var request = NetworkGateway
+
 
         } catch (e: URISyntaxException) {
             return completion(null, null, null)
@@ -101,7 +105,9 @@ class WalletClient : WalletClientInterface {
     }
 
     fun getCoPayerId(): String {
-        return ""
+        var xPubKey = credentials.publicKey.publicKey
+        var hash = sjcl.sha256Hash("xvg$xPubKey")
+        return sjcl.hexFromBits(hash)
     }
 
     //Interact with wallet
@@ -236,7 +242,43 @@ class WalletClient : WalletClientInterface {
     }
 
     override fun createTxProposal(proposal: TxProposal, completion : TxProposalCompletion) {
-        super.createTxProposal(proposal, completion)
+        var arguments = JSONObject()
+        var output = JSONObject()
+        output.put("toAddress", proposal.address!!)
+        output.put("amount", (proposal.amount * Constants.SATOSHIS_DIVIDER).toInt())
+        output.put("messagge", null)
+
+        arguments.put("outputs", output)
+        arguments.put("payProUrl", null)
+
+        if(proposal.message!!.count() > 0) {
+            arguments.put("messagge", encryptMessage(proposal.message!!, credentials.sharedEncryptingKey!!))
+        }
+
+    }
+
+    override fun publishTxProposal(txp: TxProposalResponse, completion: TxProposalCompletion) {
+        super.publishTxProposal(txp, completion)
+    }
+
+    override fun signTxProposal(txp: TxProposalResponse, completion: TxProposalCompletion) {
+        super.signTxProposal(txp, completion)
+    }
+
+    override fun broadcastTxProposal(txp: TxProposalResponse, completion: TxProposalCompletion) {
+        super.broadcastTxProposal(txp, completion)
+    }
+
+    override fun rejectTxProposal(txp: TxProposalResponse, completion: (Exception?) -> Void) {
+        super.rejectTxProposal(txp, completion)
+    }
+
+    override fun deleteTxProposal(txp: TxProposalResponse, completion: (Exception?) -> Void) {
+        super.deleteTxProposal(txp, completion)
+    }
+
+    override fun getTxProposals(completion: (_response: Array<TxProposalResponse>, Exception?) -> Void) {
+        super.getTxProposals(completion)
     }
 
     override fun getMainAddresses(options: WalletAddressesOptions?, completion: (addresses: Array<AddressInfo>) -> Void) {

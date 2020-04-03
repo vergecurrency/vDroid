@@ -12,7 +12,10 @@ import java.nio.charset.StandardCharsets
 
 class TorLayerGateway : AsyncTask<String, Int, String>() {
 
-    public override fun doInBackground(vararg strings: String): String {
+    public override fun doInBackground(vararg params: String): String {
+
+        var url = params[0]
+        var arguments = params[1]
 
         if (TorManager.initError) {
             //return ClearnetGateway().execute(strings[0]).get()
@@ -20,11 +23,11 @@ class TorLayerGateway : AsyncTask<String, Int, String>() {
         }
 
         if (TorManager.isConnected) {
-            return doRequest(strings[0])!!
+            return doRequest(url, arguments)!!
         } else return ""
     }
 
-    fun doRequest(uri: String): String? {
+    fun doRequest(uri: String, arguments : String): String? {
         try {
 
             val result = StringBuilder()
