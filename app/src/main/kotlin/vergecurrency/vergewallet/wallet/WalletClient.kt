@@ -2,6 +2,7 @@ package vergecurrency.vergewallet.wallet
 
 import android.content.Context
 import android.net.NetworkRequest
+import com.google.crypto.tink.subtle.Hex
 import io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType
 import io.horizontalsystems.bitcoinkit.crypto.Base58
 import io.horizontalsystems.bitcoinkit.models.*
@@ -14,7 +15,6 @@ import io.horizontalsystems.hdwalletkit.HDKeyDerivation
 import io.horizontalsystems.hdwalletkit.HDPublicKey
 import io.realm.Realm
 import io.realm.RealmList
-import org.bouncycastle.util.encoders.Hex
 import org.json.JSONObject
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.helpers.SJCL
