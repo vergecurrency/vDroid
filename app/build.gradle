@@ -93,7 +93,7 @@ dependencies {
     implementation 'com.eclipsesource.j2v8:j2v8:6.0.0@aar'
     //crypto libraries
     implementation 'com.madgag.spongycastle:core:1.58.0.0'
-    implementation 'androidx.security:security-crypto:1.0.0-alpha02'
+    implementation 'androidx.security:security-crypto:1.0.0-rc01'
 
     //biometric
     implementation 'androidx.biometric:biometric:1.0.1'
