@@ -4,7 +4,6 @@ import io.horizontalsystems.bitcoinkit.models.TransactionInput
 import io.horizontalsystems.bitcoinkit.models.TransactionOutPoint
 import io.horizontalsystems.bitcoinkit.models.TransactionOutput
 import org.bouncycastle.util.encoders.Hex
-import org.spongycastle.util.encoders.Hex
 import vergecurrency.vergewallet.helpers.utils.DataUtils
 
 class UnspentOutput {
