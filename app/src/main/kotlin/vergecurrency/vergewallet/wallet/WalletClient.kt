@@ -47,7 +47,6 @@ class WalletClient : WalletClientInterface {
     constructor(c: Context, creds: Credentials) {
         credentials = creds
         sjcl = SJCL(c)
-
     }
 
     private val signature: String
@@ -59,7 +58,6 @@ class WalletClient : WalletClientInterface {
     }
 
     //Private Methods
-
     private fun getRequest(url: String, completion: URLCompletion) {
         try {
             val uri = URI(String.format("%s%s", Constants.VWS_ENDPOINT, url))
@@ -120,7 +118,7 @@ class WalletClient : WalletClientInterface {
         args.put("name", encWalletName)
         //TODO : compare with Swen's lib
         args.put("pubKey", credentials.walletPrivateKey.pubKeyHash.toString())
-        args.put("m", m)
+        args.put("m", m) // m
         args.put("n", n)
         args.put("coin", "xvg")
         args.put("network", "livenet")

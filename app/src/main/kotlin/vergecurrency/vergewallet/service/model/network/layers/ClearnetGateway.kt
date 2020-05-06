@@ -13,8 +13,6 @@ import cz.msebera.android.httpclient.util.EntityUtils
 
 class ClearnetGateway : AsyncTask<String, Void, String>() {
 
-
-
     override fun doInBackground(vararg params : String ): String? {
         var url = params[0]
         var arguments = params[1]
