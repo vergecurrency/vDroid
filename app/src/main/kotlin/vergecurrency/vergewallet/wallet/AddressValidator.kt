@@ -1,9 +1,9 @@
 package vergecurrency.vergewallet.wallet
 
 
-import io.horizontalsystems.bitcoinkit.exceptions.AddressFormatException
 import io.horizontalsystems.bitcoinkit.network.MainNet
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter
+import java.lang.Float.parseFloat
 import java.util.*
 
 typealias ValidationCompletion = (valid: Boolean, address: String?, amount: Float?) -> Unit
@@ -22,7 +22,6 @@ class AddressValidator {
             valid = true
             address = string
         }
-
 
         val splitRequest = string.replace("verge://", "").replace("verge:", "").split("\\?".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
@@ -43,34 +42,23 @@ class AddressValidator {
             val parameterPair = param.split("=".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             parameters[parameterPair.first()] = parameterPair.last()
         }
-        val amountParam = parameters.get("amount")
 
+        val amountParam = parameters["amount"]
         if (amountParam != null) {
-            amount = java.lang.Float.parseFloat(amountParam);
+            amount = parseFloat(amountParam)
         }
 
         return completion(valid, address, amount)
 
     }
 
-
-    //inner struct
-    //inner class ValidationCompletion(var isValid: Boolean, var address: String, var amount: Float?)
-
-
-    companion object {
-
-        fun isValidAddress(address: String): Boolean {
-            try {
-                AddressConverter(MainNet()).convert(address)
-                return true
-            } catch (e: AddressFormatException) {
-                System.err.println(e.message)
-                return false
-            } catch(e: IllegalArgumentException) {
-                System.err.println(e.message)
-                return false
-            }
+    private fun isValidAddress(address: String): Boolean {
+        return try {
+            AddressConverter(MainNet()).convert(address)
+            true
+        } catch (e: Exception) {
+            false
         }
     }
+
 }
