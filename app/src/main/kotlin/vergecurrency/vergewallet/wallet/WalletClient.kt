@@ -1,7 +1,6 @@
 package vergecurrency.vergewallet.wallet
 
 import android.content.Context
-import android.net.NetworkRequest
 import io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType
 import io.horizontalsystems.bitcoinkit.crypto.Base58
 import io.horizontalsystems.bitcoinkit.models.*
@@ -10,7 +9,6 @@ import io.horizontalsystems.bitcoinkit.transactions.scripts.Script
 import io.horizontalsystems.bitcoinkit.utils.AddressConverter
 import io.horizontalsystems.bitcoinkit.utils.HashUtils
 import io.horizontalsystems.hdwalletkit.HDKey
-import io.horizontalsystems.hdwalletkit.HDKeyDerivation
 import io.horizontalsystems.hdwalletkit.HDPublicKey
 import io.realm.Realm
 import io.realm.RealmList
@@ -22,9 +20,8 @@ import vergecurrency.vergewallet.helpers.utils.ArrayUtils
 import vergecurrency.vergewallet.helpers.utils.ValidationUtils
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.WatchRequestCredentials
-import vergecurrency.vergewallet.service.model.network.layers.NetworkGateway
 import vergecurrency.vergewallet.service.model.wallet.*
-import vergecurrency.vergewallet.wallet.int.WalletClientInterface
+import vergecurrency.vergewallet.wallet.interfaces.WalletClientInterface
 import java.net.URI
 import java.net.URISyntaxException
 import java.nio.charset.Charset

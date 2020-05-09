@@ -1,12 +1,11 @@
 package vergecurrency.vergewallet.wallet
 
-import vergecurrency.vergewallet.service.repository.db.TransactionRepository
+import vergecurrency.vergewallet.service.repository.db.TransactionDAO
 
-class TransactionManager(private val tp: TransactionRepository) {
+class TransactionManager(private val transactionDAO: TransactionDAO) {
 
     fun hasTransactions(): Boolean {
-        //sql query address like '%%' to get every result
-        return !tp.getByAddress("%%").isEmpty()
+        return transactionDAO.hasRecords();
     }
 
 }

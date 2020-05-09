@@ -1,10 +1,8 @@
 package vergecurrency.vergewallet.wallet
 
-import org.junit.Test
 import org.junit.jupiter.api.Assertions.*
-import vergecurrency.vergewallet.service.model.WatchRequestCredentials
 import vergecurrency.vergewallet.service.model.wallet.*
-import vergecurrency.vergewallet.wallet.int.WalletClientInterface
+import vergecurrency.vergewallet.wallet.interfaces.WalletClientInterface
 import kotlin.system.exitProcess
 
 internal class TxTransponderTest {

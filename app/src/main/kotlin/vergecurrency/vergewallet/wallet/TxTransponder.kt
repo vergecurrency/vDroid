@@ -4,7 +4,7 @@ package vergecurrency.vergewallet.wallet
 import vergecurrency.vergewallet.service.model.wallet.TxProposal
 import vergecurrency.vergewallet.service.model.wallet.TxProposalErrorResponse
 import vergecurrency.vergewallet.service.model.wallet.TxProposalResponse
-import vergecurrency.vergewallet.wallet.int.WalletClientInterface
+import vergecurrency.vergewallet.wallet.interfaces.WalletClientInterface
 
 typealias CompletionType = (txp: TxProposalResponse?, errorResponse: TxProposalErrorResponse?, error: Exception?) -> Unit
 

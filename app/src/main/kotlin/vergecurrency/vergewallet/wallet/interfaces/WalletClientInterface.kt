@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.wallet.int
+package vergecurrency.vergewallet.wallet.interfaces
 
 import vergecurrency.vergewallet.service.model.wallet.*
 import vergecurrency.vergewallet.wallet.TxProposalCompletion

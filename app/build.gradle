@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -12,6 +13,11 @@ android {
         versionCode 1
         versionName '1.0'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+    // used by Room, to test migrations
+    sourceSets {
+        androidTest.assets.srcDirs +=
+                files("$projectDir/schemas".toString())
     }
     buildTypes {
         release {
@@ -34,6 +40,11 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/schemas".toString())
+        }
+    }
 }
 
 dependencies {
@@ -59,7 +70,7 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.30'
     implementation 'org.slf4j:slf4j-android:1.7.30'
     //QRCode library
-    implementation  'com.github.kenglxn.QRGen:android:2.5.0'
+    implementation 'com.github.kenglxn.QRGen:android:2.5.0'
     //HTTP Client library : Sorry but OkHttp is complete bullshit.
     implementation 'cz.msebera.android:httpclient:4.4.1.2'
     //MapBox
@@ -75,9 +86,8 @@ dependencies {
     //BitcoinKit
     implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.2.6'
     //HD Wallet Kit
+    //TODO UPDATE SPONGYCASTLE -> BOUNCYCASTLE
     implementation 'com.github.2lazy2debug:hd-wallet-kit-android:1.1.1'
-    //GreenDao
-    implementation 'org.greenrobot:greendao:3.2.2'
     //Json, not sure if used
     implementation files('src/main/libs/json-simple-1.1.1.jar')
     //I2P router library
@@ -98,6 +108,12 @@ dependencies {
     //biometric
     implementation 'androidx.biometric:biometric:1.0.1'
 
+
+    //android room
+    def room_version = "2.2.5"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
     //test suites
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
@@ -109,5 +125,6 @@ dependencies {
 
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+    testImplementation "androidx.room:room-testing:$room_version"
 
 }
