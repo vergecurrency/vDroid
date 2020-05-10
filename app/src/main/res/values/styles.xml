@@ -211,8 +211,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">?vg_whiteGeneral</item>
-        <item name="android:padding">@dimen/splash_sub_padding</item>
-        <item name="android:textSize">@dimen/text_subtitle_size</item>
+        <item name="android:textSize">@dimen/text_smallest_size</item>
     </style>
 
     <style name="splash_verge_slogan">

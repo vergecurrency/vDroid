@@ -23,14 +23,9 @@
             style="@style/splash_verge_logo" />
 
         <TextView
-            android:text="@string/splash_title"
-            style="@style/splash_verge_title" />
-
-        <TextView
             android:id="@+id/launch_verge_sub"
-            android:text="@string/first_launch_description"
-            style="@style/splash_verge_subtitle" />
-
+            style="@style/splash_verge_subtitle"
+            android:text="@string/first_launch_description" />
 
     </LinearLayout>
 
