@@ -1,6 +1,6 @@
 package vergecurrency.vergewallet.service.repository
 
-import cz.msebera.android.httpclient.client.methods.HttpPost
+import cz.msebera.android.httpclient.client.methods.HttpGet
 import org.json.JSONException
 import org.json.JSONObject
 import vergecurrency.vergewallet.Constants
@@ -10,7 +10,7 @@ object GeocodingService {
 
     fun readCoordinates(ipAddress: String): String {
 
-        var rawData: String = NetworkGateway().doRequest(HttpPost(String.format(Constants.IP_DATA_ENDPOINT, ipAddress)))
+        var rawData: String = NetworkGateway().doRequest(HttpGet(String.format(Constants.IP_DATA_ENDPOINT, ipAddress)))
 
         if (rawData != "") {
             val reader: JSONObject
