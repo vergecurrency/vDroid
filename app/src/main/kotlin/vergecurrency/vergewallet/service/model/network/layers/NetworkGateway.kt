@@ -1,17 +1,17 @@
 package vergecurrency.vergewallet.service.model.network.layers
 
+import cz.msebera.android.httpclient.client.methods.HttpRequestBase
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 
 open class NetworkGateway {
 
 
-    fun doRequest(request: String): String {
+    fun doRequest(requestBase: HttpRequestBase): String {
         var result = ""
         if (EncryptedPreferencesManager.usingTor) {
-
-            result = TorLayerGateway().execute(request).get()
+            result = TorLayerGateway(requestBase).execute().get()
         } else {
-            result = ClearnetGateway().execute(request).get()
+            result = ClearnetGateway(requestBase).execute().get()
         }
 
         return result

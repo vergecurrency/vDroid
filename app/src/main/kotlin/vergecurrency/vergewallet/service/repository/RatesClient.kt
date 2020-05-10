@@ -2,6 +2,8 @@ package vergecurrency.vergewallet.service.repository
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import cz.msebera.android.httpclient.client.methods.HttpGet
+import cz.msebera.android.httpclient.client.methods.HttpPost
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.helpers.utils.MathUtils
 import vergecurrency.vergewallet.service.model.FiatRate
@@ -15,7 +17,7 @@ object RatesClient {
     fun infoBy(currency: String): FiatRate? {
 
         return try {
-            val rawData = NetworkGateway().doRequest(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, currency))
+            val rawData = NetworkGateway().doRequest(HttpGet(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, currency)))
             FiatRate.decode(rawData)
 
         } catch (e: Exception) {
@@ -27,7 +29,7 @@ object RatesClient {
     fun readPriceStatistics(currency: String): Map<String, String> {
         var rawData: String
         try {
-            rawData = NetworkGateway().doRequest(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, currency))
+            rawData = NetworkGateway().doRequest(HttpGet(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, currency)))
         } catch (e: Exception) {
             rawData = "error"
         }

@@ -1,33 +1,28 @@
 package vergecurrency.vergewallet.service.model.network.layers
 
-import android.os.AsyncTask
-import cz.msebera.android.httpclient.client.methods.HttpGet
+import cz.msebera.android.httpclient.client.methods.HttpRequestBase
 import cz.msebera.android.httpclient.client.protocol.HttpClientContext
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.InetSocketAddress
-import java.net.URI
 import java.nio.charset.StandardCharsets
 
 
-class TorLayerGateway : AsyncTask<String, Int, String>() {
+class TorLayerGateway(requestBase: HttpRequestBase) : Gateway(requestBase) {
 
-    public override fun doInBackground(vararg params: String): String {
-
-        var url = params[0]
-        var arguments = params[1]
-
+    //TODO
+    override fun onPreExecute() {
         if (TorManager.initError) {
             //return ClearnetGateway().execute(strings[0]).get()
-            return ""
+             throw RuntimeException("Tor Manager Error")
         }
 
-        if (TorManager.isConnected) {
-            return doRequest(url, arguments)!!
-        } else return ""
+        if (!TorManager.isConnected) {
+            throw RuntimeException("Tor no connection")
+        }
     }
 
-    fun doRequest(uri: String, arguments : String): String? {
+    override fun background(vararg params: String?): String {
         try {
 
             val result = StringBuilder()
@@ -41,8 +36,7 @@ class TorLayerGateway : AsyncTask<String, Int, String>() {
 
             val httpClient = TorManager.newHttpClient
 
-            val httpGet = HttpGet(URI(uri))
-            val httpResponse = httpClient.execute(httpGet, context)
+            val httpResponse = httpClient.execute(super.requestBase, context)
             val httpEntity = httpResponse.entity
             val httpResponseStream = httpEntity.content
 
@@ -62,12 +56,7 @@ class TorLayerGateway : AsyncTask<String, Int, String>() {
             //TODO : Catch exception properly
             ex.printStackTrace()
             return ""
-        }
-    }
-
-    override fun onPreExecute() {
-
-    }
+        }    }
 
     override fun onPostExecute(result: String) {
 
