@@ -59,6 +59,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/send_balance_qr_icon"
+            android:tint="?vg_primaryDark"
             android:src="@drawable/icon_qrcode" />
 
         <EditText
@@ -82,6 +83,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:tint="?vg_primaryDark"
             android:src="@drawable/icon_currency_exchange" />
 
         <EditText
