@@ -8,7 +8,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.omega_r.libs.OmegaCenterIconButton
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.view.base.BaseActivity
@@ -29,7 +29,7 @@ class PassphraseValidationActivity : BaseActivity() {
 
         passphraseToValidate = intent.getStringExtra("passphrase")
 
-        mViewModel = ViewModelProviders.of(this).get(PassphraseVerificationViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(PassphraseVerificationViewModel::class.java)
 
         initComponents()
     }

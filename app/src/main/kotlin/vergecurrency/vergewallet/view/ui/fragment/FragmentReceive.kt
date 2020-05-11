@@ -14,7 +14,7 @@ import android.view.ViewGroup
 import android.widget.*
 import android.widget.CompoundButton.OnCheckedChangeListener
 import androidx.appcompat.widget.SwitchCompat
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.google.zxing.EncodeHintType
 import com.omega_r.libs.OmegaCenterIconButton
 import net.glxn.qrgen.android.QRCode
@@ -38,7 +38,7 @@ class FragmentReceive : BaseFragment() {
                               savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_receive, container, false)
 
-        mViewModel = ViewModelProviders.of(this).get(ReceiveFragmentViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(ReceiveFragmentViewModel::class.java)
         val recAddress = mViewModel!!.receiveAddress
         initElements(rootView, recAddress)
         setListeners()

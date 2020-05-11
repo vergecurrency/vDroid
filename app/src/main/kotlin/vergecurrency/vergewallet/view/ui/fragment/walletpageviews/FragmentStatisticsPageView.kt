@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ListView
 
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.NetworkUtils
@@ -24,7 +24,7 @@ class FragmentStatisticsPageView : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this).get(StatisticsViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(StatisticsViewModel::class.java)
 
         if (rootView == null) {
 

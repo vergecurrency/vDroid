@@ -8,7 +8,7 @@ import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 
 import com.davidmiguel.numberkeyboard.NumberKeyboard
 import com.davidmiguel.numberkeyboard.NumberKeyboardListener
@@ -32,7 +32,7 @@ class PinPromptActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         nextView = intent.getStringExtra("nextView")
-        mViewModel = ViewModelProviders.of(this).get(PinPromptedViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(PinPromptedViewModel::class.java)
 
         setContentView(R.layout.activity_pin_prompt)
         initComponents()

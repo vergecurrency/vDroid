@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 
-import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 
 import vergecurrency.vergewallet.R
@@ -24,7 +24,7 @@ class FragmentWallet : BaseFragment() {
                               savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(this).get(WalletFragmentViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(WalletFragmentViewModel::class.java)
 
         currencyCode = mViewModel!!.currencyCode
 

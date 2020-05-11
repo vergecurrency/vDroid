@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_tor_settings.*
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -34,7 +34,7 @@ class TorSettingsActivity : BaseActivity() {
 
         Configuration.getInstance().load(applicationContext, PreferencesManager.preferences);
 
-        mViewModel = ViewModelProviders.of(this).get(TorSettingsViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(TorSettingsViewModel::class.java)
 
         //Get a handler to execute stuff only after setting the content view
         val handler = Handler()

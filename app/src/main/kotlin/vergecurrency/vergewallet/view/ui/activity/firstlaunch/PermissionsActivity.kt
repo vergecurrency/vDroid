@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_permissions.*
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.PermissionsUtils
@@ -32,7 +32,7 @@ class PermissionsActivity : BaseActivity() {
 
         initComponents()
 
-        mViewModel = ViewModelProviders.of(this).get(PermissionsViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(PermissionsViewModel::class.java)
     }
 
     private fun initPermissionConstructs(): ArrayList<PermissionConstruct> {

@@ -84,8 +84,8 @@
             android:id="@+id/wallet_transactions_title"
             style="@style/transaction_fragment_title"
             android:text="@string/title_transactions" />
-        <ListView
-            android:id="@+id/transactions_listview"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_transactions_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="210dp"

@@ -2,7 +2,7 @@ package vergecurrency.vergewallet.view.ui.activity.settings
 
 import android.os.Bundle
 import android.widget.ListView
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.view.adapter.CurrenciesAdapter
 import vergecurrency.vergewallet.view.base.BaseActivity
@@ -15,7 +15,7 @@ class ChooseCurrencyActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_currency_change)
 
-        val mViewModel = ViewModelProviders.of(this).get(SelectCurrencyViewModel::class.java)
+        val mViewModel = ViewModelProvider(this).get(SelectCurrencyViewModel::class.java)
 
         val currenciesList = findViewById<ListView>(R.id.activity_select_currency_listview)
         currenciesList.adapter = CurrenciesAdapter(this, mViewModel.currencies!!)

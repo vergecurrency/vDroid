@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 
-import androidx.lifecycle.ViewModelProviders
 
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.view.base.BaseFragment
@@ -42,7 +42,7 @@ class FragmentSend : BaseFragment {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val mViewModel = ViewModelProviders.of(this).get(SendFragmentViewModel::class.java)
+        val mViewModel = ViewModelProvider(this).get(SendFragmentViewModel::class.java)
 
         // Inflate the layout for this fragment
 

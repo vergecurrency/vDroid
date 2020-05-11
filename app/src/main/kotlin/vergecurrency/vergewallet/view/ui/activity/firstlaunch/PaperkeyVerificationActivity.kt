@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.MathUtils
@@ -48,7 +48,7 @@ class PaperkeyVerificationActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paperkey_confirm_seed)
 
-        mViewModel = ViewModelProviders.of(this).get(PaperkeyVerificationViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(PaperkeyVerificationViewModel::class.java)
 
         //Get the shared preferences
 

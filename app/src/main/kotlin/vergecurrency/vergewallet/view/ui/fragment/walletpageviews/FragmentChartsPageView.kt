@@ -9,7 +9,7 @@ import android.widget.GridLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.github.mikephil.charting.charts.CombinedChart
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
@@ -35,7 +35,7 @@ class FragmentChartsPageView : Fragment() {
         super.onCreate(savedInstanceState)
 
         rootView = inflater.inflate(R.layout.fragment_pageview_charts, container, false)
-        mViewModel = ViewModelProviders.of(this).get(ChartsViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(ChartsViewModel::class.java)
 
         initComponents()
 

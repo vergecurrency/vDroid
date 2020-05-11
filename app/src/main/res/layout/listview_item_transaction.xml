@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/listview_transaction_id"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:backgroundTint="?vg_backgroundGrey"
     android:orientation="horizontal">
-
     <LinearLayout
         android:id="@+id/listview_transaction_item"
         android:layout_width="match_parent"

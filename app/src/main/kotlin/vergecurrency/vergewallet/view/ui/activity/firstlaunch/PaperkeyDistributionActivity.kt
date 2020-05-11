@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.viewmodel.PaperkeyDistributionViewModel
@@ -31,7 +31,7 @@ class PaperkeyDistributionActivity : BaseActivity() {
         setContentView(R.layout.activity_paperkey_seed)
 
         //learn it and shut up
-        mViewModel = ViewModelProviders.of(this).get(PaperkeyDistributionViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(PaperkeyDistributionViewModel::class.java)
 
         initComponents()
 

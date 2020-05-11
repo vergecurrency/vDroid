@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.view.base.BaseActivity
@@ -21,7 +21,7 @@ class ServiceURLActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_service_url)
 
-        mViewModel = ViewModelProviders.of(this).get(ServiceURLViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(ServiceURLViewModel::class.java)
 
         initComponents()
     }

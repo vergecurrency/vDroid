@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 
 import com.davidmiguel.numberkeyboard.NumberKeyboard
 import com.davidmiguel.numberkeyboard.NumberKeyboardListener
@@ -34,7 +34,7 @@ class PinConfirmActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         pinToValidate = intent.getStringExtra("pin")
-        mViewModel = ViewModelProviders.of(this).get(PinVerificationViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(PinVerificationViewModel::class.java)
 
         setContentView(R.layout.activity_pin_confirm)
         initComponents()
