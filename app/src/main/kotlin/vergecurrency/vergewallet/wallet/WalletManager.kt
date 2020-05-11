@@ -99,7 +99,7 @@ class WalletManager private constructor() : Listener {
             } catch (e: java.lang.Exception) {
                 balance!!.setValue(0L)
             }
-            return MutableLiveData(1000L)
+            return balance as MutableLiveData<Long>
         }
     }
 }
