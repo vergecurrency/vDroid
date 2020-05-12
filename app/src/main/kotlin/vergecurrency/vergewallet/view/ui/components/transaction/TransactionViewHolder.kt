@@ -11,5 +11,9 @@ class TransactionViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     internal var txAmount: TextView? = view.findViewById(R.id.listview_transaction_item_amount)
     internal var txDateTime: TextView? = view.findViewById(R.id.listview_transaction_item_datetime)
     internal var txIcon: ImageView? = view.findViewById(R.id.listview_transaction_item_icon)
-    //internal var headerName : TextView = view.findViewById<TextView>(R.id.listview_transactions_header_title)
+}
+
+
+class TransactionHeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    internal var headerName: TextView = view.findViewById<TextView>(R.id.listview_transactions_header_title)
 }

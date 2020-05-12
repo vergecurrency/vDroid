@@ -13,9 +13,12 @@ class RecycleTouchListener(context: Context?, rv: RecyclerView, private val clic
     private val gestureDetector: GestureDetector
     override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
         val child: View? = rv.findChildViewUnder(e.x, e.y)
-        val adapter : TransactionRecycleAdapter = rv.adapter as TransactionRecycleAdapter;
+        val adapter: TransactionRecycleAdapter = rv.adapter as TransactionRecycleAdapter;
         if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
-            clickListener.onClick(child, rv.getChildAdapterPosition(child), adapter.getTransaction(rv.getChildAdapterPosition(child)))
+            val obj = adapter.getObject(rv.getChildAdapterPosition(child))
+            if (obj is Transaction) {
+                clickListener.onClick(child, rv.getChildAdapterPosition(child), obj)
+            }
         }
         return false
     }
@@ -35,9 +38,10 @@ class RecycleTouchListener(context: Context?, rv: RecyclerView, private val clic
 
             override fun onLongPress(e: MotionEvent) {
                 val child: View? = rv.findChildViewUnder(e.x, e.y)
-                val adapter : TransactionRecycleAdapter = rv.adapter as TransactionRecycleAdapter;
-                if (child != null && clickListener != null) {
-                    clickListener.onLongClick(child, rv.getChildAdapterPosition(child),adapter.getTransaction(rv.getChildAdapterPosition(child)))
+                val adapter: TransactionRecycleAdapter = rv.adapter as TransactionRecycleAdapter;
+                val obj = adapter.getObject(rv.getChildAdapterPosition(child!!))
+                if (child != null && clickListener != null && obj is Transaction) {
+                    clickListener.onLongClick(child, rv.getChildAdapterPosition(child), obj)
                 }
             }
         })

@@ -17,6 +17,7 @@ import vergecurrency.vergewallet.service.model.Transaction
 import vergecurrency.vergewallet.view.adapter.TransactionRecycleAdapter
 import vergecurrency.vergewallet.view.ui.activity.TransactionDetailActivity
 import vergecurrency.vergewallet.viewmodel.TransactionsViewModel
+import java.util.*
 import java.util.EnumSet.of
 
 class FragmentTransactionsPageView : Fragment() {
@@ -41,9 +42,10 @@ class FragmentTransactionsPageView : Fragment() {
             rootView = inflater.inflate(R.layout.fragment_pageview_transactions, container, false)
 
             val recycleViewTransactions = rootView.findViewById(R.id.rv_transactions_page_view) as RecyclerView
-            recycleViewTransactions.adapter = TransactionRecycleAdapter(mViewModel.transactionsList!!, true)
+            val transactions = mViewModel.transactionsList!!;
+            Collections.sort(transactions, Transaction.Companion.TimeComparatorDESC);
+            recycleViewTransactions.adapter = TransactionRecycleAdapter(transactions, false)
             recycleViewTransactions.layoutManager = LinearLayoutManager(rootView.context)
-
             recycleViewTransactions.addOnItemTouchListener(RecycleTouchListener(context, recycleViewTransactions, object : RecycleTouchListener.ClickListener {
                 override fun onClick(view: View?, position: Int, tx : Transaction) {
                     val intent = Intent(context, TransactionDetailActivity::class.java)

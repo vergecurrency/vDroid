@@ -11,65 +11,83 @@ import vergecurrency.vergewallet.helpers.utils.MathUtils
 import vergecurrency.vergewallet.helpers.utils.TransactionUtils
 import vergecurrency.vergewallet.service.model.Transaction
 import vergecurrency.vergewallet.service.model.TransactionFilterOption
+import vergecurrency.vergewallet.view.ui.components.transaction.TransactionHeaderViewHolder
 import vergecurrency.vergewallet.view.ui.components.transaction.TransactionViewHolder
+import java.lang.RuntimeException
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
-import java.util.*
-import kotlin.collections.ArrayList
 
 class TransactionRecycleAdapter(private val transactions: ArrayList<Transaction>, private val appendListHeader: Boolean) :
-        RecyclerView.Adapter<TransactionViewHolder>() {
+        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy")
-    private var internalTransactions: ArrayList<Transaction> = transactions;
+    private var data: ArrayList<Any> = initializeStructure(transactions);
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
-        val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.listview_item_transaction, parent, false)
-        Collections.sort(transactions, Transaction.Companion.TimeComparatorDESC);
-        return TransactionViewHolder(view);
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        if (viewType == ViewType.TX.ordinal) {
+            val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.listview_item_transaction, parent, false)
+            return TransactionViewHolder(view);
+        } else if (viewType == ViewType.HEADER.ordinal) {
+            val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.listview_item_transactions_header, parent, false)
+            return TransactionHeaderViewHolder(view);
+        }
+        throw RuntimeException();
     }
 
     override fun getItemCount(): Int {
-        return this.internalTransactions.size
+        if (this.data != null) {
+            return this.data.size
+        }
+        return 0;
     }
 
-    override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
-        val transaction = internalTransactions[position]
-/*
-        if (position != internalTransactions.lastIndex) {
-            val nextPos = position + 1;
-            val nextTx = internalTransactions[nextPos]
-            if (isSameDate(transaction, nextTx) != 0 && appendListHeader) {
-                holder.headerName.text = this.convertToLocalDateViaMillisecond(transaction.time * 1000).format(formatter)
-            }
-        } else if (itemCount > 1 && isSameDate(transaction, internalTransactions[position - 1]) != 0 && appendListHeader) {
-            holder.headerName.text = this.convertToLocalDateViaMillisecond(transaction.time * 1000).format(formatter)
+    fun getTransactionCount(): Int {
+        if (this.data != null) {
+            return this.data.filter { it is Transaction }.count()
         }
-*/
-        if (transaction.isSend) {
-            holder.txAmount!!.text = String.format("- %s XVG", MathUtils.round(transaction.amount, 2))
-            holder.txAmount!!.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.material_red_500))
-            holder.txIcon!!.setImageResource(R.drawable.icon_tx_sent)
-            DrawableCompat.setTint(holder.txIcon!!.drawable, ContextCompat.getColor(holder.itemView.context, R.color.material_red_500))
-        } else if (transaction.isReceive) {
-            holder.txAmount!!.text = String.format("+ %s XVG", MathUtils.round(transaction.amount, 2))
-            holder.txAmount!!.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.material_green_500))
-            holder.txIcon!!.setImageResource(R.drawable.icon_tx_received)
-            DrawableCompat.setTint(holder.txIcon!!.drawable, ContextCompat.getColor(holder.itemView.context, R.color.material_green_500))
+        return 0;
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val obj: Any = data[position];
+        if (obj is String && holder is TransactionHeaderViewHolder) {
+            holder.headerName.text = obj
+        } else if (obj is Transaction && holder is TransactionViewHolder) {
+            if (obj.isSend) {
+                holder.txAmount!!.text = String.format("- %s XVG", MathUtils.round(obj.amount, 2))
+                holder.txAmount!!.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.material_red_500))
+                holder.txIcon!!.setImageResource(R.drawable.icon_tx_sent)
+                DrawableCompat.setTint(holder.txIcon!!.drawable, ContextCompat.getColor(holder.itemView.context, R.color.material_red_500))
+            } else if (obj.isReceive) {
+                holder.txAmount!!.text = String.format("+ %s XVG", MathUtils.round(obj.amount, 2))
+                holder.txAmount!!.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.material_green_500))
+                holder.txIcon!!.setImageResource(R.drawable.icon_tx_received)
+                DrawableCompat.setTint(holder.txIcon!!.drawable, ContextCompat.getColor(holder.itemView.context, R.color.material_green_500))
+            }
+
+            if (obj.account == null) {
+                if (obj.isReceive) {
+                    holder.txAddress!!.text = holder.itemView.resources.getString(R.string.fragment_transaction_received_filter)
+                } else {
+                    holder.txAddress!!.text = holder.itemView.resources.getString(R.string.fragment_transaction_sent_filter)
+                }
+            } else {
+                holder.txAddress!!.text = obj.account
+            }
+            holder.txDateTime!!.setText(TransactionUtils.toFormattedDate(obj.time, holder.itemView.context))
         }
 
-        if (transaction.account == null) {
-            if (transaction.isReceive) {
-                holder.txAddress!!.text = holder.itemView.resources.getString(R.string.fragment_transaction_received_filter)
-            } else {
-                holder.txAddress!!.text = holder.itemView.resources.getString(R.string.fragment_transaction_sent_filter)
-            }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        if (this.data[position] is Transaction) {
+            return ViewType.TX.ordinal;
         } else {
-            holder.txAddress!!.text = transaction.account
+            return ViewType.HEADER.ordinal;
         }
-        holder.txDateTime!!.setText(TransactionUtils.toFormattedDate(transaction.time, holder.itemView.context))
     }
 
 
@@ -81,19 +99,22 @@ class TransactionRecycleAdapter(private val transactions: ArrayList<Transaction>
             }
         }
 
-        internalTransactions = filteredTransactions;
+        data = initializeStructure(filteredTransactions);
         notifyDataSetChanged()
     }
 
-    fun getTransaction(position: Int): Transaction {
-        return internalTransactions.get(position);
+    fun getObject(position: Int): Any {
+        return this.data[position];
     }
 
     @SuppressLint("DefaultLocale")
-    private fun currentTextFilterMatch(tx: Transaction, charText: String): Boolean {
-        return tx.account!!.toLowerCase().contains(charText.toLowerCase()) ||
-                tx.address!!.toLowerCase().contains(charText.toLowerCase()) ||
-                tx.amount.toString().toLowerCase().contains(charText.toLowerCase())
+    private fun currentTextFilterMatch(tx: Any, charText: String): Boolean {
+        if (tx is Transaction) {
+            return tx.account!!.toLowerCase().contains(charText.toLowerCase()) ||
+                    tx.address!!.toLowerCase().contains(charText.toLowerCase()) ||
+                    tx.amount.toString().toLowerCase().contains(charText.toLowerCase())
+        }
+        return false;
     }
 
     private fun convertToLocalDateViaMillisecond(time: Long): LocalDate {
@@ -114,5 +135,28 @@ class TransactionRecycleAdapter(private val transactions: ArrayList<Transaction>
         val firstDate = this.convertToLocalDateViaMillisecond(tx1.time * 1000)
         val secondDate = this.convertToLocalDateViaMillisecond(tx2.time * 1000)
         return firstDate.compareTo(secondDate)
+    }
+
+    private fun initializeStructure(transactions: ArrayList<Transaction>): ArrayList<Any> {
+        val txs: ArrayList<Any> = ArrayList();
+
+        for (transaction in transactions) {
+            var position = transactions.indexOf(transaction);
+            if (position != transactions.lastIndex) {
+                val nextPos = position + 1;
+                val nextTx = transactions[nextPos]
+                if (isSameDate(transaction, nextTx) != 0 && appendListHeader) {
+                    txs.add(this.convertToLocalDateViaMillisecond(transaction.time * 1000).format(formatter));
+                }
+            } else if (itemCount > 1 && isSameDate(transaction, transactions[position - 1]) != 0 && appendListHeader) {
+                txs.add(this.convertToLocalDateViaMillisecond(transaction.time * 1000).format(formatter));
+            }
+            txs.add(transaction)
+        }
+        return txs;
+    }
+
+    enum class ViewType {
+        HEADER, TX;
     }
 }

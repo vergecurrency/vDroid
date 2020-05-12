@@ -23,6 +23,7 @@ import vergecurrency.vergewallet.view.adapter.TransactionRecycleAdapter
 import vergecurrency.vergewallet.view.base.BaseFragment
 import vergecurrency.vergewallet.view.ui.activity.TransactionDetailActivity
 import vergecurrency.vergewallet.viewmodel.TransactionsViewModel
+import java.util.*
 
 
 class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, RadioGroup.OnCheckedChangeListener {
@@ -51,12 +52,14 @@ class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, Rad
 
             //initialize RecycleView
             val recycleViewTransactions = rootView.findViewById(R.id.rv_transactions_fragment) as RecyclerView
-            txa = TransactionRecycleAdapter(mViewModel.transactionsList!!, true)
+            val transactions = mViewModel.transactionsList!!;
+            Collections.sort(transactions, Transaction.Companion.TimeComparatorDESC);
+            txa = TransactionRecycleAdapter(transactions, true)
             recycleViewTransactions.adapter = txa
             recycleViewTransactions.layoutManager = LinearLayoutManager(rootView.context)
 
             recycleViewTransactions.addOnItemTouchListener(RecycleTouchListener(context, recycleViewTransactions, object : RecycleTouchListener.ClickListener {
-                override fun onClick(view: View?, position: Int, tx : Transaction) {
+                override fun onClick(view: View?, position: Int, tx: Transaction) {
                     val intent = Intent(context, TransactionDetailActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
                     intent.putExtra(TransactionUtils.EXTRA_TRANSACTION, tx)
@@ -74,7 +77,7 @@ class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, Rad
             val radioGroup = rootView.findViewById<RadioGroup>(R.id.transaction_radio_group)
             radioGroup.setOnCheckedChangeListener(this)
             styleRadio(radioGroup);
-            setTitle(txa!!.itemCount);
+            setTitle(txa!!.getTransactionCount());
         }
 
         return rootView
@@ -87,7 +90,7 @@ class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, Rad
     override fun onQueryTextChange(newText: String): Boolean {
         currentText = newText
         txa!!.filter(currentText, option)
-        setTitle(txa!!.itemCount);
+        setTitle(txa!!.getTransactionCount());
         return false
     }
 
@@ -98,19 +101,19 @@ class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, Rad
                 option = TransactionFilterOption.ALL
                 txa!!.filter(currentText, option)
                 styleRadio(group)
-                setTitle(txa!!.itemCount);
+                setTitle(txa!!.getTransactionCount());
             }
             R.id.transactions_radio_send -> {
                 option = TransactionFilterOption.SEND
                 txa!!.filter(currentText, option)
                 styleRadio(group)
-                setTitle(txa!!.itemCount);
+                setTitle(txa!!.getTransactionCount());
             }
             R.id.transactions_radio_receive -> {
                 option = TransactionFilterOption.RECEIVE
                 txa!!.filter(currentText, option)
                 styleRadio(group)
-                setTitle(txa!!.itemCount);
+                setTitle(txa!!.getTransactionCount());
             }
         }
     }
