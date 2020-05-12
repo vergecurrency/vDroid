@@ -38,17 +38,11 @@ class TransactionRecycleAdapter(private val transactions: ArrayList<Transaction>
     }
 
     override fun getItemCount(): Int {
-        if (this.data != null) {
-            return this.data.size
-        }
-        return 0;
+        return this.data.size
     }
 
     fun getTransactionCount(): Int {
-        if (this.data != null) {
-            return this.data.filter { it is Transaction }.count()
-        }
-        return 0;
+        return this.data.filter { it is Transaction }.count()
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -123,8 +117,6 @@ class TransactionRecycleAdapter(private val transactions: ArrayList<Transaction>
 
     private fun filterByOption(txs: java.util.ArrayList<Transaction>, filterOption: TransactionFilterOption): java.util.ArrayList<Transaction> {
         return when (filterOption) {
-
-
             TransactionFilterOption.RECEIVE -> java.util.ArrayList(txs.filter { it.isReceive })
             TransactionFilterOption.SEND -> java.util.ArrayList(txs.filter { it.isSend })
             else -> java.util.ArrayList(txs)
@@ -148,7 +140,7 @@ class TransactionRecycleAdapter(private val transactions: ArrayList<Transaction>
                 if (isSameDate(transaction, nextTx) != 0 && appendListHeader) {
                     txs.add(this.convertToLocalDateViaMillisecond(transaction.time * 1000).format(formatter));
                 }
-            } else if (getTransactionCount() > 1 && isSameDate(transaction, transactions[position - 1]) != 0 && appendListHeader) {
+            } else if (position > 0 && isSameDate(transaction, transactions[position - 1]) != 0 && appendListHeader) {
                 txs.add(this.convertToLocalDateViaMillisecond(transaction.time * 1000).format(formatter));
             }
             txs.add(transaction)
