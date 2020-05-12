@@ -65,7 +65,6 @@ class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, Rad
                 }
 
                 override fun onLongClick(view: View?, position: Int, tx: Transaction) {
-                    TODO("Not yet implemented")
                 }
             }))
 
