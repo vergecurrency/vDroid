@@ -148,7 +148,7 @@ class TransactionRecycleAdapter(private val transactions: ArrayList<Transaction>
                 if (isSameDate(transaction, nextTx) != 0 && appendListHeader) {
                     txs.add(this.convertToLocalDateViaMillisecond(transaction.time * 1000).format(formatter));
                 }
-            } else if (itemCount > 1 && isSameDate(transaction, transactions[position - 1]) != 0 && appendListHeader) {
+            } else if (getTransactionCount() > 1 && isSameDate(transaction, transactions[position - 1]) != 0 && appendListHeader) {
                 txs.add(this.convertToLocalDateViaMillisecond(transaction.time * 1000).format(formatter));
             }
             txs.add(transaction)

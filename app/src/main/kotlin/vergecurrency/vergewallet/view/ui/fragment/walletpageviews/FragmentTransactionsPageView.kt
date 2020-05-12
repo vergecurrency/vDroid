@@ -55,7 +55,6 @@ class FragmentTransactionsPageView : Fragment() {
                 }
 
                 override fun onLongClick(view: View?, position: Int, tx: Transaction) {
-                    TODO("Not yet implemented")
                 }
             }))
 
