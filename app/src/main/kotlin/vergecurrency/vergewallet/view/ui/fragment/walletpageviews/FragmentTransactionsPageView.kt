@@ -42,9 +42,7 @@ class FragmentTransactionsPageView : Fragment() {
             rootView = inflater.inflate(R.layout.fragment_pageview_transactions, container, false)
 
             val recycleViewTransactions = rootView.findViewById(R.id.rv_transactions_page_view) as RecyclerView
-            val transactions = mViewModel.transactionsList!!;
-            Collections.sort(transactions, Transaction.Companion.TimeComparatorDESC);
-            recycleViewTransactions.adapter = TransactionRecycleAdapter(transactions, false)
+            recycleViewTransactions.adapter = TransactionRecycleAdapter(mViewModel.transactionsList!!, false)
             recycleViewTransactions.layoutManager = LinearLayoutManager(rootView.context)
             recycleViewTransactions.addOnItemTouchListener(RecycleTouchListener(context, recycleViewTransactions, object : RecycleTouchListener.ClickListener {
                 override fun onClick(view: View?, position: Int, tx : Transaction) {

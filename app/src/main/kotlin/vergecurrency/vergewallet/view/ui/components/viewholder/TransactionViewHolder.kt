@@ -1,4 +1,4 @@
-package vergecurrency.vergewallet.view.ui.components.transaction
+package vergecurrency.vergewallet.view.ui.components.viewholder
 
 import android.view.View
 import android.widget.ImageView
@@ -11,9 +11,4 @@ class TransactionViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     internal var txAmount: TextView? = view.findViewById(R.id.listview_transaction_item_amount)
     internal var txDateTime: TextView? = view.findViewById(R.id.listview_transaction_item_datetime)
     internal var txIcon: ImageView? = view.findViewById(R.id.listview_transaction_item_icon)
-}
-
-
-class TransactionHeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    internal var headerName: TextView = view.findViewById<TextView>(R.id.listview_transactions_header_title)
 }

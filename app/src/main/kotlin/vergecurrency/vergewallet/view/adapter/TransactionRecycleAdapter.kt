@@ -11,13 +11,14 @@ import vergecurrency.vergewallet.helpers.utils.MathUtils
 import vergecurrency.vergewallet.helpers.utils.TransactionUtils
 import vergecurrency.vergewallet.service.model.Transaction
 import vergecurrency.vergewallet.service.model.TransactionFilterOption
-import vergecurrency.vergewallet.view.ui.components.transaction.TransactionHeaderViewHolder
-import vergecurrency.vergewallet.view.ui.components.transaction.TransactionViewHolder
-import java.lang.RuntimeException
+import vergecurrency.vergewallet.view.ui.components.viewholder.TransactionHeaderViewHolder
+import vergecurrency.vergewallet.view.ui.components.viewholder.TransactionViewHolder
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TransactionRecycleAdapter(private val transactions: ArrayList<Transaction>, private val appendListHeader: Boolean) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -130,21 +131,22 @@ class TransactionRecycleAdapter(private val transactions: ArrayList<Transaction>
     }
 
     private fun initializeStructure(transactions: ArrayList<Transaction>): ArrayList<Any> {
+        Collections.sort(transactions, Transaction.Companion.TimeComparatorDESC);
         val txs: ArrayList<Any> = ArrayList();
 
         for (transaction in transactions) {
-            var position = transactions.indexOf(transaction);
-            if (position != transactions.lastIndex) {
-                val nextPos = position + 1;
-                val nextTx = transactions[nextPos]
-                if (isSameDate(transaction, nextTx) != 0 && appendListHeader) {
+            val position = transactions.indexOf(transaction);
+            if (position != 0 && appendListHeader) {
+                val previousTx: Transaction = transactions[position - 1]
+                if (isSameDate(transaction, previousTx) != 0) {
                     txs.add(this.convertToLocalDateViaMillisecond(transaction.time * 1000).format(formatter));
                 }
-            } else if (position > 0 && isSameDate(transaction, transactions[position - 1]) != 0 && appendListHeader) {
+            } else if (appendListHeader) {
                 txs.add(this.convertToLocalDateViaMillisecond(transaction.time * 1000).format(formatter));
             }
             txs.add(transaction)
         }
+
         return txs;
     }
 

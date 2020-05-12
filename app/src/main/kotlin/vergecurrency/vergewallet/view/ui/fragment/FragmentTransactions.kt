@@ -52,9 +52,7 @@ class FragmentTransactions : BaseFragment(), SearchView.OnQueryTextListener, Rad
 
             //initialize RecycleView
             val recycleViewTransactions = rootView.findViewById(R.id.rv_transactions_fragment) as RecyclerView
-            val transactions = mViewModel.transactionsList!!;
-            Collections.sort(transactions, Transaction.Companion.TimeComparatorDESC);
-            txa = TransactionRecycleAdapter(transactions, true)
+            txa = TransactionRecycleAdapter(mViewModel.transactionsList!!, true)
             recycleViewTransactions.adapter = txa
             recycleViewTransactions.layoutManager = LinearLayoutManager(rootView.context)
 
