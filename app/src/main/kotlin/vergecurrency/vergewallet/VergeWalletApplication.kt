@@ -27,8 +27,7 @@ import java.util.*
 class VergeWalletApplication : Application(), Application.ActivityLifecycleCallbacks {
     private var alreadyInitialized: Boolean = false
     lateinit var walletRealm: Realm;
-    lateinit var preferencesId: String;
-    lateinit var walletName: String;
+    val walletName = "default";
 
 
     // Called when the application is starting, before any other application objects have been created.
@@ -38,9 +37,6 @@ class VergeWalletApplication : Application(), Application.ActivityLifecycleCallb
         this.dataDir.absoluteFile
         BitcoinKit.init(this)
         Realm.init(this);
-        walletName = "default";
-        preferencesId = "xvg-data-${UUID.nameUUIDFromBytes(walletName.toByteArray())}"
-        WalletDataIdentifierUtils.getMasterKeyAlias("$preferencesId");
         WalletManager.init()
         TestFairy.begin(this, "a67a4df6e2a8a0c981638eb0f168297fd45aed73")
         initExceptionHandler()
@@ -74,7 +70,7 @@ class VergeWalletApplication : Application(), Application.ActivityLifecycleCallb
     override fun onActivityStarted(activity: Activity) {
         if (activity is SplashActivity) {
             if (!alreadyInitialized) {
-                EncryptedPreferencesManager.init(applicationContext, preferencesId)
+                EncryptedPreferencesManager.init(applicationContext, WalletDataIdentifierUtils.getWalletDataIdByUsersWalletName(walletName))
                 alreadyInitialized = true;
             }
         }
@@ -133,7 +129,7 @@ class VergeWalletApplication : Application(), Application.ActivityLifecycleCallb
 
     private fun selectRealm(walletId: String, encryptionKey: ByteArray) {
         val config = RealmConfiguration.Builder()
-                .name("$walletId.realm")
+                .name(WalletDataIdentifierUtils.getRealmFileNameByUsersWalletName(walletName))
                 .encryptionKey(encryptionKey)
                 .schemaVersion(0)
                 .modules(VDroidRealmModule())

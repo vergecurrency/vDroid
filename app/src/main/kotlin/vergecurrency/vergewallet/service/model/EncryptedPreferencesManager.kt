@@ -7,41 +7,36 @@ import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
-import java.util.*
+import vergecurrency.vergewallet.helpers.utils.WalletDataIdentifierUtils
 
 class EncryptedPreferencesManager private constructor(context: Context, fileName: String) {
-    private val masterKeyPrefix: String = "verge_key"
-    private val UUIDPattern: String = "([a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8})"
-    private val masterKeyPattern: String = "$masterKeyPrefix-([a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8})"
-
-
     init {
         this.getOrCreateEncryptedSharedPreferences(context, fileName);
     }
 
-    fun switchPreferences(context: Context, walletName: String) {
-        this.getOrCreateEncryptedSharedPreferences(context, walletName);
+    fun switchPreferences(context: Context, walletDataId: String) {
+        this.getOrCreateEncryptedSharedPreferences(context, walletDataId);
     }
 
-    private fun getOrCreateEncryptedSharedPreferences(context: Context, walletName: String) {
+    private fun getOrCreateEncryptedSharedPreferences(context: Context, walletDataId: String) {
         // Custom Advanced Master Key
         val advancedSpec = KeyGenParameterSpec.Builder(
-                "$masterKeyPrefix$walletName",
+                WalletDataIdentifierUtils.getMasterKeyAlias(walletDataId),
                 KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
         ).apply {
             setBlockModes(KeyProperties.BLOCK_MODE_GCM)
             setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
             setKeySize(256)
-            setUserAuthenticationRequired(true)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 setUnlockedDeviceRequired(true)
-                setIsStrongBoxBacked(true)
             }
         }.build()
 
         val masterKeyAlias = MasterKeys.getOrCreate(advancedSpec)
+
+        //Create encrypted shared preferences
         encryptedPreferences = EncryptedSharedPreferences.create(
-                walletName,
+                WalletDataIdentifierUtils.getEncryptedSharedPreferencesNameByUsersWalletName(walletDataId),
                 masterKeyAlias,
                 context,
                 EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,

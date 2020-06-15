@@ -1,9 +1,6 @@
 package vergecurrency.vergewallet.helpers.utils
 
-import java.lang.RuntimeException
 import java.util.*
-import java.util.regex.Matcher
-import kotlin.reflect.jvm.internal.impl.protobuf.UnmodifiableLazyStringList
 
 
 object WalletDataIdentifierUtils {
