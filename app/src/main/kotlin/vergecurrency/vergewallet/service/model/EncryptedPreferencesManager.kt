@@ -8,40 +8,11 @@ import android.security.keystore.KeyProperties
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import vergecurrency.vergewallet.helpers.utils.WalletDataIdentifierUtils
+import javax.crypto.Mac
+import javax.crypto.Mac.*
+import javax.crypto.spec.SecretKeySpec
 
-class EncryptedPreferencesManager private constructor(context: Context, fileName: String) {
-    init {
-        this.getOrCreateEncryptedSharedPreferences(context, fileName);
-    }
-
-    fun switchPreferences(context: Context, walletDataId: String) {
-        this.getOrCreateEncryptedSharedPreferences(context, walletDataId);
-    }
-
-    private fun getOrCreateEncryptedSharedPreferences(context: Context, walletDataId: String) {
-        // Custom Advanced Master Key
-        val advancedSpec = KeyGenParameterSpec.Builder(
-                WalletDataIdentifierUtils.getMasterKeyAlias(walletDataId),
-                KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
-        ).apply {
-            setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-            setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-            setKeySize(256)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                setUnlockedDeviceRequired(true)
-            }
-        }.build()
-
-        val masterKeyAlias = MasterKeys.getOrCreate(advancedSpec)
-
-        //Create encrypted shared preferences
-        encryptedPreferences = EncryptedSharedPreferences.create(
-                WalletDataIdentifierUtils.getEncryptedSharedPreferencesNameByUsersWalletName(walletDataId),
-                masterKeyAlias,
-                context,
-                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM)
-    }
+class EncryptedPreferencesManager private constructor() {
 
     companion object {
         private const val PIN = "pin"
@@ -64,11 +35,11 @@ class EncryptedPreferencesManager private constructor(context: Context, fileName
         private var INSTANCE: EncryptedPreferencesManager? = null
 
         //--------Singleton methods
-        fun init(context: Context, walletName: String): EncryptedPreferencesManager? {
+        fun init(): EncryptedPreferencesManager? {
             if (EncryptedPreferencesManager.INSTANCE != null) {
                 throw AssertionError("You already initialized an object of this type")
             } else {
-                EncryptedPreferencesManager.INSTANCE = EncryptedPreferencesManager(context, walletName)
+                EncryptedPreferencesManager.INSTANCE = EncryptedPreferencesManager()
                 return EncryptedPreferencesManager.INSTANCE
             }
         }
@@ -153,9 +124,8 @@ class EncryptedPreferencesManager private constructor(context: Context, fileName
             set(passphrase) = encryptedPreferences!!.edit().putString(PASSPHRASE, passphrase).apply()
 
         //-------realm encryption key
-        var realmEncryptionKey: String?
+        var realmEncryptionKey: String? = null
             get() = encryptedPreferences!!.getString(REALM_ENCRYPTION_KEY, null)
-            set(realmEncryptionKey) = encryptedPreferences!!.edit().putString(REALM_ENCRYPTION_KEY, passphrase).apply()
 
         //--------walletname
         var walletName: String?
@@ -167,6 +137,38 @@ class EncryptedPreferencesManager private constructor(context: Context, fileName
                 }
                 encryptedPreferences!!.edit().putString(WALLET_NAME, wName).apply()
             }
+
+        fun getOrCreateEncryptedSharedPreferences(context: Context, walletNameExt: String) {
+            // Custom Advanced Master Key
+            val advancedSpec = KeyGenParameterSpec.Builder(
+                    WalletDataIdentifierUtils.getMasterKeyAlias(walletNameExt),
+                    KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
+            ).apply {
+                setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+                setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                setKeySize(256)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    setUnlockedDeviceRequired(true)
+                }
+            }.build()
+
+            val masterKeyAlias = MasterKeys.getOrCreate(advancedSpec)
+
+            //Create encrypted shared preferences
+            encryptedPreferences = EncryptedSharedPreferences.create(
+                    WalletDataIdentifierUtils.getEncryptedSharedPreferencesNameByUsersWalletName(walletNameExt),
+                    masterKeyAlias,
+                    context,
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM)
+
+            if (realmEncryptionKey == null) {
+                val shaHMAC: Mac = getInstance("HmacSHA512")
+                val realmEncryptionKey = SecretKeySpec(passphrase?.toByteArray(), "HmacSHA512")
+                shaHMAC.init(realmEncryptionKey)
+                encryptedPreferences!!.edit().putString(REALM_ENCRYPTION_KEY, shaHMAC.doFinal(walletName?.toByteArray()).toString())
+            }
+        }
 
     }
 

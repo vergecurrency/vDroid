@@ -6,14 +6,12 @@ import java.util.*
 object WalletDataIdentifierUtils {
     //UUID version 3 based
     private val xvgDataRealmPattern: Regex = Regex("xvg-data-[0-9A-F]{8}-[0-9A-F]{4}-[3][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}\\.realm", RegexOption.IGNORE_CASE)
-
-    //UUID version 3 based
     private val xvgDataEncryptedSharedPreferencesPattern: Regex = Regex("xvg-data-[0-9A-F]{8}-[0-9A-F]{4}-[3][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}\\.xml", RegexOption.IGNORE_CASE)
     private val uuidV3Pattern: Regex = Regex(".*([0-9A-F]{8}-[0-9A-F]{4}-[3][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}).*", RegexOption.IGNORE_CASE)
     private val xvgDataPrefix = "xvg-data-";
 
-    public fun getMasterKeyAlias(walletDataId: String): String {
-        return "xvg_master_key-${getUUID(walletDataId)}";
+    public fun getMasterKeyAlias(walletName: String): String {
+        return "xvg_master_key-${getUUID(getRealmFileNameByUsersWalletName(walletName))}";
     }
 
     public fun isRealm(walletDataId: String): Boolean {

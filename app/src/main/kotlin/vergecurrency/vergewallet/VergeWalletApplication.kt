@@ -5,36 +5,30 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.MainThread
 import com.testfairy.TestFairy
 import io.horizontalsystems.bitcoinkit.BitcoinKit
 import io.realm.Realm
-import io.realm.RealmConfiguration
 import vergecurrency.vergewallet.exception.DefaultUncaughtExceptionHandler
 import vergecurrency.vergewallet.helpers.utils.LanguagesUtils
 import vergecurrency.vergewallet.helpers.utils.UIUtils
-import vergecurrency.vergewallet.helpers.utils.WalletDataIdentifierUtils
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.PreferencesManager
-import vergecurrency.vergewallet.service.model.VDroidRealmModule
 import vergecurrency.vergewallet.view.ui.activity.SplashActivity
 import vergecurrency.vergewallet.wallet.WalletManager
-import java.util.*
 
 
 class VergeWalletApplication : Application(), Application.ActivityLifecycleCallbacks {
     private var alreadyInitialized: Boolean = false
-    lateinit var walletRealm: Realm;
-    val walletName = "default";
 
 
     // Called when the application is starting, before any other application objects have been created.
     override fun onCreate() {
         //Init the wallet manager, bitcoinkit, testfairy
         super.onCreate()
-        this.dataDir.absoluteFile
         BitcoinKit.init(this)
         Realm.init(this);
         WalletManager.init()
@@ -70,7 +64,7 @@ class VergeWalletApplication : Application(), Application.ActivityLifecycleCallb
     override fun onActivityStarted(activity: Activity) {
         if (activity is SplashActivity) {
             if (!alreadyInitialized) {
-                EncryptedPreferencesManager.init(applicationContext, WalletDataIdentifierUtils.getWalletDataIdByUsersWalletName(walletName))
+                EncryptedPreferencesManager.init()
                 alreadyInitialized = true;
             }
         }
@@ -121,23 +115,9 @@ class VergeWalletApplication : Application(), Application.ActivityLifecycleCallb
     }
 
     companion object {
-
         var UNCAUGHT_EXCEPTION_CHANNEL_ID = "888671"
         var UNCAUGHT_EXCEPTION_CHANNEL_NAME = "Verge Android Wallet uncaught exception error channel"
         var UNCAUGHT_EXCEPTION_CHANNEL_DESCRIPTION = "Transmission of error reports"
-    }
-
-    private fun selectRealm(walletId: String, encryptionKey: ByteArray) {
-        val config = RealmConfiguration.Builder()
-                .name(WalletDataIdentifierUtils.getRealmFileNameByUsersWalletName(walletName))
-                .encryptionKey(encryptionKey)
-                .schemaVersion(0)
-                .modules(VDroidRealmModule())
-                .build()
-        this.walletRealm = Realm.getInstance(config);
-    }
-
-    private fun getWalletFiles() {
     }
 
 }

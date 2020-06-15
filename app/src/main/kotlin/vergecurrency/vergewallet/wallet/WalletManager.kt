@@ -5,9 +5,15 @@ import io.horizontalsystems.bitcoinkit.BitcoinKit
 import io.horizontalsystems.bitcoinkit.BitcoinKit.*
 import io.horizontalsystems.bitcoinkit.models.BlockInfo
 import io.horizontalsystems.bitcoinkit.models.TransactionInfo
+import io.realm.Realm
+import io.realm.RealmConfiguration
+import vergecurrency.vergewallet.VergeWalletApplication
+import vergecurrency.vergewallet.helpers.utils.WalletDataIdentifierUtils
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager.Companion.mnemonic
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager.Companion.walletName
 import vergecurrency.vergewallet.service.model.MnemonicManager
+import vergecurrency.vergewallet.service.model.VDroidRealmModule
 import java.util.*
 
 class WalletManager private constructor() : Listener {
@@ -41,7 +47,6 @@ class WalletManager private constructor() : Listener {
     }
 
     companion object {
-
         private var INSTANCE: WalletManager? = null
         private var balance: MutableLiveData<Long>? = null
         private var wallet: BitcoinKit? = null
@@ -73,13 +78,11 @@ class WalletManager private constructor() : Listener {
                 wallet!!.start()
 
                 balance!!.setValue(wallet!!.balance)
-
             } else {
                 //I don't know, I'll see how to handle this.
                 throw Exception()
             }
         }
-
 
         val receiveAddress: String
             get() = wallet!!.receiveAddress()
@@ -92,6 +95,7 @@ class WalletManager private constructor() : Listener {
             mnemonicManager.mnemonic = io.horizontalsystems.hdwalletkit.Mnemonic().generate(io.horizontalsystems.hdwalletkit.Mnemonic.Strength.Default).toTypedArray()
             mnemonic = mnemonicManager.mnemonicAsJSON
         }
+
 
         fun getBalance(): MutableLiveData<Long> {
             try {
