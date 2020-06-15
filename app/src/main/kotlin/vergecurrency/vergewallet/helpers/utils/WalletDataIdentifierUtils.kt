@@ -8,34 +8,34 @@ object WalletDataIdentifierUtils {
     private val xvgDataRealmPattern: Regex = Regex("xvg-data-[0-9A-F]{8}-[0-9A-F]{4}-[3][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}\\.realm", RegexOption.IGNORE_CASE)
     private val xvgDataEncryptedSharedPreferencesPattern: Regex = Regex("xvg-data-[0-9A-F]{8}-[0-9A-F]{4}-[3][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}\\.xml", RegexOption.IGNORE_CASE)
     private val uuidV3Pattern: Regex = Regex(".*([0-9A-F]{8}-[0-9A-F]{4}-[3][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}).*", RegexOption.IGNORE_CASE)
-    private val xvgDataPrefix = "xvg-data-";
+    private const val xvgDataPrefix = "xvg-data-";
 
-    public fun getMasterKeyAlias(walletName: String): String {
+    fun getMasterKeyAlias(walletName: String): String {
         return "xvg_master_key-${getUUID(getRealmFileNameByUsersWalletName(walletName))}";
     }
 
-    public fun isRealm(walletDataId: String): Boolean {
+    fun isRealm(walletDataId: String): Boolean {
         return xvgDataRealmPattern.matches(walletDataId);
     }
 
-    public fun isEncryptedSharedPreferences(walletDataId: String): Boolean {
+    fun isEncryptedSharedPreferences(walletDataId: String): Boolean {
         return xvgDataEncryptedSharedPreferencesPattern.matches(walletDataId);
     }
 
-    public fun getWalletDataIdByUsersWalletName(walletName: String): String {
+    fun getWalletDataIdByUsersWalletName(walletName: String): String {
         return "$xvgDataPrefix${UUID.nameUUIDFromBytes(walletName.toByteArray())}";
     }
 
-    public fun getRealmFileNameByUsersWalletName(walletName: String): String {
+    fun getRealmFileNameByUsersWalletName(walletName: String): String {
         return "$xvgDataPrefix${UUID.nameUUIDFromBytes(walletName.toByteArray())}.realm";
     }
 
-    public fun getEncryptedSharedPreferencesNameByUsersWalletName(walletName: String): String {
-        return "$xvgDataPrefix${UUID.nameUUIDFromBytes(walletName.toByteArray())}.xml";
+    fun getEncryptedSharedPreferencesNameByUsersWalletName(walletName: String): String {
+        return "$xvgDataPrefix${UUID.nameUUIDFromBytes(walletName.toByteArray())}";
     }
 
 
-    public fun isIdEquals(walletDataId1: String, walletDataId2: String): Boolean {
+    fun isIdEquals(walletDataId1: String, walletDataId2: String): Boolean {
         val u1 = getUUID(walletDataId1);
         val u2 = getUUID(walletDataId2);
         checkVersion(u1);
@@ -43,7 +43,7 @@ object WalletDataIdentifierUtils {
         return u1 == u2;
     }
 
-    public fun containsUUID(ids: List<String>) {
+    fun containsUUID(ids: List<String>) {
 
     }
 
