@@ -1,5 +1,5 @@
 package vergecurrency.vergewallet.service.repository.db
-
+/*
 import androidx.room.Dao
 import androidx.room.Query
 
@@ -9,3 +9,4 @@ interface TransactionDAO {
     @Query("SELECT EXISTS(SELECT 1 FROM VDroidTransaction LIMIT 1);")
     fun hasRecords(): Boolean
 }
+*/

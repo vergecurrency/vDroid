@@ -1,5 +1,5 @@
 package vergecurrency.vergewallet.service.repository.db;
-
+/*
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
@@ -22,3 +22,4 @@ abstract class VergeWalletAppDatabase : RoomDatabase() {
         }
     }
 }
+*/

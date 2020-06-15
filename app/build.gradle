@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -40,11 +39,6 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-    kapt {
-        arguments {
-            arg("room.schemaLocation", "$projectDir/schemas".toString())
-        }
-    }
 }
 
 dependencies {
@@ -109,11 +103,6 @@ dependencies {
     implementation 'androidx.biometric:biometric:1.0.1'
 
 
-    //android room
-    def room_version = "2.2.5"
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-
     //test suites
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
@@ -125,6 +114,5 @@ dependencies {
 
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
-    testImplementation "androidx.room:room-testing:$room_version"
 
 }

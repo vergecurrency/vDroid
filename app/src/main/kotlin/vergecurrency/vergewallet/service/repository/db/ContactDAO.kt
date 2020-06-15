@@ -1,5 +1,5 @@
 package vergecurrency.vergewallet.service.repository.db
-
+/*
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -23,3 +23,4 @@ interface ContactDAO {
 
 
 }
+*/

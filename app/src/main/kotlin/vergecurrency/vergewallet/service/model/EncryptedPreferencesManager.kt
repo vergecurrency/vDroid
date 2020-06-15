@@ -2,20 +2,50 @@ package vergecurrency.vergewallet.service.model;
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
+import android.security.keystore.KeyGenParameterSpec
+import android.security.keystore.KeyProperties
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
+import java.util.*
 
-class EncryptedPreferencesManager private constructor(context: Context) {
+class EncryptedPreferencesManager private constructor(context: Context, fileName: String) {
+    private val masterKeyPrefix: String = "verge_key"
+    private val UUIDPattern: String = "([a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8})"
+    private val masterKeyPattern: String = "$masterKeyPrefix-([a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8})"
+
 
     init {
-        val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+        this.getOrCreateEncryptedSharedPreferences(context, fileName);
+    }
+
+    fun switchPreferences(context: Context, walletName: String) {
+        this.getOrCreateEncryptedSharedPreferences(context, walletName);
+    }
+
+    private fun getOrCreateEncryptedSharedPreferences(context: Context, walletName: String) {
+        // Custom Advanced Master Key
+        val advancedSpec = KeyGenParameterSpec.Builder(
+                "$masterKeyPrefix$walletName",
+                KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
+        ).apply {
+            setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+            setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+            setKeySize(256)
+            setUserAuthenticationRequired(true)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                setUnlockedDeviceRequired(true)
+                setIsStrongBoxBacked(true)
+            }
+        }.build()
+
+        val masterKeyAlias = MasterKeys.getOrCreate(advancedSpec)
         encryptedPreferences = EncryptedSharedPreferences.create(
-                "com.vergecurrency.vergewallet.secrets",
+                walletName,
                 masterKeyAlias,
                 context,
                 EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM)
     }
 
     companion object {
@@ -32,17 +62,18 @@ class EncryptedPreferencesManager private constructor(context: Context) {
         private const val WALLET_SECRET = "walletSecret"
         private const val DEVICE_TOKEN = "deviceToken"
         private const val PASSPHRASE = "passphrase"
+        private const val REALM_ENCRYPTION_KEY = "realm_encryption_key"
 
 
         private var encryptedPreferences: SharedPreferences? = null
         private var INSTANCE: EncryptedPreferencesManager? = null
 
         //--------Singleton methods
-        fun init(context: Context): EncryptedPreferencesManager? {
+        fun init(context: Context, walletName: String): EncryptedPreferencesManager? {
             if (EncryptedPreferencesManager.INSTANCE != null) {
                 throw AssertionError("You already initialized an object of this type")
             } else {
-                EncryptedPreferencesManager.INSTANCE = EncryptedPreferencesManager(context)
+                EncryptedPreferencesManager.INSTANCE = EncryptedPreferencesManager(context, walletName)
                 return EncryptedPreferencesManager.INSTANCE
             }
         }
@@ -125,6 +156,11 @@ class EncryptedPreferencesManager private constructor(context: Context) {
         var passphrase: String?
             get() = encryptedPreferences!!.getString(PASSPHRASE, "mnemonic")
             set(passphrase) = encryptedPreferences!!.edit().putString(PASSPHRASE, passphrase).apply()
+
+        //-------realm encryption key
+        var realmEncryptionKey: String?
+            get() = encryptedPreferences!!.getString(REALM_ENCRYPTION_KEY, null)
+            set(realmEncryptionKey) = encryptedPreferences!!.edit().putString(REALM_ENCRYPTION_KEY, passphrase).apply()
 
         //--------walletname
         var walletName: String?
