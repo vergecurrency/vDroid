@@ -16,7 +16,7 @@
             android:paddingLeft="20dp"
             android:paddingTop="20dp"
             android:paddingRight="20dp"
-            android:background="@color/rc_card_gray_light"
+            android:background="?vg_backgroundWhite"
             android:gravity="center">
 
         <androidx.cardview.widget.CardView
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:layout_marginTop="78dp"
-            android:background="@color/rc_card_gray_light">
+            android:background="?vg_backgroundWhite">
             <HorizontalScrollView
                 android:scrollbars="none"
                 android:layout_width="match_parent"

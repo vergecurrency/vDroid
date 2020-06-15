@@ -7,17 +7,17 @@ import java.io.InputStreamReader
 import java.net.InetSocketAddress
 import java.nio.charset.StandardCharsets
 
-
+//todo : adapt class according to tormanager changes
 class TorLayerGateway(requestBase: HttpRequestBase) : Gateway(requestBase) {
 
     //TODO
     override fun onPreExecute() {
-        if (TorManager.initError) {
+        if (TorManager.getInstance(null).state == TorManager.STATES.ERROR) {
             //return ClearnetGateway().execute(strings[0]).get()
              throw RuntimeException("Tor Manager Error")
         }
 
-        if (!TorManager.isConnected) {
+        if (TorManager.getInstance(null).state != TorManager.STATES.CONNECTED) {
             throw RuntimeException("Tor no connection")
         }
     }

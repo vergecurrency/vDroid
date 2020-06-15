@@ -51,7 +51,7 @@ class TorSettingsActivity : BaseActivity() {
 
         switch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                TorManager.startTor(this)
+                TorManager.startTor()
             }
             EncryptedPreferencesManager.usingTor = isChecked
 

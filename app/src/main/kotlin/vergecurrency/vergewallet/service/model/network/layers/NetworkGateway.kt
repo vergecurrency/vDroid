@@ -8,7 +8,8 @@ open class NetworkGateway {
 
     fun doRequest(requestBase: HttpRequestBase): String {
         var result = ""
-        if (EncryptedPreferencesManager.usingTor) {
+        //I want to get around tor for instance
+        if (EncryptedPreferencesManager.usingTor && 1 ==0 ) {
             result = TorLayerGateway(requestBase).execute().get()
         } else {
             result = ClearnetGateway(requestBase).execute().get()
