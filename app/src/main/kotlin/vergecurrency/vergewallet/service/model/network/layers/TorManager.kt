@@ -4,19 +4,18 @@ import android.content.Context
 import com.msopentech.thali.android.toronionproxy.AndroidOnionProxyManager
 import com.msopentech.thali.toronionproxy.OnionProxyManager
 import cz.msebera.android.httpclient.conn.DnsResolver
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.subjects.PublishSubject
 import java.lang.IllegalStateException
-import java.net.InetAddress
-import java.net.InetSocketAddress
-import java.net.Proxy
-import java.net.UnknownHostException
+import java.net.*
 
-//TODO : add observer
 class TorManager private constructor(context: Context) {
 
-    var onionProxyManager: OnionProxyManager? = null
-    val fileStorageLocation = "torfiles"
-    var proxy: Proxy? = null
-    var currentPort = 0
+    private var onionProxyManager: OnionProxyManager? = null
+    private val fileStorageLocation = "torfiles"
+    private var proxy: Proxy? = null
+    private var currentPort = 0
+
 
      enum class STATES {
         IDLE,
@@ -26,15 +25,18 @@ class TorManager private constructor(context: Context) {
         ERROR
     }
 
+    var torStatus : PublishSubject<STATES> = PublishSubject.create();
+
      var state : STATES = STATES.IDLE
 
     init {
+        torStatus.onNext(STATES.DISCONNECTED)
         onionProxyManager = AndroidOnionProxyManager(context, fileStorageLocation)
     }
 
     companion object : SingletonHolder<TorManager, Context>(::TorManager)
 
-     fun startTor(): Proxy? {
+     fun startTor(): Observable<Proxy>? {
 
 
         if (state == STATES.CONNECTED) {
@@ -63,14 +65,58 @@ class TorManager private constructor(context: Context) {
 
         proxy = Proxy(Proxy.Type.SOCKS, InetSocketAddress("127.0.0.1", onionProxyManager!!.iPv4LocalHostSocksPort))
         currentPort =  onionProxyManager!!.iPv4LocalHostSocksPort
+
+         if(torStatus.hasObservers()) {
+            torStatus.onNext(STATES.CONNECTED)
+         }
+
         state = STATES.CONNECTED
 
         println("Tor initialized on port " + onionProxyManager!!.iPv4LocalHostSocksPort)
-        return proxy
+        return Observable.just(proxy)
     }
 
-    fun isConnected() : Boolean {
-        return state == STATES.CONNECTED
+    fun stopTor() : Observable<Boolean> {
+       if(torStatus.hasObservers()) {
+           torStatus.onNext(STATES.DISCONNECTED)
+       }
+
+        return Observable.fromCallable {
+            try {
+                this.state = STATES.DISCONNECTED
+                if(torStatus.hasObservers()) {
+                    torStatus.onNext(STATES.DISCONNECTED)
+                }
+
+            } catch(e: Exception) {
+                e.printStackTrace()
+                this.state = STATES.DISCONNECTED
+                if(torStatus.hasObservers()) {
+                    torStatus.onNext(STATES.DISCONNECTED)
+                }
+
+                return@fromCallable false
+            }
+            true
+        }
+    }
+
+    fun isPortOpen(ip:String, port:Int, timeout:Int):Boolean {
+        try
+        {
+            val socket = Socket()
+            socket.connect(InetSocketAddress(ip, port), timeout)
+            socket.close()
+            return true
+        }
+        catch (ce:ConnectException) {
+            ce.printStackTrace()
+            return false
+        }
+        catch (ex:Exception) {
+            ex.printStackTrace()
+            return false
+        }
     }
 
 
