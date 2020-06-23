@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -39,6 +40,11 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/schemas".toString())
+        }
+    }
 }
 
 dependencies {
@@ -56,63 +62,80 @@ dependencies {
     implementation 'androidx.media:media:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.biometric:biometric:1.0.1'
 
     //QR Reader implementation included in play services
-    implementation 'com.google.android.gms:play-services-vision:19.0.0'
+    implementation 'com.google.android.gms:play-services-vision:20.1.0'
 
-    //Logging
-    implementation 'org.slf4j:slf4j-api:1.7.30'
-    implementation 'org.slf4j:slf4j-android:1.7.30'
-    //QRCode library
+    //Visuals
+
+    //QRCode
     implementation 'com.github.kenglxn.QRGen:android:2.5.0'
-    //HTTP Client library : Sorry but OkHttp is complete bullshit.
-    implementation 'cz.msebera.android:httpclient:4.4.1.2'
     //MapBox
     implementation 'org.osmdroid:osmdroid-android:6.1.5'
-    //Different shit
-    implementation 'com.github.EdwardQuixote:Support_AppLocker:2.0.3'
-    //TestFairy
-    implementation 'testfairy:testfairy-android-sdk:1.9.16@aar'
-    //Charts for history prices
+    //Charts
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     //Centered buttons
     implementation 'com.github.Omega-R:OmegaCenterIconButton:0.0.5@aar'
+    //keypad
+    implementation 'com.github.davidmigloz:number-keyboard:3.0.0'
+
+    //Network
+
+    //HTTP Client library : Sorry but OkHttp is complete bullshit.
+    implementation 'cz.msebera.android:httpclient:4.4.1.2'
+    //I2P router library
+    //implementation files('src/main/libs/i2p-router.jar')
+    //Tor
+    implementation 'com.github.Samourai-Wallet:Tor-Onion-Proxy-Library:0.0.7'
+
+    //Different shit - need this for material colors.
+    implementation 'com.github.EdwardQuixote:Support_AppLocker:2.0.3'
+
+    //Crypto
+
     //BitcoinKit
     implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.2.6'
     //HD Wallet Kit
     //TODO UPDATE SPONGYCASTLE -> BOUNCYCASTLE
     implementation 'com.github.2lazy2debug:hd-wallet-kit-android:1.1.1'
+    //cryptography
+    implementation 'org.bouncycastle:bcpkix-jdk15on:1.65'
+    implementation 'androidx.security:security-crypto:1.0.0-rc02'
+
+
     //Json, not sure if used
     implementation files('src/main/libs/json-simple-1.1.1.jar')
-    //I2P router library
-    //implementation files('src/main/libs/i2p-router.jar')
-
-    implementation 'com.github.Samourai-Wallet:Tor-Onion-Proxy-Library:0.0.5'
-
     //Gson
     implementation 'com.google.code.gson:gson:2.8.6'
-    //keypad library
-    implementation 'com.github.davidmigloz:number-keyboard:3.0.0'
+
     //JS engine
     implementation 'com.eclipsesource.j2v8:j2v8:6.0.0@aar'
-    //crypto libraries
-    implementation 'org.bouncycastle:bcpkix-jdk15on:1.65'
-    implementation 'androidx.security:security-crypto:1.0.0-rc01'
+    //Observables
+    implementation "io.reactivex.rxjava3:rxjava:3.0.4"
 
-    //biometric
-    implementation 'androidx.biometric:biometric:1.0.1'
+    //TestFairy
+    implementation 'testfairy:testfairy-android-sdk:1.9.16@aar'
 
+    //android room
+    def room_version = "2.2.5"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    //Logging
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+    implementation 'org.slf4j:slf4j-android:1.7.30'
 
     //test suites
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
     testImplementation 'org.testng:testng:6.9.6'
 
-
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+    testImplementation "androidx.room:room-testing:$room_version"
 
 }

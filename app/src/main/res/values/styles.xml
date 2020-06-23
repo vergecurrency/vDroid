@@ -38,7 +38,7 @@
         <item name="vg_vergeUp">@color/vergeUp_lt</item>
         <item name="vg_vergeDown">@color/vergeDown_lt</item>
 
-        <item name="vg_radio_checked_text_color">@color/black</item>
+        <item name="vg_radio_checked_text_color">@color/verge_colorPrimaryDark</item>
 
         <item name="vg_graphFadeTop">@color/graphFadeTop_lt</item>
         <item name="vg_graphFadeBottom">@color/graphFadeBottom_lt</item>

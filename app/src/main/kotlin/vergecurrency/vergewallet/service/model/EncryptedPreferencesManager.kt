@@ -8,9 +8,11 @@ import android.security.keystore.KeyProperties
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import vergecurrency.vergewallet.helpers.utils.WalletDataIdentifierUtils
+import java.util.*
 import javax.crypto.Mac
-import javax.crypto.Mac.*
+import javax.crypto.Mac.getInstance
 import javax.crypto.spec.SecretKeySpec
+import kotlin.collections.ArrayList
 
 class EncryptedPreferencesManager private constructor() {
 
@@ -164,7 +166,7 @@ class EncryptedPreferencesManager private constructor() {
 
             if (realmEncryptionKey == null) {
                 val shaHMAC: Mac = getInstance("HmacSHA512")
-                val realmEncryptionKey = SecretKeySpec(passphrase?.toString()?.toByteArray(), "HmacSHA512")
+                val realmEncryptionKey = SecretKeySpec(UUID.randomUUID().toString().toByteArray(), "HmacSHA512")
                 shaHMAC.init(realmEncryptionKey)
                 encryptedPreferences!!.edit().putString(REALM_ENCRYPTION_KEY, shaHMAC.doFinal(walletName.toString().toByteArray()).toString())
             }
@@ -189,5 +191,6 @@ class EncryptedPreferencesManager private constructor() {
         }
         return existingWalletFiles;
     }
+
 
 }
