@@ -15,6 +15,7 @@ import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager.Compa
 import vergecurrency.vergewallet.service.model.MnemonicManager
 import vergecurrency.vergewallet.service.model.VDroidRealmModule
 import java.util.*
+import kotlin.reflect.jvm.internal.impl.protobuf.UnmodifiableLazyStringList
 
 class WalletManager private constructor() : Listener {
 
@@ -69,19 +70,14 @@ class WalletManager private constructor() : Listener {
         @Throws(Exception::class)
         fun startWallet() {
             val netType = NetworkType.MainNet
-            val mnemonic = MnemonicManager.getMnemonicFromJSON(mnemonic!!)
-            if (mnemonic != null) {
-                wallet = BitcoinKit(Arrays.asList(*mnemonic), EncryptedPreferencesManager.passphrase!!, netType, "wallet", 10, true, 1)
-                wallet!!.listener = INSTANCE
-                //val networkName = netType.name
+            val mnemonic: Array<String> = MnemonicManager.getMnemonicFromJSON(mnemonic!!)!!.map { a -> String(a) }.toTypedArray()
+            wallet = BitcoinKit(Arrays.asList(*mnemonic), String(EncryptedPreferencesManager.passphrase!!), netType, "wallet", 10, true, 1)
+            wallet!!.listener = INSTANCE
+            //val networkName = netType.name
 
-                wallet!!.start()
+            wallet!!.start()
 
-                balance!!.setValue(wallet!!.balance)
-            } else {
-                //I don't know, I'll see how to handle this.
-                throw Exception()
-            }
+            balance!!.setValue(wallet!!.balance)
         }
 
         val receiveAddress: String
@@ -92,8 +88,9 @@ class WalletManager private constructor() : Listener {
         fun generateMnemonic() {
 
             val mnemonicManager = MnemonicManager()
-            mnemonicManager.mnemonic = io.horizontalsystems.hdwalletkit.Mnemonic().generate(io.horizontalsystems.hdwalletkit.Mnemonic.Strength.Default).toTypedArray()
-            mnemonic = mnemonicManager.mnemonicAsJSON
+            mnemonicManager.mnemonic = io.horizontalsystems.hdwalletkit.Mnemonic().generate(io.horizontalsystems.hdwalletkit.Mnemonic.Strength.Default).map { m -> m.toCharArray() }.toTypedArray()
+            // TODO
+            // mnemonic = mnemonicManager.mnemonicAsJSON
         }
 
 

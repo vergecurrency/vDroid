@@ -14,7 +14,7 @@ import java.util.*
 object RatesClient {
 
 
-    fun infoBy(currency: String): FiatRate? {
+    fun infoBy(currency: CharArray): FiatRate? {
 
         return try {
             val rawData = NetworkGateway().doRequest(HttpGet(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, currency)))
@@ -26,7 +26,7 @@ object RatesClient {
 
     }
 
-    fun readPriceStatistics(currency: String): Map<String, String> {
+    fun readPriceStatistics(currency: CharArray): Map<String, String> {
         var rawData: String
         try {
             rawData = NetworkGateway().doRequest(HttpGet(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, currency)))
@@ -38,7 +38,7 @@ object RatesClient {
         val valuesMap = Gson().fromJson<MutableMap<String, String>>(rawData, stringStringMap)
 
 
-        return reworkMap(valuesMap, currency)
+        return reworkMap(valuesMap, String(currency))
     }
 
 

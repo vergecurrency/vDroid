@@ -8,7 +8,7 @@ import vergecurrency.vergewallet.wallet.WalletManager
 
 class PaperkeyDistributionViewModel : ViewModel() {
 
-    lateinit var seed: Array<String>
+    lateinit var seed: Array<CharArray>
 
     init {
         if (!PreferencesManager.isFirstLaunch) {

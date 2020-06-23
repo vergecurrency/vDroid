@@ -23,7 +23,7 @@ class CurrenciesAdapter
  * @param curs    the currencies list we need to display
  */
 (context: Context, curs: ArrayList<Currency>) : ArrayAdapter<Currency>(context, R.layout.listview_item_currency, curs), View.OnClickListener {
-    private val currentlySelectedCurrency: Currency = Currency.getCurrencyFromJson(EncryptedPreferencesManager.preferredCurrency.toString())
+    private val currentlySelectedCurrency: Currency = Currency.getCurrencyFromJson(EncryptedPreferencesManager.preferredCurrency!!)
 
 
     override fun onClick(v: View) {
@@ -32,7 +32,7 @@ class CurrenciesAdapter
 
         if (v.id == R.id.listview_currency_item) {
             Toast.makeText(v.context, "Currency chosen : " + currency!!.name!!, Toast.LENGTH_SHORT).show()
-            EncryptedPreferencesManager.preferredCurrency = currency.currencyAsJSON
+            EncryptedPreferencesManager.preferredCurrency = currency.currencyAsJSON.toCharArray()
 
         }
 
@@ -53,7 +53,7 @@ class CurrenciesAdapter
             vh.currencyCurrency = cView.findViewById(R.id.listview_currency_currency)
             vh.currencyName = cView.findViewById(R.id.listview_currency_name)
             cView.tag = vh
-            if (cur!!.name.equals(currentlySelectedCurrency.name) && cur.currency.equals(currentlySelectedCurrency.currency)) {
+            if (cur!!.name.equals(currentlySelectedCurrency.name) && cur.currency.toString().equals(currentlySelectedCurrency.currency)) {
                 val imgView = cView.findViewById<ImageView>(R.id.list_view_settings_currency_checked);
                 imgView!!.setImageResource(R.drawable.icon_checked)
                 DrawableCompat.setTint(imgView.drawable, ContextCompat.getColor(cView.context, UIUtils.resolveAttr(R.attr.vg_primaryLight, cView.context)))
@@ -65,7 +65,7 @@ class CurrenciesAdapter
         }
 
 
-        vh.currencyCurrency!!.text = cur!!.currency
+        vh.currencyCurrency!!.text = cur!!.currency.toString()
         vh.currencyName!!.text = cur.name
 
         vh.currencyId!!.setOnClickListener(this)

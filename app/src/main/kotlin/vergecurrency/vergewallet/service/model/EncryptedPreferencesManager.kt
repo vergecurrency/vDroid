@@ -45,9 +45,9 @@ class EncryptedPreferencesManager private constructor() {
         }
 
         //-------Pin
-        var pin: String?
-            get() = encryptedPreferences!!.getString(PIN, "")
-            set(pin) = encryptedPreferences!!.edit().putString(PIN, pin).apply()
+        var pin: CharArray?
+            get() = encryptedPreferences!!.getString(PIN, "")!!.toCharArray()
+            set(pin) = encryptedPreferences!!.edit().putString(PIN, String(pin!!)).apply()
 
         //-------Pin digits
         var pinCount: Int
@@ -55,14 +55,14 @@ class EncryptedPreferencesManager private constructor() {
             set(pinCount) = encryptedPreferences!!.edit().putInt(PIN_COUNT, pinCount).apply()
 
         //--------12words mnemonic
-        var mnemonic: String?
-            get() = encryptedPreferences!!.getString(MNEMONIC, null)
-            set(mnemonic) = encryptedPreferences!!.edit().putString(MNEMONIC, mnemonic).apply()
+        var mnemonic: CharArray?
+            get() = encryptedPreferences!!.getString(MNEMONIC, null)!!.toCharArray()
+            set(mnemonic) = encryptedPreferences!!.edit().putString(MNEMONIC, String(mnemonic!!)).apply()
 
         //---------Preferred currency
-        var preferredCurrency: String?
-            get() = encryptedPreferences!!.getString(PREFERRED_CURRENCY, Currency("United States Dollar", "USD").currencyAsJSON)
-            set(preferredCurrency) = encryptedPreferences!!.edit().putString(PREFERRED_CURRENCY, preferredCurrency).apply()
+        var preferredCurrency: CharArray?
+            get() = encryptedPreferences!!.getString(PREFERRED_CURRENCY, Currency("United States Dollar", "USD".toCharArray()).currencyAsJSON)!!.toCharArray()
+            set(preferredCurrency) = encryptedPreferences!!.edit().putString(PREFERRED_CURRENCY, String(preferredCurrency!!)).apply()
 
         //---------Using Tor
         var usingTor: Boolean
@@ -82,20 +82,20 @@ class EncryptedPreferencesManager private constructor() {
             }
 
         //--------walletsecret
-        var walletSecret: String?
-            get() = encryptedPreferences!!.getString(WALLET_SECRET, null)
+        var walletSecret: CharArray?
+            get() = encryptedPreferences!!.getString(WALLET_SECRET, null)!!.toCharArray()
             set(secret) {
                 var wSecret = secret
                 if (wSecret == null) {
-                    wSecret = ""
+                    wSecret = "".toCharArray()
                 }
-                encryptedPreferences!!.edit().putString(WALLET_SECRET, wSecret).apply()
+                encryptedPreferences!!.edit().putString(WALLET_SECRET, String(wSecret)).apply()
             }
 
-        //--------walletsecret
-        var deviceToken: String?
-            get() = encryptedPreferences!!.getString(DEVICE_TOKEN, "")
-            set(token) = encryptedPreferences!!.edit().putString(DEVICE_TOKEN, token).apply()
+        //--------deviceToken
+        var deviceToken: CharArray?
+            get() = encryptedPreferences!!.getString(DEVICE_TOKEN, "")!!.toCharArray()
+            set(token) = encryptedPreferences!!.edit().putString(DEVICE_TOKEN, String(token!!)).apply()
 
         //--------auth for unlocking wallet
         var localAuthForWalletUnlock: Boolean
@@ -108,34 +108,34 @@ class EncryptedPreferencesManager private constructor() {
             set(value) = encryptedPreferences!!.edit().putBoolean(AUTH_SEND_XVG, value).apply()
 
         //--------walletid
-        var walletId: String?
-            get() = encryptedPreferences!!.getString(WALLET_ID, null)
+        var walletId: CharArray?
+            get() = encryptedPreferences!!.getString(WALLET_ID, null)!!.toCharArray()
             set(id) {
                 var wId = id
                 if (wId == null) {
-                    wId = ""
+                    wId = "".toCharArray()
                 }
-                encryptedPreferences!!.edit().putString(WALLET_ID, wId).apply()
+                encryptedPreferences!!.edit().putString(WALLET_ID, String(wId)).apply()
             }
 
         //-------User passphrase
-        var passphrase: String?
-            get() = encryptedPreferences!!.getString(PASSPHRASE, "mnemonic")
-            set(passphrase) = encryptedPreferences!!.edit().putString(PASSPHRASE, passphrase).apply()
+        var passphrase: CharArray?
+            get() = encryptedPreferences!!.getString(PASSPHRASE, "mnemonic")!!.toCharArray()
+            set(passphrase) = encryptedPreferences!!.edit().putString(PASSPHRASE, String(passphrase!!)).apply()
 
         //-------realm encryption key
-        var realmEncryptionKey: String? = null
-            get() = encryptedPreferences!!.getString(REALM_ENCRYPTION_KEY, null)
+        var realmEncryptionKey: CharArray? = null
+            get() = encryptedPreferences!!.getString(REALM_ENCRYPTION_KEY, null)!!.toCharArray()
 
         //--------walletname
-        var walletName: String?
-            get() = encryptedPreferences!!.getString(WALLET_NAME, null)
+        var walletName: CharArray?
+            get() = encryptedPreferences!!.getString(WALLET_NAME, null)!!.toCharArray()
             set(name) {
                 var wName = name
                 if (wName == null) {
-                    wName = ""
+                    wName = "".toCharArray()
                 }
-                encryptedPreferences!!.edit().putString(WALLET_NAME, wName).apply()
+                encryptedPreferences!!.edit().putString(WALLET_NAME, String(wName)).apply()
             }
 
         fun getOrCreateEncryptedSharedPreferences(context: Context, walletNameExt: String) {
@@ -164,12 +164,30 @@ class EncryptedPreferencesManager private constructor() {
 
             if (realmEncryptionKey == null) {
                 val shaHMAC: Mac = getInstance("HmacSHA512")
-                val realmEncryptionKey = SecretKeySpec(passphrase?.toByteArray(), "HmacSHA512")
+                val realmEncryptionKey = SecretKeySpec(passphrase?.toString()?.toByteArray(), "HmacSHA512")
                 shaHMAC.init(realmEncryptionKey)
-                encryptedPreferences!!.edit().putString(REALM_ENCRYPTION_KEY, shaHMAC.doFinal(walletName?.toByteArray()).toString())
+                encryptedPreferences!!.edit().putString(REALM_ENCRYPTION_KEY, shaHMAC.doFinal(walletName.toString().toByteArray()).toString())
             }
         }
 
+    }
+
+    fun getEncryptedPreferences(context: Context): ArrayList<String> {
+        val existingWalletFiles: ArrayList<String> = ArrayList();
+        for (file in context.dataDir.listFiles()) {
+            if (file.absolutePath.endsWith("vergecurrency.vergewallet/shared_prefs")) {
+                if (file.listFiles().size > 0) {
+                    for (prefs in file.listFiles()) {
+                        if (WalletDataIdentifierUtils.isEncryptedSharedPreferences(file.name)) {
+                            existingWalletFiles.add(file.name)
+                            getOrCreateEncryptedSharedPreferences(context, "")
+                        }
+                    }
+                }
+            }
+
+        }
+        return existingWalletFiles;
     }
 
 }

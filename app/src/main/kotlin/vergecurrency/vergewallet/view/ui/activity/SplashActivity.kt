@@ -67,8 +67,8 @@ class SplashActivity : BaseActivity() {
 
     private fun getOrCreateVergeDataRealm() {
         val config = RealmConfiguration.Builder()
-                .name(WalletDataIdentifierUtils.getRealmFileNameByUsersWalletName(EncryptedPreferencesManager.walletName!!))
-                .encryptionKey(EncryptedPreferencesManager.realmEncryptionKey!!.toByteArray())
+                .name(WalletDataIdentifierUtils.getRealmFileNameByUsersWalletName(String(EncryptedPreferencesManager.walletName!!)))
+                .encryptionKey(String(EncryptedPreferencesManager.realmEncryptionKey!!).toByteArray())
                 .schemaVersion(0)
                 .modules(VDroidRealmModule())
                 .build()

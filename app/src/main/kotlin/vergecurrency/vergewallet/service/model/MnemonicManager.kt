@@ -5,15 +5,15 @@ import com.google.gson.Gson
 class MnemonicManager {
 
 
-    var mnemonic: Array<String>? = null
+    var mnemonic: Array<CharArray>? = null
 
-    val mnemonicAsJSON: String
-        get() = Gson().toJson(this.mnemonic)
+    val mnemonicAsJSON: CharArray
+        get() = Gson().toJson(this.mnemonic).toCharArray()
 
     companion object {
 
-        fun getMnemonicFromJSON(mnemonic: String): Array<String>? {
-            return Gson().fromJson(mnemonic, Array<String>::class.java)
+        fun getMnemonicFromJSON(mnemonic: CharArray): Array<CharArray>? {
+            return Gson().fromJson(String(mnemonic), Array<CharArray>::class.java)
         }
     }
 }

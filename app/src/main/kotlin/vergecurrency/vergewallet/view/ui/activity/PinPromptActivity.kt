@@ -69,7 +69,7 @@ class PinPromptActivity : BaseActivity() {
                 changePinColors(pin!!.length)
 
                 if (pin!!.length == 6) {
-                    if (pin == mViewModel!!.pin) {
+                    if (pin == String(mViewModel!!.pin)) {
                         redirectView()
                     } else {
                         Toast.makeText(applicationContext, "The pin inserted was wrong. Start Over", Toast.LENGTH_SHORT).show()

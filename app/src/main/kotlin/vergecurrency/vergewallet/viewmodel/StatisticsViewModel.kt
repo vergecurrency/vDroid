@@ -9,7 +9,7 @@ import java.util.*
 
 class StatisticsViewModel : ViewModel() {
 
-    private val currencyCode: String
+    private val currencyCode: CharArray
     val statistics: ArrayList<Map.Entry<String, String>>
 
     init {

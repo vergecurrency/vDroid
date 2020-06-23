@@ -5,7 +5,7 @@ import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager.Compa
 import vergecurrency.vergewallet.service.model.MnemonicManager
 
 class ShowPaperkeyViewModel : ViewModel() {
-    var seed: Array<String>
+    var seed: Array<CharArray>
 
     val seedAsText: String
         get() {
@@ -13,7 +13,7 @@ class ShowPaperkeyViewModel : ViewModel() {
             for (s in seed) {
                 result.append(s).append(" ")
             }
-            return result.toString()
+            return String(result)
         }
 
     init {

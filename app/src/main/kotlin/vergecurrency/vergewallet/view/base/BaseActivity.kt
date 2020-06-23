@@ -16,7 +16,6 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(base: Context) {
-
         super.attachBaseContext(updateBaseContextLocale(base))
     }
 

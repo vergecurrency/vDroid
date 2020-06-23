@@ -5,7 +5,6 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.MainThread
@@ -15,10 +14,12 @@ import io.realm.Realm
 import vergecurrency.vergewallet.exception.DefaultUncaughtExceptionHandler
 import vergecurrency.vergewallet.helpers.utils.LanguagesUtils
 import vergecurrency.vergewallet.helpers.utils.UIUtils
+import vergecurrency.vergewallet.helpers.utils.WalletDataIdentifierUtils
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.PreferencesManager
 import vergecurrency.vergewallet.view.ui.activity.SplashActivity
 import vergecurrency.vergewallet.wallet.WalletManager
+import java.io.File
 
 
 class VergeWalletApplication : Application(), Application.ActivityLifecycleCallbacks {

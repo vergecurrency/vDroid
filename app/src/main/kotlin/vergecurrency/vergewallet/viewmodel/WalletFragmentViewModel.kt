@@ -11,7 +11,7 @@ class WalletFragmentViewModel : ViewModel() {
     //TODO check if necessary
     private val currencyChange: String?
 
-    val currencyCode: String
+    val currencyCode: CharArray
         get() = Currency.getCurrencyFromJson(EncryptedPreferencesManager.preferredCurrency!!).currency!!
 
     init {

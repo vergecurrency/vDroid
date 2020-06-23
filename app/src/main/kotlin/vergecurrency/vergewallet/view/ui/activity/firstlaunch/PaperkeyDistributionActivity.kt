@@ -21,9 +21,9 @@ class PaperkeyDistributionActivity : BaseActivity() {
     private lateinit var wordView: TextView
     private var currentWordIndex = -1
 
-    private lateinit var seed: Array<String>
+    private lateinit var seed: Array<CharArray>
 
-    private val word: String
+    private val word: CharArray
         get() = seed[currentWordIndex]
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,7 +90,7 @@ class PaperkeyDistributionActivity : BaseActivity() {
         if (currentWordIndex == 11) {
             nextButton.text = getString(R.string.paperkey_view_done)
         }
-        wordView.text = word
+        wordView.text = String(word)
     }
 
     private fun previousWord() {
@@ -99,6 +99,6 @@ class PaperkeyDistributionActivity : BaseActivity() {
             currentWordIndex -= 1
             nextButton.text = getString(R.string.paperkey_view_next)
         }
-        wordView.text = word
+        wordView.text = String(word)
     }
 }

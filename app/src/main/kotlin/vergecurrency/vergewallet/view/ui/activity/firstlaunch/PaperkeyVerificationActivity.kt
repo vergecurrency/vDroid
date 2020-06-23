@@ -22,15 +22,15 @@ class PaperkeyVerificationActivity : BaseActivity() {
     private lateinit var firstWordInput: EditText
     private lateinit var secondWordInput: EditText
     private lateinit var confirmButton: Button
-    private lateinit var verificationWords: Pair<Array<String>, IntArray>
-    private lateinit var seed: Array<String>
+    private lateinit var verificationWords: Pair<Array<CharArray>, IntArray>
+    private lateinit var seed: Array<CharArray>
 
     internal lateinit var mViewModel: PaperkeyVerificationViewModel
 
     //TODO : Def move this shit to viewmodel
-    private val twoRandomWordsFromSeed: Pair<Array<String>, IntArray>
+    private val twoRandomWordsFromSeed: Pair<Array<CharArray>, IntArray>
         get() {
-            val words = Array(2) { "" }
+            val words : Array<CharArray> = Array(2) { CharArray(0) }
             val positions = IntArray(2)
             positions[0] = MathUtils.getRandomNumber(Constants.SEED_SIZE)
             var second = MathUtils.getRandomNumber(Constants.SEED_SIZE)
@@ -81,8 +81,8 @@ class PaperkeyVerificationActivity : BaseActivity() {
     private fun onNextClick(): View.OnClickListener {
         return View.OnClickListener {
 
-            if (firstWordInput.text.toString() == verificationWords.first[0].toLowerCase()) {
-                if (secondWordInput.text.toString() == verificationWords.first[1].toLowerCase()) {
+            if (firstWordInput.text.toString() == String(verificationWords.first[0]).toLowerCase()) {
+                if (secondWordInput.text.toString() == String(verificationWords.first[1]).toLowerCase()) {
 
                     startActivity(Intent(applicationContext, PassphraseCreationActivity::class.java))
 

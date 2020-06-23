@@ -18,7 +18,7 @@ import vergecurrency.vergewallet.viewmodel.PassphraseVerificationViewModel
 class PassphraseValidationActivity : BaseActivity() {
 
     private var mViewModel: PassphraseVerificationViewModel? = null
-    private var passphraseToValidate: String? = null
+    private var passphraseToValidate: CharArray? = null
     private var passphraseEditText: EditText? = null
     private var validateButton: OmegaCenterIconButton? = null
 
@@ -27,7 +27,7 @@ class PassphraseValidationActivity : BaseActivity() {
 
         setContentView(R.layout.activity_passphrase_validate)
 
-        passphraseToValidate = intent.getStringExtra("passphrase")
+        passphraseToValidate = intent.getStringExtra("passphrase").toCharArray()
 
         mViewModel = ViewModelProvider(this).get(PassphraseVerificationViewModel::class.java)
 
@@ -50,7 +50,7 @@ class PassphraseValidationActivity : BaseActivity() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                val isAllOk = s.toString() == passphraseToValidate
+                val isAllOk = s.toString() == passphraseToValidate?.let { String(it) }
                 validateButton!!.isEnabled = isAllOk
                 if (isAllOk) {
                     validateButton!!.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(applicationContext, R.color.verge_colorPrimary))
@@ -67,7 +67,7 @@ class PassphraseValidationActivity : BaseActivity() {
 
     internal fun onValidateClick(): View.OnClickListener {
         return View.OnClickListener {
-            mViewModel!!.setPassphrase(passphraseToValidate!!)
+            this.passphraseToValidate?.let { it1 -> mViewModel!!.setPassphrase(it1) }
             finish()
             startActivity(Intent(applicationContext, PermissionsActivity::class.java))
         }
