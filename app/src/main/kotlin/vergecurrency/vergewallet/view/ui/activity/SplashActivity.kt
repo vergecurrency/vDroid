@@ -36,12 +36,12 @@ class SplashActivity : BaseActivity() {
     private fun startApplication() {
         try {
             //TODO TESTING only
-            EncryptedPreferencesManager.usingTor = false
+            /*EncryptedPreferencesManager.usingTor = false
 
             if (EncryptedPreferencesManager.usingTor) {
-                TorManager.startTor(this)
+                //TorManager.startTor(this)
 
-            }
+            }*/
         } catch (e: java.lang.Exception) {
             e.printStackTrace();
         }

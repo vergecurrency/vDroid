@@ -15,25 +15,26 @@ import com.davidmiguel.numberkeyboard.NumberKeyboardListener
 
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.UIUtils
+import vergecurrency.vergewallet.model.WalletConfiguration
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.view.ui.activity.firstlaunch.PinSetActivity
 import vergecurrency.vergewallet.view.ui.activity.settings.PaperkeyActivity
-import vergecurrency.vergewallet.viewmodel.PinPromptedViewModel
+import vergecurrency.vergewallet.viewmodel.WalletConfigurationFactory
 
 class PinPromptActivity : BaseActivity() {
 
     private var nextView: String? = null
     private var pin: String? = null
     lateinit var pinIVs: Array<ImageView?>
-    private var mViewModel: PinPromptedViewModel? = null
+    private lateinit var mViewModel: WalletConfiguration
     private var pinLayout: GridLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mViewModel = ViewModelProvider(this, WalletConfigurationFactory()).get(WalletConfiguration::class.java)
 
         nextView = intent.getStringExtra("nextView")
-        mViewModel = ViewModelProvider(this).get(PinPromptedViewModel::class.java)
-
         setContentView(R.layout.activity_pin_prompt)
         initComponents()
 
@@ -69,7 +70,7 @@ class PinPromptActivity : BaseActivity() {
                 changePinColors(pin!!.length)
 
                 if (pin!!.length == 6) {
-                    if (pin == String(mViewModel!!.pin)) {
+                    if (pin == String(EncryptedPreferencesManager.pin!!)) {
                         redirectView()
                     } else {
                         Toast.makeText(applicationContext, "The pin inserted was wrong. Start Over", Toast.LENGTH_SHORT).show()

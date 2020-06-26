@@ -47,8 +47,8 @@ class EncryptedPreferencesManager private constructor() {
         }
 
         //-------Pin
-        var pin: CharArray?
-            get() = encryptedPreferences!!.getString(PIN, "")!!.toCharArray()
+        var pin: ByteArray?
+            get() = encryptedPreferences!!.getString(PIN, "")!!.toByteArray()
             set(pin) = encryptedPreferences!!.edit().putString(PIN, String(pin!!)).apply()
 
         //-------Pin digits
@@ -57,19 +57,19 @@ class EncryptedPreferencesManager private constructor() {
             set(pinCount) = encryptedPreferences!!.edit().putInt(PIN_COUNT, pinCount).apply()
 
         //--------12words mnemonic
-        var mnemonic: CharArray?
-            get() = encryptedPreferences!!.getString(MNEMONIC, null)!!.toCharArray()
+        var mnemonic: ByteArray?
+            get() = encryptedPreferences!!.getString(MNEMONIC, null)!!.toByteArray()
             set(mnemonic) = encryptedPreferences!!.edit().putString(MNEMONIC, String(mnemonic!!)).apply()
 
         //---------Preferred currency
-        var preferredCurrency: CharArray?
-            get() = encryptedPreferences!!.getString(PREFERRED_CURRENCY, Currency("United States Dollar", "USD".toCharArray()).currencyAsJSON)!!.toCharArray()
+        var preferredCurrency: ByteArray?
+            get() = encryptedPreferences!!.getString(PREFERRED_CURRENCY, Currency("United States Dollar", "USD".toByteArray()).currencyAsJSON)!!.toByteArray()
             set(preferredCurrency) = encryptedPreferences!!.edit().putString(PREFERRED_CURRENCY, String(preferredCurrency!!)).apply()
 
         //---------Using Tor
         var usingTor: Boolean
             get() = encryptedPreferences!!.getBoolean(USING_TOR, false)
-            set(isUsingTor) = encryptedPreferences!!.edit().putBoolean(USING_TOR, isUsingTor).apply()
+            set(isUsingTor) = encryptedPreferences!!.edit().putBoolean(USING_TOR, false).apply()
 
         //---------Wallet amount
 
@@ -84,19 +84,19 @@ class EncryptedPreferencesManager private constructor() {
             }
 
         //--------walletsecret
-        var walletSecret: CharArray?
-            get() = encryptedPreferences!!.getString(WALLET_SECRET, null)!!.toCharArray()
+        var walletSecret: ByteArray?
+            get() = encryptedPreferences!!.getString(WALLET_SECRET, null)!!.toByteArray()
             set(secret) {
                 var wSecret = secret
                 if (wSecret == null) {
-                    wSecret = "".toCharArray()
+                    wSecret = "".toByteArray()
                 }
                 encryptedPreferences!!.edit().putString(WALLET_SECRET, String(wSecret)).apply()
             }
 
         //--------deviceToken
-        var deviceToken: CharArray?
-            get() = encryptedPreferences!!.getString(DEVICE_TOKEN, "")!!.toCharArray()
+        var deviceToken: ByteArray?
+            get() = encryptedPreferences!!.getString(DEVICE_TOKEN, "")!!.toByteArray()
             set(token) = encryptedPreferences!!.edit().putString(DEVICE_TOKEN, String(token!!)).apply()
 
         //--------auth for unlocking wallet
@@ -110,32 +110,32 @@ class EncryptedPreferencesManager private constructor() {
             set(value) = encryptedPreferences!!.edit().putBoolean(AUTH_SEND_XVG, value).apply()
 
         //--------walletid
-        var walletId: CharArray?
-            get() = encryptedPreferences!!.getString(WALLET_ID, null)!!.toCharArray()
+        var walletId: ByteArray?
+            get() = encryptedPreferences!!.getString(WALLET_ID, null)!!.toByteArray()
             set(id) {
                 var wId = id
                 if (wId == null) {
-                    wId = "".toCharArray()
+                    wId = "".toByteArray()
                 }
                 encryptedPreferences!!.edit().putString(WALLET_ID, String(wId)).apply()
             }
 
         //-------User passphrase
-        var passphrase: CharArray?
-            get() = encryptedPreferences!!.getString(PASSPHRASE, "mnemonic")!!.toCharArray()
+        var passphrase: ByteArray?
+            get() = encryptedPreferences!!.getString(PASSPHRASE, "mnemonic")!!.toByteArray()
             set(passphrase) = encryptedPreferences!!.edit().putString(PASSPHRASE, String(passphrase!!)).apply()
 
         //-------realm encryption key
-        var realmEncryptionKey: CharArray? = null
-            get() = encryptedPreferences!!.getString(REALM_ENCRYPTION_KEY, null)!!.toCharArray()
+        var realmEncryptionKey: ByteArray? = null
+            get() = encryptedPreferences!!.getString(REALM_ENCRYPTION_KEY, null)!!.toByteArray()
 
         //--------walletname
-        var walletName: CharArray?
-            get() = encryptedPreferences!!.getString(WALLET_NAME, null)!!.toCharArray()
+        var walletName: ByteArray?
+            get() = encryptedPreferences!!.getString(WALLET_NAME, null)!!.toByteArray()
             set(name) {
                 var wName = name
                 if (wName == null) {
-                    wName = "".toCharArray()
+                    wName = "".toByteArray()
                 }
                 encryptedPreferences!!.edit().putString(WALLET_NAME, String(wName)).apply()
             }

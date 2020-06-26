@@ -8,7 +8,7 @@ import vergecurrency.vergewallet.wallet.WalletManager
 
 class PaperkeyDistributionViewModel : ViewModel() {
 
-    lateinit var seed: Array<CharArray>
+    lateinit var seed: Array<ByteArray>
 
     init {
         if (!PreferencesManager.isFirstLaunch) {
@@ -17,9 +17,10 @@ class PaperkeyDistributionViewModel : ViewModel() {
 
     }
 
+    /*
     fun generateMnemonics() {
         //Should be created at the launch
         WalletManager.generateMnemonic()
         seed = MnemonicManager.getMnemonicFromJSON(EncryptedPreferencesManager.mnemonic!!)!!
-    }
+    }*/
 }

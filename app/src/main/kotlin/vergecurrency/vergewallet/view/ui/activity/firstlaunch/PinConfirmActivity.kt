@@ -10,14 +10,13 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-
 import com.davidmiguel.numberkeyboard.NumberKeyboard
 import com.davidmiguel.numberkeyboard.NumberKeyboardListener
-
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.UIUtils
+import vergecurrency.vergewallet.model.WalletConfiguration
 import vergecurrency.vergewallet.view.base.BaseActivity
-import vergecurrency.vergewallet.viewmodel.PinVerificationViewModel
+import vergecurrency.vergewallet.viewmodel.WalletConfigurationFactory
 
 class PinConfirmActivity : BaseActivity() {
 
@@ -25,7 +24,7 @@ class PinConfirmActivity : BaseActivity() {
     private var pin: String? = null
     private var origin: String? = null
     private lateinit var pinIVs: Array<ImageView?>
-    private var mViewModel: PinVerificationViewModel? = null
+    private var mViewModel: WalletConfiguration? = null
     private var buttonContinue: Button? = null
     private var confirmLayout: RelativeLayout? = null
     private var numberKeyboard: NumberKeyboard? = null
@@ -34,7 +33,7 @@ class PinConfirmActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         pinToValidate = intent.getStringExtra("pin")
-        mViewModel = ViewModelProvider(this).get(PinVerificationViewModel::class.java)
+        mViewModel = ViewModelProvider(this, WalletConfigurationFactory()).get(WalletConfiguration::class.java)
 
         setContentView(R.layout.activity_pin_confirm)
         initComponents()
@@ -95,7 +94,7 @@ class PinConfirmActivity : BaseActivity() {
 
     private fun confirmButtonListener(): View.OnClickListener {
         return View.OnClickListener {
-            mViewModel!!.setPin(pin!!.toCharArray())
+            mViewModel!!.setPin(pin!!.toByteArray())
             if (origin == "firstLaunch") {
                 startActivity(Intent(applicationContext, PaperkeyInstructionsActivity::class.java))
             } else if (origin == "settings") {

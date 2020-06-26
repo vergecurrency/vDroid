@@ -85,14 +85,6 @@ class WalletManager private constructor() : Listener {
 
         fun getTransactions() {}
 
-        fun generateMnemonic() {
-
-            val mnemonicManager = MnemonicManager()
-            mnemonicManager.mnemonic = io.horizontalsystems.hdwalletkit.Mnemonic().generate(io.horizontalsystems.hdwalletkit.Mnemonic.Strength.Default).map { m -> m.toCharArray() }.toTypedArray()
-            // TODO
-            // mnemonic = mnemonicManager.mnemonicAsJSON
-        }
-
 
         fun getBalance(): MutableLiveData<Long> {
             try {

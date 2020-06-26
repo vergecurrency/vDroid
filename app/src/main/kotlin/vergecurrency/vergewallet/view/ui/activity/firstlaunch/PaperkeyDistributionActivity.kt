@@ -7,23 +7,25 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.model.WalletConfiguration
 import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.viewmodel.PaperkeyDistributionViewModel
+import vergecurrency.vergewallet.viewmodel.WalletConfigurationFactory
 
 class PaperkeyDistributionActivity : BaseActivity() {
 
 
     //variable decl.
-    private lateinit var mViewModel: PaperkeyDistributionViewModel
+    private lateinit var mViewModel: WalletConfiguration
 
     private lateinit var nextButton: Button
     private lateinit var previousButton: Button
     private lateinit var wordView: TextView
     private var currentWordIndex = -1
 
-    private lateinit var seed: Array<CharArray>
+    private lateinit var seed: Array<ByteArray>
 
-    private val word: CharArray
+    private val word: ByteArray
         get() = seed[currentWordIndex]
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +33,7 @@ class PaperkeyDistributionActivity : BaseActivity() {
         setContentView(R.layout.activity_paperkey_seed)
 
         //learn it and shut up
-        mViewModel = ViewModelProvider(this).get(PaperkeyDistributionViewModel::class.java)
+        mViewModel = ViewModelProvider(this, WalletConfigurationFactory()).get(WalletConfiguration::class.java)
 
         initComponents()
 
@@ -44,7 +46,7 @@ class PaperkeyDistributionActivity : BaseActivity() {
     private fun generateSeed() {
         mViewModel.generateMnemonics()
         try {
-            seed = mViewModel.seed
+            seed = mViewModel.getSeed()
 
         } catch (e: Exception) {
             //TODO : do it better

@@ -22,15 +22,15 @@ class PaperkeyVerificationActivity : BaseActivity() {
     private lateinit var firstWordInput: EditText
     private lateinit var secondWordInput: EditText
     private lateinit var confirmButton: Button
-    private lateinit var verificationWords: Pair<Array<CharArray>, IntArray>
-    private lateinit var seed: Array<CharArray>
+    private lateinit var verificationWords: Pair<Array<ByteArray>, IntArray>
+    private lateinit var seed: Array<ByteArray>
 
     internal lateinit var mViewModel: PaperkeyVerificationViewModel
 
     //TODO : Def move this shit to viewmodel
-    private val twoRandomWordsFromSeed: Pair<Array<CharArray>, IntArray>
+    private val twoRandomWordsFromSeed: Pair<Array<ByteArray>, IntArray>
         get() {
-            val words : Array<CharArray> = Array(2) { CharArray(0) }
+            val words : Array<ByteArray> = Array(2) { ByteArray(0) }
             val positions = IntArray(2)
             positions[0] = MathUtils.getRandomNumber(Constants.SEED_SIZE)
             var second = MathUtils.getRandomNumber(Constants.SEED_SIZE)

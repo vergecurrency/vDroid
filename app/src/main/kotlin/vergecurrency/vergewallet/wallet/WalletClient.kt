@@ -125,9 +125,9 @@ class WalletClient : WalletClientInterface {
                 try {
                     val walletId = WalletId.decode(data)
 
-                    EncryptedPreferencesManager.walletId = walletId.identifier!!.toCharArray()
-                    EncryptedPreferencesManager.walletName = walletName!!.toCharArray()
-                    EncryptedPreferencesManager.walletSecret = buildSecret(walletId.identifier!!)!!.toCharArray()
+                    EncryptedPreferencesManager.walletId = walletId.identifier!!.toByteArray()
+                    EncryptedPreferencesManager.walletName = walletName.toByteArray()
+                    EncryptedPreferencesManager.walletSecret = buildSecret(walletId.identifier!!).toByteArray()
 
                     completion(null, walletId.identifier)
                 } catch (e: Exception) {

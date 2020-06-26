@@ -2,9 +2,9 @@ package vergecurrency.vergewallet.service.model
 
 import com.google.gson.Gson
 
-class Currency(name: String, currency: CharArray) {
+class Currency(name: String, currency: ByteArray) {
 
-    var currency: CharArray? = currency
+    var currency: ByteArray? = currency
     var name: String? = name
 
     val currencyAsJSON: String
@@ -13,7 +13,7 @@ class Currency(name: String, currency: CharArray) {
 
     companion object {
 
-        fun getCurrencyFromJson(json: CharArray): Currency {
+        fun getCurrencyFromJson(json: ByteArray): Currency {
             return Gson().fromJson(String(json), Currency::class.java)
         }
     }

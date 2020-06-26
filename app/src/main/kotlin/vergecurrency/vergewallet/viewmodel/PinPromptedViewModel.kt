@@ -6,6 +6,6 @@ import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 class PinPromptedViewModel : ViewModel() {
 
 
-    val pin: CharArray
+    val pin: ByteArray
         get() = EncryptedPreferencesManager.pin!!
 }

@@ -24,7 +24,7 @@ class TorLayerGateway(requestBase: HttpRequestBase) : Gateway(requestBase) {
 
     override fun background(vararg params: String?): String {
         try {
-
+/*
             val result = StringBuilder()
 
             //Creates the http client according to the previous method
@@ -51,7 +51,9 @@ class TorLayerGateway(requestBase: HttpRequestBase) : Gateway(requestBase) {
             }
             httpResponseStream.close()
 
-            return result.toString()
+            return result.toString()*/
+            return ""
+
         } catch (ex: Exception) {
             //TODO : Catch exception properly
             ex.printStackTrace()

@@ -7,7 +7,7 @@ import vergecurrency.vergewallet.service.model.MnemonicManager
 import vergecurrency.vergewallet.service.model.PreferencesManager
 
 class PaperkeyVerificationViewModel : ViewModel() {
-    var seed: Array<CharArray> = MnemonicManager.getMnemonicFromJSON(EncryptedPreferencesManager.mnemonic!!)!!
+    var seed: Array<ByteArray> = MnemonicManager.getMnemonicFromJSON(EncryptedPreferencesManager.mnemonic!!)!!
 
     fun setFirstLaunch(isFirstLaunch: Boolean) {
         PreferencesManager.isFirstLaunch = isFirstLaunch

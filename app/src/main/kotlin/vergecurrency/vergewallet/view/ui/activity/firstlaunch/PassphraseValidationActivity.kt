@@ -18,7 +18,7 @@ import vergecurrency.vergewallet.viewmodel.PassphraseVerificationViewModel
 class PassphraseValidationActivity : BaseActivity() {
 
     private var mViewModel: PassphraseVerificationViewModel? = null
-    private var passphraseToValidate: CharArray? = null
+    private var passphraseToValidate: ByteArray? = null
     private var passphraseEditText: EditText? = null
     private var validateButton: OmegaCenterIconButton? = null
 
@@ -27,7 +27,7 @@ class PassphraseValidationActivity : BaseActivity() {
 
         setContentView(R.layout.activity_passphrase_validate)
 
-        passphraseToValidate = intent.getStringExtra("passphrase").toCharArray()
+        passphraseToValidate = intent.getStringExtra("passphrase").toByteArray()
 
         mViewModel = ViewModelProvider(this).get(PassphraseVerificationViewModel::class.java)
 

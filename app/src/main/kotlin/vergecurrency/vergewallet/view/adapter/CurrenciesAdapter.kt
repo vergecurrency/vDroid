@@ -32,7 +32,7 @@ class CurrenciesAdapter
 
         if (v.id == R.id.listview_currency_item) {
             Toast.makeText(v.context, "Currency chosen : " + currency!!.name!!, Toast.LENGTH_SHORT).show()
-            EncryptedPreferencesManager.preferredCurrency = currency.currencyAsJSON.toCharArray()
+            EncryptedPreferencesManager.preferredCurrency = currency.currencyAsJSON.toByteArray()
 
         }
 

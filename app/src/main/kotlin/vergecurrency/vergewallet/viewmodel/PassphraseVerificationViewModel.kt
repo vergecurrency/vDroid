@@ -10,7 +10,7 @@ class PassphraseVerificationViewModel : ViewModel() {
         PreferencesManager.isFirstLaunch = isFirstLaunch
     }*/
 
-    fun setPassphrase(passphrase: CharArray) {
+    fun setPassphrase(passphrase: ByteArray) {
         EncryptedPreferencesManager.passphrase = passphrase
     }
 }
