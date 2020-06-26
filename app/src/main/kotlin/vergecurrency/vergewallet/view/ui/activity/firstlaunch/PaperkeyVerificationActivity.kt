@@ -11,8 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import vergecurrency.vergewallet.Constants
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.MathUtils
+import vergecurrency.vergewallet.model.WalletConfiguration
 import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.viewmodel.PaperkeyVerificationViewModel
+import vergecurrency.vergewallet.viewmodel.WalletConfigurationFactory
 import java.util.*
 
 class PaperkeyVerificationActivity : BaseActivity() {
@@ -25,7 +27,7 @@ class PaperkeyVerificationActivity : BaseActivity() {
     private lateinit var verificationWords: Pair<Array<ByteArray>, IntArray>
     private lateinit var seed: Array<ByteArray>
 
-    internal lateinit var mViewModel: PaperkeyVerificationViewModel
+    internal lateinit var mViewModel: WalletConfiguration
 
     //TODO : Def move this shit to viewmodel
     private val twoRandomWordsFromSeed: Pair<Array<ByteArray>, IntArray>
@@ -48,11 +50,11 @@ class PaperkeyVerificationActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paperkey_confirm_seed)
 
-        mViewModel = ViewModelProvider(this).get(PaperkeyVerificationViewModel::class.java)
+        mViewModel = ViewModelProvider(this, WalletConfigurationFactory()).get(WalletConfiguration::class.java)
 
         //Get the shared preferences
 
-        seed = mViewModel.seed
+        seed = mViewModel.getSeed()
 
         verificationWords = twoRandomWordsFromSeed
 

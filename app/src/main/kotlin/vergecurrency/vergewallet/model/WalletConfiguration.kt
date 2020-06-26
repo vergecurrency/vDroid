@@ -7,12 +7,14 @@ import vergecurrency.vergewallet.service.model.PreferencesManager
 import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.Mac
+import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 class WalletConfiguration() : ViewModel() {
     private lateinit var seed: Array<ByteArray>
     private lateinit var secSpec: SecretKeySpec
-    private val transformation = "AES"
+    private lateinit var gcmSpec: GCMParameterSpec
+    private val uuid: ByteArray = UUID.randomUUID().toString().toByteArray()
 
     fun generateMnemonics() {
         //if first launch
@@ -34,13 +36,21 @@ class WalletConfiguration() : ViewModel() {
 
     fun setPin(pin: ByteArray) {
         val shaHMAC: Mac = Mac.getInstance("HmacSHA256")
-        val hashSpec = SecretKeySpec(UUID.randomUUID().toString().toByteArray(), "HmacSHA256")
+        val hashSpec = SecretKeySpec(uuid, "HmacSHA256")
         shaHMAC.init(hashSpec)
-        secSpec = SecretKeySpec(shaHMAC.doFinal(pin), transformation)
+        secSpec = SecretKeySpec(shaHMAC.doFinal(pin), "AES")
+        gcmSpec = GCMParameterSpec(128, secSpec.encoded)
     }
 
     fun getPin(): ByteArray {
         return secSpec.encoded
+    }
+
+    fun isSamePin(pin: ByteArray): Boolean {
+        val shaHMAC: Mac = Mac.getInstance("HmacSHA256")
+        val hashSpec = SecretKeySpec(uuid, "HmacSHA256")
+        shaHMAC.init(hashSpec)
+        return secSpec.encoded.contentEquals(SecretKeySpec(shaHMAC.doFinal(pin), "AES").encoded)
     }
 
     fun getSeed(): Array<ByteArray> {
@@ -49,15 +59,15 @@ class WalletConfiguration() : ViewModel() {
 
     @Throws(Exception::class)
     fun encrypt(clear: ByteArray): ByteArray {
-        val cipher: Cipher = Cipher.getInstance(transformation)
-        cipher.init(Cipher.ENCRYPT_MODE, secSpec)
+        val cipher: Cipher = Cipher.getInstance("AES/GCM/NoPadding")
+        cipher.init(Cipher.ENCRYPT_MODE, secSpec, gcmSpec)
         return cipher.doFinal(clear)
     }
 
     @Throws(Exception::class)
     fun decrypt(encrypted: ByteArray): ByteArray {
-        val cipher: Cipher = Cipher.getInstance(transformation)
-        cipher.init(Cipher.DECRYPT_MODE, secSpec)
+        val cipher: Cipher = Cipher.getInstance("AES/GCM/NoPadding")
+        cipher.init(Cipher.DECRYPT_MODE, secSpec, gcmSpec)
         return cipher.doFinal(encrypted)
     }
 }

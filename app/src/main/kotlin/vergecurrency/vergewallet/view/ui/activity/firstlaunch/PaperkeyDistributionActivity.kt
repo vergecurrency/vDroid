@@ -26,7 +26,7 @@ class PaperkeyDistributionActivity : BaseActivity() {
     private lateinit var seed: Array<ByteArray>
 
     private val word: ByteArray
-        get() = seed[currentWordIndex]
+        get() = mViewModel.getSeed()[currentWordIndex]
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,13 +45,6 @@ class PaperkeyDistributionActivity : BaseActivity() {
 
     private fun generateSeed() {
         mViewModel.generateMnemonics()
-        try {
-            seed = mViewModel.getSeed()
-
-        } catch (e: Exception) {
-            //TODO : do it better
-            e.printStackTrace()
-        }
 
     }
 

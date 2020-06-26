@@ -168,7 +168,7 @@ class EncryptedPreferencesManager private constructor() {
                 val shaHMAC: Mac = getInstance("HmacSHA512")
                 val realmEncryptionKey = SecretKeySpec(UUID.randomUUID().toString().toByteArray(), "HmacSHA512")
                 shaHMAC.init(realmEncryptionKey)
-                encryptedPreferences!!.edit().putString(REALM_ENCRYPTION_KEY, shaHMAC.doFinal(walletName.toString().toByteArray()).toString())
+                encryptedPreferences!!.edit().putString(REALM_ENCRYPTION_KEY, String(shaHMAC.doFinal(walletName)))
             }
         }
 
