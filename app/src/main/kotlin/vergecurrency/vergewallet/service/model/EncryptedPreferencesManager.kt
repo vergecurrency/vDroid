@@ -112,13 +112,8 @@ class EncryptedPreferencesManager private constructor() {
         //--------walletid
         var walletId: ByteArray?
             get() = encryptedPreferences!!.getString(WALLET_ID, null)!!.toByteArray()
-            set(id) {
-                var wId = id
-                if (wId == null) {
-                    wId = "".toByteArray()
-                }
-                encryptedPreferences!!.edit().putString(WALLET_ID, String(wId)).apply()
-            }
+            set(id) = encryptedPreferences!!.edit().putString(WALLET_ID, String(id!!)).apply()
+
 
         //-------User passphrase
         var passphrase: ByteArray?
@@ -141,10 +136,10 @@ class EncryptedPreferencesManager private constructor() {
                 encryptedPreferences!!.edit().putString(WALLET_NAME, String(wName)).apply()
             }
 
-        fun getOrCreateEncryptedSharedPreferences(context: Context, walletNameExt: String) {
+        fun getOrCreateEncryptedSharedPreferences(context: Context, id: UUID) {
             // Custom Advanced Master Key
             val advancedSpec = KeyGenParameterSpec.Builder(
-                    WalletDataIdentifierUtils.getMasterKeyAlias(walletNameExt),
+                    WalletDataIdentifierUtils.getMasterKeyAlias(id),
                     KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
             ).apply {
                 setBlockModes(KeyProperties.BLOCK_MODE_GCM)
@@ -159,7 +154,7 @@ class EncryptedPreferencesManager private constructor() {
 
             //Create encrypted shared preferences
             encryptedPreferences = EncryptedSharedPreferences.create(
-                    WalletDataIdentifierUtils.getEncryptedSharedPreferencesNameByUsersWalletName(walletNameExt),
+                    WalletDataIdentifierUtils.getWalletDataIdPrefixedByUUID(id),
                     masterKeyAlias,
                     context,
                     EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
@@ -169,10 +164,9 @@ class EncryptedPreferencesManager private constructor() {
                 val shaHMAC: Mac = getInstance("HmacSHA512")
                 val spec = SecretKeySpec(UUID.randomUUID().toString().toByteArray(), "HmacSHA512")
                 shaHMAC.init(spec)
-                val key = shaHMAC.doFinal(walletNameExt.toByteArray())
+                val key = shaHMAC.doFinal(walletName)
                 encryptedPreferences!!.edit().putString(REALM_ENCRYPTION_KEY, Base64.getEncoder().encodeToString(key!!)).apply()
             }
         }
-
     }
 }

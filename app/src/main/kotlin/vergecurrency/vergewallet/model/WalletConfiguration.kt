@@ -1,7 +1,8 @@
 package vergecurrency.vergewallet.model
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
-import com.google.gson.Gson
+import vergecurrency.vergewallet.helpers.utils.WalletDataIdentifierUtils
 import vergecurrency.vergewallet.service.model.PreferencesManager
 import java.util.*
 import javax.crypto.Cipher
@@ -13,7 +14,9 @@ class WalletConfiguration() : ViewModel() {
     private lateinit var seed: Array<ByteArray>
     private lateinit var secSpec: SecretKeySpec
     private lateinit var passphrase: ByteArray
+    private  var walletName: ByteArray = "default".toByteArray()
     private lateinit var gcmSpec: GCMParameterSpec
+    private lateinit var id: ByteArray
     private val uuid: ByteArray = UUID.randomUUID().toString().toByteArray()
 
     fun generateMnemonics() {
@@ -41,12 +44,23 @@ class WalletConfiguration() : ViewModel() {
         this.passphrase = encrypt(passphrase);
     }
 
-    fun getPassphrase() : ByteArray {
+    fun getPassphrase(): ByteArray {
         return this.passphrase;
     }
 
-    fun getPin(): ByteArray {
-        return secSpec.encoded
+    fun getWalletName(): ByteArray {
+        return this.walletName
+    }
+
+    fun getWalletId(): ByteArray {
+        return this.id
+    }
+
+    fun setWalletName(name: ByteArray) {
+        this.walletName = encrypt(name)
+    }
+    fun generateWalletId(context : Context) {
+        this.id = encrypt(WalletDataIdentifierUtils.getUnusedUUID(context).toString().toByteArray())
     }
 
     fun isSamePin(pin: ByteArray): Boolean {

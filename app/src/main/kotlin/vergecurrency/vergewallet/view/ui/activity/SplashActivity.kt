@@ -43,8 +43,12 @@ class SplashActivity : BaseActivity() {
                 //TorManager.startTor(this)
 
             }*/
-            DataManager.loadWalletData(this, "default");
-            WalletManager.startWallet("default", false)
+            val keys: Set<UUID> = DataManager.getAllEncryptedPreferences(this).keys;
+            if (keys.size > 0) {
+                val firstWallet = keys.toTypedArray()[0]
+                DataManager.loadWalletData(this, firstWallet);
+                WalletManager.startWallet(firstWallet, false)
+            }
         } catch (e: java.lang.Exception) {
             e.printStackTrace();
         }

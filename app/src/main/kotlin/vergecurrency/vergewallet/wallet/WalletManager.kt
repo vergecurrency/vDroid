@@ -68,10 +68,10 @@ class WalletManager private constructor() : Listener {
             }
 
         @Throws(Exception::class)
-        fun startWallet(walletName : String, isNew : Boolean) {
+        fun startWallet(wallId : UUID, isNew : Boolean) {
             val netType = NetworkType.MainNet
             val mnemonic: Array<String> = MnemonicManager.getMnemonicFromJSON(EncryptedPreferencesManager.mnemonic!!)!!.map { a -> String(a) }.toTypedArray()
-            wallet = BitcoinKit(Arrays.asList(*mnemonic), String(EncryptedPreferencesManager.passphrase!!), netType, WalletDataIdentifierUtils.getWalletDataIdByUsersWalletName(walletName), 10, isNew, 1)
+            wallet = BitcoinKit(Arrays.asList(*mnemonic), String(EncryptedPreferencesManager.passphrase!!), netType, wallId.toString() , 10, isNew, 1)
             wallet!!.listener = INSTANCE
             //val networkName = netType.name
 

@@ -15,6 +15,7 @@ import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.view.ui.activity.WalletActivity
 import vergecurrency.vergewallet.viewmodel.WalletConfigurationFactory
 import vergecurrency.vergewallet.wallet.WalletManager
+import java.util.*
 
 class EndSetupActivity : BaseActivity() {
 
@@ -27,11 +28,14 @@ class EndSetupActivity : BaseActivity() {
         setContentView(R.layout.activity_wallet_ready)
 
         try {
-            EncryptedPreferencesManager.getOrCreateEncryptedSharedPreferences(this, "default")
-            EncryptedPreferencesManager.mnemonic = Gson().toJson(mViewModel.getSeed().map { word -> mViewModel.decrypt(word) }.toTypedArray()).toByteArray();
-            EncryptedPreferencesManager.walletName = "default".toByteArray()
+            mViewModel.generateWalletId(this)
+            val id = mViewModel.decrypt(mViewModel.getWalletId())
+            EncryptedPreferencesManager.getOrCreateEncryptedSharedPreferences(this, UUID.fromString(String(id)))
+            EncryptedPreferencesManager.walletId = id
+            EncryptedPreferencesManager.walletName = mViewModel.decrypt(mViewModel.getWalletName())
+            EncryptedPreferencesManager.mnemonic = Gson().toJson(mViewModel.getSeed().map { word -> String(mViewModel.decrypt(word)) }.toTypedArray()).toByteArray();
             EncryptedPreferencesManager.passphrase = mViewModel.decrypt(mViewModel.getPassphrase())
-            WalletManager.startWallet("default", true)
+            WalletManager.startWallet(UUID.fromString(String(id)), true)
         } catch (e: Exception) {
             System.err.print(e)
             Toast.makeText(applicationContext, "Impossible to start wallet. Manuel you did some crap", Toast.LENGTH_LONG).show()
