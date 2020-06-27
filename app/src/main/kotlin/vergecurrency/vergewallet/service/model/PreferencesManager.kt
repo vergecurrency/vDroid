@@ -25,7 +25,7 @@ class PreferencesManager private constructor(context: Context) {
         lateinit var preferences: SharedPreferences
 
         //--------Singleton methods
-        fun init(context: Context): PreferencesManager? {
+        fun getInstance(context: Context): PreferencesManager? {
             if (INSTANCE != null) {
                 throw AssertionError("You already initialized an object of this type")
             } else {

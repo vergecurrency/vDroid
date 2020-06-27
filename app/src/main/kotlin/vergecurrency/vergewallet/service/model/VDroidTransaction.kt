@@ -5,19 +5,19 @@ import io.realm.annotations.PrimaryKey
 import io.realm.annotations.RealmField
 
 
-data class VDroidTransaction(@PrimaryKey val id: Int,
-                             @RealmField(name = "tx_id") val address: String,
-                             @RealmField(name = "action") val action: String,
-                             @RealmField(name = "amount") val amount: Int,
-                             @RealmField(name = "fees") val fees: Int,
-                             @RealmField(name = "time") val time: Int,
-                             @RealmField(name = "confirmations") val confirmations: Int,
-                             @RealmField(name = "block_height") val blockheight: Int,
-                             @RealmField(name = "fee_per_kb") val feePerKb: Int,
-                             @RealmField(name = "saved_address") val savedAddress: String,
-                             @RealmField(name = "created_on") val createdOn: Int,
-                             @RealmField(name = "message") val message: String,
-                             @RealmField(name = "address_to") val addressTo: String
+open class VDroidTransaction(@PrimaryKey var id: Int? = 0,
+                             @RealmField(name = "tx_id") var address: String? = null,
+                             @RealmField(name = "action") var action: String? = null,
+                             @RealmField(name = "amount") var amount: Int? = 0,
+                             @RealmField(name = "fees") var fees: Int? = 0,
+                             @RealmField(name = "time") var time: Int? = 0,
+                             @RealmField(name = "confirmations") var confirmations: Int? = 0,
+                             @RealmField(name = "block_height") var blockheight: Int? = 0,
+                             @RealmField(name = "fee_per_kb") var feePerKb: Int? = 0,
+                             @RealmField(name = "saved_address") var savedAddress: String? = null,
+                             @RealmField(name = "created_on") var createdOn: Int? = 0,
+                             @RealmField(name = "message") var message: String? = null,
+                             @RealmField(name = "address_to") var addressTo: String? = null
 
 ) : RealmObject() {
 

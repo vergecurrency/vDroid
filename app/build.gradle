@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 29
@@ -13,11 +14,6 @@ android {
         versionCode 1
         versionName '1.0'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-    }
-    // used by Room, to test migrations
-    sourceSets {
-        androidTest.assets.srcDirs +=
-                files("$projectDir/schemas".toString())
     }
     buildTypes {
         release {
@@ -38,12 +34,6 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
-    }
-
-    kapt {
-        arguments {
-            arg("room.schemaLocation", "$projectDir/schemas".toString())
-        }
     }
 }
 
@@ -117,11 +107,6 @@ dependencies {
     //TestFairy
     implementation 'testfairy:testfairy-android-sdk:1.9.16@aar'
 
-    //android room
-    def room_version = "2.2.5"
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-
     //Logging
     implementation 'org.slf4j:slf4j-api:1.7.30'
     implementation 'org.slf4j:slf4j-android:1.7.30'
@@ -130,12 +115,11 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
     testImplementation 'org.testng:testng:6.9.6'
+    testImplementation 'org.mockito:mockito-core:3.3.3'
 
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
-    testImplementation "androidx.room:room-testing:$room_version"
-
 }

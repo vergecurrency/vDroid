@@ -126,12 +126,13 @@ class EncryptedPreferencesManager private constructor() {
             set(passphrase) = encryptedPreferences!!.edit().putString(PASSPHRASE, String(passphrase!!)).apply()
 
         //-------realm encryption key
-        var realmEncryptionKey: ByteArray? = null
-            get() = encryptedPreferences!!.getString(REALM_ENCRYPTION_KEY, null)!!.toByteArray()
+        var realmEncryptionKey: ByteArray? = "".toByteArray()
+            get() = encryptedPreferences!!.getString(REALM_ENCRYPTION_KEY, "")!!.toByteArray()
+
 
         //--------walletname
         var walletName: ByteArray?
-            get() = encryptedPreferences!!.getString(WALLET_NAME, null)!!.toByteArray()
+            get() = encryptedPreferences!!.getString(WALLET_NAME, "")!!.toByteArray()
             set(name) {
                 var wName = name
                 if (wName == null) {
@@ -164,33 +165,14 @@ class EncryptedPreferencesManager private constructor() {
                     EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM)
 
-            if (realmEncryptionKey == null) {
+            if (realmEncryptionKey!!.isEmpty()) {
                 val shaHMAC: Mac = getInstance("HmacSHA512")
-                val realmEncryptionKey = SecretKeySpec(UUID.randomUUID().toString().toByteArray(), "HmacSHA512")
-                shaHMAC.init(realmEncryptionKey)
-                encryptedPreferences!!.edit().putString(REALM_ENCRYPTION_KEY, String(shaHMAC.doFinal(walletName)))
+                val spec = SecretKeySpec(UUID.randomUUID().toString().toByteArray(), "HmacSHA512")
+                shaHMAC.init(spec)
+                val key = shaHMAC.doFinal(walletNameExt.toByteArray())
+                encryptedPreferences!!.edit().putString(REALM_ENCRYPTION_KEY, Base64.getEncoder().encodeToString(key!!)).apply()
             }
         }
 
     }
-
-    fun getEncryptedPreferences(context: Context): ArrayList<String> {
-        val existingWalletFiles: ArrayList<String> = ArrayList();
-        for (file in context.dataDir.listFiles()) {
-            if (file.absolutePath.endsWith("vergecurrency.vergewallet/shared_prefs")) {
-                if (file.listFiles().size > 0) {
-                    for (prefs in file.listFiles()) {
-                        if (WalletDataIdentifierUtils.isEncryptedSharedPreferences(file.name)) {
-                            existingWalletFiles.add(file.name)
-                            getOrCreateEncryptedSharedPreferences(context, "")
-                        }
-                    }
-                }
-            }
-
-        }
-        return existingWalletFiles;
-    }
-
-
 }

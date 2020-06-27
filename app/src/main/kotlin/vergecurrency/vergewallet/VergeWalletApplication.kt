@@ -14,12 +14,10 @@ import io.realm.Realm
 import vergecurrency.vergewallet.exception.DefaultUncaughtExceptionHandler
 import vergecurrency.vergewallet.helpers.utils.LanguagesUtils
 import vergecurrency.vergewallet.helpers.utils.UIUtils
-import vergecurrency.vergewallet.helpers.utils.WalletDataIdentifierUtils
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.PreferencesManager
 import vergecurrency.vergewallet.view.ui.activity.SplashActivity
 import vergecurrency.vergewallet.wallet.WalletManager
-import java.io.File
 
 
 class VergeWalletApplication : Application(), Application.ActivityLifecycleCallbacks {
@@ -41,7 +39,7 @@ class VergeWalletApplication : Application(), Application.ActivityLifecycleCallb
 
     override fun attachBaseContext(base: Context) {
         //init preferences manager and set theme
-        PreferencesManager.init(base)
+        PreferencesManager.getInstance(base)
         val c = updateBaseContextLocale(base)
         UIUtils.setTheme(PreferencesManager.currentTheme!!, c, false)
         super.attachBaseContext(c)

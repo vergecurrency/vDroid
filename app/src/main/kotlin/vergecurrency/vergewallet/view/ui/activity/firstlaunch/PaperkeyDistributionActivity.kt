@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.model.WalletConfiguration
 import vergecurrency.vergewallet.view.base.BaseActivity
-import vergecurrency.vergewallet.viewmodel.PaperkeyDistributionViewModel
 import vergecurrency.vergewallet.viewmodel.WalletConfigurationFactory
 
 class PaperkeyDistributionActivity : BaseActivity() {
@@ -17,16 +16,12 @@ class PaperkeyDistributionActivity : BaseActivity() {
 
     //variable decl.
     private lateinit var mViewModel: WalletConfiguration
-
     private lateinit var nextButton: Button
     private lateinit var previousButton: Button
     private lateinit var wordView: TextView
     private var currentWordIndex = -1
-
-    private lateinit var seed: Array<ByteArray>
-
     private val word: ByteArray
-        get() = mViewModel.getSeed()[currentWordIndex]
+        get() = mViewModel.decrypt(mViewModel.getSeed()[currentWordIndex])
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -29,7 +29,7 @@ object RatesClient {
     fun readPriceStatistics(currency: ByteArray): Map<String, String> {
         var rawData: String
         try {
-            rawData = NetworkGateway().doRequest(HttpGet(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, currency)))
+            rawData = NetworkGateway().doRequest(HttpGet(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, String(currency))))
         } catch (e: Exception) {
             rawData = "error"
         }

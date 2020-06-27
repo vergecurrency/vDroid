@@ -1,6 +1,5 @@
 package vergecurrency.vergewallet.model
 
-import android.util.Base64.encodeToString
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import vergecurrency.vergewallet.service.model.PreferencesManager
@@ -13,6 +12,7 @@ import javax.crypto.spec.SecretKeySpec
 class WalletConfiguration() : ViewModel() {
     private lateinit var seed: Array<ByteArray>
     private lateinit var secSpec: SecretKeySpec
+    private lateinit var passphrase: ByteArray
     private lateinit var gcmSpec: GCMParameterSpec
     private val uuid: ByteArray = UUID.randomUUID().toString().toByteArray()
 
@@ -27,12 +27,7 @@ class WalletConfiguration() : ViewModel() {
         seed = io.horizontalsystems.hdwalletkit.Mnemonic().generate(io.horizontalsystems.hdwalletkit.Mnemonic.Strength.Default).map { word ->
             this.encrypt(word.toByteArray())
         }.toTypedArray()
-        //TODO
-        //EncryptedPreferencesManager.mnemonic = mnemonicAsJSON
     }
-
-    val mnemonicAsJSON: ByteArray
-        get() = Gson().toJson(seed).toByteArray()
 
     fun setPin(pin: ByteArray) {
         val shaHMAC: Mac = Mac.getInstance("HmacSHA256")
@@ -40,6 +35,14 @@ class WalletConfiguration() : ViewModel() {
         shaHMAC.init(hashSpec)
         secSpec = SecretKeySpec(shaHMAC.doFinal(pin), "AES")
         gcmSpec = GCMParameterSpec(128, secSpec.encoded)
+    }
+
+    fun setPassphrase(passphrase: ByteArray) {
+        this.passphrase = encrypt(passphrase);
+    }
+
+    fun getPassphrase() : ByteArray {
+        return this.passphrase;
     }
 
     fun getPin(): ByteArray {
@@ -54,7 +57,7 @@ class WalletConfiguration() : ViewModel() {
     }
 
     fun getSeed(): Array<ByteArray> {
-        return seed.map { word -> decrypt(word) }.toTypedArray()
+        return seed
     }
 
     @Throws(Exception::class)

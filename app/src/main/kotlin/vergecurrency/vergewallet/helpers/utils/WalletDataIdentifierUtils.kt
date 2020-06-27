@@ -11,7 +11,7 @@ object WalletDataIdentifierUtils {
     private const val xvgDataPrefix = "xvg-data-";
 
     fun getMasterKeyAlias(walletName: String): String {
-        return "xvg_master_key-${getUUID(getRealmFileNameByUsersWalletName(walletName))}";
+        return "xvg_master_key-${getUUID(getWalletDataIdByUsersWalletName(walletName))}";
     }
 
     fun isRealm(walletDataId: String): Boolean {

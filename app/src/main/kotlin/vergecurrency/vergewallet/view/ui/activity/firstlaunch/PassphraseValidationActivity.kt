@@ -11,13 +11,15 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.omega_r.libs.OmegaCenterIconButton
 import vergecurrency.vergewallet.R
+import vergecurrency.vergewallet.model.WalletConfiguration
 import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.viewmodel.PassphraseVerificationViewModel
+import vergecurrency.vergewallet.viewmodel.WalletConfigurationFactory
 
 
 class PassphraseValidationActivity : BaseActivity() {
 
-    private var mViewModel: PassphraseVerificationViewModel? = null
+    private var mViewModel: WalletConfiguration? = null
     private var passphraseToValidate: ByteArray? = null
     private var passphraseEditText: EditText? = null
     private var validateButton: OmegaCenterIconButton? = null
@@ -29,7 +31,7 @@ class PassphraseValidationActivity : BaseActivity() {
 
         passphraseToValidate = intent.getStringExtra("passphrase").toByteArray()
 
-        mViewModel = ViewModelProvider(this).get(PassphraseVerificationViewModel::class.java)
+        mViewModel = ViewModelProvider(this, WalletConfigurationFactory()).get(WalletConfiguration::class.java)
 
         initComponents()
     }

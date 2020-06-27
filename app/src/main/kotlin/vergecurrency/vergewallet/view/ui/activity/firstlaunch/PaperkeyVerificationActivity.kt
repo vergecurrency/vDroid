@@ -25,14 +25,13 @@ class PaperkeyVerificationActivity : BaseActivity() {
     private lateinit var secondWordInput: EditText
     private lateinit var confirmButton: Button
     private lateinit var verificationWords: Pair<Array<ByteArray>, IntArray>
-    private lateinit var seed: Array<ByteArray>
 
     internal lateinit var mViewModel: WalletConfiguration
 
     //TODO : Def move this shit to viewmodel
     private val twoRandomWordsFromSeed: Pair<Array<ByteArray>, IntArray>
         get() {
-            val words : Array<ByteArray> = Array(2) { ByteArray(0) }
+            val words: Array<ByteArray> = Array(2) { ByteArray(0) }
             val positions = IntArray(2)
             positions[0] = MathUtils.getRandomNumber(Constants.SEED_SIZE)
             var second = MathUtils.getRandomNumber(Constants.SEED_SIZE)
@@ -41,8 +40,8 @@ class PaperkeyVerificationActivity : BaseActivity() {
             }
             positions[1] = second
             Arrays.sort(positions)
-            words[0] = seed[positions[0]]
-            words[1] = seed[positions[1]]
+            words[0] = mViewModel.decrypt(mViewModel.getSeed()[positions[0]])
+            words[1] = mViewModel.decrypt(mViewModel.getSeed()[positions[1]])
             return Pair(words, positions)
         }
 
@@ -53,8 +52,6 @@ class PaperkeyVerificationActivity : BaseActivity() {
         mViewModel = ViewModelProvider(this, WalletConfigurationFactory()).get(WalletConfiguration::class.java)
 
         //Get the shared preferences
-
-        seed = mViewModel.getSeed()
 
         verificationWords = twoRandomWordsFromSeed
 
