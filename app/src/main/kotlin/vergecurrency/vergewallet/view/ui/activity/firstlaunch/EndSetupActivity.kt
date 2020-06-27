@@ -10,7 +10,6 @@ import com.google.gson.Gson
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.model.WalletConfiguration
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
-import vergecurrency.vergewallet.service.model.MnemonicManager
 import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.view.ui.activity.WalletActivity
 import vergecurrency.vergewallet.viewmodel.WalletConfigurationFactory
@@ -36,7 +35,9 @@ class EndSetupActivity : BaseActivity() {
             EncryptedPreferencesManager.walletName = mViewModel.decrypt(mViewModel.getWalletName())
             EncryptedPreferencesManager.mnemonic = Gson().toJson(mViewModel.getSeed().map { word -> mViewModel.decrypt(word) }.toTypedArray()).toByteArray();
             EncryptedPreferencesManager.passphrase = mViewModel.decrypt(mViewModel.getPassphrase())
+            EncryptedPreferencesManager.pin = mViewModel.decrypt(mViewModel.getPin())
             WalletManager.startWallet(UUID.fromString(String(id)), true)
+            WalletConfigurationFactory.clearWalletConfig();
         } catch (e: Exception) {
             System.err.print(e)
             Toast.makeText(applicationContext, "Impossible to start wallet. Manuel you did some crap", Toast.LENGTH_LONG).show()
@@ -49,9 +50,10 @@ class EndSetupActivity : BaseActivity() {
 
     private fun openWalletButtonListener(): View.OnClickListener {
         return View.OnClickListener {
-            finish()
-
-            startActivity(Intent(applicationContext, WalletActivity::class.java))
+            val intent = Intent(applicationContext, WalletActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            intent.putExtra("EXIT", true)
+            startActivity(intent)
         }
 
     }

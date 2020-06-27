@@ -14,10 +14,10 @@ class WalletConfiguration() : ViewModel() {
     private lateinit var seed: Array<ByteArray>
     private lateinit var secSpec: SecretKeySpec
     private lateinit var passphrase: ByteArray
+    private lateinit var pin: ByteArray
     private lateinit var walletName: ByteArray
     private lateinit var gcmSpec: GCMParameterSpec
     private lateinit var id: ByteArray
-    private val uuid: ByteArray = UUID.randomUUID().toString().toByteArray()
 
     fun generateMnemonics() {
         //if first launch
@@ -34,10 +34,11 @@ class WalletConfiguration() : ViewModel() {
 
     fun setPin(pin: ByteArray) {
         val shaHMAC: Mac = Mac.getInstance("HmacSHA256")
-        val hashSpec = SecretKeySpec(uuid, "HmacSHA256")
+        val hashSpec = SecretKeySpec(UUID.randomUUID().toString().toByteArray(), "HmacSHA256")
         shaHMAC.init(hashSpec)
         secSpec = SecretKeySpec(shaHMAC.doFinal(pin), "AES")
         gcmSpec = GCMParameterSpec(128, secSpec.encoded)
+        this.pin = encrypt(pin)
     }
 
     fun setPassphrase(passphrase: ByteArray) {
@@ -59,19 +60,21 @@ class WalletConfiguration() : ViewModel() {
     fun setWalletName(name: ByteArray) {
         this.walletName = encrypt(name)
     }
-    fun generateWalletId(context : Context) {
+
+    fun generateWalletId(context: Context) {
         this.id = encrypt(WalletDataIdentifierUtils.getUnusedUUID(context).toString().toByteArray())
     }
 
     fun isSamePin(pin: ByteArray): Boolean {
-        val shaHMAC: Mac = Mac.getInstance("HmacSHA256")
-        val hashSpec = SecretKeySpec(uuid, "HmacSHA256")
-        shaHMAC.init(hashSpec)
-        return secSpec.encoded.contentEquals(SecretKeySpec(shaHMAC.doFinal(pin), "AES").encoded)
+        return encrypt(pin).contentEquals(this.pin)
     }
 
     fun getSeed(): Array<ByteArray> {
         return seed
+    }
+
+    fun getPin(): ByteArray {
+        return this.pin
     }
 
     @Throws(Exception::class)
