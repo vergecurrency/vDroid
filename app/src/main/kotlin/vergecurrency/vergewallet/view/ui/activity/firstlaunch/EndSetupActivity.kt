@@ -51,11 +51,10 @@ class EndSetupActivity : BaseActivity() {
     private fun openWalletButtonListener(): View.OnClickListener {
         return View.OnClickListener {
             val intent = Intent(applicationContext, WalletActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            intent.putExtra("EXIT", true)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
-
     }
 
     override fun onBackPressed() {
