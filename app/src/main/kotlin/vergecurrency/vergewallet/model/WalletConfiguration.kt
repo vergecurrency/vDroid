@@ -14,7 +14,7 @@ class WalletConfiguration() : ViewModel() {
     private lateinit var seed: Array<ByteArray>
     private lateinit var secSpec: SecretKeySpec
     private lateinit var passphrase: ByteArray
-    private  var walletName: ByteArray = "default".toByteArray()
+    private lateinit var walletName: ByteArray
     private lateinit var gcmSpec: GCMParameterSpec
     private lateinit var id: ByteArray
     private val uuid: ByteArray = UUID.randomUUID().toString().toByteArray()

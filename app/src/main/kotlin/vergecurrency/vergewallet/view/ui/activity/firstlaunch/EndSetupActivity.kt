@@ -29,11 +29,12 @@ class EndSetupActivity : BaseActivity() {
 
         try {
             mViewModel.generateWalletId(this)
+            mViewModel.setWalletName("default".toByteArray())
             val id = mViewModel.decrypt(mViewModel.getWalletId())
             EncryptedPreferencesManager.getOrCreateEncryptedSharedPreferences(this, UUID.fromString(String(id)))
             EncryptedPreferencesManager.walletId = id
             EncryptedPreferencesManager.walletName = mViewModel.decrypt(mViewModel.getWalletName())
-            EncryptedPreferencesManager.mnemonic = Gson().toJson(mViewModel.getSeed().map { word -> String(mViewModel.decrypt(word)) }.toTypedArray()).toByteArray();
+            EncryptedPreferencesManager.mnemonic = Gson().toJson(mViewModel.getSeed().map { word -> mViewModel.decrypt(word) }.toTypedArray()).toByteArray();
             EncryptedPreferencesManager.passphrase = mViewModel.decrypt(mViewModel.getPassphrase())
             WalletManager.startWallet(UUID.fromString(String(id)), true)
         } catch (e: Exception) {
