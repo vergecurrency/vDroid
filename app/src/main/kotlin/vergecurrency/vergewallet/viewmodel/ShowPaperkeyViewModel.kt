@@ -11,7 +11,7 @@ class ShowPaperkeyViewModel : ViewModel() {
         get() {
             val result = StringBuilder()
             for (s in seed) {
-                result.append(s).append(" ")
+                result.append(String(s)).append(" ")
             }
             return String(result)
         }
