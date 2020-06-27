@@ -17,7 +17,7 @@ import vergecurrency.vergewallet.viewmodel.WalletFragmentViewModel
 class FragmentWallet : BaseFragment() {
 
     private var rootView: View? = null
-    private var currencyCode: ByteArray? = null
+    private var currencyCode: String? = null
     private var mViewModel: WalletFragmentViewModel? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

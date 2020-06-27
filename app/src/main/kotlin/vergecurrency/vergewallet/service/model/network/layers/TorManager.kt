@@ -17,7 +17,7 @@ class TorManager private constructor(context: Context) {
     private var currentPort = 0
 
 
-     enum class STATES {
+    enum class STATES {
         IDLE,
         CONNECTED,
         DISCONNECTED,
@@ -25,9 +25,9 @@ class TorManager private constructor(context: Context) {
         ERROR
     }
 
-    var torStatus : PublishSubject<STATES> = PublishSubject.create();
+    var torStatus: PublishSubject<STATES> = PublishSubject.create();
 
-     var state : STATES = STATES.IDLE
+    var state: STATES = STATES.IDLE
 
     init {
         torStatus.onNext(STATES.DISCONNECTED)
@@ -36,7 +36,7 @@ class TorManager private constructor(context: Context) {
 
     companion object : SingletonHolder<TorManager, Context>(::TorManager)
 
-     fun startTor(): Observable<Proxy>? {
+    fun startTor(): Observable<Proxy>? {
 
 
         if (state == STATES.CONNECTED) {
@@ -64,11 +64,11 @@ class TorManager private constructor(context: Context) {
         }
 
         proxy = Proxy(Proxy.Type.SOCKS, InetSocketAddress("127.0.0.1", onionProxyManager!!.iPv4LocalHostSocksPort))
-        currentPort =  onionProxyManager!!.iPv4LocalHostSocksPort
+        currentPort = onionProxyManager!!.iPv4LocalHostSocksPort
 
-         if(torStatus.hasObservers()) {
+        if (torStatus.hasObservers()) {
             torStatus.onNext(STATES.CONNECTED)
-         }
+        }
 
         state = STATES.CONNECTED
 
@@ -76,22 +76,22 @@ class TorManager private constructor(context: Context) {
         return Observable.just(proxy)
     }
 
-    fun stopTor() : Observable<Boolean> {
-       if(torStatus.hasObservers()) {
-           torStatus.onNext(STATES.DISCONNECTED)
-       }
+    fun stopTor(): Observable<Boolean> {
+        if (torStatus.hasObservers()) {
+            torStatus.onNext(STATES.DISCONNECTED)
+        }
 
         return Observable.fromCallable {
             try {
                 this.state = STATES.DISCONNECTED
-                if(torStatus.hasObservers()) {
+                if (torStatus.hasObservers()) {
                     torStatus.onNext(STATES.DISCONNECTED)
                 }
 
-            } catch(e: Exception) {
+            } catch (e: Exception) {
                 e.printStackTrace()
                 this.state = STATES.DISCONNECTED
-                if(torStatus.hasObservers()) {
+                if (torStatus.hasObservers()) {
                     torStatus.onNext(STATES.DISCONNECTED)
                 }
 
@@ -101,19 +101,16 @@ class TorManager private constructor(context: Context) {
         }
     }
 
-    fun isPortOpen(ip:String, port:Int, timeout:Int):Boolean {
-        try
-        {
+    fun isPortOpen(ip: String, port: Int, timeout: Int): Boolean {
+        try {
             val socket = Socket()
             socket.connect(InetSocketAddress(ip, port), timeout)
             socket.close()
             return true
-        }
-        catch (ce:ConnectException) {
+        } catch (ce: ConnectException) {
             ce.printStackTrace()
             return false
-        }
-        catch (ex:Exception) {
+        } catch (ex: Exception) {
             ex.printStackTrace()
             return false
         }
@@ -131,16 +128,18 @@ class TorManager private constructor(context: Context) {
 }
 
 
-open class SingletonHolder<out T: Any, in A>(creator: (A) -> T) {
+open class SingletonHolder<out T : Any, in A>(creator: (A) -> T) {
     private var creator: ((A) -> T)? = creator
-    @Volatile private var instance: T? = null
+
+    @Volatile
+    private var instance: T? = null
 
     fun getInstance(arg: A?): T {
         val checkInstance = instance
         if (checkInstance != null) {
             return checkInstance
         }
-        if(arg == null) {
+        if (arg == null) {
             throw IllegalStateException();
         }
         return synchronized(this) {

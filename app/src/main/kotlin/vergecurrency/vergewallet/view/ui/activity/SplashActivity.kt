@@ -1,6 +1,7 @@
 package vergecurrency.vergewallet.view.ui.activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
@@ -19,16 +20,8 @@ import vergecurrency.vergewallet.wallet.WalletManager
 import java.util.*
 
 class SplashActivity : BaseActivity() {
-    //DbOpenHelper dbOpenHelper;
-    //private AbstractDaoSession daoSession;
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //init db
-        //dbOpenHelper = new DbOpenHelper(this,"verge.db",1);
-        //Database db = dbOpenHelper.getWritableDb();
-        //daoSession = new AbstractDaoMaster;
         setContentView(R.layout.activity_splash)
         //Just to have the splash screen going briefly
         Handler().postDelayed({ this.startApplication() }, 500)
@@ -36,13 +29,10 @@ class SplashActivity : BaseActivity() {
 
     private fun startApplication() {
         try {
-            //TODO TESTING only
-            /*EncryptedPreferencesManager.usingTor = false
-
-            if (EncryptedPreferencesManager.usingTor) {
-                //TorManager.startTor(this)
-
-            }*/
+            PreferencesManager.usingTor = false
+            if (PreferencesManager.usingTor) {
+                TorManager.getInstance(this).startTor()
+            }
             val keys: Set<UUID> = DataManager.getAllEncryptedPreferences(this).keys;
             if (keys.size > 0) {
                 val firstWallet = keys.toTypedArray()[0]

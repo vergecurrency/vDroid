@@ -3,6 +3,7 @@ package vergecurrency.vergewallet.viewmodel
 import androidx.lifecycle.ViewModel
 import vergecurrency.vergewallet.service.model.Currency
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
+import vergecurrency.vergewallet.service.model.PreferencesManager
 import vergecurrency.vergewallet.service.repository.RatesClient
 import vergecurrency.vergewallet.wallet.WalletManager
 
@@ -11,8 +12,8 @@ class WalletFragmentViewModel : ViewModel() {
     //TODO check if necessary
     private val currencyChange: String?
 
-    val currencyCode: ByteArray
-        get() = Currency.getCurrencyFromJson(EncryptedPreferencesManager.preferredCurrency!!).currency!!
+    val currencyCode: String
+        get() = Currency.getCurrencyFromJson(PreferencesManager.preferredCurrency!!).currency!!
 
     init {
         balance = WalletManager.getBalance().value

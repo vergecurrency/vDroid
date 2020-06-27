@@ -19,8 +19,6 @@ class EncryptedPreferencesManager private constructor() {
     companion object {
         private const val PIN = "pin"
         private const val PIN_COUNT = "pinCount"
-        private const val PREFERRED_CURRENCY = "preferredCurrency"
-        private const val USING_TOR = "usingTor"
         private const val MNEMONIC = "mnemonic"
         private const val AMOUNT = "amount"
         private const val AUTH_UNLOCK_WALLET = "authUnlockWallet"
@@ -61,18 +59,7 @@ class EncryptedPreferencesManager private constructor() {
             get() = encryptedPreferences!!.getString(MNEMONIC, null)!!.toByteArray()
             set(mnemonic) = encryptedPreferences!!.edit().putString(MNEMONIC, String(mnemonic!!)).apply()
 
-        //---------Preferred currency
-        var preferredCurrency: ByteArray?
-            get() = encryptedPreferences!!.getString(PREFERRED_CURRENCY, Currency("United States Dollar", "USD".toByteArray()).currencyAsJSON)!!.toByteArray()
-            set(preferredCurrency) = encryptedPreferences!!.edit().putString(PREFERRED_CURRENCY, String(preferredCurrency!!)).apply()
-
-        //---------Using Tor
-        var usingTor: Boolean
-            get() = encryptedPreferences!!.getBoolean(USING_TOR, false)
-            set(isUsingTor) = encryptedPreferences!!.edit().putBoolean(USING_TOR, false).apply()
-
         //---------Wallet amount
-
         var amount: Float
             get() = encryptedPreferences!!.getFloat(AMOUNT, 0f)
             set(amount) {

@@ -47,13 +47,13 @@ class TorSettingsActivity : BaseActivity() {
     private fun initComponents() {
 
         switch = tor_settings_obfuscate
-        switch.isChecked = EncryptedPreferencesManager.usingTor
+        switch.isChecked = PreferencesManager.usingTor
 
         switch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                //TorManager.startTor()
+                TorManager.getInstance(this).startTor()
             }
-            EncryptedPreferencesManager.usingTor = isChecked
+            PreferencesManager.usingTor = isChecked
 
             ip.text = mViewModel.updateAndReturnIpAddress()
             initMap()

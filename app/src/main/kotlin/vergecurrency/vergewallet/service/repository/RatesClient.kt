@@ -14,7 +14,7 @@ import java.util.*
 object RatesClient {
 
 
-    fun infoBy(currency: ByteArray): FiatRate? {
+    fun infoBy(currency: String): FiatRate? {
 
         return try {
             val rawData = NetworkGateway().doRequest(HttpGet(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, currency)))
@@ -26,10 +26,10 @@ object RatesClient {
 
     }
 
-    fun readPriceStatistics(currency: ByteArray): Map<String, String> {
+    fun readPriceStatistics(currency: String): Map<String, String> {
         var rawData: String
         try {
-            rawData = NetworkGateway().doRequest(HttpGet(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, String(currency))))
+            rawData = NetworkGateway().doRequest(HttpGet(String.format("%s%s", Constants.PRICE_DATA_ENDPOINT, currency)))
         } catch (e: Exception) {
             rawData = "error"
         }
@@ -38,7 +38,7 @@ object RatesClient {
         val valuesMap = Gson().fromJson<MutableMap<String, String>>(rawData, stringStringMap)
 
 
-        return reworkMap(valuesMap, String(currency))
+        return reworkMap(valuesMap, currency)
     }
 
 

@@ -12,6 +12,7 @@ import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.UIUtils
 import vergecurrency.vergewallet.service.model.Currency
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
+import vergecurrency.vergewallet.service.model.PreferencesManager
 import vergecurrency.vergewallet.view.ui.activity.settings.ChooseCurrencyActivity
 import java.util.*
 
@@ -23,7 +24,7 @@ class CurrenciesAdapter
  * @param curs    the currencies list we need to display
  */
 (context: Context, curs: ArrayList<Currency>) : ArrayAdapter<Currency>(context, R.layout.listview_item_currency, curs), View.OnClickListener {
-    private val currentlySelectedCurrency: Currency = Currency.getCurrencyFromJson(EncryptedPreferencesManager.preferredCurrency!!)
+    private val currentlySelectedCurrency: Currency = Currency.getCurrencyFromJson(PreferencesManager.preferredCurrency!!)
 
 
     override fun onClick(v: View) {
@@ -32,7 +33,7 @@ class CurrenciesAdapter
 
         if (v.id == R.id.listview_currency_item) {
             Toast.makeText(v.context, "Currency chosen : " + currency!!.name!!, Toast.LENGTH_SHORT).show()
-            EncryptedPreferencesManager.preferredCurrency = currency.currencyAsJSON.toByteArray()
+            PreferencesManager.preferredCurrency = currency.currencyAsJSON
 
         }
 

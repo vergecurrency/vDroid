@@ -19,6 +19,8 @@ class PreferencesManager private constructor(context: Context) {
         private const val LANGUAGE = "language"
         private const val WALLET_SERVICE_URL = "walletServiceURL"
         private const val PREFERRED_THEME = "preferredTheme"
+        private const val PREFERRED_CURRENCY = "preferredCurrency"
+        private const val USING_TOR = "usingTor"
 
 
         private var INSTANCE: PreferencesManager? = null
@@ -53,6 +55,16 @@ class PreferencesManager private constructor(context: Context) {
         var isFirstLaunch: Boolean
             get() = preferences.getBoolean(FIRST_LAUNCH, true)
             set(firstLaunchValue) = preferences.edit().putBoolean(FIRST_LAUNCH, firstLaunchValue).apply()
+
+        //---------Preferred currency
+        var preferredCurrency: String?
+            get() = preferences.getString(PREFERRED_CURRENCY, Currency("United States Dollar", "USD").currencyAsJSON)!!
+            set(preferredCurrency) = preferences.edit().putString(PREFERRED_CURRENCY, preferredCurrency!!).apply()
+
+        //---------Using Tor
+        var usingTor: Boolean
+            get() = preferences.getBoolean(USING_TOR, false)
+            set(isUsingTor) = preferences.edit().putBoolean(USING_TOR, false).apply()
     }
 
 }
