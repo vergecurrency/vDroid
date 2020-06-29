@@ -13,24 +13,28 @@ object DataManager {
     var xvgDataRealm: Realm? = null;
 
 
-    fun loadWalletData(context: Context, walletId : UUID) {
+    fun loadWalletData(context: Context, walletId: UUID) {
         EncryptedPreferencesManager.getOrCreateEncryptedSharedPreferences(context, walletId)
         getOrCreateVergeDataRealm(walletId)
     }
 
 
-    //Return identifier and wallet name
+    //Return identifier and wallet name of all existing encryptedSharedPreferences
     fun getAllEncryptedPreferences(context: Context): HashMap<UUID, String> {
         val existingWalletFiles: HashMap<UUID, String> = HashMap<UUID, String>();
-        for (file in context.dataDir.listFiles()) {
-            if (file.absolutePath.endsWith("vergecurrency.vergewallet/shared_prefs")) {
-                if (file.listFiles().size > 0) {
-                    for (pref in file.listFiles()) {
-                        if (WalletDataIdentifierUtils.isEncryptedSharedPreferences(pref.name)) {
-                            val uuid = WalletDataIdentifierUtils.getUUIDFromPrefixedFileName(pref.name);
-                            EncryptedPreferencesManager.getOrCreateEncryptedSharedPreferences(context, uuid)
-                            if (String(EncryptedPreferencesManager.walletId!!).equals(WalletDataIdentifierUtils.getUUIDFromPrefixedFileName(pref.name).toString())) {
-                                existingWalletFiles.put(WalletDataIdentifierUtils.getUUIDFromPrefixedFileName(pref.name), String(EncryptedPreferencesManager.walletName!!))
+        val datDir = context.dataDir.listFiles();
+        if (datDir != null) {
+            for (dataDir in datDir) {
+                if (dataDir.absolutePath.endsWith("vergecurrency.vergewallet/shared_prefs")) {
+                    val encryptedSharedPreferences = dataDir.listFiles();
+                    if (encryptedSharedPreferences != null && encryptedSharedPreferences.isNotEmpty()) {
+                        for (pref in encryptedSharedPreferences) {
+                            if (WalletDataIdentifierUtils.isEncryptedSharedPreferences(pref.name)) {
+                                val uuid = WalletDataIdentifierUtils.getUUIDFromPrefixedFileName(pref.name);
+                                EncryptedPreferencesManager.getOrCreateEncryptedSharedPreferences(context, uuid)
+                                if (String(EncryptedPreferencesManager.walletId!!).equals(WalletDataIdentifierUtils.getUUIDFromPrefixedFileName(pref.name).toString())) {
+                                    existingWalletFiles.put(WalletDataIdentifierUtils.getUUIDFromPrefixedFileName(pref.name), String(EncryptedPreferencesManager.walletName!!))
+                                }
                             }
                         }
                     }
