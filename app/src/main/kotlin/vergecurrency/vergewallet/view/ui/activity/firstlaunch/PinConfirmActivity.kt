@@ -15,6 +15,7 @@ import com.davidmiguel.numberkeyboard.NumberKeyboardListener
 import vergecurrency.vergewallet.R
 import vergecurrency.vergewallet.helpers.utils.UIUtils
 import vergecurrency.vergewallet.model.WalletConfiguration
+import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.view.base.BaseActivity
 import vergecurrency.vergewallet.viewmodel.WalletConfigurationFactory
 
@@ -98,6 +99,8 @@ class PinConfirmActivity : BaseActivity() {
             if (origin == "firstLaunch") {
                 startActivity(Intent(applicationContext, PaperkeyInstructionsActivity::class.java))
             } else if (origin == "settings") {
+                EncryptedPreferencesManager.pin = mViewModel!!.decrypt(mViewModel!!.getPin())
+                WalletConfigurationFactory.clearWalletConfig();
                 finish()
             }
         }
