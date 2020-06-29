@@ -33,7 +33,7 @@ object WalletDataIdentifierUtils {
     }
 
     fun containsUUID(uuid: UUID, context: Context): Boolean {
-        return DataManager.getAllEncryptedPreferences(context).get(uuid) != null
+        return DataManager.getAllEncryptedPreferences(context)[uuid] != null
     }
 
     fun getUnusedUUID(context: Context): UUID {

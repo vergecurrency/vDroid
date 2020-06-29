@@ -124,6 +124,28 @@ class EncryptedPreferencesManager private constructor() {
             }
 
         fun getOrCreateEncryptedSharedPreferences(context: Context, id: UUID) {
+            getOrCreate(context, id)
+            if (realmEncryptionKey!!.isEmpty()) {
+                val shaHMAC: Mac = getInstance("HmacSHA512")
+                val spec = SecretKeySpec(UUID.randomUUID().toString().toByteArray(), "HmacSHA512")
+                shaHMAC.init(spec)
+                val key = shaHMAC.doFinal(walletName)
+                encryptedPreferences!!.edit().putString(REALM_ENCRYPTION_KEY, Base64.getEncoder().encodeToString(key!!)).apply()
+            }
+        }
+
+        fun lookup(context: Context, id: UUID, fileName: String): Pair<UUID, String>? {
+            var pair: Pair<UUID, String>? = null;
+            getOrCreate(context, id)
+            if (String(walletId!!).equals(WalletDataIdentifierUtils.getUUIDFromPrefixedFileName(fileName).toString())) {
+                pair = Pair(WalletDataIdentifierUtils.getUUIDFromPrefixedFileName(fileName), String(walletName!!))
+                //prevent accidentally write to wrong preferences
+            }
+            encryptedPreferences = null;
+            return pair;
+        }
+
+        private fun getOrCreate(context: Context, id: UUID) {
             // Custom Advanced Master Key
             val advancedSpec = KeyGenParameterSpec.Builder(
                     WalletDataIdentifierUtils.getMasterKeyAlias(id),
@@ -146,14 +168,6 @@ class EncryptedPreferencesManager private constructor() {
                     context,
                     EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM)
-
-            if (realmEncryptionKey!!.isEmpty()) {
-                val shaHMAC: Mac = getInstance("HmacSHA512")
-                val spec = SecretKeySpec(UUID.randomUUID().toString().toByteArray(), "HmacSHA512")
-                shaHMAC.init(spec)
-                val key = shaHMAC.doFinal(walletName)
-                encryptedPreferences!!.edit().putString(REALM_ENCRYPTION_KEY, Base64.getEncoder().encodeToString(key!!)).apply()
-            }
         }
     }
 }

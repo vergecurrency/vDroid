@@ -4,9 +4,7 @@ import android.content.Context
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import vergecurrency.vergewallet.helpers.utils.WalletDataIdentifierUtils
-import java.lang.RuntimeException
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 object DataManager {
@@ -31,9 +29,9 @@ object DataManager {
                         for (pref in encryptedSharedPreferences) {
                             if (WalletDataIdentifierUtils.isEncryptedSharedPreferences(pref.name)) {
                                 val uuid = WalletDataIdentifierUtils.getUUIDFromPrefixedFileName(pref.name);
-                                EncryptedPreferencesManager.getOrCreateEncryptedSharedPreferences(context, uuid)
-                                if (String(EncryptedPreferencesManager.walletId!!).equals(WalletDataIdentifierUtils.getUUIDFromPrefixedFileName(pref.name).toString())) {
-                                    existingWalletFiles.put(WalletDataIdentifierUtils.getUUIDFromPrefixedFileName(pref.name), String(EncryptedPreferencesManager.walletName!!))
+                                val walletIdAndName = EncryptedPreferencesManager.lookup(context, uuid, pref.name);
+                                if (walletIdAndName != null) {
+                                    existingWalletFiles[walletIdAndName.first] = walletIdAndName.second
                                 }
                             }
                         }

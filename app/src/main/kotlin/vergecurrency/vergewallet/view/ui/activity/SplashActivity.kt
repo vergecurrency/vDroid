@@ -44,7 +44,7 @@ class SplashActivity : BaseActivity() {
             try {
                 //init took place in VergeWalletApplication
                 val keys: Set<UUID> = DataManager.getAllEncryptedPreferences(this).keys;
-                if (keys.size > 0) {
+                if (keys.isNotEmpty()) {
                     val firstWallet = keys.toTypedArray()[0]
                     DataManager.loadWalletData(this, firstWallet);
                     WalletManager.startWallet(firstWallet, false)
