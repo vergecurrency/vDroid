@@ -30,15 +30,19 @@ class SplashActivity : BaseActivity() {
 
     private fun startApplication() {
         try {
+            TorManager.getInstance(applicationContext)
+
             //TODO TESTING only
-            EncryptedPreferencesManager.usingTor = false
+            EncryptedPreferencesManager.usingTor = true
 
             if (EncryptedPreferencesManager.usingTor) {
-                TorManager.startTor(this)
+                TorManager.getInstance(null).startTor()
 
             }
         } catch (e: java.lang.Exception) {
-            e.printStackTrace();
+            e.printStackTrace()
+            EncryptedPreferencesManager.usingTor = false
+            Toast.makeText(applicationContext, "Tor could not launch. Switching to Clearnet. ALPHA ONLY.", Toast.LENGTH_LONG).show()
         }
 
 

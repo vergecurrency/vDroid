@@ -3,21 +3,28 @@ package vergecurrency.vergewallet.service.model.network.layers
 import android.content.Context
 import com.msopentech.thali.android.toronionproxy.AndroidOnionProxyManager
 import com.msopentech.thali.toronionproxy.OnionProxyManager
+import cz.msebera.android.httpclient.client.HttpClient
+import cz.msebera.android.httpclient.config.RegistryBuilder
 import cz.msebera.android.httpclient.conn.DnsResolver
-import io.reactivex.rxjava3.core.Observable
+import cz.msebera.android.httpclient.conn.socket.ConnectionSocketFactory
+import cz.msebera.android.httpclient.impl.client.HttpClients
+import cz.msebera.android.httpclient.impl.conn.PoolingHttpClientConnectionManager
+import cz.msebera.android.httpclient.ssl.SSLContexts
 import io.reactivex.rxjava3.subjects.PublishSubject
+import vergecurrency.vergewallet.service.model.network.sockets.ConnectionSocket
+import vergecurrency.vergewallet.service.model.network.sockets.SSLConnectionSocket
 import java.lang.IllegalStateException
 import java.net.*
 
 class TorManager private constructor(context: Context) {
 
-    private var onionProxyManager: OnionProxyManager? = null
+    var onionProxyManager: OnionProxyManager? = null
     private val fileStorageLocation = "torfiles"
     private var proxy: Proxy? = null
     private var currentPort = 0
 
 
-     enum class STATES {
+    enum class STATES {
         IDLE,
         CONNECTED,
         DISCONNECTED,
@@ -25,9 +32,9 @@ class TorManager private constructor(context: Context) {
         ERROR
     }
 
-    var torStatus : PublishSubject<STATES> = PublishSubject.create();
+    var torStatus: PublishSubject<STATES> = PublishSubject.create();
 
-     var state : STATES = STATES.IDLE
+    var state: STATES = STATES.IDLE
 
     init {
         torStatus.onNext(STATES.DISCONNECTED)
@@ -36,11 +43,25 @@ class TorManager private constructor(context: Context) {
 
     companion object : SingletonHolder<TorManager, Context>(::TorManager)
 
-     fun startTor(): Observable<Proxy>? {
+    val newHttpClient: HttpClient
+        get() {
+
+            val reg = RegistryBuilder.create<ConnectionSocketFactory>()
+                    .register("http", ConnectionSocket())
+                    .register("https", SSLConnectionSocket(SSLContexts.createSystemDefault()))
+                    .build()
+            val cm = PoolingHttpClientConnectionManager(reg, FakeDnsResolver())
+            return HttpClients.custom()
+                    .setConnectionManager(cm)
+                    .build()
+        }
+
+
+    fun startTor() {
 
 
         if (state == STATES.CONNECTED) {
-            return null
+            return
         }
         state = STATES.CONNECTING
 
@@ -49,14 +70,16 @@ class TorManager private constructor(context: Context) {
 
         val ok = try {
             onionProxyManager!!.startWithRepeat(totalSecondsPerTorStartup, totalTriesPerTorStartup)
-        } catch (e: InterruptedException) {
+        } catch (e: Exception) {
             false
         }
 
         if (!ok) {
             state = STATES.ERROR
             println("Couldn't start tor")
-            return null
+            if (torStatus.hasObservers()) {
+                torStatus.onNext(STATES.ERROR)
+            }
         }
 
         while (!onionProxyManager!!.isRunning) {
@@ -64,90 +87,79 @@ class TorManager private constructor(context: Context) {
         }
 
         proxy = Proxy(Proxy.Type.SOCKS, InetSocketAddress("127.0.0.1", onionProxyManager!!.iPv4LocalHostSocksPort))
-        currentPort =  onionProxyManager!!.iPv4LocalHostSocksPort
+        currentPort = onionProxyManager!!.iPv4LocalHostSocksPort
 
-         if(torStatus.hasObservers()) {
+        if (torStatus.hasObservers()) {
             torStatus.onNext(STATES.CONNECTED)
-         }
+        }
 
         state = STATES.CONNECTED
 
         println("Tor initialized on port " + onionProxyManager!!.iPv4LocalHostSocksPort)
-        return Observable.just(proxy)
     }
 
-    fun stopTor() : Observable<Boolean> {
-       if(torStatus.hasObservers()) {
-           torStatus.onNext(STATES.DISCONNECTED)
-       }
-
-        return Observable.fromCallable {
-            try {
-                this.state = STATES.DISCONNECTED
-                if(torStatus.hasObservers()) {
-                    torStatus.onNext(STATES.DISCONNECTED)
-                }
-
-            } catch(e: Exception) {
-                e.printStackTrace()
-                this.state = STATES.DISCONNECTED
-                if(torStatus.hasObservers()) {
-                    torStatus.onNext(STATES.DISCONNECTED)
-                }
-
-                return@fromCallable false
-            }
-            true
+    fun stopTor(): Boolean {
+        if (torStatus.hasObservers()) {
+            torStatus.onNext(STATES.DISCONNECTED)
         }
+
+
+        try {
+            this.state = STATES.DISCONNECTED
+            if (torStatus.hasObservers()) {
+                torStatus.onNext(STATES.DISCONNECTED)
+            }
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            this.state = STATES.DISCONNECTED
+            if (torStatus.hasObservers()) {
+                torStatus.onNext(STATES.DISCONNECTED)
+            }
+
+            return false
+        }
+        return true
+
     }
 
-    fun isPortOpen(ip:String, port:Int, timeout:Int):Boolean {
-        try
-        {
+    fun isPortOpen(ip: String, port: Int, timeout: Int): Boolean {
+        try {
             val socket = Socket()
             socket.connect(InetSocketAddress(ip, port), timeout)
             socket.close()
             return true
-        }
-        catch (ce:ConnectException) {
+        } catch (ce: ConnectException) {
             ce.printStackTrace()
             return false
-        }
-        catch (ex:Exception) {
+        } catch (ex: Exception) {
             ex.printStackTrace()
             return false
-        }
-    }
-
-
-    //Talks for itself
-    internal class FakeDnsResolver : DnsResolver {
-        @Throws(UnknownHostException::class)
-        override fun resolve(host: String): Array<InetAddress> {
-            return arrayOf(InetAddress.getByAddress(byteArrayOf(1, 1, 1, 1)))
         }
     }
 
 }
 
 
-open class SingletonHolder<out T: Any, in A>(creator: (A) -> T) {
+open class SingletonHolder<out T : Any, in A>(creator: (A) -> T) {
     private var creator: ((A) -> T)? = creator
-    @Volatile private var instance: T? = null
+
+    @Volatile
+    private var instance: T? = null
 
     fun getInstance(arg: A?): T {
         val checkInstance = instance
         if (checkInstance != null) {
             return checkInstance
         }
-        if(arg == null) {
-            throw IllegalStateException();
-        }
         return synchronized(this) {
             val checkInstanceAgain = instance
             if (checkInstanceAgain != null) {
                 checkInstanceAgain
             } else {
+                if (arg == null) {
+                    throw IllegalStateException();
+                }
                 val created = creator!!(arg)
                 instance = created
                 creator = null
@@ -157,5 +169,11 @@ open class SingletonHolder<out T: Any, in A>(creator: (A) -> T) {
     }
 }
 
+internal class FakeDnsResolver : DnsResolver {
+    @Throws(UnknownHostException::class)
+    override fun resolve(host: String): Array<InetAddress> {
+        return arrayOf(InetAddress.getByAddress(byteArrayOf(1, 1, 1, 1)))
+    }
+}
 
 

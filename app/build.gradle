@@ -4,12 +4,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
     ndkVersion '21.1.6352462'
     defaultConfig {
         applicationId 'vergecurrency.vergewallet'
-        minSdkVersion 26
-        targetSdkVersion 29
+        minSdkVersion 28
+        targetSdkVersion 28
         versionCode 1
         versionName '1.0'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -35,6 +35,7 @@ android {
     lintOptions {
         abortOnError false
     }
+    buildToolsVersion '28.0.3'
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -72,7 +73,7 @@ dependencies {
     //QRCode
     implementation 'com.github.kenglxn.QRGen:android:2.5.0'
     //MapBox
-    implementation 'org.osmdroid:osmdroid-android:6.1.5'
+    implementation 'org.osmdroid:osmdroid-android:6.1.6'
     //Charts
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     //Centered buttons
@@ -83,7 +84,7 @@ dependencies {
     //Network
 
     //HTTP Client library : Sorry but OkHttp is complete bullshit.
-    implementation 'cz.msebera.android:httpclient:4.4.1.2'
+    implementation 'cz.msebera.android:httpclient:4.5.8'
     //I2P router library
     //implementation files('src/main/libs/i2p-router.jar')
     //Tor
@@ -101,7 +102,7 @@ dependencies {
     implementation 'com.github.2lazy2debug:hd-wallet-kit-android:1.1.1'
     //cryptography
     implementation 'org.bouncycastle:bcpkix-jdk15on:1.65'
-    implementation 'androidx.security:security-crypto:1.0.0-rc02'
+    implementation 'androidx.security:security-crypto:1.1.0-alpha01'
 
 
     //Json, not sure if used
@@ -110,7 +111,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
     //JS engine
-    implementation 'com.eclipsesource.j2v8:j2v8:6.0.0@aar'
+    implementation 'com.eclipsesource.j2v8:j2v8:6.2.0@aar'
     //Observables
     implementation "io.reactivex.rxjava3:rxjava:3.0.4"
 
@@ -127,8 +128,8 @@ dependencies {
     implementation 'org.slf4j:slf4j-android:1.7.30'
 
     //test suites
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
     testImplementation 'org.testng:testng:6.9.6'
 
     androidTestImplementation 'androidx.test:runner:1.2.0'
