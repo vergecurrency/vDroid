@@ -7,14 +7,12 @@ import java.io.InputStreamReader
 import java.net.InetSocketAddress
 import java.nio.charset.StandardCharsets
 
-//todo : adapt class according to tormanager changes
 class TorLayerGateway(requestBase: HttpRequestBase) : Gateway(requestBase) {
 
-    //TODO
     override fun onPreExecute() {
         if (TorManager.getInstance(null).state == TorManager.STATES.ERROR) {
             //return ClearnetGateway().execute(strings[0]).get()
-             throw RuntimeException("Tor Manager Error")
+            throw RuntimeException("Tor Manager Error")
         }
 
         if (TorManager.getInstance(null).state != TorManager.STATES.CONNECTED) {
@@ -28,13 +26,13 @@ class TorLayerGateway(requestBase: HttpRequestBase) : Gateway(requestBase) {
             val result = StringBuilder()
 
             //Creates the http client according to the previous method
-            val port = TorManager.onionProxyManager!!.iPv4LocalHostSocksPort
+            val port = TorManager.getInstance(null).onionProxyManager!!.iPv4LocalHostSocksPort
             //creates the local socket and context
             val socksaddr = InetSocketAddress("127.0.0.1", port)
             val context = HttpClientContext.create()
             context.setAttribute("socks.address", socksaddr)
 
-            val httpClient = TorManager.newHttpClient
+            val httpClient = TorManager.getInstance(null).newHttpClient
 
             val httpResponse = httpClient.execute(super.requestBase, context)
             val httpEntity = httpResponse.entity
@@ -58,7 +56,8 @@ class TorLayerGateway(requestBase: HttpRequestBase) : Gateway(requestBase) {
             //TODO : Catch exception properly
             ex.printStackTrace()
             return ""
-        }    }
+        }
+    }
 
     override fun onPostExecute(result: String) {
 
