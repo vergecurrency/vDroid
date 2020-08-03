@@ -1,6 +1,7 @@
 package vergecurrency.vergewallet.service.model.network.layers
 
 import android.content.Context
+import android.os.AsyncTask
 import com.msopentech.thali.android.toronionproxy.AndroidOnionProxyManager
 import com.msopentech.thali.toronionproxy.OnionProxyManager
 import cz.msebera.android.httpclient.client.HttpClient
@@ -16,7 +17,7 @@ import vergecurrency.vergewallet.service.model.network.sockets.SSLConnectionSock
 import java.lang.IllegalStateException
 import java.net.*
 
-class TorManager private constructor(context: Context) {
+class TorManager private constructor(context: Context)  :  AsyncTask<String, Void, String>() {
 
     var onionProxyManager: OnionProxyManager? = null
     private val fileStorageLocation = "torfiles"
@@ -57,11 +58,11 @@ class TorManager private constructor(context: Context) {
         }
 
 
-    fun startTor() {
+    fun startTor() : String {
 
 
         if (state == STATES.CONNECTED) {
-            return
+            return "connected"
         }
         state = STATES.CONNECTING
 
@@ -71,7 +72,7 @@ class TorManager private constructor(context: Context) {
         val ok = try {
             onionProxyManager!!.startWithRepeat(totalSecondsPerTorStartup, totalTriesPerTorStartup)
         } catch (e: Exception) {
-            false
+            return "ugh"
         }
 
         if (!ok) {
@@ -82,9 +83,6 @@ class TorManager private constructor(context: Context) {
             }
         }
 
-        while (!onionProxyManager!!.isRunning) {
-            Thread.sleep(90)
-        }
 
         proxy = Proxy(Proxy.Type.SOCKS, InetSocketAddress("127.0.0.1", onionProxyManager!!.iPv4LocalHostSocksPort))
         currentPort = onionProxyManager!!.iPv4LocalHostSocksPort
@@ -96,6 +94,7 @@ class TorManager private constructor(context: Context) {
         state = STATES.CONNECTED
 
         println("Tor initialized on port " + onionProxyManager!!.iPv4LocalHostSocksPort)
+        return "ok"
     }
 
     fun stopTor(): Boolean {
@@ -136,6 +135,10 @@ class TorManager private constructor(context: Context) {
             ex.printStackTrace()
             return false
         }
+    }
+
+    override fun doInBackground(vararg p0: String?): String {
+        return startTor()
     }
 
 }

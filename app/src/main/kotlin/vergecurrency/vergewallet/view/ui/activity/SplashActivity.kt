@@ -25,10 +25,10 @@ class SplashActivity : BaseActivity() {
         //daoSession = new AbstractDaoMaster;
         setContentView(R.layout.activity_splash)
         //Just to have the splash screen going briefly
-        Handler().postDelayed({ this.startApplication() }, 500)
+        Handler().postDelayed({ r.run() }, 500)
     }
 
-    private fun startApplication() {
+    private var r: Runnable = Runnable {
         try {
             TorManager.getInstance(applicationContext)
 
@@ -36,7 +36,9 @@ class SplashActivity : BaseActivity() {
             EncryptedPreferencesManager.usingTor = true
 
             if (EncryptedPreferencesManager.usingTor) {
-                TorManager.getInstance(null).startTor()
+
+
+                TorManager.getInstance(null).execute()
 
             }
         } catch (e: java.lang.Exception) {
@@ -60,6 +62,7 @@ class SplashActivity : BaseActivity() {
             startActivity(Intent(applicationContext, WalletActivity::class.java))
             finish()
         }
+
     }
 
     override fun onBackPressed() {}
