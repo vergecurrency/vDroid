@@ -118,7 +118,7 @@ dependencies {
     implementation 'testfairy:testfairy-android-sdk:1.9.16@aar'
 
     //android room
-    def room_version = "2.2.5"
+    def room_version = "2.2.6"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
