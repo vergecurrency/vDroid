@@ -25,7 +25,7 @@ class VergeWalletApplication : Application(), Application.ActivityLifecycleCallb
     override fun onCreate() {
         //Init the wallet manager, bitcoinkit, testfairy
         super.onCreate()
-        BitcoinKit.init(this)
+        //BitcoinKit.init(this)
         WalletManager.init()
         TestFairy.begin(this, "a67a4df6e2a8a0c981638eb0f168297fd45aed73")
         initExceptionHandler()

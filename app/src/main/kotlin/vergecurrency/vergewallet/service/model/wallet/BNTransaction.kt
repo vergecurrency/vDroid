@@ -1,10 +1,10 @@
 package vergecurrency.vergewallet.service.model.wallet
 
 import com.google.gson.Gson
-import io.horizontalsystems.bitcoinkit.io.BitcoinInput
-import io.horizontalsystems.bitcoinkit.models.TransactionInput
-import io.horizontalsystems.bitcoinkit.models.TransactionOutPoint
-import io.horizontalsystems.bitcoinkit.models.TransactionOutput
+import io.horizontalsystems.bitcoincore.io.BitcoinInput
+import io.horizontalsystems.bitcoincore.models.TransactionInput
+import io.horizontalsystems.bitcoincore.models.TransactionOutPoint
+import io.horizontalsystems.bitcoincore.models.TransactionOutput
 import org.bouncycastle.util.encoders.Hex
 import vergecurrency.vergewallet.helpers.utils.DataUtils
 
@@ -71,7 +71,9 @@ class BNTransaction {
         val transactionOutPoint = TransactionOutPoint(txHash, mintIndex)
 
         //This is probs bullshit but the BitcoinKit on Android and Swift don't correspond on this one so let's see...
-        return TransactionInput(BitcoinInput(transactionOutPoint.serialize()))
+        //return TransactionInput(BitcoinInput(transactionOutPoint.serialize()))
+        //TODO : make this actually mean something
+        return TransactionInput(transactionOutPoint, byteArrayOf(),0L)
 
     }
 

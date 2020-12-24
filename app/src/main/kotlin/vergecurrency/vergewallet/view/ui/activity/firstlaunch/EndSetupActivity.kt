@@ -19,7 +19,7 @@ class EndSetupActivity : BaseActivity() {
         setContentView(R.layout.activity_wallet_ready)
 
         try {
-            WalletManager.startWallet()
+            WalletManager.startWallet(this.applicationContext)
         } catch (e: Exception) {
             System.err.print(e)
             Toast.makeText(applicationContext, "Impossible to start wallet. Manuel you did some crap", Toast.LENGTH_LONG).show()

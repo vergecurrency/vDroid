@@ -1,8 +1,8 @@
 package vergecurrency.vergewallet.wallet
 
 
-import io.horizontalsystems.bitcoinkit.network.MainNet
-import io.horizontalsystems.bitcoinkit.utils.AddressConverter
+import io.horizontalsystems.bitcoincore.network.MainNet
+import io.horizontalsystems.bitcoincore.utils.Base58AddressConverter
 import java.lang.Float.parseFloat
 import java.util.*
 
@@ -54,7 +54,7 @@ class AddressValidator {
 
     private fun isValidAddress(address: String): Boolean {
         return try {
-            AddressConverter(MainNet()).convert(address)
+            Base58AddressConverter(30,5).convert(address)
             true
         } catch (e: Exception) {
             false

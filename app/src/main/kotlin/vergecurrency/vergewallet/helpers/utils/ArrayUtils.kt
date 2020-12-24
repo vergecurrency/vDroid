@@ -1,6 +1,6 @@
 package vergecurrency.vergewallet.helpers.utils
 
-import io.horizontalsystems.bitcoinkit.models.TransactionOutput
+import io.horizontalsystems.bitcoincore.models.TransactionOutput
 
 object ArrayUtils {
 

@@ -33,7 +33,7 @@ class SplashActivity : BaseActivity() {
             TorManager.getInstance(applicationContext)
 
             //TODO TESTING only
-            EncryptedPreferencesManager.usingTor = true
+            EncryptedPreferencesManager.usingTor = false
 
             if (EncryptedPreferencesManager.usingTor) {
 
@@ -54,7 +54,7 @@ class SplashActivity : BaseActivity() {
         } else {
             try {
                 //init took place in VergeWalletApplication
-                WalletManager.startWallet()
+                WalletManager.startWallet(this.applicationContext)
             } catch (e: Exception) {
                 Toast.makeText(applicationContext, "Something went wrong", Toast.LENGTH_SHORT).show()
             }

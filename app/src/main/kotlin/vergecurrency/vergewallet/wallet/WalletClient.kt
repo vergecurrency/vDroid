@@ -3,15 +3,13 @@ package vergecurrency.vergewallet.wallet
 import android.content.Context
 import io.horizontalsystems.bitcoinkit.BitcoinKit.NetworkType
 import io.horizontalsystems.bitcoinkit.crypto.Base58
-import io.horizontalsystems.bitcoinkit.models.*
-import io.horizontalsystems.bitcoinkit.network.MainNet
-import io.horizontalsystems.bitcoinkit.transactions.scripts.Script
-import io.horizontalsystems.bitcoinkit.utils.AddressConverter
-import io.horizontalsystems.bitcoinkit.utils.HashUtils
+import io.horizontalsystems.bitcoincore.models.*
+import io.horizontalsystems.bitcoinkit.MainNet
+import io.horizontalsystems.bitcoincore.transactions.scripts.Script
+import io.horizontalsystems.bitcoincore.utils.Base58AddressConverter
+import io.horizontalsystems.bitcoincore.utils.HashUtils
 import io.horizontalsystems.hdwalletkit.HDKey
 import io.horizontalsystems.hdwalletkit.HDPublicKey
-import io.realm.Realm
-import io.realm.RealmList
 import org.bouncycastle.util.encoders.Hex
 import org.json.JSONObject
 import vergecurrency.vergewallet.Constants
@@ -305,7 +303,8 @@ class WalletClient : WalletClientInterface {
     }
 
     fun getLegacyAddr(address: ByteArray): LegacyAddress {
-        return AddressConverter(MainNet()).convert(address) as LegacyAddress
+        //return Base58AddressConverter(MainNet()).convert(address) as LegacyAddress
+        return Base58AddressConverter(30, 5).convert(address) as LegacyAddress
     }
 
     //Wallet info methods
@@ -475,9 +474,6 @@ class WalletClient : WalletClientInterface {
 
         val amount = txp.amount
 
-        //I LITERALLY SPENT ONE DAY ON THIS. DO YOU SEE THE PROBLEM? DO YOU? I DID FUCKING NOT.
-        //val totalAmount   = unspentTransactions.fold(0) {a , b -> a + b.output.value }
-        //val totalAmount   = unspentTransactions.fold(0L) {a , b -> a + b.output.value }
         val totalAmount = unspentTransactions.fold(0L) { a, b -> a + b.output.value }
         val change = totalAmount - amount - txp.fee
 
@@ -511,21 +507,12 @@ class WalletClient : WalletClientInterface {
                 tOutputs.add(changeOutput)
             }
             tOutputs = ArrayUtils.filterByIndices(txp.outputOrder!!.map { it }, tOutputs)
-            val realm: Realm = Realm.getDefaultInstance()
 
             val tx = Transaction().apply {
                 version = 1
                 timestamp = txp.createdOn.toLong()
                 lockTime = 0
             }
-
-            //add realmlist object
-            realm.beginTransaction()
-            tx.inputs = RealmList<TransactionInput>()
-            tx.inputs.addAll(unsignedInputs)
-            tx.outputs = RealmList<TransactionOutput>()
-            tx.outputs.addAll(tOutputs)
-            realm.commitTransaction()
 
             return UnsignedTransaction(tx, unspentTransactions)
         } catch (e: Exception) {

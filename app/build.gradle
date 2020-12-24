@@ -95,7 +95,7 @@ dependencies {
     //Crypto
 
     //BitcoinKit
-    implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.2.6'
+    implementation 'com.github.2lazy2debug:bitcoin-kit-android:0.5.1'
     //HD Wallet Kit
     //TODO UPDATE SPONGYCASTLE -> BOUNCYCASTLE
     implementation 'com.github.2lazy2debug:hd-wallet-kit-android:1.1.1'

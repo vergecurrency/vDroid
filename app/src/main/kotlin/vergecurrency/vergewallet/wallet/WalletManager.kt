@@ -1,14 +1,14 @@
 package vergecurrency.vergewallet.wallet
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
+import io.horizontalsystems.bitcoincore.BitcoinCore
+import io.horizontalsystems.bitcoincore.core.Bip
 import io.horizontalsystems.bitcoinkit.BitcoinKit
 import io.horizontalsystems.bitcoinkit.BitcoinKit.*
-import io.horizontalsystems.bitcoinkit.models.BlockInfo
-import io.horizontalsystems.bitcoinkit.models.TransactionInfo
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager
 import vergecurrency.vergewallet.service.model.EncryptedPreferencesManager.Companion.mnemonic
 import vergecurrency.vergewallet.service.model.MnemonicManager
-import java.util.*
 
 class WalletManager private constructor() : Listener {
 
@@ -20,23 +20,8 @@ class WalletManager private constructor() : Listener {
         WalletManager.balance = balance
     }
 
-    override fun onBalanceUpdate(bitcoinKit: BitcoinKit, balance: Long) {
-
-    }
-
-    override fun onKitStateUpdate(bitcoinKit: BitcoinKit, state: KitState) {
-
-    }
-
-    override fun onLastBlockInfoUpdate(bitcoinKit: BitcoinKit, blockInfo: BlockInfo) {
-
-    }
 
     override fun onTransactionsDelete(hashes: List<String>) {
-
-    }
-
-    override fun onTransactionsUpdate(bitcoinKit: BitcoinKit, inserted: List<TransactionInfo>, updated: List<TransactionInfo>) {
 
     }
 
@@ -61,18 +46,32 @@ class WalletManager private constructor() : Listener {
                 return INSTANCE as WalletManager
             }
 
+
+        /*
+         constructor(
+            context: Context,
+            words: List<String>,
+            salt : String,
+            walletId: String,
+            networkType: NetworkType = NetworkType.MainNet,
+            peerSize: Int = 10,
+            syncMode: BitcoinCore.SyncMode = BitcoinCore.SyncMode.Api(),
+            confirmationsThreshold: Int = 6,
+            bip: Bip = Bip.BIP44
+    ) : this(context, Mnemonic().toSeedWithPassphrase(words, salt), walletId, networkType, peerSize, syncMode, confirmationsThreshold, bip)
+         */
         @Throws(Exception::class)
-        fun startWallet() {
+        fun startWallet(context : Context) {
             val netType = NetworkType.MainNet
             val mnemonic = MnemonicManager.getMnemonicFromJSON(mnemonic!!)
             if (mnemonic != null) {
-                wallet = BitcoinKit(Arrays.asList(*mnemonic), EncryptedPreferencesManager.passphrase!!, netType, "wallet", 10, true, 1)
+                wallet = BitcoinKit(context, listOf(*mnemonic), EncryptedPreferencesManager.passphrase!!, "wallet", netType, 10, BitcoinCore.SyncMode.NewWallet(), 3, Bip.BIP44)
                 wallet!!.listener = INSTANCE
                 //val networkName = netType.name
 
                 wallet!!.start()
 
-                balance!!.setValue(wallet!!.balance)
+                balance!!.setValue(wallet!!.balance.spendable)
 
             } else {
                 //I don't know, I'll see how to handle this.
@@ -95,7 +94,7 @@ class WalletManager private constructor() : Listener {
 
         fun getBalance(): MutableLiveData<Long> {
             try {
-                balance!!.setValue(wallet!!.balance)
+                balance!!.setValue(wallet!!.balance.spendable)
             } catch (e: java.lang.Exception) {
                 balance!!.setValue(0L)
             }

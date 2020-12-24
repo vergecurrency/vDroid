@@ -1,8 +1,8 @@
 package vergecurrency.vergewallet.service.model.wallet
 
-import io.horizontalsystems.bitcoinkit.models.TransactionInput
-import io.horizontalsystems.bitcoinkit.models.TransactionOutPoint
-import io.horizontalsystems.bitcoinkit.models.TransactionOutput
+import io.horizontalsystems.bitcoincore.models.TransactionInput
+import io.horizontalsystems.bitcoincore.models.TransactionOutPoint
+import io.horizontalsystems.bitcoincore.models.TransactionOutput
 import org.bouncycastle.util.encoders.Hex
 import vergecurrency.vergewallet.helpers.utils.DataUtils
 
@@ -70,13 +70,8 @@ class UnspentOutput {
 
         val txHash = DataUtils.reverse(txid)
         val transactionOutPoint = TransactionOutPoint(txHash, vout)
-
-        return TransactionInput().apply {
-            //TODO : Not today
-            previousOutputOP = transactionOutPoint
-            sigScript = ByteArray(0)
-            sequence = Long.MAX_VALUE
-        }
+        //TODO : make this meaningful
+        return TransactionInput(transactionOutPoint, byteArrayOf(),0L)
     }
 
 
