@@ -70,7 +70,7 @@ dependencies {
     //Visuals
 
     //QRCode
-    implementation 'com.github.kenglxn.QRGen:android:2.5.0'
+    implementation 'com.github.kenglxn.QRGen:android:2.6.0'
     //MapBox
     implementation 'org.osmdroid:osmdroid-android:6.1.6'
     //Charts
