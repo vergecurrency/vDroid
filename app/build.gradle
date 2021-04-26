@@ -115,7 +115,7 @@ dependencies {
     implementation "io.reactivex.rxjava3:rxjava:3.0.4"
 
     //TestFairy
-    implementation 'testfairy:testfairy-android-sdk:1.9.16@aar'
+    implementation 'testfairy:testfairy-android-sdk:1.11.44@aar'
 
     //android room
     def room_version = "2.2.6"
