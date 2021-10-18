@@ -110,7 +110,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
     //JS engine
-    implementation 'com.eclipsesource.j2v8:j2v8:6.2.0@aar'
+    implementation 'com.eclipsesource.j2v8:j2v8:6.2.1@aar'
     //Observables
     implementation "io.reactivex.rxjava3:rxjava:3.0.4"
 
