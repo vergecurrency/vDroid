@@ -72,7 +72,7 @@ dependencies {
     //QRCode
     implementation 'com.github.kenglxn.QRGen:android:2.5.0'
     //MapBox
-    implementation 'org.osmdroid:osmdroid-android:6.1.6'
+    implementation 'org.osmdroid:osmdroid-android:6.1.14'
     //Charts
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     //Centered buttons
